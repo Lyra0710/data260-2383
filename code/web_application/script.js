@@ -11,6 +11,13 @@ const validateForm = (event) => {
         alert("You must accept the terms and conditions.");
     }
 
+
+    const formData = new FormData(form); // collect values from the form
+    const formObject = Object.fromEntries(formData.entries());
+    formObject.termsAccepted = checkbox.checked; // because if unchecked, formData does not include the key termsAccepted
+    const jsonData = JSON.stringify(formObject); // convert object to json
+    console.log(jsonData);
+
 };
 
 form.addEventListener("submit", validateForm); // attaching the arrow function to the form's submit event
