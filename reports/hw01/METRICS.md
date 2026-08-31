@@ -24,3 +24,24 @@
 | p50 | 82,441 ms | 103,358 ms |
 | p95 | 92,363 ms | 142,961 ms |
 | p99 | 93,513 ms | 149,838 ms |
+
+# Part 4 — Model Client and Token Accounting
+
+## Five-turn conversation token usage
+
+| Turn | Input tokens | Output tokens | Total tokens |
+|---:|---:|---:|---:|
+| 1 | 88 | 647 | 735 |
+| 2 | 283 | 599 | 882 |
+| 3 | 489 | 576 | 1,065 |
+| 4 | 647 | 692 | 1,339 |
+| 5 | 865 | 739 | 1,604 |
+
+## `/stats` checkpoints
+
+| Checkpoint | Turn count | Cumulative input tokens | Cumulative output tokens | Serialized conversation-history length |
+|---|---:|---:|---:|---:|
+| After turn 3 | 3 | 860 | 1,822 | 2,919 characters |
+| After turn 5 | 5 | 2,372 | 3,253 | 4,768 characters |
+
+On exit, the client reported 5 turns, 2,372 cumulative input tokens, and 3,253 cumulative output tokens.

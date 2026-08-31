@@ -41,7 +41,7 @@ const validateForm = (event) => {
         ...parseObject,
         submissionDate: new Date().toISOString(), // ISO string represents current date-time
     }
-    console.log("Submission date updated:", updatedObject.submissionDate)
+    console.log("Submission date updated:", updatedObject)
 
     // Question 5
 
