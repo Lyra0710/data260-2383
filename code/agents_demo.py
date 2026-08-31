@@ -362,13 +362,19 @@ def main():
     ap.add_argument("--base_url", default=os.environ.get("OLLAMA_URL", "http://localhost:11434"))
     ap.add_argument("--turns", type=int, default=1)
     ap.add_argument("--strict", action="store_true")
+    ap.add_argument(
+    "--temperature",
+    type=float,
+    default=0.0,
+    help="Model sampling temperature"
+)
     args = ap.parse_args()
 
     # Initialize Ollama chat model (students can adjust params)
     try:
         llm = ChatOllama(
             model=args.model,
-            temperature=0.0,
+            temperature=args.temperature,
             base_url=args.base_url,
             num_ctx=2048,
             format="json",  # asks Ollama to produce JSON when supported
@@ -384,7 +390,7 @@ def main():
     # Define three agents (Planner -> Reviewer -> Finalizer)
     planner = SimpleAgent(
         name="Planner",
-        system="Propose exactly 3 distinct, topical tags (prefer multi-word phrases) and a one-line summary for the blog post.",
+        system="Propose exactly 3 distinct, topical tags (prefer multi-word phrases) and a one-line summary for the supplied title and content.",
         model=llm,
     )
     reviewer = SimpleAgent(
@@ -405,7 +411,7 @@ def main():
     )
 
     task = (
-        f'Given blog title "{args.title}" and content "{args.content}", produce exactly 3 topical tags '
+        f'Given title "{args.title}" and content "{args.content}", produce exactly 3 topical tags '
         f'and a one-sentence summary in your own words. Email is {args.email}.'
     )
 

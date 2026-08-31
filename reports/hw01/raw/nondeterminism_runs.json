@@ -1,0 +1,482 @@
+[
+  {
+    "run_number": 1,
+    "temperature": 0.7,
+    "tags": [
+      "soccer game rescheduling",
+      "venue change announcement",
+      "logistical updates"
+    ],
+    "summary": "Falcons vs. Tigers soccer semifinal moves to Spartan Stadium on September 12 due to field maintenance.",
+    "latency_ms": 115146,
+    "timestamp": "2026-08-31T09:09:11.858403+00:00"
+  },
+  {
+    "run_number": 2,
+    "temperature": 0.7,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change notice",
+      "logistics update"
+    ],
+    "summary": "Community soccer semifinal rescheduled to Spartan Stadium with early arrival, ID requirements, and a backup venue for rain.",
+    "latency_ms": 119965,
+    "timestamp": "2026-08-31T09:11:11.826153+00:00"
+  },
+  {
+    "run_number": 3,
+    "temperature": 0.7,
+    "tags": [
+      "soccer game rescheduling",
+      "venue change notification",
+      "logistics update"
+    ],
+    "summary": "Community soccer semifinal rescheduled to Spartan Stadium on September 12 with early arrival, ID checks, and rain backup venue.",
+    "latency_ms": 134565,
+    "timestamp": "2026-08-31T09:13:26.393249+00:00"
+  },
+  {
+    "run_number": 4,
+    "temperature": 0.7,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change notification",
+      "event logistics update"
+    ],
+    "summary": "Falcons vs. Tigers soccer semifinal rescheduled to Spartan Stadium on September 12 due to field maintenance with logistical updates.",
+    "latency_ms": 142509,
+    "timestamp": "2026-08-31T09:15:48.904541+00:00"
+  },
+  {
+    "run_number": 5,
+    "temperature": 0.7,
+    "tags": [
+      "soccer game rescheduling",
+      "venue change notification",
+      "event logistics update"
+    ],
+    "summary": "Community soccer semifinal rescheduled to Spartan Stadium on September 12 with early arrival, ID checks, and a backup venue for rain.",
+    "latency_ms": 113449,
+    "timestamp": "2026-08-31T09:17:42.356890+00:00"
+  },
+  {
+    "run_number": 6,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal reschedule",
+      "venue change notification",
+      "rain backup venue info"
+    ],
+    "summary": "Falcons vs. Tigers soccer semifinal rescheduled to Spartan Stadium on September 12 due to field maintenance with arrival and venue details specified.",
+    "latency_ms": 112268,
+    "timestamp": "2026-08-31T09:19:34.626711+00:00"
+  },
+  {
+    "run_number": 7,
+    "temperature": 0.7,
+    "tags": [
+      "soccer match rescheduling",
+      "stadium venue change",
+      "event logistics update"
+    ],
+    "summary": "Community soccer semifinal rescheduled to Spartan Stadium on September 12 with rain backup at the community center.",
+    "latency_ms": 91446,
+    "timestamp": "2026-08-31T09:21:06.074221+00:00"
+  },
+  {
+    "run_number": 8,
+    "temperature": 0.7,
+    "tags": [
+      "community soccer semifinal rescheduling",
+      "spartan stadium location change",
+      "logistics and backup venue"
+    ],
+    "summary": "The Falcons and Tigers' soccer semifinal is rescheduled to Spartan Stadium on September 12 with logistics updates and a backup plan.",
+    "latency_ms": 103940,
+    "timestamp": "2026-08-31T09:22:50.015781+00:00"
+  },
+  {
+    "run_number": 9,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal rescheduling",
+      "venue change notification",
+      "community event logistics"
+    ],
+    "summary": "Community soccer semifinal rescheduled to Spartan Stadium on September 12 with community center as backup.",
+    "latency_ms": 84814,
+    "timestamp": "2026-08-31T09:24:14.830427+00:00"
+  },
+  {
+    "run_number": 10,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal rescheduling",
+      "field maintenance update",
+      "event logistics changes"
+    ],
+    "summary": "The Falcons vs. Tigers soccer semifinal is rescheduled to Spartan Stadium on September 12 due to field maintenance, with a backup venue and updated logistics.",
+    "latency_ms": 79472,
+    "timestamp": "2026-08-31T09:25:34.303412+00:00"
+  },
+  {
+    "run_number": 11,
+    "temperature": 0.7,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change announcement",
+      "event logistics update"
+    ],
+    "summary": "Community soccer semifinal rescheduled to Spartan Stadium on September 12 with early arrival, ID checks, and rain backup.",
+    "latency_ms": 83270,
+    "timestamp": "2026-08-31T09:26:57.598974+00:00"
+  },
+  {
+    "run_number": 12,
+    "temperature": 0.7,
+    "tags": [
+      "soccer game rescheduling",
+      "field maintenance impact",
+      "venue change logistics"
+    ],
+    "summary": "The Falcons vs. Tigers soccer semifinal is rescheduled to Spartan Stadium on September 12 due to field maintenance, with the community center as a backup.",
+    "latency_ms": 84928,
+    "timestamp": "2026-08-31T09:28:22.535504+00:00"
+  },
+  {
+    "run_number": 13,
+    "temperature": 0.7,
+    "tags": [
+      "soccer match rescheduling",
+      "field maintenance impact",
+      "backup venue preparation"
+    ],
+    "summary": "Community soccer semifinal rescheduled to Spartan Stadium on September 12 for field maintenance with rain backup.",
+    "latency_ms": 83735,
+    "timestamp": "2026-08-31T09:29:46.273868+00:00"
+  },
+  {
+    "run_number": 14,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal rescheduling",
+      "field maintenance notice",
+      "venue logistics update"
+    ],
+    "summary": "Falcons vs. Tigers soccer semifinal rescheduled to Spartan Stadium on September 12 due to field maintenance with updated arrival times, ID requirements, and backup venue.",
+    "latency_ms": 102776,
+    "timestamp": "2026-08-31T09:31:29.053440+00:00"
+  },
+  {
+    "run_number": 15,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal rescheduling",
+      "stadium venue change",
+      "field maintenance reason"
+    ],
+    "summary": "Community soccer semifinal moved to Spartan Stadium on Sept 12 due to field maintenance.",
+    "latency_ms": 74064,
+    "timestamp": "2026-08-31T09:32:43.121333+00:00"
+  },
+  {
+    "run_number": 16,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal reschedule",
+      "stadium relocation",
+      "field maintenance"
+    ],
+    "summary": "Community soccer semifinal moved to Spartan Stadium on September 12 due to field maintenance.",
+    "latency_ms": 151557,
+    "timestamp": "2026-08-31T09:35:14.681873+00:00"
+  },
+  {
+    "run_number": 17,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal rescheduling",
+      "stadium location change",
+      "field maintenance reason"
+    ],
+    "summary": "Falcons and Tigers' soccer semifinal moves to Spartan Stadium on September 12 due to field maintenance.",
+    "latency_ms": 106172,
+    "timestamp": "2026-08-31T09:37:00.856129+00:00"
+  },
+  {
+    "run_number": 18,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal rescheduling",
+      "stadium venue change",
+      "event logistics update"
+    ],
+    "summary": "Falcons vs. Tigers soccer semifinal moves to Spartan Stadium on September 12 due to maintenance, with early arrival, ID, and backup venue requirements.",
+    "latency_ms": 88382,
+    "timestamp": "2026-08-31T09:38:29.240204+00:00"
+  },
+  {
+    "run_number": 19,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal rescheduling",
+      "spartan stadium location change",
+      "community center backup venue"
+    ],
+    "summary": "Community soccer semifinal rescheduled to Spartan Stadium on September 12 with community center as backup.",
+    "latency_ms": 77482,
+    "timestamp": "2026-08-31T09:39:46.726395+00:00"
+  },
+  {
+    "run_number": 20,
+    "temperature": 0.7,
+    "tags": [
+      "soccer semifinal rescheduling",
+      "spartan stadium event details",
+      "field maintenance impact"
+    ],
+    "summary": "Falcons vs. Tigers soccer semifinal rescheduled to Spartan Stadium on Sept 12 due to field maintenance; early arrival, ID checks, and community center backup if.",
+    "latency_ms": 116941,
+    "timestamp": "2026-08-31T09:41:43.669536+00:00"
+  },
+  {
+    "run_number": 1,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change notification",
+      "event logistics update"
+    ],
+    "summary": "Falcons vs. Tigers soccer semifinal rescheduled to Spartan Stadium on September 12 with logistics and rain backup plan.",
+    "latency_ms": 78533,
+    "timestamp": "2026-08-31T09:43:02.205907+00:00"
+  },
+  {
+    "run_number": 2,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 92203,
+    "timestamp": "2026-08-31T09:44:34.414686+00:00"
+  },
+  {
+    "run_number": 3,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 88365,
+    "timestamp": "2026-08-31T09:46:02.784040+00:00"
+  },
+  {
+    "run_number": 4,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 88281,
+    "timestamp": "2026-08-31T09:47:31.067558+00:00"
+  },
+  {
+    "run_number": 5,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 88256,
+    "timestamp": "2026-08-31T09:48:59.327073+00:00"
+  },
+  {
+    "run_number": 6,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 88098,
+    "timestamp": "2026-08-31T09:50:27.431274+00:00"
+  },
+  {
+    "run_number": 7,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 82749,
+    "timestamp": "2026-08-31T09:51:50.182047+00:00"
+  },
+  {
+    "run_number": 8,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 89246,
+    "timestamp": "2026-08-31T09:53:19.431175+00:00"
+  },
+  {
+    "run_number": 9,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 91327,
+    "timestamp": "2026-08-31T09:54:50.759901+00:00"
+  },
+  {
+    "run_number": 10,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 93800,
+    "timestamp": "2026-08-31T09:56:24.561491+00:00"
+  },
+  {
+    "run_number": 11,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 92287,
+    "timestamp": "2026-08-31T09:57:56.844835+00:00"
+  },
+  {
+    "run_number": 12,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 82133,
+    "timestamp": "2026-08-31T09:59:18.980049+00:00"
+  },
+  {
+    "run_number": 13,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 80201,
+    "timestamp": "2026-08-31T10:00:39.184342+00:00"
+  },
+  {
+    "run_number": 14,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 80211,
+    "timestamp": "2026-08-31T10:01:59.400999+00:00"
+  },
+  {
+    "run_number": 15,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 80224,
+    "timestamp": "2026-08-31T10:03:19.626620+00:00"
+  },
+  {
+    "run_number": 16,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 80356,
+    "timestamp": "2026-08-31T10:04:39.987917+00:00"
+  },
+  {
+    "run_number": 17,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 80782,
+    "timestamp": "2026-08-31T10:06:00.774292+00:00"
+  },
+  {
+    "run_number": 18,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 80119,
+    "timestamp": "2026-08-31T10:07:20.895283+00:00"
+  },
+  {
+    "run_number": 19,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 80216,
+    "timestamp": "2026-08-31T10:08:41.113860+00:00"
+  },
+  {
+    "run_number": 20,
+    "temperature": 0.0,
+    "tags": [
+      "soccer match rescheduling",
+      "venue change",
+      "event logistics"
+    ],
+    "summary": "Falcons vs. Tigers semifinal moves to Spartan Stadium on September 12 with early arrival, ID requirements, and a rain backup plan.",
+    "latency_ms": 80231,
+    "timestamp": "2026-08-31T10:10:01.350380+00:00"
+  }
+]
