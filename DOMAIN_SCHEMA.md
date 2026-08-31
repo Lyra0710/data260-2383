@@ -25,7 +25,7 @@ submit button  -->
 | location | String | Yes | Location where the fixture will take place |
 | submitterEmail | Email | Yes | Email address of the league manager |
 | description | String | Yes | Additional details about the fixture |
-| sportType | String | Yes | Type of sport being played |
+| sportType | String | No | Type of sport being played |
 | termsAccepted | Boolean | Yes | Whether the manager accepted the terms and conditions |
 | submissionDate | Date-time | Generated | Date and time when the form was successfully submitted |
 

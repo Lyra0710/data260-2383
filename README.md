@@ -97,4 +97,10 @@ The model's context window limits growth because it is the maximum number of tok
 
 ## Verification status
 
-`reports/hw01/verification.json` exists but is currently empty. A reproducible self-check command and its JSON output still need to be added before final submission.
+Run the repository self-check with:
+
+```bash
+python code/verify_hw01.py
+```
+
+The script writes its results to `reports/hw01/verification.json` and exits with a nonzero status if a check fails. The current verification output was generated with Python 3.11.9 and reports that all checks passed.
