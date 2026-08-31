@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-08-31T21:12:47.038567+00:00",
+  "python_version": "3.11.9",
+  "all_checks_passed": true,
+  "checks": {
+    "supported_python_version": true,
+    "domain_schema_exists": true,
+    "agent_instructions_exist": true,
+    "model_adapter_exists": true,
+    "hw1_client_imports_adapter": true,
+    "primary_field_has_autofocus": true,
+    "javascript_logs_updated_object": true,
+    "raw_experiment_has_40_runs": true,
+    "temperature_0.7_has_20_runs": true,
+    "temperature_0.0_has_20_runs": true,
+    "every_run_has_three_tags": true
+  }
+}
