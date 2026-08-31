@@ -1,0 +1,7 @@
+# Downloaded assignment instructions; not a submission artifact.
+260_HW_1.pdf
+
+# Machine-generated local files.
+.DS_Store
+__pycache__/
+*.py[cod]
