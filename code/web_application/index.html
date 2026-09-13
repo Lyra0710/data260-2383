@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 
-<head meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
     <title>HW1-Ananya Yallapragada</title>
 </head>
 
@@ -67,7 +68,33 @@
             <input type="submit" value="Create Fixture">
         </form>
     </center>
-    <script src="script.js"></script>
+    <!-- Update Fixture ID 1-->
+    <section class="update-section">
+        <h2>Update Fixture ID 1</h2>
+
+        <form id="updateForm">
+            <label for="updateFixtureName">
+                Updated Fixture Name:
+            </label>
+
+            <input type="text" id="updateFixtureName" name="updateFixtureName" required>
+
+            <label for="updateTeam1">
+                Updated Team 1:
+            </label>
+
+            <input type="text" id="updateTeam1" name="updateTeam1" required>
+
+            <label for="updateTeam2">
+                Updated Team 2:
+            </label>
+
+            <input type="text" id="updateTeam2" name="updateTeam2" required>
+
+            <input type="submit" value="Update Fixture ID 1">
+        </form>
+    </section>
+    <script src="/static/script.js"></script>
 </body>
 
 </html>

@@ -64,3 +64,22 @@ input[type="submit"] {
     color: #8b2020;
     background-color: #ffe1e1;
 }
+
+.fixture-item {
+    width: 100%;
+    padding: 15px 20px;
+    margin: 15px 0;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fixture-item h3 {
+    margin: 0 0 8px;
+    color: #333;
+}
+
+.fixture-item p {
+    margin: 0;
+}
