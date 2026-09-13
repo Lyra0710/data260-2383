@@ -9,6 +9,23 @@
 <body>
 
     <h1>Community sports league fixtures</h1>
+    <section id="fixtureSection">
+        <h2>Scheduled Fixtures</h2>
+
+        <p id="loadingState">Loading fixtures...</p>
+
+        <p id="emptyState" hidden>
+            No fixtures found.
+        </p>
+
+        <p id="errorState" class="error-message" hidden> <!-- starts invisible -->
+            Unable to load fixtures.
+        </p>
+
+        <div id="fixtureList" hidden>
+            <!-- Fixture records will appear here -->
+        </div>
+    </section>
     <center>
         <form id="fixtureForm">
             <label for="fixtureName">Fixture Name:</label><br>

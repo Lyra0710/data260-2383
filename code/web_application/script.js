@@ -2,6 +2,19 @@ const form = document.getElementById('fixtureForm');
 const content = document.getElementById('description');
 const checkbox = document.getElementById('termsAccepted');
 
+// states 
+const loadingState = document.getElementById("loadingState");
+const emptyState = document.getElementById("emptyState");
+const errorState = document.getElementById("errorState");
+const fixtureList = document.getElementById("fixtureList");
+function showState(state) { // false means show the element, true means hide the element
+    loadingState.hidden = state !== "loading";
+    emptyState.hidden = state !== "empty";
+    errorState.hidden = state !== "error";
+    fixtureList.hidden = state !== "list";
+}
+
+
 const closureCounterSubmission = function () {
     let count = 0;
     return function () {

@@ -47,3 +47,20 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
 }
+
+#fixtureSection {
+    margin-bottom: 20px;
+}
+
+#loadingState,
+#emptyState,
+.error-message {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #eef4f5;
+}
+
+.error-message {
+    color: #8b2020;
+    background-color: #ffe1e1;
+}
