@@ -1,6 +1,6 @@
 ## (1) What I used an AI assistant for and what I did myself
 
-I used an AI assistant for code review and as a debugging assistant. I also used it to help prepare the smoke-test script and the code used to run commands in the terminal. In addition, I used it to help adapt the documentation code to the homework instructions after making my own attempt to adapt it. I performed the verification of these changes myself.
+I used an AI assistant for code review and as a debugging assistant. I also used it to help prepare the smoke-test script, the self-check script and the code used to run commands in the terminal. In addition, I used it to help adapt the documentation code to the homework instructions after making my own attempt to adapt it. I performed the verification of these changes myself.
 
 ## (2) One AI-produced output that was wrong/unsuitable, or one thing I independently verified
 The AI code review did not catch that verify_hw02.py had an incorrect LangGraph recursion limit. The script initially set the recursion limit to turn_limit + 5. This was not enough because each graph turn passes through three nodes: Planner, Reviewer, and Supervisor.
