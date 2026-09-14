@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -40,8 +40,20 @@ class FixtureUpdate(BaseModel):
     teams: str
 
 @app.get("/api/fixtures")
-async def get_fixtures():
-    return fixtures
+async def get_fixtures(search: str | None = None):
+    if not search or not search.strip():
+        return fixtures
+
+    search_term = search.strip().casefold()
+
+    return [
+        item
+        for item in fixtures
+        if (
+            search_term in item["fixtureName"].casefold() # case insensitive search
+            or search_term in item["teams"].casefold()
+        )
+    ]
 
 @app.post("/api/fixtures")
 async def create_fixture(fixture: FixtureCreate):
@@ -71,3 +83,20 @@ async def update_fixture(fixture: FixtureUpdate):
         status_code=404,
         detail="Fixture ID 1 not found"
     )
+
+@app.delete("/api/fixtures/highest")
+async def delete_highest_fixture():
+    if not fixtures:
+        raise HTTPException(
+            status_code=404,
+            detail="No fixtures available to delete"
+        )
+
+    highest_fixture = max(
+        fixtures,
+        key=lambda item: item["id"]
+    )
+
+    fixtures.remove(highest_fixture)
+
+    return highest_fixture

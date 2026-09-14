@@ -26,6 +26,17 @@
         <div id="fixtureList" hidden>
             <!-- Fixture records will appear here -->
         </div>
+        <form id="searchForm">
+            <label for="searchInput">
+                Search by fixture name or teams:
+            </label>
+
+            <input type="search" id="searchInput" name="searchInput" placeholder="e.g., Falcons or Soccer">
+
+            <input type="submit" value="Search">
+
+            <input type="button" id="clearSearch" value="Show All Fixtures">
+        </form>
     </section>
     <center>
         <form id="fixtureForm">
@@ -92,6 +103,17 @@
             <input type="text" id="updateTeam2" name="updateTeam2" required>
 
             <input type="submit" value="Update Fixture ID 1">
+        </form>
+    </section>
+    <section class="delete-section">
+        <h2>Delete Highest-ID Fixture</h2>
+
+        <form id="deleteForm">
+            <p>
+                Submit to remove the fixture with the highest ID.
+            </p>
+
+            <input type="submit" value="Delete Highest-ID Fixture">
         </form>
     </section>
     <script src="/static/script.js"></script>

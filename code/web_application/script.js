@@ -1,7 +1,14 @@
 const form = document.getElementById('fixtureForm');
 const content = document.getElementById('description');
 const checkbox = document.getElementById('termsAccepted');
+
 const updateForm = document.getElementById("updateForm");
+const deleteForm = document.getElementById("deleteForm");
+
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
+const clearSearch = document.getElementById("clearSearch");
+
 // states 
 const loadingState = document.getElementById("loadingState");
 const emptyState = document.getElementById("emptyState");
@@ -14,11 +21,14 @@ function showState(state) { // false means show the element, true means hide the
     fixtureList.hidden = state !== "list";
 }
 
-async function loadFixtures() {
+async function loadFixtures(search = "") {
     showState("loading");
 
     try {
-        const response = await fetch("/api/fixtures");
+        const url = search
+            ? `/api/fixtures?search=${encodeURIComponent(search)}`
+            : "/api/fixtures";
+        const response = await fetch(url);
 
         if (!response.ok) {
             throw new Error("Unable to load fixtures.");
@@ -145,7 +155,7 @@ const validateForm = async (event) => {
     }
 };
 
-// Enet listener for update form 
+// Event listener for update form 
 
 form.addEventListener("submit", validateForm); // attaching the arrow function to the form's submit event
 updateForm.addEventListener("submit", async function (event) {
@@ -175,4 +185,38 @@ updateForm.addEventListener("submit", async function (event) {
         showState("error");
     }
 });
+
+// Event listener for delete form
+deleteForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    try {
+        const response = await fetch("/api/fixtures/highest", {
+            method: "DELETE"
+        });
+
+        if (!response.ok) {
+            throw new Error("Unable to delete the highest-ID fixture.");
+        }
+
+        window.location.href = "/";
+    } catch (error) {
+        showState("error");
+    }
+});
+
+// Event listener for search form
+searchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const searchTerm = searchInput.value.trim();
+
+    loadFixtures(searchTerm);
+});
+
+clearSearch.addEventListener("click", function () {
+    searchInput.value = "";
+    loadFixtures();
+});
+
 loadFixtures();
