@@ -71,3 +71,11 @@ for filename in [
     print(f"Completed: {sum(not r['issues'] for r in results)}/{len(results)}")
 PY
 ```
+
+## Run the Homework 2 self-check
+
+```bash
+PYTHONPATH=.:code python code/hw02_self_verify.py
+```
+
+The self-check writes its results to `reports/hw02/verification.json` and exits with a nonzero status if a check fails.
