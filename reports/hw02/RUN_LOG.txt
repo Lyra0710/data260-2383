@@ -1,5 +1,8 @@
 # real console output and timestamps for the runs that produced your
 reported results.
+# Selected console output and timestamps from the graph tests and experiments. Includes intermediate tests. 
+
+# Part 3 — Stateful Agent Graph, Step 6: normal graph execution
 
 (base) annie@mac data260-2383 % PYTHONPATH=. python code/agents_demo.py \
   --title "Community Soccer" \
@@ -86,6 +89,8 @@ reported results.
     }
   }
 }
+# Part 3 — Stateful Agent Graph, Step 6: correction-loop test
+
 (base) annie@mac data260-2383 % START: 2026-09-13 23:34:33 PDT
 --- NODE: Planner ---
 
@@ -217,6 +222,8 @@ reported results.
 }
 END: 2026-09-13 23:40:12 PDT
 
+# Part 4 — Output Schema and Loop Safety, Item 1: Pydantic schema validation
+
 annie@mac data260-2383 % PYTHONPATH=.:code python
 Python 3.11.9 (main, May 20 2026, 15:51:27) [Clang 17.0.0 (clang-1700.6.4.2)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
@@ -279,6 +286,8 @@ pydantic_core._pydantic_core.ValidationError: 1 validation error for AgentOutput
 data.tags
   List should have at least 3 items after validation, not 2 [type=too_short, input_value=['soccer', 'league'], input_type=list]
     For further information visit https://errors.pydantic.dev/2.13/v/too_short
+
+# Part 4 — Output Schema and Loop Safety, Item 2: validation feedback and turn ceiling
 
 annie@mac data260-2383 % PYTHONPATH=. python code/agents_demo.py \
   --title "Community Soccer" \
@@ -413,6 +422,8 @@ annie@mac data260-2383 % PYTHONPATH=. python code/agents_demo.py \
 }
 
 
+# Part 4 — Output Schema and Loop Safety, Item 3: 30-run fixed-input schema-validation experiment
+
 BEGIN final 30-run schema-validation experiment; SEED=2383; turn_limit=10
 START: 2026-09-14 02:10:26 PDT
 Starting run 1/30
@@ -536,6 +547,8 @@ Starting run 30/30
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
 END: 2026-09-14 02:49:50 PDT
+# Part 4 — Output Schema and Loop Safety, Item 4: 20-run turn-ceiling comparison, limit 2
+
 BEGIN 20-run ceiling experiment; SEED=2383; turn_limit=2
 START: 2026-09-14 08:14:52 PDT
 Starting run 1/20
@@ -619,6 +632,8 @@ Starting run 20/20
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
 END: 2026-09-14 08:38:47 PDT
+# Part 4 — Output Schema and Loop Safety, Item 4: 20-run turn-ceiling comparison, limit 10
+
 BEGIN 20-run ceiling experiment; SEED=2383; turn_limit=10
 START: 2026-09-14 08:41:52 PDT
 Starting run 1/20
@@ -702,6 +717,8 @@ Starting run 20/20
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
 END: 2026-09-14 09:07:08 PDT
+# Part 4 — Output Schema and Loop Safety, Item 5: five-run adversarial-input experiment
+
 BEGIN 5-run adversarial experiment; SEED=2383; turn_limit=2
 START: 2026-09-14 09:19:38 PDT
 Starting run 1/5
