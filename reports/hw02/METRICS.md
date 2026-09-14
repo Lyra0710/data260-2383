@@ -4,7 +4,7 @@
 
 The experiments were configured with qwen3:8b, strict=true, and SEED=2383. SEED=2383 identifies the experiment configuration; it should not be described as controlling Ollama sampling unless the seed was passed to the model. The main input is `cases/schema_input.json`; the adversarial input is `cases/adversarial_input.json`.
 
-The tables below report the contents of these raw files:
+The tables below summarize metrics calculated from these raw JSON and CSV files:
 
 - `raw/schema_validation.json` and `.csv`
 - `raw/ceiling_2.json` and `.csv`
