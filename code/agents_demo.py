@@ -2,12 +2,156 @@
 
 import argparse, json, os, re, sys, time
 from dataclasses import dataclass
-from typing import List, Dict, Any, Iterable, Tuple
+
 
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from collections import Counter
+
+from typing import TypedDict
+from langgraph.graph import END, START, StateGraph
+from src.model_client import complete
+
+from typing import List, Dict, Any, Iterable, Tuple, TypedDict
+class AgentState(TypedDict, total=False):
+    title: str
+    content: str
+    email: str
+    strict: bool
+    task: str
+    llm: Any
+
+    planner_proposal: Dict[str, Any]
+    reviewer_feedback: Dict[str, Any]
+
+    turn_count: int
+    turn_limit: int
+
+def planner_node(state: AgentState) -> Dict[str, Any]:
+    print("--- NODE: Planner ---")
+
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "Propose exactly 3 distinct, topical tags and "
+                "a one-sentence summary for the supplied content."
+            ),
+        },
+        {
+            "role": "user",
+            "content": (
+                f"Title: {state['title']}\n\n"
+                f"Content: {state['content']}\n\n"
+                f"Task: {state['task']}\n\n"
+                "Return only one JSON object with keys: "
+                "thought, message, and data."
+            ),
+        },
+    ]
+
+    response = complete(
+    messages,
+    model=state.get("llm", "qwen3:8b"),
+)
+
+    proposal = parse_and_coerce(
+        response.content,
+        state["title"],
+        state["content"],
+        state.get("strict", False),
+    )
+
+    return {
+        "planner_proposal": proposal
+    }
+
+def reviewer_node(state: AgentState) -> Dict[str, Any]:
+    print("--- NODE: Reviewer ---")
+
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "Review the planner's proposal. Check whether it contains "
+                "exactly 3 topical tags and a summary of no more than 25 words. "
+                "List any problems in data.issues."
+            ),
+        },
+        {
+            "role": "user",
+            "content": (
+                f"Title: {state['title']}\n\n"
+                f"Content: {state['content']}\n\n"
+                f"Planner proposal:\n"
+                f"{json.dumps(state['planner_proposal'])}\n\n"
+                "Return only one JSON object with keys: "
+                "thought, message, and data."
+            ),
+        },
+    ]
+
+    response = complete(
+    messages,
+    model=state.get("llm", "qwen3:8b"),
+)
+
+    feedback = parse_and_coerce(
+        response.content,
+        state["title"],
+        state["content"],
+        state.get("strict", False),
+    )
+    # Temporary error for testing purposes
+    # feedback["data"]["issues"] = ["Temporary correction-loop test"] 
+
+    return {
+        "reviewer_feedback": feedback
+    }
+
+def supervisor_node(state: AgentState) -> Dict[str, Any]:
+    print("--- NODE: Supervisor ---")
+
+    current_turn = state.get("turn_count", 0)
+
+    return {
+        "turn_count": current_turn + 1
+    }
+def router_logic(state: AgentState) -> str:
+    reviewer_feedback = state.get("reviewer_feedback", {})
+    data = reviewer_feedback.get("data", {})
+    issues = data.get("issues", [])
+
+    if not issues:
+        return END
+
+    if state["turn_count"] >= state["turn_limit"]:
+        return END
+
+    return "planner"
+
+def build_graph():
+    builder = StateGraph(AgentState)
+
+    builder.add_node("planner", planner_node)
+    builder.add_node("reviewer", reviewer_node)
+    builder.add_node("supervisor", supervisor_node)
+
+    builder.add_edge(START, "planner")
+    builder.add_edge("planner", "reviewer")
+    builder.add_edge("reviewer", "supervisor")
+
+    builder.add_conditional_edges(
+        "supervisor",
+        router_logic,
+        {
+            "planner": "planner",
+            END: END,
+        },
+    )
+
+    return builder.compile()
 
 # Optional: students can expand/modify this
 STOP = {
@@ -354,103 +498,72 @@ class SimpleAgent:
 # -------------------------
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--title", default="Your Blog Title Here")
-    ap.add_argument("--content", default="Your blog post content goes here.")
-    ap.add_argument("--email", default="student@example.com")
-    ap.add_argument("--model", default=os.environ.get("SMOL_MODEL", "qwen3:8b"))
-    ap.add_argument("--base_url", default=os.environ.get("OLLAMA_URL", "http://localhost:11434"))
-    ap.add_argument("--turns", type=int, default=1)
-    ap.add_argument("--strict", action="store_true")
-    ap.add_argument(
-    "--temperature",
-    type=float,
-    default=0.0,
-    help="Model sampling temperature"
-)
-    args = ap.parse_args()
+    parser = argparse.ArgumentParser()
 
-    # Initialize Ollama chat model (students can adjust params)
-    try:
-        llm = ChatOllama(
-            model=args.model,
-            temperature=args.temperature,
-            base_url=args.base_url,
-            num_ctx=2048,
-            format="json",  # asks Ollama to produce JSON when supported
-        )
-    except Exception:
-        print(
-            "Failed to initialize ChatOllama. Is Ollama running and the model available?\n"
-            "Try: `ollama serve` and `ollama pull <your-model-tag>`.",
-            file=sys.stderr,
-        )
-        raise
+    parser.add_argument(
+        "--title",
+        default="Your Blog Title Here",
+    )
 
-    # Define three agents (Planner -> Reviewer -> Finalizer)
-    planner = SimpleAgent(
-        name="Planner",
-        system="Propose exactly 3 distinct, topical tags (prefer multi-word phrases) and a one-line summary for the supplied title and content.",
-        model=llm,
+    parser.add_argument(
+        "--content",
+        default="Your blog post content goes here.",
     )
-    reviewer = SimpleAgent(
-        name="Reviewer",
-        system=(
-            "Validate: tags topical and not generic; summary ≤ 25 words; no code or markdown. "
-            "If issues, list in data.issues; otherwise echo cleaned tags/summary."
-        ),
-        model=llm,
+
+    parser.add_argument(
+        "--email",
+        default="student@example.com",
     )
-    finalizer = SimpleAgent(
-        name="Finalizer",
-        system=(
-            "Use reviewer feedback to finalize. Output exactly 3 tags in data.tags and the final summary in data.summary. "
-            "Set data.issues to []."
-        ),
-        model=llm,
+
+    parser.add_argument(
+        "--model",
+        default=os.environ.get("SMOL_MODEL", "qwen3:8b"),
     )
+
+    parser.add_argument(
+        "--turn-limit",
+        type=int,
+        default=10,
+    )
+
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+    )
+
+    args = parser.parse_args()
 
     task = (
-        f'Given title "{args.title}" and content "{args.content}", produce exactly 3 topical tags '
-        f'and a one-sentence summary in your own words. Email is {args.email}.'
+        f'Given title "{args.title}" and content "{args.content}", '
+        "produce exactly 3 topical tags and a one-sentence summary."
     )
 
-    transcript: List[Dict[str, str]] = []
+    graph = build_graph()
 
-    # Planner
-    t0 = time.time()
-    a = planner.respond(transcript, task, args.title, args.content, args.strict)
-    t1 = time.time()
-    transcript.append({
-    "role": "Planner",
-    "content": json.dumps(a)
-})
-    print(f"\n--- Planner ({int((t1 - t0) * 1000)} ms) ---\n{json.dumps(a, indent=2)}")
-
-    # Reviewer
-    t0 = time.time()
-    b = reviewer.respond(transcript, task, args.title, args.content, args.strict)
-    t1 = time.time()
-    transcript.append({
-    "role": "Reviewer",
-    "content": json.dumps(b)
-})
-    print(f"\n--- Reviewer ({int((t1 - t0) * 1000)} ms) ---\n{json.dumps(b, indent=2)}")
-
-    # Finalizer
-    final = finalizer.respond(transcript, task, args.title, args.content, args.strict)
-    print(f"\n Finalized Output \n{json.dumps(final, indent=2)}")
-
-    # Publish package
-    package = {
+    initial_state: AgentState = {
         "title": args.title,
-        "email": args.email,
         "content": args.content,
-        "agents": {"transcript": transcript, "final": final.get("data", {})},
-        "submissionDate": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "email": args.email,
+        "strict": args.strict,
+        "task": task,
+        "llm": args.model,
+        "turn_count": 0,
+        "turn_limit": args.turn_limit,
     }
-    print(f"\n Publish Package \n{json.dumps(package, indent=2)}")
 
+    final_state = dict(initial_state)
+
+    for update in graph.stream(
+        initial_state,
+        config={"recursion_limit": args.turn_limit + 5},
+    ):
+        for node_name, node_update in update.items():
+            print(f"\n--- {node_name} ---")
+            print(json.dumps(node_update, indent=2, default=str))
+            final_state.update(node_update)
+
+    print("\n--- Final state ---")
+    print(json.dumps(final_state, indent=2, default=str))
 
 if __name__ == "__main__":
     main()

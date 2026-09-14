@@ -1,2 +1,218 @@
 # real console output and timestamps for the runs that produced your
 reported results.
+
+(base) annie@mac data260-2383 % PYTHONPATH=. python code/agents_demo.py \
+  --title "Community Soccer" \
+  --content "A local soccer league is organizing a semifinal match between two community teams." \
+  --email "student@example.com" \
+  --strict
+--- NODE: Planner ---
+
+--- planner ---
+{
+  "planner_proposal": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  }
+}
+--- NODE: Reviewer ---
+
+--- reviewer ---
+{
+  "reviewer_feedback": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  }
+}
+--- NODE: Supervisor ---
+
+--- supervisor ---
+{
+  "turn_count": 1
+}
+
+--- Final state ---
+{
+  "title": "Community Soccer",
+  "content": "A local soccer league is organizing a semifinal match between two community teams.",
+  "email": "student@example.com",
+  "strict": true,
+  "task": "Given title \"Community Soccer\" and content \"A local soccer league is organizing a semifinal match between two community teams.\", produce exactly 3 topical tags and a one-sentence summary.",
+  "llm": "qwen3:8b",
+  "turn_count": 1,
+  "turn_limit": 10,
+  "planner_proposal": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  },
+  "reviewer_feedback": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  }
+}
+(base) annie@mac data260-2383 % START: 2026-09-13 23:34:33 PDT
+--- NODE: Planner ---
+
+--- planner ---
+{
+  "planner_proposal": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  }
+}
+--- NODE: Reviewer ---
+
+--- reviewer ---
+{
+  "reviewer_feedback": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": [
+        "Temporary correction-loop test"
+      ]
+    }
+  }
+}
+--- NODE: Supervisor ---
+
+--- supervisor ---
+{
+  "turn_count": 1
+}
+--- NODE: Planner ---
+
+--- planner ---
+{
+  "planner_proposal": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  }
+}
+--- NODE: Reviewer ---
+
+--- reviewer ---
+{
+  "reviewer_feedback": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": [
+        "Temporary correction-loop test"
+      ]
+    }
+  }
+}
+--- NODE: Supervisor ---
+
+--- supervisor ---
+{
+  "turn_count": 2
+}
+
+--- Final state ---
+{
+  "title": "Community Soccer",
+  "content": "A local soccer league is organizing a semifinal match between two community teams.",
+  "email": "student@example.com",
+  "strict": true,
+  "task": "Given title \"Community Soccer\" and content \"A local soccer league is organizing a semifinal match between two community teams.\", produce exactly 3 topical tags and a one-sentence summary.",
+  "llm": "qwen3:8b",
+  "turn_count": 2,
+  "turn_limit": 2,
+  "planner_proposal": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  },
+  "reviewer_feedback": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local sports league"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": [
+        "Temporary correction-loop test"
+      ]
+    }
+  }
+}
+END: 2026-09-13 23:40:12 PDT
