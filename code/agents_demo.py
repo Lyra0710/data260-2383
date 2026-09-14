@@ -1,8 +1,9 @@
-
+from typing import Annotated
+from pydantic import BaseModel, Field, field_validator
 
 import argparse, json, os, re, sys, time
 from dataclasses import dataclass
-
+from pydantic import BaseModel, Field, ValidationError, field_validator
 
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
@@ -62,6 +63,9 @@ def planner_node(state: AgentState) -> Dict[str, Any]:
         state["content"],
         state.get("strict", False),
     )
+    # Temporarily allow incorrect tag counts
+    # This lets the Reviewer catch it in the next turn
+    # proposal["data"]["tags"] = proposal["data"]["tags"][:2]
 
     return {
         "planner_proposal": proposal
@@ -69,6 +73,20 @@ def planner_node(state: AgentState) -> Dict[str, Any]:
 
 def reviewer_node(state: AgentState) -> Dict[str, Any]:
     print("--- NODE: Reviewer ---")
+    planner_proposal = state["planner_proposal"]
+
+    planner_issues = planner_proposal.get(
+        "data",
+        {}
+    ).get(
+        "issues",
+        []
+    )
+
+    if planner_issues:
+        return {
+            "reviewer_feedback": planner_proposal
+        }
 
     messages = [
         {
@@ -85,7 +103,7 @@ def reviewer_node(state: AgentState) -> Dict[str, Any]:
                 f"Title: {state['title']}\n\n"
                 f"Content: {state['content']}\n\n"
                 f"Planner proposal:\n"
-                f"{json.dumps(state['planner_proposal'])}\n\n"
+                f"{json.dumps(planner_proposal)}\n\n"
                 "Return only one JSON object with keys: "
                 "thought, message, and data."
             ),
@@ -106,6 +124,14 @@ def reviewer_node(state: AgentState) -> Dict[str, Any]:
     # Temporary error for testing purposes
     # feedback["data"]["issues"] = ["Temporary correction-loop test"] 
 
+    # To prevent the model from overriding deterministic Pydantic validation
+    try:
+        AgentOutput.model_validate(planner_proposal)
+        feedback["data"]["issues"] = []
+    except ValidationError as error:
+        feedback["data"]["issues"] = [
+            str(error)
+        ]
     return {
         "reviewer_feedback": feedback
     }
@@ -152,6 +178,52 @@ def build_graph():
     )
 
     return builder.compile()
+
+# ==========================
+
+Tag = Annotated[
+    str,
+    Field(min_length=3, max_length=30),
+]
+
+
+class OutputData(BaseModel):
+    tags: list[Tag] = Field(min_length=3, max_length=3)
+    summary: str
+    issues: list[str] = Field(default_factory=list)
+
+    @field_validator("summary")
+    @classmethod
+    def summary_must_have_at_most_25_words(cls, value: str) -> str:
+        if len(value.split()) > 25:
+            raise ValueError("Summary must contain at most 25 words.")
+
+        return value
+
+
+class AgentOutput(BaseModel):
+    thought: str
+    message: str
+    data: OutputData
+
+
+def validate_agent_output(output: Dict[str, Any]) -> Dict[str, Any]:
+    try:
+        validated_output = AgentOutput.model_validate(output)
+
+        return validated_output.model_dump()
+
+    except ValidationError as error:
+        output_copy = dict(output)
+        data = dict(output_copy.get("data", {}))
+
+        data["issues"] = [
+            str(error)
+        ]
+
+        output_copy["data"] = data
+
+        return output_copy
 
 # Optional: students can expand/modify this
 STOP = {
@@ -555,7 +627,7 @@ def main():
 
     for update in graph.stream(
         initial_state,
-        config={"recursion_limit": args.turn_limit + 5},
+        config={"recursion_limit": args.turn_limit * 3 + 5},
     ):
         for node_name, node_update in update.items():
             print(f"\n--- {node_name} ---")
