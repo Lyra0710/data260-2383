@@ -1,9 +1,9 @@
 [
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 82206.43,
+    "latency_ms": 76117.25,
     "issues": [],
     "nodes": [
       "planner",
@@ -39,10 +39,10 @@
     "run": 1
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 70996.38,
+    "latency_ms": 71694.8,
     "issues": [],
     "nodes": [
       "planner",
@@ -78,10 +78,10 @@
     "run": 2
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 70773.59,
+    "latency_ms": 71710.09,
     "issues": [],
     "nodes": [
       "planner",
@@ -117,10 +117,10 @@
     "run": 3
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 70801.42,
+    "latency_ms": 71944.59,
     "issues": [],
     "nodes": [
       "planner",
@@ -156,10 +156,10 @@
     "run": 4
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 71736.09,
+    "latency_ms": 71812.27,
     "issues": [],
     "nodes": [
       "planner",
@@ -195,10 +195,10 @@
     "run": 5
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 71231.81,
+    "latency_ms": 71979.96,
     "issues": [],
     "nodes": [
       "planner",
@@ -234,10 +234,10 @@
     "run": 6
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 71726.69,
+    "latency_ms": 71870.11,
     "issues": [],
     "nodes": [
       "planner",
@@ -273,10 +273,10 @@
     "run": 7
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 76996.54,
+    "latency_ms": 72039.25,
     "issues": [],
     "nodes": [
       "planner",
@@ -312,10 +312,10 @@
     "run": 8
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 78775.16,
+    "latency_ms": 71164.09,
     "issues": [],
     "nodes": [
       "planner",
@@ -351,10 +351,10 @@
     "run": 9
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 77083.19,
+    "latency_ms": 70898.19,
     "issues": [],
     "nodes": [
       "planner",
@@ -390,10 +390,10 @@
     "run": 10
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 71019.48,
+    "latency_ms": 72284.81,
     "issues": [],
     "nodes": [
       "planner",
@@ -429,10 +429,10 @@
     "run": 11
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 70967.69,
+    "latency_ms": 71160.72,
     "issues": [],
     "nodes": [
       "planner",
@@ -468,10 +468,10 @@
     "run": 12
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 71013.8,
+    "latency_ms": 71136.72,
     "issues": [],
     "nodes": [
       "planner",
@@ -507,10 +507,10 @@
     "run": 13
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 70920.81,
+    "latency_ms": 70939.31,
     "issues": [],
     "nodes": [
       "planner",
@@ -546,10 +546,10 @@
     "run": 14
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 75123.54,
+    "latency_ms": 70981.68,
     "issues": [],
     "nodes": [
       "planner",
@@ -585,10 +585,10 @@
     "run": 15
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 80189.07,
+    "latency_ms": 71771.09,
     "issues": [],
     "nodes": [
       "planner",
@@ -624,10 +624,10 @@
     "run": 16
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 84366.22,
+    "latency_ms": 71134.68,
     "issues": [],
     "nodes": [
       "planner",
@@ -663,10 +663,10 @@
     "run": 17
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 80312.64,
+    "latency_ms": 71897.04,
     "issues": [],
     "nodes": [
       "planner",
@@ -702,10 +702,10 @@
     "run": 18
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 82952.46,
+    "latency_ms": 70734.61,
     "issues": [],
     "nodes": [
       "planner",
@@ -741,10 +741,10 @@
     "run": 19
   },
   {
-    "turn_limit": 10,
+    "turn_limit": 2,
     "turn_count": 1,
     "classification": "valid first attempt",
-    "latency_ms": 84982.16,
+    "latency_ms": 70532.72,
     "issues": [],
     "nodes": [
       "planner",
@@ -778,395 +778,5 @@
       }
     },
     "run": 20
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 83053.82,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 21
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 82146.54,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 22
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 83348.98,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 23
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 85165.0,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 24
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 80407.75,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 25
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 83821.83,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 26
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 89498.78,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 27
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 89179.63,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 28
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 87030.58,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 29
-  },
-  {
-    "turn_limit": 10,
-    "turn_count": 1,
-    "classification": "valid first attempt",
-    "latency_ms": 85165.51,
-    "issues": [],
-    "nodes": [
-      "planner",
-      "reviewer",
-      "supervisor"
-    ],
-    "planner_proposal": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "The community soccer league is hosting a semifinal match between the Falcons and Tigers at Spartan Stadium, inviting local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "reviewer_feedback": {
-      "thought": "The content revolves around a community soccer event, local teams, and public attendance. Tags should capture the league, match stage, and community involvement.",
-      "message": "Tags and summary generated based on the key elements of the community soccer semifinal and local participation.",
-      "data": {
-        "tags": [
-          "community soccer league",
-          "semifinal match",
-          "local residents attendance"
-        ],
-        "summary": "Community soccer league's semifinal match between Falcons and Tigers at Spartan Stadium invites local residents to attend and support both.",
-        "issues": []
-      }
-    },
-    "run": 30
   }
 ]

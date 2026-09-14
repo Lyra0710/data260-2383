@@ -412,45 +412,316 @@ annie@mac data260-2383 % PYTHONPATH=. python code/agents_demo.py \
   }
 }
 
-START: 2026-09-14 00:51:24 PDT
-Starting run 1/1
+
+BEGIN final 30-run schema-validation experiment; SEED=2383; turn_limit=10
+START: 2026-09-14 02:10:26 PDT
+Starting run 1/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 2/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 3/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 4/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 5/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 6/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 7/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 8/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 9/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
+Starting run 10/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
-END: 2026-09-14 01:05:23 PDT
-NOTE: Previous run used before Pydantic-authority correction; rerunning with corrected validation.
-START: 2026-09-14 01:32:04 PDT
-Starting run 1/1
+Starting run 11/30
 --- NODE: Planner ---
 --- NODE: Reviewer ---
 --- NODE: Supervisor ---
-END: 2026-09-14 01:33:46 PDT
-BEGIN 30-run schema-validation experiment; SEED=2383; turn_limit=10
-START: 2026-09-14 01:37:20 PDT
+Starting run 12/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 13/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 14/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 15/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 16/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 17/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 18/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 19/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 20/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 21/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 22/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 23/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 24/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 25/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 26/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 27/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 28/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 29/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 30/30
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+END: 2026-09-14 02:49:50 PDT
+BEGIN 20-run ceiling experiment; SEED=2383; turn_limit=2
+START: 2026-09-14 08:14:52 PDT
+Starting run 1/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 2/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 3/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 4/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 5/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 6/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 7/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 8/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 9/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 10/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 11/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 12/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 13/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 14/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 15/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 16/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 17/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 18/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 19/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 20/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+END: 2026-09-14 08:38:47 PDT
+BEGIN 20-run ceiling experiment; SEED=2383; turn_limit=10
+START: 2026-09-14 08:41:52 PDT
+Starting run 1/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 2/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 3/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 4/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 5/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 6/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 7/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 8/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 9/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 10/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 11/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 12/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 13/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 14/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 15/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 16/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 17/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 18/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 19/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 20/20
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+END: 2026-09-14 09:07:08 PDT
+BEGIN 5-run adversarial experiment; SEED=2383; turn_limit=2
+START: 2026-09-14 09:19:38 PDT
+Starting run 1/5
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 2/5
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 3/5
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 4/5
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+Starting run 5/5
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+END: 2026-09-14 09:25:18 PDT
