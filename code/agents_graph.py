@@ -6,6 +6,8 @@ import json
 from src.model_client import complete
 from agents_demo import parse_and_coerce
 
+from langgraph.graph import END, START, StateGraph
+
 
 class AgentState(TypedDict, total=False): # shape of the shared state of the graph. 
     title: str
@@ -179,3 +181,52 @@ def review_router(state: AgentState) -> str:
         return "finalizer"
 
     return "planner"
+
+def build_graph():
+    builder = StateGraph(AgentState) # creates a graph who's shared state type is AgentState. 
+
+    builder.add_node("planner", planner_node) # registers a python function under graph node named "planner". 
+    builder.add_node("reviewer", reviewer_node)
+    builder.add_node("finalizer", finalizer_node)
+
+    builder.add_edge(START, "planner") # workflow begins with a planner
+    builder.add_edge("planner", "reviewer")
+
+    builder.add_conditional_edges( # reviewer decides where to go next. 
+        "reviewer",
+        review_router,
+        {
+            "planner": "planner",
+            "finalizer": "finalizer",
+        },
+    )
+
+    builder.add_edge("finalizer", END)
+    return builder.compile()
+
+if __name__ == "__main__":
+    graph = build_graph()
+
+    initial_state: AgentState = {
+        "title": "Community Soccer",
+        "content": (
+            "A local soccer league is organizing a semifinal match "
+            "between two community teams."
+        ),
+        "email": "leaguemanager@gmail.com",
+        "strict": True,
+        "transcript": [],
+        "iteration": 0,
+    }
+
+    result = graph.invoke(
+        initial_state,
+        config={"recursion_limit": 10},
+    )
+
+    print("\nFinal output:")
+    print(result["final_output"])
+
+    print("\nTranscript:")
+    for message in result["transcript"]:
+        print(message["role"])
