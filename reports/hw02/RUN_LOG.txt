@@ -216,3 +216,241 @@ reported results.
   }
 }
 END: 2026-09-13 23:40:12 PDT
+
+annie@mac data260-2383 % PYTHONPATH=.:code python
+Python 3.11.9 (main, May 20 2026, 15:51:27) [Clang 17.0.0 (clang-1700.6.4.2)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+Cmd click to launch VS Code Native REPL
+>>> from agents_demo import AgentOutput
+
+valid_output = {
+    "thought": "The content describes a soccer event.",
+    "message": "Tags and summary created.",
+    "data": {
+        "tags": [
+            "community sports",
+            "soccer league",
+            "semifinal match"
+        ],
+        "summary": "A local soccer league is organizing a semifinal match.",
+        "issues": []
+    }
+}
+
+validated = AgentOutput.model_validate(valid_output)
+print(validated)>>> 
+>>> valid_output = {
+...     "thought": "The content describes a soccer event.",
+...     "message": "Tags and summary created.",
+...     "data": {
+...         "tags": [
+...             "community sports",
+...             "soccer league",
+...             "semifinal match"
+...         ],
+...         "summary": "A local soccer league is organizing a semifinal match.",
+...         "issues": []
+...     }
+... }
+>>> 
+>>> validated = AgentOutput.model_validate(valid_output)
+print(validated)
+thought='The content describes a soccer event.' message='Tags and summary created.' data=OutputData(tags=['community sports', 'soccer league', 'semifinal match'], summary='A local soccer league is organizing a semifinal match.', issues=[])
+>>> invalid_output = {
+...     "thought": "Test",
+...     "message": "Test",
+...     "data": {
+...         "tags": [
+...             "soccer",
+...             "league"
+...         ],
+...         "summary": "A soccer match is being organized.",
+...         "issues": []
+...     }
+... }
+>>> 
+>>> AgentOutput.model_validate(invalid_output)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Users/annie/.pyenv/versions/3.11.9/lib/python3.11/site-packages/pydantic/main.py", line 732, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for AgentOutput
+data.tags
+  List should have at least 3 items after validation, not 2 [type=too_short, input_value=['soccer', 'league'], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.13/v/too_short
+
+annie@mac data260-2383 % PYTHONPATH=. python code/agents_demo.py \
+  --title "Community Soccer" \
+  --content "A local soccer league is organizing a semifinal match between two community teams." \
+  --email "student@example.com" \
+  --strict \
+  --turn-limit 2
+--- NODE: Planner ---
+
+--- planner ---
+{
+  "planner_proposal": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  }
+}
+--- NODE: Reviewer ---
+
+--- reviewer ---
+{
+  "reviewer_feedback": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local teams"
+      ],
+      "summary": "Local soccer league hosts semifinal match between community teams, promoting teamwork and competition.",
+      "issues": [
+        "Only 2 tags provided instead of required 3"
+      ]
+    }
+  }
+}
+--- NODE: Supervisor ---
+
+--- supervisor ---
+{
+  "turn_count": 1
+}
+--- NODE: Planner ---
+
+--- planner ---
+{
+  "planner_proposal": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  }
+}
+--- NODE: Reviewer ---
+
+--- reviewer ---
+{
+  "reviewer_feedback": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local teams"
+      ],
+      "summary": "Local soccer league hosts semifinal match between community teams, promoting teamwork and competition.",
+      "issues": [
+        "Only 2 tags provided instead of required 3"
+      ]
+    }
+  }
+}
+--- NODE: Supervisor ---
+
+--- supervisor ---
+{
+  "turn_count": 2
+}
+
+--- Final state ---
+{
+  "title": "Community Soccer",
+  "content": "A local soccer league is organizing a semifinal match between two community teams.",
+  "email": "student@example.com",
+  "strict": true,
+  "task": "Given title \"Community Soccer\" and content \"A local soccer league is organizing a semifinal match between two community teams.\", produce exactly 3 topical tags and a one-sentence summary.",
+  "llm": "qwen3:8b",
+  "turn_count": 2,
+  "turn_limit": 2,
+  "planner_proposal": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match"
+      ],
+      "summary": "A local soccer league is set to host a semifinal match between two community teams, fostering local competition and teamwork.",
+      "issues": []
+    }
+  },
+  "reviewer_feedback": {
+    "thought": "The content revolves around a local soccer league's semifinal match, emphasizing community involvement and sports events.",
+    "message": "Tags and summary generated based on the key elements of community soccer leagues and semifinal matches.",
+    "data": {
+      "tags": [
+        "community soccer",
+        "semifinal match",
+        "local teams"
+      ],
+      "summary": "Local soccer league hosts semifinal match between community teams, promoting teamwork and competition.",
+      "issues": [
+        "Only 2 tags provided instead of required 3"
+      ]
+    }
+  }
+}
+
+START: 2026-09-14 00:51:24 PDT
+Starting run 1/1
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+END: 2026-09-14 01:05:23 PDT
+NOTE: Previous run used before Pydantic-authority correction; rerunning with corrected validation.
+START: 2026-09-14 01:32:04 PDT
+Starting run 1/1
+--- NODE: Planner ---
+--- NODE: Reviewer ---
+--- NODE: Supervisor ---
+END: 2026-09-14 01:33:46 PDT
+BEGIN 30-run schema-validation experiment; SEED=2383; turn_limit=10
+START: 2026-09-14 01:37:20 PDT
