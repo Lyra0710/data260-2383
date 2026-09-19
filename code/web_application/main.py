@@ -1,12 +1,29 @@
-
+import os
+import uvicorn
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from pathlib import Path
+from starlette.middleware.sessions import SessionMiddleware
+from routers.auth import router as auth_router
+
 
 app = FastAPI()
 APP_DIR = Path(__file__).resolve().parent
+
+# Secret key for session signing
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-secret-key")
+
+# Enable session support - required for auth
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=SECRET_KEY,
+    https_only=True,
+    same_site="lax",
+max_age=3600
+)
+
 
 # Serves static files (HTML, CSS, JS) from the 'web_application' directory
 app.mount(
@@ -15,10 +32,14 @@ app.mount(
     name="static"
 )
 
+# Register routes
+app.include_router(auth_router)
+
+
 # home endpoint returns the index.html file
-@app.get("/")
-async def home():
-    return FileResponse(APP_DIR / "index.html")
+# @app.get("/")
+# async def home():
+#     return FileResponse(APP_DIR / "index.html")
 
 # Model for fixture data - FastAPI uses this to validate the JSON body of a request
 class Fixture(BaseModel):
