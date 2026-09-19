@@ -22,7 +22,7 @@ app.add_middleware(
     secret_key=SECRET_KEY,
     https_only=True,
     same_site="lax",
-max_age=3600
+    max_age=3600
 )
 
 

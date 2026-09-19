@@ -2,14 +2,17 @@ from fastapi import APIRouter, Request, Form
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from starlette.status import HTTP_302_FOUND
-
+from pathlib import Path
 
 # Create a router object
 # This behaves like a mini FastAPI app
 router = APIRouter()
 
 # Configure Jinja2 templates directory
-templates = Jinja2Templates(directory="templates")
+APP_DIR = Path(__file__).resolve().parent.parent
+templates = Jinja2Templates(
+    directory=str(APP_DIR / "templates")
+)
 
 
 # Hardcoded credentials for demo purposes only
@@ -29,9 +32,9 @@ def home(request: Request):
     user = request.session.get("user")
 
     return templates.TemplateResponse(
-        "index.html",
-        {
-            "request": request,  
+        request=request,
+        name="index.html",
+        context={
             "user": user
         }
     )
@@ -46,12 +49,15 @@ def login_page(request: Request):
     the template can choose what to display.
     """
     user = request.session.get("user")
+    error = request.session.pop("error", None)
 
     return templates.TemplateResponse(
-        "login.html",
-        {
+        request=request,
+        name="login.html",
+        context={
             "request": request,
-            "user": user
+            "user": user,
+            "error": error
         }
     )
 
@@ -77,7 +83,7 @@ def login(request: Request, username: str = Form(...), password: str = Form(...)
 
     # If credentials are invalid:
     # Redirect back to login page
-    #
+    request.session["error"] = "Invalid username or password"
     # NOTE:
     # No error message is shown intentionally.
     # Students are expected to add Bootstrap alerts.
