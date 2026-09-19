@@ -11,6 +11,7 @@ from routers.auth import router as auth_router
 
 app = FastAPI()
 APP_DIR = Path(__file__).resolve().parent
+STATIC_DIR = APP_DIR / "static"
 
 # Secret key for session signing
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-secret-key")
@@ -28,7 +29,7 @@ max_age=3600
 # Serves static files (HTML, CSS, JS) from the 'web_application' directory
 app.mount(
     "/static",
-    StaticFiles(directory=APP_DIR),
+    StaticFiles(directory=STATIC_DIR),
     name="static"
 )
 
