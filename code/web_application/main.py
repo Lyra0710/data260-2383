@@ -37,10 +37,10 @@ app.mount(
 app.include_router(auth_router)
 
 
-# home endpoint returns the index.html file
-# @app.get("/")
-# async def home():
-#     return FileResponse(APP_DIR / "index.html")
+# previous home endpoint returns the older index.html file which is the form. 
+@app.get("/fixtures")
+async def fixtures_page():
+    return FileResponse(APP_DIR / "static" / "index.html")
 
 # Model for fixture data - FastAPI uses this to validate the JSON body of a request
 class Fixture(BaseModel):
