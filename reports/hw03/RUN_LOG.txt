@@ -12,6 +12,7 @@ curl -L \
 100 1089k  100 1089k    0     0   623k      0  0:00:01  0:00:01 --:--:--  623k
 
 ----------- WARMUP ------------------------------ 
+Note: the code for this is not saved as this is a warmup test only. However, it is committed to git for record. 
 python code/rag/retrieval_experiment.py
 
 1. Embedding
@@ -168,3 +169,43 @@ Store similarity score: 0.683905957076754
 Explicit cosine similarity: 0.7978585924099252
 Chunk length: 24
 Preview: come, what says Romeo?
+
+------ Creating CORPUS_MANIFEST.json ---------------------
+(base) annie@mac data260-2383 % python code/rag/create_manifest.py
+{
+  "corpus_directory": "reports/hw03/corpus",
+  "file_count": 6,
+  "total_bytes": 986896,
+  "files": [
+    {
+      "filename": "cupertino_athletic_field_policy.pdf",
+      "bytes": 291244,
+      "sha256": "1f117775f530740cb96d86b6fd6f38f916dd2b7faa481adcf48a5aa84b22f5c7"
+    },
+    {
+      "filename": "cupertino_athletic_fields.html",
+      "bytes": 149352,
+      "sha256": "756bf7c3e1d68b6449f5de13b183c4c5fb51292f7f4065d70e7f0cb68eefece6"
+    },
+    {
+      "filename": "cupertino_fall_2026_adult_tennis.pdf",
+      "bytes": 95238,
+      "sha256": "daa1b21066887abfc43d88e9049cd3937ad55d941d21ba9ba52d53d622baf849"
+    },
+    {
+      "filename": "cupertino_softball_league.html",
+      "bytes": 124227,
+      "sha256": "f0f127d3bfa27423913728c7853d77e83eca2f9b3a4f161b787180cb1976c687"
+    },
+    {
+      "filename": "cupertino_sports_center.html",
+      "bytes": 154817,
+      "sha256": "c70f5ce8b569c3b2fd266d4941fe24f0303c6ae9a6b1e688b9a256af7eafd3d6"
+    },
+    {
+      "filename": "cupertino_sports_center_policies.pdf",
+      "bytes": 172018,
+      "sha256": "cf281ae77d3dca867751b47bcbcc67d2d2d1dc988aa58dc55318fa43166159c5"
+    }
+  ]
+}
