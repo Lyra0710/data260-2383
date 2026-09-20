@@ -1,0 +1,18 @@
+idle timeout test ran for 60 seconds
+
+curl -L \
+  "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt" \
+  -o reports/hw03/warmup/tinyshakespeare.txt
+
+(.venv) (base) annie@Siris-MacBook-Pro data260-2383 % curl -L \
+  "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt" \
+  -o reports/hw03/warmup/tinyshakespeare.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 1089k  100 1089k    0     0   623k      0  0:00:01  0:00:01 --:--:--  623k
+
+# warmup 
+python code/rag/retrieval_experiment.py
+
+Embedding dimension: 384
+First 8 embedding values: [-0.08052323013544083, 0.050346072763204575, 0.10832440108060837, 0.036701690405607224, 0.0007021798519417644, 0.03768525645136833, 0.13069438934326172, 0.016174431890249252]
