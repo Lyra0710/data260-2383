@@ -1,0 +1,25 @@
+questions:
+  - id: q1
+    question: "What adult softball seasons, playing nights, and divisions are offered by Cupertino Parks and Recreation?"
+    expected_answer: "Cupertino offers spring, summer, and fall seasons. The listed divisions are Monday Men's D-2 and Friday Co-Ed Rec."
+    expected_source: "cupertino_softball_league.html"
+
+  - id: q2
+    question: "What are the seasonal application deadlines for Cupertino athletic-field permits?"
+    expected_answer: "The deadline is December 1 for the January-June spring season and May 1 for the July-December fall season."
+    expected_source: "cupertino_athletic_field_policy.pdf"
+
+  - id: q3
+    question: "What information must be included in an organization roster submitted for Cupertino athletic-field use?"
+    expected_answer: "The roster must include each player's first name, last name, address, city, and ZIP code."
+    expected_source: "cupertino_athletic_field_policy.pdf"
+
+  - id: q4
+    question: "What adult tennis sessions, dates, and resident/non-resident prices are listed for Fall 2026 at Cupertino Sports Center?"
+    expected_answer: "The schedule lists Adult Beginning, Advanced Beginning, Intermediate, and Adult Academy sessions. Session dates and prices vary by level, with resident/non-resident prices listed in the schedule."
+    expected_source: "cupertino_fall_2026_adult_tennis.pdf"
+
+  - id: q5
+    question: "Where is Cupertino's adult softball league played, and how can participants check whether the field is open?"
+    expected_answer: "The league is played at Memorial Park Softball Field, 21122 Stevens Creek Boulevard. Participants can check the athletic-field status page, field-closure updates, or call the field-closure hotline."
+    expected_source: "cupertino_softball_league.html"
