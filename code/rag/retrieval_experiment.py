@@ -2,6 +2,18 @@ from pathlib import Path
 
 from llama_index.core import Document
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.core.node_parser import TokenTextSplitter
+
+from llama_index.core import (
+    Document,
+    Settings,
+    VectorStoreIndex,
+)
+
+import numpy as np
+from llama_index.core.node_parser import SemanticSplitterNodeParser
+
+from llama_index.core.node_parser import SentenceWindowNodeParser
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -34,6 +46,115 @@ def load_embedding_model():
         model_name="sentence-transformers/all-MiniLM-L6-v2"
     )
 
+# token splitter 
+def create_token_nodes(document):
+    splitter = TokenTextSplitter(
+        chunk_size=256,
+        chunk_overlap=40,
+        separator=" ",
+    )
+
+    nodes = splitter.get_nodes_from_documents(
+        [document]
+    )
+
+    return nodes
+
+# index to retreive top chunks
+def retrieve_chunks(
+    nodes,
+    embed_model,
+    query,
+    top_k=5,
+):
+    Settings.embed_model = embed_model
+
+    index = VectorStoreIndex(nodes)
+
+    retriever = index.as_retriever(
+        similarity_top_k=top_k
+    )
+
+    results = retriever.retrieve(query)
+
+    query_vector = np.asarray(
+        embed_model.get_query_embedding(query),
+        dtype=float,
+    )
+
+    print("Query vector shape:", query_vector.shape)
+    print("Query vector first 8 values:", query_vector[:8])
+
+    print("\nTop retrieved chunks:")
+
+    for rank, result in enumerate(results, start=1):
+        preview = " ".join(
+            result.node.get_content().split()
+        )[:160]
+
+        document_vector = np.asarray(
+            embed_model.get_text_embedding(
+                result.node.get_content()
+            ),
+            dtype=float,
+        )
+
+        cosine_score = calculate_cosine_similarity(
+            query_vector,
+            document_vector,
+        )
+
+        print(f"\nRank {rank}")
+        print("Store similarity score:", result.score)
+        print("Explicit cosine similarity:", cosine_score)
+        print("Chunk length:", len(result.node.get_content()))
+        print("Preview:", preview)
+
+    return results
+
+# similarity
+def calculate_cosine_similarity(vector_a, vector_b):
+    vector_a = np.asarray(vector_a, dtype=float)
+    vector_b = np.asarray(vector_b, dtype=float)
+
+    denominator = (
+        np.linalg.norm(vector_a)
+        * np.linalg.norm(vector_b)
+    )
+
+    if denominator == 0:
+        return 0.0
+
+    return float(
+        np.dot(vector_a, vector_b) / denominator
+    )
+
+def create_semantic_nodes(document, embed_model):
+    splitter = SemanticSplitterNodeParser(
+        buffer_size=1,
+        breakpoint_percentile_threshold=95,
+        embed_model=embed_model,
+    )
+
+    nodes = splitter.get_nodes_from_documents(
+        [document]
+    )
+
+    return nodes
+
+def create_sentence_window_nodes(document):
+    splitter = SentenceWindowNodeParser.from_defaults(
+        window_size=3,
+        window_metadata_key="window",
+        original_text_metadata_key="original_sentence",
+    )
+
+    nodes = splitter.get_nodes_from_documents(
+        [document]
+    )
+
+    return nodes
+
 if __name__ == "__main__":
     document = load_document(WARMUP_PATH)
 
@@ -51,3 +172,91 @@ if __name__ == "__main__":
 
     print("\nEmbedding dimension:", len(test_embedding))
     print("First 8 embedding values:", test_embedding[:8])
+
+    print("\nCreating token-based chunks...")
+    token_nodes = create_token_nodes(document)
+
+    print("Number of token chunks:", len(token_nodes))
+
+    for index, node in enumerate(token_nodes[:3], start=1):
+        preview = " ".join(node.get_content().split())[:160]
+
+        print(f"\nChunk {index}")
+        print("Character length:", len(node.get_content()))
+        print("Preview:", preview)
+
+        query = "What does Romeo say about love?"
+
+    retrieve_chunks(
+        nodes=token_nodes,
+        embed_model=embed_model,
+        query=query,
+        top_k=5,
+    )
+
+    print("\nCreating semantic chunks...")
+
+    semantic_nodes = create_semantic_nodes(
+        document,
+        embed_model,
+    )
+
+    print(
+        "Number of semantic chunks:",
+        len(semantic_nodes),
+    )
+
+    for index, node in enumerate(
+        semantic_nodes[:3],
+        start=1,
+    ):
+        preview = " ".join(
+            node.get_content().split()
+        )[:160]
+
+        print(f"\nSemantic chunk {index}")
+        print(
+            "Character length:",
+            len(node.get_content()),
+        )
+        print("Preview:", preview)
+
+    retrieve_chunks(
+    nodes=semantic_nodes,
+    embed_model=embed_model,
+    query=query,
+    top_k=5,
+)
+
+    print("\nCreating sentence-window chunks...")
+
+    sentence_window_nodes = create_sentence_window_nodes(
+        document
+    )
+
+    print(
+        "Number of sentence-window chunks:",
+        len(sentence_window_nodes),
+    )
+
+    for index, node in enumerate(
+        sentence_window_nodes[:3],
+        start=1,
+    ):
+        preview = " ".join(
+            node.get_content().split()
+        )[:160]
+
+        print(f"\nSentence-window chunk {index}")
+        print(
+            "Character length:",
+            len(node.get_content()),
+        )
+        print("Preview:", preview)
+
+    retrieve_chunks(
+    nodes=sentence_window_nodes,
+    embed_model=embed_model,
+    query=query,
+    top_k=5,
+)

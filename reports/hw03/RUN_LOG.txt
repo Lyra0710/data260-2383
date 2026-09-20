@@ -11,8 +11,160 @@ curl -L \
                                  Dload  Upload   Total   Spent    Left  Speed
 100 1089k  100 1089k    0     0   623k      0  0:00:01  0:00:01 --:--:--  623k
 
-# warmup 
+----------- WARMUP ------------------------------ 
 python code/rag/retrieval_experiment.py
 
+1. Embedding
 Embedding dimension: 384
 First 8 embedding values: [-0.08052323013544083, 0.050346072763204575, 0.10832440108060837, 0.036701690405607224, 0.0007021798519417644, 0.03768525645136833, 0.13069438934326172, 0.016174431890249252]
+
+2. Token splitting 
+Creating token-based chunks...
+Number of token chunks: 1452
+
+Chunk 1
+Character length: 975
+Preview: First Citizen: Before we proceed any further, hear me speak. All: Speak, speak. First Citizen: You are all resolved rather to die than to famish? All: Resolved.
+
+Chunk 2
+Character length: 1014
+Preview: is a gain to them Let us revenge this with our pikes, ere we become rakes: for the gods know I speak this in hunger for bread, not in thirst for revenge. Second
+
+Chunk 3
+Character length: 959
+Preview: him. You must in no way say he is covetous. First Citizen: If I must not, I need not be barren of accusations; he hath faults, with surplus, to tire in repetiti
+
+3. Retrieving top chunks 
+Top retrieved token chunks:
+
+Rank 1
+Store similarity score: 0.65867740231214
+Explicit cosine similarity: 0.6578344478371505
+Chunk length: 973
+Preview: only love sprung from my only hate! Too early seen unknown, and known too late! Prodigious birth of love it is to me, That I must love a loathed enemy. Nurse: W
+
+Rank 2
+Store similarity score: 0.6580852675090254
+Explicit cosine similarity: 0.6388337929886834
+Chunk length: 928
+Preview: sound: Art thou not Romeo and a Montague? ROMEO: Neither, fair saint, if either thee dislike. JULIET: How camest thou hither, tell me, and wherefore? The orchar
+
+Rank 3
+Store similarity score: 0.6280451266723844
+Explicit cosine similarity: 0.5966784154990327
+Chunk length: 932
+Preview: exchange of thy love's faithful vow for mine. JULIET: I gave thee mine before thou didst request it: And yet I would it were to give again. ROMEO: Wouldst thou 
+
+Rank 4
+Store similarity score: 0.624788349973526
+Explicit cosine similarity: 0.6020755037733989
+Chunk length: 794
+Preview: it good den? MERCUTIO: 'Tis no less, I tell you, for the bawdy hand of the dial is now upon the prick of noon. Nurse: Out upon you! what a man are you! ROMEO: O
+
+Rank 5
+Store similarity score: 0.6214236936038608
+Explicit cosine similarity: 0.5951821481230601
+Chunk length: 874
+Preview: cousin's death! LADY CAPULET: We will have vengeance for it, fear thou not: Then weep no more. I'll send to one in Mantua, Where that same banish'd runagate dot
+
+4. Semantic Chunking
+Creating semantic chunks...
+Number of semantic chunks: 624
+
+Semantic chunk 1
+Character length: 1975
+Preview: First Citizen: Before we proceed any further, hear me speak. All: Speak, speak. First Citizen: You are all resolved rather to die than to famish? All: Resolved.
+
+Semantic chunk 2
+Character length: 298
+Preview: All: Come, come. First Citizen: Soft! who comes here? Second Citizen: Worthy Menenius Agrippa; one that hath always loved the people. First Citizen: He's one ho
+
+Semantic chunk 3
+Character length: 2666
+Preview: speak, I pray you. First Citizen: Our business is not unknown to the senate; they have had inkling this fortnight what we intend to do, which now we'll show 'em
+Query vector shape: (384,)
+Query vector first 8 values: [-0.08052323  0.05034607  0.1083244   0.03670169  0.00070218  0.03768526
+  0.13069439  0.01617443]
+
+Top retrieved chunks:
+
+Rank 1
+Store similarity score: 0.6778242293568818
+Explicit cosine similarity: 0.6803893463828611
+Chunk length: 1104
+Preview: what's this? JULIET: A rhyme I learn'd even now Of one I danced withal. Nurse: Anon, anon! Come, let's away; the strangers all are gone. Chorus: Now old desire 
+
+Rank 2
+Store similarity score: 0.6386501910321558
+Explicit cosine similarity: 0.6026481200124763
+Chunk length: 960
+Preview: Anon, good nurse! Sweet Montague, be true. Stay but a little, I will come again. ROMEO: O blessed, blessed night! I am afeard. Being in night, all this is but a
+
+Rank 3
+Store similarity score: 0.6376428316750712
+Explicit cosine similarity: 0.6267353614519177
+Chunk length: 847
+Preview: We would as willingly give cure as know. BENVOLIO: See, where he comes: so please you, step aside; I'll know his grievance, or be much denied. MONTAGUE: I would
+
+Rank 4
+Store similarity score: 0.6327875635473519
+Explicit cosine similarity: 0.6504552917448876
+Chunk length: 605
+Preview: how sweet is love itself possess'd, When but love's shadows are so rich in joy! News from Verona!--How now, Balthasar! Dost thou not bring me letters from the f
+
+Rank 5
+Store similarity score: 0.6217164869231835
+Explicit cosine similarity: 0.5846241744515853
+Chunk length: 1665
+Preview: But sadly tell me who. ROMEO: Bid a sick man in sadness make his will: Ah, word ill urged to one that is so ill! In sadness, cousin, I do love a woman. BENVOLIO
+
+5. Sentence window chunks
+Creating sentence-window chunks...
+Number of sentence-window chunks: 12453
+
+Sentence-window chunk 1
+Character length: 62
+Preview: First Citizen: Before we proceed any further, hear me speak.
+
+Sentence-window chunk 2
+Character length: 20
+Preview: All: Speak, speak.
+
+Sentence-window chunk 3
+Character length: 67
+Preview: First Citizen: You are all resolved rather to die than to famish?
+Query vector shape: (384,)
+Query vector first 8 values: [-0.08052323  0.05034607  0.1083244   0.03670169  0.00070218  0.03768526
+  0.13069439  0.01617443]
+
+Top retrieved chunks:
+
+Rank 1
+Store similarity score: 0.7203172603569099
+Explicit cosine similarity: 0.8119117278585429
+Chunk length: 31
+Preview: ROMEO: Is love a tender thing?
+
+Rank 2
+Store similarity score: 0.7192428807471002
+Explicit cosine similarity: 0.7093059005951396
+Chunk length: 431
+Preview: Now Romeo is beloved and loves again, Alike betwitched by the charm of looks, But to his foe supposed he must complain, And she steal love's sweet bait from fea
+
+Rank 3
+Store similarity score: 0.7007070101920834
+Explicit cosine similarity: 0.7347584239664625
+Chunk length: 47
+Preview: ROMEO: Out of her favour, where I am in love.
+
+Rank 4
+Store similarity score: 0.6974191479588177
+Explicit cosine similarity: 0.7938730789808661
+Chunk length: 42
+Preview: ROMEO: Why, such is love's transgression.
+
+Rank 5
+Store similarity score: 0.683905957076754
+Explicit cosine similarity: 0.7978585924099252
+Chunk length: 24
+Preview: come, what says Romeo?
