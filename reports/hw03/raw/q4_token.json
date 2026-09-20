@@ -1,0 +1,62 @@
+{
+  "question_id": "q4",
+  "technique": "token",
+  "query": "What adult tennis sessions, dates, and resident/non-resident prices are listed for Fall 2026 at Cupertino Sports Center?",
+  "node_count": 120,
+  "average_chunk_length": 461.90833333333336,
+  "latency_ms": 10.86083300106111,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.039837244898080826,
+    0.03179353475570679,
+    0.02596588246524334,
+    -0.010669820941984653,
+    -0.05991753563284874,
+    0.10184397548437119,
+    -0.05212492495775223,
+    0.041018255054950714
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.684325093078578,
+      "cosine_similarity": 0.6638569765776253,
+      "chunk_length": 768,
+      "preview": "Table Tennis, and Tennis) is available at the Sports Center, the Quinlan Community Center, and online . For registration information, call the Sports Center at "
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6447492156709929,
+      "cosine_similarity": 0.6683133985089543,
+      "chunk_length": 255,
+      "preview": "CP \u2219 FALL 2026 \u2219 ADULT TENNIS 16+ Cu p ert in o Sp o rt s Cen t er \u2022 21111 St even s Creek Blvd \u2022 408- 777- 3169 \u2022 www.lif et imeact ivit ies.co m 6-Week Sessio"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.6330717636995958,
+      "cosine_similarity": 0.6144515758069727,
+      "chunk_length": 698,
+      "preview": "Labor $1 Labor Only (bring your own string) $20 *Pricing includes the cost of string and labor with a two-day turnaround. **Prices are subject to change. Holida"
+    },
+    {
+      "rank": 4,
+      "store_score": 0.6038461638580253,
+      "cosine_similarity": 0.45673787958642365,
+      "chunk_length": 200,
+      "preview": "$433 $541 TH U R 5:1 6:10 - 7:30pm 8/27 - 10/15 $433 $541 10/22 - 12/10* $379 $474 SAT 8:1"
+    },
+    {
+      "rank": 5,
+      "store_score": 0.5974424743802882,
+      "cosine_similarity": 0.46585575708820715,
+      "chunk_length": 213,
+      "preview": "10:20am 8/26 - 10/14 $325 $406 10/21 - 12/9 $325 $406 TH U R 8:1 7:40 - 9pm 8/27 - 10/15 $325 $406"
+    }
+  ]
+}

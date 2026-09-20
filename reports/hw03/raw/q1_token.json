@@ -1,0 +1,62 @@
+{
+  "question_id": "q1",
+  "technique": "token",
+  "query": "What adult softball seasons, playing nights, and divisions are offered by Cupertino Parks and Recreation?",
+  "node_count": 120,
+  "average_chunk_length": 461.90833333333336,
+  "latency_ms": 25.59862500129384,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.09523452073335648,
+    0.008361325599253178,
+    0.020727256312966347,
+    0.015703504905104637,
+    0.028736267238855362,
+    0.05512428283691406,
+    -0.055595435202121735,
+    0.01241066213697195
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.6763267036335123,
+      "cosine_similarity": 0.6867812753840072,
+      "chunk_length": 981,
+      "preview": "Softball League Cupertino CA Skip to main content opens in new tab or window Softball League Cupertino Parks and Recreation has partnered with Volo to offer adu"
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6027574698889214,
+      "cosine_similarity": 0.5243182272419333,
+      "chunk_length": 299,
+      "preview": "Baseball/softball orga nizations will have priority on so ccer/baseball joint use fields during the spring. \u2022 Soccer organizations will have priority on soccer/"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.6014223586610197,
+      "cosine_similarity": 0.5827054571566518,
+      "chunk_length": 518,
+      "preview": "to May Summer Season: May to July Fall Season: August to October Nights and Divisions of Play Night of the Week Division of Play Monday Men's D-2 League Friday "
+    },
+    {
+      "rank": 4,
+      "store_score": 0.5835503705266555,
+      "cosine_similarity": 0.5347913267851101,
+      "chunk_length": 778,
+      "preview": "Field Map (PDF, 894KB) Permit Schedule Schedules may not include City or CUSD use. Jollyman Park - Baseball and Soccer Fields Address 1000 S Stelling Road Cuper"
+    },
+    {
+      "rank": 5,
+      "store_score": 0.5753796095483321,
+      "cosine_similarity": 0.5575282068128957,
+      "chunk_length": 803,
+      "preview": "Schedule Schedules may not include City or CUSD use. Monta Vista Park - Softball Fields Address 22601 Voss Avenue Cupertino, CA 95014 Reservable Fields Two soft"
+    }
+  ]
+}

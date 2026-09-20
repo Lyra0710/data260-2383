@@ -1,0 +1,62 @@
+{
+  "question_id": "q3",
+  "technique": "semantic",
+  "query": "What information must be included in an organization roster submitted for Cupertino athletic-field use?",
+  "node_count": 21,
+  "average_chunk_length": 2213.9523809523807,
+  "latency_ms": 10.359916999732377,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.05340127646923065,
+    0.031153462827205658,
+    -0.06835180521011353,
+    -0.00206626090221107,
+    0.04057754948735237,
+    0.08100300282239914,
+    0.0061249276623129845,
+    0.017057616263628006
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.6100330099715177,
+      "cosine_similarity": 0.47992024447666887,
+      "chunk_length": 746,
+      "preview": "Frequently Asked Questions Everything you need to know about field and court use. Athletic Field Closures Athletic fields are sometimes closed due to wet or oth"
+    },
+    {
+      "rank": 2,
+      "store_score": 0.596575828216857,
+      "cosine_similarity": 0.49715291062401396,
+      "chunk_length": 4881,
+      "preview": "\uf0a7 No group or persons shall indulge in riotous, boisterous, threatening,or indecent conduct. Goals and Equipment Storage and Safety Requirements It is each orga"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.5960222497267941,
+      "cosine_similarity": 0.5579993681532607,
+      "chunk_length": 4659,
+      "preview": "Athletic Field Use Policy The City of Cupertino Athletic Field Use Policy has been established to ensure that all City- managed fields are utilized for recreati"
+    },
+    {
+      "rank": 4,
+      "store_score": 0.5883862185169176,
+      "cosine_similarity": 0.4775983866957513,
+      "chunk_length": 3047,
+      "preview": "\u2022 Soccer organizations will have priority on soccer/baseball joint use fields during the fall. Fees 1 City of C upertino at any field/CUSD programs at JUA f iel"
+    },
+    {
+      "rank": 5,
+      "store_score": 0.578841579995877,
+      "cosine_similarity": 0.5205571616190179,
+      "chunk_length": 7900,
+      "preview": "Athletic Fields and Courts Cupertino CA Skip to main content opens in new tab or window In This Section Activities Events Parks and Facilities Indoor Facilities"
+    }
+  ]
+}

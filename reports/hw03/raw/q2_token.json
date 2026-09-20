@@ -1,0 +1,62 @@
+{
+  "question_id": "q2",
+  "technique": "token",
+  "query": "What are the seasonal application deadlines for Cupertino athletic-field permits?",
+  "node_count": 120,
+  "average_chunk_length": 461.90833333333336,
+  "latency_ms": 18.326000001252396,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.07000891864299774,
+    -0.013956572860479355,
+    0.04127056896686554,
+    0.02796231023967266,
+    0.05382809042930603,
+    -0.01062249019742012,
+    -0.06997690349817276,
+    0.0030835065990686417
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.7005799139981066,
+      "cosine_similarity": 0.589911123896218,
+      "chunk_length": 723,
+      "preview": "Kennedy/Hyde Middle School Monday-Thursday 5 p.m.-Dusk All JUA fields Saturdays, School Holidays, School Summer Vacation 9 a.m.-Dusk All fields Games Sunday 10 "
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6954909035283333,
+      "cosine_similarity": 0.7090868646032565,
+      "chunk_length": 575,
+      "preview": "are as follows: S eason Dates Deadline Spr ing January- June December 1st Fall July-December May 1st Gr oups should only request the amount of field space neede"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.6798906338206533,
+      "cosine_similarity": 0.6681772074659942,
+      "chunk_length": 409,
+      "preview": "Organizations that have violated the terms of the field use policy: Any group found violating any term of the field use policy or providing misleading or false "
+    },
+    {
+      "rank": 4,
+      "store_score": 0.6724938474020652,
+      "cosine_similarity": 0.688216573386234,
+      "chunk_length": 761,
+      "preview": "Field Use Policy More information about the use of Cupertino Athletic Fields can be found in the Athletic Field Use Policy (PDF, 284KB) Rental Availability for "
+    },
+    {
+      "rank": 5,
+      "store_score": 0.6666936638621972,
+      "cosine_similarity": 0.6645016663480857,
+      "chunk_length": 944,
+      "preview": "will be permitted for the activities that the field(s) are intended for, designed for, classified as, or for activities conducted in a manner that does not comp"
+    }
+  ]
+}

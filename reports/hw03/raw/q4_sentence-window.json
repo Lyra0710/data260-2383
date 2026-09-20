@@ -1,0 +1,62 @@
+{
+  "question_id": "q4",
+  "technique": "sentence-window",
+  "query": "What adult tennis sessions, dates, and resident/non-resident prices are listed for Fall 2026 at Cupertino Sports Center?",
+  "node_count": 254,
+  "average_chunk_length": 183.04330708661416,
+  "latency_ms": 11.699750000843778,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.039837244898080826,
+    0.03179353475570679,
+    0.02596588246524334,
+    -0.010669820941984653,
+    -0.05991753563284874,
+    0.10184397548437119,
+    -0.05212492495775223,
+    0.041018255054950714
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.6658292596822128,
+      "cosine_similarity": 0.5679428625747417,
+      "chunk_length": 963,
+      "preview": "CP \u2219 FALL 2026 \u2219 ADULT TENNIS 16+ Cu p ert in o Sp o rt s Cen t er \u2022 21111 St even s Creek Blvd \u2022 408- 777- 3169 \u2022 www.lif et imeact ivit ies.co m 6-Week Sessio"
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6475311447382678,
+      "cosine_similarity": 0.5445586273963161,
+      "chunk_length": 493,
+      "preview": "Become a Passholder Basketball League Registration for sports classes, camps, and tennis lessons 90 Minute Tennis Court Reservation Sport Court Reservation Racq"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.5668721990019442,
+      "cosine_similarity": 0.5953814558348379,
+      "chunk_length": 803,
+      "preview": "Contact (408) 777-3169 Services Information on Classes and Camps Head Racquet Sport Products Tennis Accessories: grips, dampeners, over-grips Ball Machine Renta"
+    },
+    {
+      "rank": 4,
+      "store_score": 0.5609704302121671,
+      "cosine_similarity": 0.6174451604420493,
+      "chunk_length": 154,
+      "preview": "Cupertino Sports Center The Cupertino Sports Center offers a variety of sports and tennis courts which are available for rental by Sports Center members."
+    },
+    {
+      "rank": 5,
+      "store_score": 0.5600385601988678,
+      "cosine_similarity": 0.553035740150481,
+      "chunk_length": 418,
+      "preview": "Sports Center Cupertino CA Skip to main content opens in new tab or window Sports Center The Cupertino Sports Center is a 25,000+ square feet multipurpose facil"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "question_id": "q5",
+  "technique": "token",
+  "query": "Where is Cupertino's adult softball league played, and how can participants check whether the field is open?",
+  "node_count": 120,
+  "average_chunk_length": 461.90833333333336,
+  "latency_ms": 18.070000001898734,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.1410926729440689,
+    0.018780933693051338,
+    -0.027016427367925644,
+    -0.022310569882392883,
+    0.08126650005578995,
+    0.017714135348796844,
+    -0.028246384114027023,
+    0.013305749744176865
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.7161040321256071,
+      "cosine_similarity": 0.6570424808893569,
+      "chunk_length": 518,
+      "preview": "to May Summer Season: May to July Fall Season: August to October Nights and Divisions of Play Night of the Week Division of Play Monday Men's D-2 League Friday "
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6699143459594956,
+      "cosine_similarity": 0.6674564378757485,
+      "chunk_length": 981,
+      "preview": "Softball League Cupertino CA Skip to main content opens in new tab or window Softball League Cupertino Parks and Recreation has partnered with Volo to offer adu"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.6423334519345197,
+      "cosine_similarity": 0.6934691987943085,
+      "chunk_length": 522,
+      "preview": "3566 or check @cupertinofields on Twitter to determine whether the fields are open or closed. Organizations found playing on a CLOSED field will first receive a"
+    },
+    {
+      "rank": 4,
+      "store_score": 0.642153760741736,
+      "cosine_similarity": 0.6090263848487525,
+      "chunk_length": 778,
+      "preview": "Field Map (PDF, 894KB) Permit Schedule Schedules may not include City or CUSD use. Jollyman Park - Baseball and Soccer Fields Address 1000 S Stelling Road Cuper"
+    },
+    {
+      "rank": 5,
+      "store_score": 0.6384869132012243,
+      "cosine_similarity": 0.5825138253458834,
+      "chunk_length": 209,
+      "preview": "777- 3566 or check @cupertinofields on Twitter to determine whether the fields are open or closed. Organizations found playing on a CLOSED field"
+    }
+  ]
+}

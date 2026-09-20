@@ -1,0 +1,62 @@
+{
+  "question_id": "q2",
+  "technique": "sentence-window",
+  "query": "What are the seasonal application deadlines for Cupertino athletic-field permits?",
+  "node_count": 254,
+  "average_chunk_length": 183.04330708661416,
+  "latency_ms": 12.117500002204906,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.07000891864299774,
+    -0.013956572860479355,
+    0.04127056896686554,
+    0.02796231023967266,
+    0.05382809042930603,
+    -0.01062249019742012,
+    -0.06997690349817276,
+    0.0030835065990686417
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.6578266743951467,
+      "cosine_similarity": 0.5643861077039004,
+      "chunk_length": 84,
+      "preview": "O rganizations may request two Sunday field permits per year for games or practice."
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6487069581110501,
+      "cosine_similarity": 0.570832285670053,
+      "chunk_length": 165,
+      "preview": "I n addition, two Sunday permit dates/year/organization may be granted by staff to accommodate special tournaments or events (not regularly scheduled league pla"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.6479314156694881,
+      "cosine_similarity": 0.6577197358445984,
+      "chunk_length": 234,
+      "preview": "It is the responsibility of the permitted organization to notify the Cupertino Parks and Recreation Department as soon as possible if it is determined by the pe"
+    },
+    {
+      "rank": 4,
+      "store_score": 0.6445849415952161,
+      "cosine_similarity": 0.636743618140216,
+      "chunk_length": 291,
+      "preview": "to Dusk Sunday Limited availability per Athletic Field Use Policy Limited availability per Athletic Field Use Policy Obtaining a Permit Athletic Field Use Permi"
+    },
+    {
+      "rank": 5,
+      "store_score": 0.6078756802380559,
+      "cosine_similarity": 0.5836709842121506,
+      "chunk_length": 213,
+      "preview": "Seasons are as follows: S eason Dates Deadline Spr ing January- June December 1st Fall July-December May 1st Gr oups should only request the amount of field spa"
+    }
+  ]
+}

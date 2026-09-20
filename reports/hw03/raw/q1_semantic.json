@@ -1,0 +1,62 @@
+{
+  "question_id": "q1",
+  "technique": "semantic",
+  "query": "What adult softball seasons, playing nights, and divisions are offered by Cupertino Parks and Recreation?",
+  "node_count": 21,
+  "average_chunk_length": 2213.9523809523807,
+  "latency_ms": 9.649708998040296,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.09523452073335648,
+    0.008361325599253178,
+    0.020727256312966347,
+    0.015703504905104637,
+    0.028736267238855362,
+    0.05512428283691406,
+    -0.055595435202121735,
+    0.01241066213697195
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.6839315756511234,
+      "cosine_similarity": 0.6705462516566505,
+      "chunk_length": 388,
+      "preview": "Softball League Cupertino CA Skip to main content opens in new tab or window Softball League Cupertino Parks and Recreation has partnered with Volo to offer adu"
+    },
+    {
+      "rank": 2,
+      "store_score": 0.5939614563888492,
+      "cosine_similarity": 0.5313663112221169,
+      "chunk_length": 970,
+      "preview": "Prior to each season, registration for both free agents and teams is available through the Volo website. Check Availability and Register Here Seasons Three seas"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.5513540224543263,
+      "cosine_similarity": 0.5039101657082833,
+      "chunk_length": 7900,
+      "preview": "Athletic Fields and Courts Cupertino CA Skip to main content opens in new tab or window In This Section Activities Events Parks and Facilities Indoor Facilities"
+    },
+    {
+      "rank": 4,
+      "store_score": 0.537818335348696,
+      "cosine_similarity": 0.516377299611711,
+      "chunk_length": 4659,
+      "preview": "Athletic Field Use Policy The City of Cupertino Athletic Field Use Policy has been established to ensure that all City- managed fields are utilized for recreati"
+    },
+    {
+      "rank": 5,
+      "store_score": 0.5299879754690268,
+      "cosine_similarity": 0.3979521021812746,
+      "chunk_length": 4881,
+      "preview": "\uf0a7 No group or persons shall indulge in riotous, boisterous, threatening,or indecent conduct. Goals and Equipment Storage and Safety Requirements It is each orga"
+    }
+  ]
+}

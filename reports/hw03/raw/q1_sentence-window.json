@@ -1,0 +1,62 @@
+{
+  "question_id": "q1",
+  "technique": "sentence-window",
+  "query": "What adult softball seasons, playing nights, and divisions are offered by Cupertino Parks and Recreation?",
+  "node_count": 254,
+  "average_chunk_length": 183.04330708661416,
+  "latency_ms": 13.446000000840286,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.09523452073335648,
+    0.008361325599253178,
+    0.020727256312966347,
+    0.015703504905104637,
+    0.028736267238855362,
+    0.05512428283691406,
+    -0.055595435202121735,
+    0.01241066213697195
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.6701217373833616,
+      "cosine_similarity": 0.4211631611124802,
+      "chunk_length": 119,
+      "preview": "Check Availability and Register Here Seasons Three seasons are offered each year in the approximate time frames below."
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6400429362282866,
+      "cosine_similarity": 0.6415735370461374,
+      "chunk_length": 263,
+      "preview": "Softball League Cupertino CA Skip to main content opens in new tab or window Softball League Cupertino Parks and Recreation has partnered with Volo to offer adu"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.6213801283777665,
+      "cosine_similarity": 0.5123929029975844,
+      "chunk_length": 357,
+      "preview": "Spring Season: March to May Summer Season: May to July Fall Season: August to October Nights and Divisions of Play Night of the Week Division of Play Monday Men"
+    },
+    {
+      "rank": 4,
+      "store_score": 0.6177244987970005,
+      "cosine_similarity": 0.6623835380408523,
+      "chunk_length": 254,
+      "preview": "Memorial Park - Softball Field The Memorial Park softball field is primarily used for Cupertino Parks and Recreation sponsored leagues, but is also available fo"
+    },
+    {
+      "rank": 5,
+      "store_score": 0.6044576893813338,
+      "cosine_similarity": 0.49351385362458494,
+      "chunk_length": 125,
+      "preview": "Our leagues provide a recreational atmosphere where players can enjoy healthy competition, build community, and stay active."
+    }
+  ]
+}

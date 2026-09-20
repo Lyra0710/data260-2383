@@ -1,0 +1,62 @@
+{
+  "question_id": "q3",
+  "technique": "token",
+  "query": "What information must be included in an organization roster submitted for Cupertino athletic-field use?",
+  "node_count": 120,
+  "average_chunk_length": 461.90833333333336,
+  "latency_ms": 10.296083000866929,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.05340127646923065,
+    0.031153462827205658,
+    -0.06835180521011353,
+    -0.00206626090221107,
+    0.04057754948735237,
+    0.08100300282239914,
+    0.0061249276623129845,
+    0.017057616263628006
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.6756838491346747,
+      "cosine_similarity": 0.5717357177989348,
+      "chunk_length": 474,
+      "preview": "ations--$60/hour/field Residency verification All organizations will be required to submit a roster each season for players scheduled on Cupertino fields. After"
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6648208725728141,
+      "cosine_similarity": 0.36110303145654765,
+      "chunk_length": 327,
+      "preview": "or-p rofit youth organizations- -$50/hour/field 6 Non-resident adult or non-r esident for-p rofit youth organiz ations--$60/hour/field Residency verification Al"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.6576355296158092,
+      "cosine_similarity": 0.5665791733643336,
+      "chunk_length": 353,
+      "preview": "managed by the City of Cupertino. \u2022 To ensure that Cupertino residents have priority access to the fields. \u2022 To support organizations that foster a sense of com"
+    },
+    {
+      "rank": 4,
+      "store_score": 0.6248403441418149,
+      "cosine_similarity": 0.413427962253948,
+      "chunk_length": 299,
+      "preview": "Baseball/softball orga nizations will have priority on so ccer/baseball joint use fields during the spring. \u2022 Soccer organizations will have priority on soccer/"
+    },
+    {
+      "rank": 5,
+      "store_score": 0.6202442491954695,
+      "cosine_similarity": 0.41156378186458353,
+      "chunk_length": 453,
+      "preview": "youth athletes. \u2022 To collect reasonable fees for the use of the fields, in support of their ongoing maintenance. \u2022 To incorporate turf recovery periods as neede"
+    }
+  ]
+}

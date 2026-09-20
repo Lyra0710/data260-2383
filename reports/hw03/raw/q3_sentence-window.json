@@ -1,0 +1,62 @@
+{
+  "question_id": "q3",
+  "technique": "sentence-window",
+  "query": "What information must be included in an organization roster submitted for Cupertino athletic-field use?",
+  "node_count": 254,
+  "average_chunk_length": 183.04330708661416,
+  "latency_ms": 12.657625000429107,
+  "query_vector_shape": [
+    384
+  ],
+  "query_vector_first_8": [
+    0.05340127646923065,
+    0.031153462827205658,
+    -0.06835180521011353,
+    -0.00206626090221107,
+    0.04057754948735237,
+    0.08100300282239914,
+    0.0061249276623129845,
+    0.017057616263628006
+  ],
+  "document_vector_shape": [
+    5,
+    384
+  ],
+  "results": [
+    {
+      "rank": 1,
+      "store_score": 0.670524501924045,
+      "cosine_similarity": 0.7085249387262856,
+      "chunk_length": 132,
+      "preview": "Rosters must include the following information: first name, last name, address, city, and zip code ."
+    },
+    {
+      "rank": 2,
+      "store_score": 0.6422196191328162,
+      "cosine_similarity": 0.5172745313051846,
+      "chunk_length": 1083,
+      "preview": "4 Non-resident, nonprofit youth organizations: Group must be recognized nonprofit 501(c)(3) serving youth ages 18 or younger 5 Resident adult or resident for -p"
+    },
+    {
+      "rank": 3,
+      "store_score": 0.6326119539961588,
+      "cosine_similarity": 0.5250476020270958,
+      "chunk_length": 153,
+      "preview": "City of Cupertino Maintained Fields The fields listed below are available for permitting through the City of Cupertino Parks and Recreation Department."
+    },
+    {
+      "rank": 4,
+      "store_score": 0.6287843450302143,
+      "cosine_similarity": 0.39263952706067856,
+      "chunk_length": 181,
+      "preview": "\u2022 To support organizations that foster a sense of community and encourage the development of youth athletes."
+    },
+    {
+      "rank": 5,
+      "store_score": 0.6279637014358391,
+      "cosine_similarity": 0.398101447412518,
+      "chunk_length": 146,
+      "preview": "\u2022 Soccer organizations will have priority on soccer/baseball joint use fields during the fall."
+    }
+  ]
+}
