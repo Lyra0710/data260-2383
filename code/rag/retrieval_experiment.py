@@ -1,19 +1,19 @@
+import time
 from pathlib import Path
 
-from llama_index.core import Document
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-from llama_index.core.node_parser import TokenTextSplitter
+import numpy as np
 
 from llama_index.core import (
     Document,
     Settings,
     VectorStoreIndex,
 )
-
-import numpy as np
-from llama_index.core.node_parser import SemanticSplitterNodeParser
-
-from llama_index.core.node_parser import SentenceWindowNodeParser
+from llama_index.core.node_parser import (
+    SemanticSplitterNodeParser,
+    SentenceWindowNodeParser,
+    TokenTextSplitter,
+)
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -67,7 +67,7 @@ def retrieve_chunks(
     query,
     top_k=5,
 ):
-    Settings.embed_model = embed_model
+ 
 
     index = VectorStoreIndex(nodes)
 
@@ -155,108 +155,42 @@ def create_sentence_window_nodes(document):
 
     return nodes
 
-if __name__ == "__main__":
+# code to run the experiment on warmup data 
+def run_warmup():
     document = load_document(WARMUP_PATH)
-
-    print("Loaded file:", WARMUP_PATH)
-    print("Character count:", len(document.text))
-    print("Source:", document.metadata["source"])
-    print("\nPreview:")
-    print(document.text[:500])
-    print("\nLoading embedding model...")
     embed_model = load_embedding_model()
 
-    test_embedding = embed_model.get_text_embedding(
-        "What does Romeo say about love?"
-    )
+    Settings.embed_model = embed_model
 
-    print("\nEmbedding dimension:", len(test_embedding))
-    print("First 8 embedding values:", test_embedding[:8])
+    query = "What does Romeo say about love?"
 
-    print("\nCreating token-based chunks...")
-    token_nodes = create_token_nodes(document)
+    techniques = {
+        "token": create_token_nodes(document),
+        "semantic": create_semantic_nodes(
+            document,
+            embed_model,
+        ),
+        "sentence-window": create_sentence_window_nodes(
+            document
+        ),
+    }
 
-    print("Number of token chunks:", len(token_nodes))
+    for technique_name, nodes in techniques.items():
+        print(f"\nCreating {technique_name} chunks...")
+        print("Number of chunks:", len(nodes))
 
-    for index, node in enumerate(token_nodes[:3], start=1):
-        preview = " ".join(node.get_content().split())[:160]
-
-        print(f"\nChunk {index}")
-        print("Character length:", len(node.get_content()))
-        print("Preview:", preview)
-
-        query = "What does Romeo say about love?"
-
-    retrieve_chunks(
-        nodes=token_nodes,
-        embed_model=embed_model,
-        query=query,
-        top_k=5,
-    )
-
-    print("\nCreating semantic chunks...")
-
-    semantic_nodes = create_semantic_nodes(
-        document,
-        embed_model,
-    )
-
-    print(
-        "Number of semantic chunks:",
-        len(semantic_nodes),
-    )
-
-    for index, node in enumerate(
-        semantic_nodes[:3],
-        start=1,
-    ):
-        preview = " ".join(
-            node.get_content().split()
-        )[:160]
-
-        print(f"\nSemantic chunk {index}")
-        print(
-            "Character length:",
-            len(node.get_content()),
+        retrieve_chunks(
+            nodes=nodes,
+            embed_model=embed_model,
+            query=query,
+            top_k=5,
         )
-        print("Preview:", preview)
 
-    retrieve_chunks(
-    nodes=semantic_nodes,
-    embed_model=embed_model,
-    query=query,
-    top_k=5,
-)
 
-    print("\nCreating sentence-window chunks...")
+def main():
+    # Temporary warm-up run while we finish the refactor.
+    run_warmup()
 
-    sentence_window_nodes = create_sentence_window_nodes(
-        document
-    )
 
-    print(
-        "Number of sentence-window chunks:",
-        len(sentence_window_nodes),
-    )
-
-    for index, node in enumerate(
-        sentence_window_nodes[:3],
-        start=1,
-    ):
-        preview = " ".join(
-            node.get_content().split()
-        )[:160]
-
-        print(f"\nSentence-window chunk {index}")
-        print(
-            "Character length:",
-            len(node.get_content()),
-        )
-        print("Preview:", preview)
-
-    retrieve_chunks(
-    nodes=sentence_window_nodes,
-    embed_model=embed_model,
-    query=query,
-    top_k=5,
-)
+if __name__ == "__main__":
+    main()
