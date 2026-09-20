@@ -4,7 +4,8 @@ from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from starlette.status import HTTP_302_FOUND
 from pathlib import Path
-
+import time 
+IDLE_TIMEOUT_SECONDS = 60 # temporary to test 
 # Create a router object
 # This behaves like a mini FastAPI app
 router = APIRouter()
@@ -75,7 +76,7 @@ def login(request: Request, username: str = Form(...), password: str = Form(...)
     if username == VALID_USERNAME and password == VALID_PASSWORD:
         # Store logged-in user in session
         request.session["user"] = username
-
+        request.session["last_activity"] = time.time()
         # Redirect user to dashboard
         return RedirectResponse(
             url="/dashboard",
@@ -102,7 +103,8 @@ def dashboard(request: Request):
     - Only accessible if user is logged in
     - Redirects to login page if session is missing
     """
-    user = request.session.get("user")
+    # user = request.session.get("user")
+    user = get_active_user(request) # call the middleware function
 
     # If user is not logged in, block access
     if not user:
@@ -136,3 +138,21 @@ def logout(request: Request):
         url="/",
         status_code=HTTP_302_FOUND
     )
+
+
+# Middleware helpers 
+def get_active_user(request: Request):
+    user = request.session.get("user") # checks if the user is logged in
+    last_activity = request.session.get("last_activity") # checks when the user was last active 
+
+    if not user or not last_activity:
+        return None
+
+    if time.time() - last_activity > IDLE_TIMEOUT_SECONDS:
+        request.session.clear() # if user is inactive for too long, clear the session
+        return None
+
+    # Refresh activity time while the session is active
+    request.session["last_activity"] = time.time() # if user is active, refresh the last activity time 
+
+    return user
