@@ -5,7 +5,9 @@ from fastapi.templating import Jinja2Templates
 from starlette.status import HTTP_302_FOUND
 from pathlib import Path
 import time 
-IDLE_TIMEOUT_SECONDS = 60 # temporary to test 
+# IDLE_TIMEOUT_SECONDS = 60 # temporary to test 
+IDLE_TIMEOUT_SECONDS = 3600
+
 # Create a router object
 # This behaves like a mini FastAPI app
 router = APIRouter()

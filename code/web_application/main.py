@@ -7,21 +7,21 @@ from pydantic import BaseModel
 from pathlib import Path
 from starlette.middleware.sessions import SessionMiddleware
 from routers.auth import router as auth_router
-
+from secret import SECRET_KEY
 
 app = FastAPI()
 APP_DIR = Path(__file__).resolve().parent
 STATIC_DIR = APP_DIR / "static"
 
 # Secret key for session signing
-SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-secret-key")
+# SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-secret-key") # imported SECRET_KEY from secret.py instead of using a visible fallback code. 
 
 # Enable session support - required for auth
 app.add_middleware(
     SessionMiddleware,
     secret_key=SECRET_KEY,
-    # https_only=True,
-    https_only = False, # temporarily changing this for local development. 
+    https_only=True,
+    # https_only = False, # temporarily added this for local test development. 
     same_site="lax",
     max_age=3600
 )

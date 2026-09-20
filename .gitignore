@@ -8,3 +8,4 @@ __pycache__/
 *.py[cod]
 
 reports/hw03/DATA 260 - HW3.pdf
+code/web_application/secret.py
