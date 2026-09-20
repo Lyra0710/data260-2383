@@ -1,3 +1,4 @@
+from urllib3.util import request
 from fastapi import APIRouter, Request, Form
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -112,8 +113,9 @@ def dashboard(request: Request):
 
     # If user is logged in, render dashboard
     return templates.TemplateResponse(
-        "dashboard.html",
-        {
+        request=request,
+        name="dashboard.html",
+        context={
             "request": request,
             "user": user
         }
