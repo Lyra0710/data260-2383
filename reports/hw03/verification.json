@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "checks": {
+    "questions_file_exists": true,
+    "five_questions": true,
+    "six_corpus_files": true,
+    "corpus_at_least_200kb": true,
+    "fifteen_raw_files": true,
+    "raw_files_valid": true,
+    "summary_file_exists": true
+  }
+}

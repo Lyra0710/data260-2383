@@ -1,4 +1,11 @@
-idle timeout test ran for 60 seconds
+DATA 260 — HW3 Run Log
+======================
+
+The transcript below preserves the recorded terminal commands and outputs.
+
+--------------------------------------------------------------------------
+INITIAL SETUP AND WARMUP
+--------------------------------------------------------------------------
 
 curl -L \
   "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt" \
@@ -170,6 +177,10 @@ Explicit cosine similarity: 0.7978585924099252
 Chunk length: 24
 Preview: come, what says Romeo?
 
+--------------------------------------------------------------------------
+CORPUS MANIFEST
+--------------------------------------------------------------------------
+
 ------ Creating CORPUS_MANIFEST.json ---------------------
 (base) annie@mac data260-2383 % python code/rag/create_manifest.py
 {
@@ -210,6 +221,10 @@ Preview: come, what says Romeo?
   ]
 }
 
+--------------------------------------------------------------------------
+MAIN RETRIEVAL EXPERIMENT
+--------------------------------------------------------------------------
+
 # ------------ Main retrieval experiment ---------------------
 Ignoring wrong pointing object 7 0 (offset 0)
 Ignoring wrong pointing object 10 0 (offset 0)
@@ -249,3 +264,29 @@ token latency: 19.71 ms top-1 cosine: 0.6570
 semantic latency: 8.44 ms top-1 cosine: 0.7357
 sentence-window latency: 13.71 ms top-1 cosine: 0.7191
 
+--------------------------------------------------------------------------
+SUMMARY METRICS
+--------------------------------------------------------------------------
+
+# --------------- Summary Metrics ---------------------
+python code/rag/summarize_results.py
+{'technique': 'semantic', 'node_count': 21, 'average_chunk_length': 2213.9523809523807, 'top_1_cosine': 0.6266628971972658, 'mean_at_5_cosine': 0.5578868874116327, 'recall_at_5': 1.0, 'mean_latency_ms': 9.36914159974549}
+{'technique': 'sentence-window', 'node_count': 254, 'average_chunk_length': 183.04330708661416, 'top_1_cosine': 0.5962171013170805, 'mean_at_5_cosine': 0.5633872559712111, 'recall_at_5': 1.0, 'mean_latency_ms': 12.95883339989814}
+{'technique': 'token', 'node_count': 120, 'average_chunk_length': 461.90833333333336, 'top_1_cosine': 0.6338655149092285, 'mean_at_5_cosine': 0.5843660604456387, 'recall_at_5': 1.0, 'mean_latency_ms': 17.72020819989848}
+
+-----------------------------------------------------------------
+Self-verify script 
+----------------------------------------------------------------
+(.venv) (base) annie@mac data260-2383 % python code/verify_hw03.py
+{
+  "passed": true,
+  "checks": {
+    "questions_file_exists": true,
+    "five_questions": true,
+    "six_corpus_files": true,
+    "corpus_at_least_200kb": true,
+    "fifteen_raw_files": true,
+    "raw_files_valid": true,
+    "summary_file_exists": true
+  }
+}
