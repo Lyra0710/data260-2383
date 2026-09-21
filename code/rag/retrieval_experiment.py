@@ -220,10 +220,15 @@ def retrieve_chunks(
         )
 
         document_vectors.append(document_vector)
+        source = result.node.metadata.get(
+            "file_name", 
+            result.node.metadata.get("source", "unknown")
+        )
 
         rows.append(
             {
                 "rank": rank,
+                "source": source,
                 "store_score": result.score,
                 "cosine_similarity": (
                     calculate_cosine_similarity(

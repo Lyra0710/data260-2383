@@ -4,7 +4,7 @@
   "query": "What information must be included in an organization roster submitted for Cupertino athletic-field use?",
   "node_count": 120,
   "average_chunk_length": 461.90833333333336,
-  "latency_ms": 10.296083000866929,
+  "latency_ms": 12.21429200086277,
   "query_vector_shape": [
     384
   ],
@@ -25,6 +25,7 @@
   "results": [
     {
       "rank": 1,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.6756838491346747,
       "cosine_similarity": 0.5717357177989348,
       "chunk_length": 474,
@@ -32,6 +33,7 @@
     },
     {
       "rank": 2,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.6648208725728141,
       "cosine_similarity": 0.36110303145654765,
       "chunk_length": 327,
@@ -39,6 +41,7 @@
     },
     {
       "rank": 3,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.6576355296158092,
       "cosine_similarity": 0.5665791733643336,
       "chunk_length": 353,
@@ -46,6 +49,7 @@
     },
     {
       "rank": 4,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.6248403441418149,
       "cosine_similarity": 0.413427962253948,
       "chunk_length": 299,
@@ -53,6 +57,7 @@
     },
     {
       "rank": 5,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.6202442491954695,
       "cosine_similarity": 0.41156378186458353,
       "chunk_length": 453,

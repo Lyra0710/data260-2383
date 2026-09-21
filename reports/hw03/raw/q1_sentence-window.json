@@ -4,7 +4,7 @@
   "query": "What adult softball seasons, playing nights, and divisions are offered by Cupertino Parks and Recreation?",
   "node_count": 254,
   "average_chunk_length": 183.04330708661416,
-  "latency_ms": 13.446000000840286,
+  "latency_ms": 12.759834000462433,
   "query_vector_shape": [
     384
   ],
@@ -25,6 +25,7 @@
   "results": [
     {
       "rank": 1,
+      "source": "cupertino_softball_league.html",
       "store_score": 0.6701217373833616,
       "cosine_similarity": 0.4211631611124802,
       "chunk_length": 119,
@@ -32,6 +33,7 @@
     },
     {
       "rank": 2,
+      "source": "cupertino_softball_league.html",
       "store_score": 0.6400429362282866,
       "cosine_similarity": 0.6415735370461374,
       "chunk_length": 263,
@@ -39,6 +41,7 @@
     },
     {
       "rank": 3,
+      "source": "cupertino_softball_league.html",
       "store_score": 0.6213801283777665,
       "cosine_similarity": 0.5123929029975844,
       "chunk_length": 357,
@@ -46,6 +49,7 @@
     },
     {
       "rank": 4,
+      "source": "cupertino_athletic_fields.html",
       "store_score": 0.6177244987970005,
       "cosine_similarity": 0.6623835380408523,
       "chunk_length": 254,
@@ -53,6 +57,7 @@
     },
     {
       "rank": 5,
+      "source": "cupertino_softball_league.html",
       "store_score": 0.6044576893813338,
       "cosine_similarity": 0.49351385362458494,
       "chunk_length": 125,

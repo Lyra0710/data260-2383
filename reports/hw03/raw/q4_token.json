@@ -4,7 +4,7 @@
   "query": "What adult tennis sessions, dates, and resident/non-resident prices are listed for Fall 2026 at Cupertino Sports Center?",
   "node_count": 120,
   "average_chunk_length": 461.90833333333336,
-  "latency_ms": 10.86083300106111,
+  "latency_ms": 9.34399999823654,
   "query_vector_shape": [
     384
   ],
@@ -25,6 +25,7 @@
   "results": [
     {
       "rank": 1,
+      "source": "cupertino_sports_center.html",
       "store_score": 0.684325093078578,
       "cosine_similarity": 0.6638569765776253,
       "chunk_length": 768,
@@ -32,6 +33,7 @@
     },
     {
       "rank": 2,
+      "source": "cupertino_fall_2026_adult_tennis.pdf",
       "store_score": 0.6447492156709929,
       "cosine_similarity": 0.6683133985089543,
       "chunk_length": 255,
@@ -39,6 +41,7 @@
     },
     {
       "rank": 3,
+      "source": "cupertino_sports_center.html",
       "store_score": 0.6330717636995958,
       "cosine_similarity": 0.6144515758069727,
       "chunk_length": 698,
@@ -46,6 +49,7 @@
     },
     {
       "rank": 4,
+      "source": "cupertino_fall_2026_adult_tennis.pdf",
       "store_score": 0.6038461638580253,
       "cosine_similarity": 0.45673787958642365,
       "chunk_length": 200,
@@ -53,6 +57,7 @@
     },
     {
       "rank": 5,
+      "source": "cupertino_fall_2026_adult_tennis.pdf",
       "store_score": 0.5974424743802882,
       "cosine_similarity": 0.46585575708820715,
       "chunk_length": 213,

@@ -1,0 +1,4 @@
+(.venv) (base) annie@mac data260-2383 % python code/rag/summarize_results.py
+{'technique': 'semantic', 'node_count': 21, 'average_chunk_length': 2213.9523809523807, 'top_1_cosine': 0.6266628971972658, 'mean_at_5_cosine': 0.5578868874116327, 'recall_at_5': 1.0, 'mean_latency_ms': 9.36914159974549}
+{'technique': 'sentence-window', 'node_count': 254, 'average_chunk_length': 183.04330708661416, 'top_1_cosine': 0.5962171013170805, 'mean_at_5_cosine': 0.5633872559712111, 'recall_at_5': 1.0, 'mean_latency_ms': 12.95883339989814}
+{'technique': 'token', 'node_count': 120, 'average_chunk_length': 461.90833333333336, 'top_1_cosine': 0.6338655149092285, 'mean_at_5_cosine': 0.5843660604456387, 'recall_at_5': 1.0, 'mean_latency_ms': 17.72020819989848}

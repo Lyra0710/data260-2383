@@ -4,7 +4,7 @@
   "query": "What are the seasonal application deadlines for Cupertino athletic-field permits?",
   "node_count": 120,
   "average_chunk_length": 461.90833333333336,
-  "latency_ms": 18.326000001252396,
+  "latency_ms": 21.87791599862976,
   "query_vector_shape": [
     384
   ],
@@ -25,6 +25,7 @@
   "results": [
     {
       "rank": 1,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.7005799139981066,
       "cosine_similarity": 0.589911123896218,
       "chunk_length": 723,
@@ -32,6 +33,7 @@
     },
     {
       "rank": 2,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.6954909035283333,
       "cosine_similarity": 0.7090868646032565,
       "chunk_length": 575,
@@ -39,6 +41,7 @@
     },
     {
       "rank": 3,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.6798906338206533,
       "cosine_similarity": 0.6681772074659942,
       "chunk_length": 409,
@@ -46,6 +49,7 @@
     },
     {
       "rank": 4,
+      "source": "cupertino_athletic_fields.html",
       "store_score": 0.6724938474020652,
       "cosine_similarity": 0.688216573386234,
       "chunk_length": 761,
@@ -53,6 +57,7 @@
     },
     {
       "rank": 5,
+      "source": "cupertino_athletic_field_policy.pdf",
       "store_score": 0.6666936638621972,
       "cosine_similarity": 0.6645016663480857,
       "chunk_length": 944,

@@ -4,7 +4,7 @@
   "query": "Where is Cupertino's adult softball league played, and how can participants check whether the field is open?",
   "node_count": 254,
   "average_chunk_length": 183.04330708661416,
-  "latency_ms": 11.26208399728057,
+  "latency_ms": 13.713249998545507,
   "query_vector_shape": [
     384
   ],
@@ -25,6 +25,7 @@
   "results": [
     {
       "rank": 1,
+      "source": "cupertino_athletic_fields.html",
       "store_score": 0.7212863042112401,
       "cosine_similarity": 0.7190684364679942,
       "chunk_length": 254,
@@ -32,6 +33,7 @@
     },
     {
       "rank": 2,
+      "source": "cupertino_softball_league.html",
       "store_score": 0.7190584536045964,
       "cosine_similarity": 0.7151237384313822,
       "chunk_length": 263,
@@ -39,6 +41,7 @@
     },
     {
       "rank": 3,
+      "source": "cupertino_softball_league.html",
       "store_score": 0.71460250053518,
       "cosine_similarity": 0.4032625628644379,
       "chunk_length": 357,
@@ -46,6 +49,7 @@
     },
     {
       "rank": 4,
+      "source": "cupertino_softball_league.html",
       "store_score": 0.7006236466772896,
       "cosine_similarity": 0.6448293922102625,
       "chunk_length": 182,
@@ -53,6 +57,7 @@
     },
     {
       "rank": 5,
+      "source": "cupertino_softball_league.html",
       "store_score": 0.6983892846658659,
       "cosine_similarity": 0.43806565198345027,
       "chunk_length": 125,

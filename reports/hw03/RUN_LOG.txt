@@ -209,3 +209,43 @@ Preview: come, what says Romeo?
     }
   ]
 }
+
+# ------------ Main retrieval experiment ---------------------
+Ignoring wrong pointing object 7 0 (offset 0)
+Ignoring wrong pointing object 10 0 (offset 0)
+Ignoring wrong pointing object 12 0 (offset 0)
+Ignoring wrong pointing object 17 0 (offset 0)
+Ignoring wrong pointing object 19 0 (offset 0)
+Loaded graded questions: 5
+Loaded corpus documents: 6
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 103/103 [00:00<00:00, 6166.95it/s]
+Created token chunks: 120
+Created semantic chunks: 21
+Created sentence-window chunks: 254
+
+Question: q1
+token latency: 25.45 ms top-1 cosine: 0.6868
+semantic latency: 9.40 ms top-1 cosine: 0.6705
+sentence-window latency: 12.76 ms top-1 cosine: 0.4212
+
+Question: q2
+token latency: 21.88 ms top-1 cosine: 0.5899
+semantic latency: 8.65 ms top-1 cosine: 0.6954
+sentence-window latency: 13.43 ms top-1 cosine: 0.5644
+
+Question: q3
+token latency: 12.21 ms top-1 cosine: 0.5717
+semantic latency: 10.02 ms top-1 cosine: 0.4799
+sentence-window latency: 12.59 ms top-1 cosine: 0.7085
+
+Question: q4
+token latency: 9.34 ms top-1 cosine: 0.6639
+semantic latency: 10.33 ms top-1 cosine: 0.5517
+sentence-window latency: 12.30 ms top-1 cosine: 0.5679
+
+Question: q5
+token latency: 19.71 ms top-1 cosine: 0.6570
+semantic latency: 8.44 ms top-1 cosine: 0.7357
+sentence-window latency: 13.71 ms top-1 cosine: 0.7191
+
