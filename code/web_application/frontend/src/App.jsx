@@ -73,7 +73,7 @@ export default function App() {
         <Route path="/login" element={<Login onLogin={setUser} />} />
         <Route path="/create" element={<CreateRecord user={user} />} />
         <Route path="/update" element={<UpdateRecord user={user} />} />
-        <Route path="/delete" element={<DeleteRecord />} />
+        <Route path="/delete" element={<DeleteRecord user={user} />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </main>
