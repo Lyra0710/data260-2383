@@ -6,7 +6,8 @@ import models
 from db import Base, engine, get_db
 from models import Fixture, User
 from routers.auth import get_current_user, router as auth_router
-
+import os
+import uvicorn
 
 app = FastAPI(
     title="Community Sports League Fixtures",
@@ -157,6 +158,12 @@ def delete_fixture(
         "id": fixture_id,
     }
 
+if __name__ == "__main__":
+
+    uvicorn.run(
+        app,
+        port=int(os.environ["APP_PORT"]),
+    )
 
 # ------------- in-memory fixture implementation homework 3---------------#
 # import os
