@@ -1,3 +1,4 @@
+
 import os
 from pathlib import Path
 
@@ -39,7 +40,7 @@ engine = create_engine(
     **engine_options,
 )
 
-db_session_basede26 = sessionmaker(
+SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,
     bind=engine,
@@ -51,7 +52,7 @@ class Base(DeclarativeBase):
 
 
 def get_db():
-    db = db_session_basede26()
+    db = SessionLocal()
 
     try:
         yield db

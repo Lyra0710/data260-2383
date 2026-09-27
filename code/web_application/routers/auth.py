@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 import secrets
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
-from passlib.context import CryptContext
+from pwdlib import PasswordHash
 from pydantic import BaseModel
 from sqlalchemy.orm import Session as DbSession
 
@@ -12,10 +12,7 @@ from models import Session, User
 
 router = APIRouter()
 
-password_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto",
-)
+password_hash = PasswordHash.recommended()
 
 SESSION_COOKIE_NAME = "s2383_session"
 SESSION_DURATION = timedelta(hours=1)
@@ -84,7 +81,7 @@ def register(
     user = User(
         name=request_data.name,
         email=request_data.email,
-        password_hash=password_context.hash(
+        password_hash=password_hash.hash(
             request_data.password
         ),
     )
@@ -112,7 +109,7 @@ def login(
         .first()
     )
 
-    if not user or not password_context.verify(
+    if not user or not password_hash.verify(
         request_data.password,
         user.password_hash,
     ):
