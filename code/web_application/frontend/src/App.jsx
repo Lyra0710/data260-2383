@@ -40,42 +40,50 @@ export default function App() {
   }
 
   return (
-    <main>
-      <header>
-        <h1>Community Sports League Fixtures</h1>
+    <>
+      <header className="site-header">
+        <div className="header-content">
+          <div className="header-top">
+            <h1>Community Sports League Fixtures</h1>
 
-        <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/create">Create</NavLink>
-          <NavLink to="/update">Update</NavLink>
-          <NavLink to="/delete">Delete</NavLink>
-          <NavLink to="/login">Login</NavLink>
-        </nav>
-
-        {isCheckingSession ? (
-          <p>Checking session...</p>
-        ) : user ? (
-          <div>
-            <p>
-              Signed in as {user.name} ({user.email})
-            </p>
-            <button type="button" onClick={handleLogout}>
-              Log out
-            </button>
+            {isCheckingSession ? (
+              <p className="session-status">Checking session...</p>
+            ) : user ? (
+              <div className="account-actions">
+                <span>
+                  Signed in as {user.name} ({user.email})
+                </span>
+                <button type="button" onClick={handleLogout}>
+                  Log out
+                </button>
+              </div>
+            ) : (
+              <p className="session-status">Not signed in</p>
+            )}
           </div>
-        ) : (
-          <p>Not signed in</p>
-        )}
+
+          <nav aria-label="Primary navigation">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/create">Create</NavLink>
+            <NavLink to="/update">Update</NavLink>
+            <NavLink to="/delete">Delete</NavLink>
+            {!user && !isCheckingSession && (
+              <NavLink to="/login">Login</NavLink>
+            )}
+          </nav>
+        </div>
       </header>
 
-      <Routes>
-        <Route path="/" element={<Home user={user} />} />
-        <Route path="/login" element={<Login onLogin={setUser} />} />
-        <Route path="/create" element={<CreateRecord user={user} />} />
-        <Route path="/update" element={<UpdateRecord user={user} />} />
-        <Route path="/delete" element={<DeleteRecord user={user} />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </main>
+      <main className="page-content">
+        <Routes>
+          <Route path="/" element={<Home user={user} />} />
+          <Route path="/login" element={<Login onLogin={setUser} />} />
+          <Route path="/create" element={<CreateRecord user={user} />} />
+          <Route path="/update" element={<UpdateRecord user={user} />} />
+          <Route path="/delete" element={<DeleteRecord user={user} />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+    </>
   );
 }

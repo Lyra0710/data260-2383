@@ -1,111 +1,288 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #1f2937;
+  background: #f7f8fa;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+* {
   box-sizing: border-box;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: #f7f8fa;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+button,
+input,
+select {
+  font: inherit;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+
+/* Header */
+
+.site-header {
+  width: 100%;
+  background: #17324d;
+  color: #ffffff;
 }
-p {
+
+.header-content {
+  width: min(1000px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 1.25rem 0 1rem;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.header-top h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  line-height: 1.2;
+}
+
+.session-status {
+  margin: 0;
+  color: #dbeafe;
+  white-space: nowrap;
+}
+
+.account-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  color: #dbeafe;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.account-actions button {
+  min-height: 36px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.account-actions button:hover {
+  background: #255278;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 1.1rem;
+}
+
+nav a {
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  color: #dbeafe;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a.active {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+/* Page layout */
+
+.page-content {
+  width: min(1000px, calc(100% - 3rem));
+  margin: 2.5rem auto 4rem;
+}
+
+.page-content>section {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+h2 {
+  margin: 0 0 1.25rem;
+  color: #17324d;
+  font-size: 1.6rem;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+p,
+li {
+  line-height: 1.55;
+}
+
+/* Home page / fixture list */
+
+.page-content>section:not(:has(form)) {
+  padding: 2rem;
+  border: 1px solid #dbe3ec;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  padding: 0.9rem 0;
+  border-top: 1px solid #e5eaf0;
+}
+
+li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* Form pages */
+
+.page-content>section:has(form) {
+  display: grid;
+  justify-items: center;
+}
+
+.page-content>section:has(form) h2,
+.page-content>section:has(form) form {
+  width: min(100%, 560px);
+}
+
+.page-content>section:has(form) h2 {
+  text-align: center;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+  border: 1px solid #dbe3ec;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+label {
+  display: grid;
+  gap: 0.45rem;
+  color: #243b53;
+  font-weight: 600;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #a9bacb;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2937;
+}
+
+input:hover,
+select:hover {
+  border-color: #6684a0;
+}
+
+input:focus,
+select:focus {
+  border-color: #2563eb;
+  outline: 3px solid rgb(37 99 235 / 18%);
+  outline-offset: 1px;
+}
+
+/* Buttons and errors */
+
+button {
+  min-height: 42px;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+form button {
+  justify-self: start;
+  margin-top: 0.25rem;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+p[role="alert"] {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #b42318;
+  border-radius: 5px;
+  background: #fef3f2;
+  color: #8a1c16;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+
+  .header-content,
+  .page-content {
+    width: calc(100% - 2rem);
+  }
+
+  .header-top {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .account-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+
+  .page-content {
+    margin-top: 1.5rem;
+  }
+
+  .page-content>section:not(:has(form)) {
+    padding: 1.25rem;
+  }
+
+  form {
+    padding: 1.25rem;
+  }
+
+  form button {
+    width: 100%;
+  }
 }
