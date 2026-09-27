@@ -12,3 +12,4 @@ code/web_application/secret.py
 
 reports/hw04/DATA260_HW4.pdf
 code/web_application/.env
+code/web_application/frontend/.env.development
