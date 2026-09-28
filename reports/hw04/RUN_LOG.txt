@@ -1,3 +1,213 @@
+(base) annie@mac data260-2383 % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 9.4.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE IF NOT EXISTS s2383_rel;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SHOW DATABASES LIKE 's2383_rel';
++----------------------+
+| Database (s2383_rel) |
++----------------------+
+| s2383_rel            |
++----------------------+
+1 row in set (0.01 sec)
+
+mysql> EXIT
+Bye
+
+-------------------------------------------------------------------------------
+
+source .venv/bin/activate
+
+-------------------------------------------------------------------------------
+
+python main.py
+
+-------------------------------------------------------------------------------
+
+(.venv) (base) annie@mac data260-2383 % git add code/web_application/db.py \
+        code/web_application/routers/auth.py \
+        requirements.txt
+git commit -m "Configure MySQL sessions and password hashing"
+[main 2bba216] Configure MySQL sessions and password hashing
+ 3 files changed, 14 insertions(+), 9 deletions(-)
+(.venv) (base) annie@mac data260-2383 % node --version
+npm --version
+v26.5.0
+11.17.0
+(.venv) (base) annie@mac data260-2383 % npm create vite@latest code/web_application/frontend -- --template react
+Need to install the following packages:
+create-vite@9.2.1
+Ok to proceed? (y) y
+
+> npx
+> 'create-vite' code/web_application/frontend --template react
+
+│
+◇  Which linter to use?
+│  ESLint
+│
+◇  Install with npm and start now?
+│  Yes
+│
+◇  Scaffolding project in /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/code/web_application/frontend...
+│
+◇  Installing dependencies with npm...
+
+added 143 packages, and audited 144 packages in 12s
+
+31 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+│
+◇  Starting dev server...
+
+> frontend@0.0.0 dev
+> vite
+
+
+  VITE v8.3.1  ready in 645 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+
+-------------------------------------------------------------------------------
+
+(.venv) (base) annie@mac data260-2383 % cd code/web_application/frontend
+npm install
+
+added 1 package, and audited 145 packages in 543ms
+
+31 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn allow-scripts   fsevents@2.3.3 (install: (install scripts present))
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+
+-------------------------------------------------------------------------------
+
+(.venv) (base) annie@mac frontend % npm install react-router-dom
+
+added 4 packages, and audited 149 packages in 1s
+
+32 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn allow-scripts   fsevents@2.3.3 (install: (install scripts present))
+npm warn allow-scripts
+npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+
+-------------------------------------------------------------------------------
+(base) annie@mac data260-2383 % mysql -u root -p -S /tmp/mysql.sock
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 9.4.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| AirlineDB          |
+| assg_2             |
+| CustomerReportDB   |
+| DataDoctor         |
+| ecommercedb        |
+| flaskdemo          |
+| food               |
+| information_schema |
+| mysql              |
+| olist_ecommerce    |
+| performance_schema |
+| quizdb             |
+| rental             |
+| s2383_rel          |
+| superstore         |
+| sys                |
++--------------------+
+16 rows in set (0.02 sec)
+
+mysql> USE s2383_rel;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++-----------------------+
+| Tables_in_s2383_rel   |
++-----------------------+
+| fixture_related_items |
+| fixtures              |
+| sessions              |
+| users                 |
++-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT id, user_id, expires_at FROM sessions;
++---------------------------------------------+---------+---------------------+
+| id                                          | user_id | expires_at          |
++---------------------------------------------+---------+---------------------+
+| DycP7M5BgxYh_LxIqeG9vplGHg9OJagcl0bL4rBv3v8 |       2 | 2026-09-27 22:12:14 |
+| Il0_8PSi8feU7gV6Nlc_mRbTxIBf01PLUPRDGySkrFw |       2 | 2026-09-27 19:36:35 |
+| qylRUtHjoNy2ZhtXpDr7kK__11wVMOjK9_5CPZQk9OE |       2 | 2026-09-28 05:50:57 |
++---------------------------------------------+---------+---------------------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------
+(.venv) (base) annie@mac web_application % python seed_part3.py     
+Seeded 5000 fixtures.
+Seeded 200 related items.
+
+-------------------------------------------------------------------------------
+SELECT COUNT(*) AS seeded_fixture_count
+    -> FROM fixtures
+    -> WHERE fixture_name LIKE 'HW4 Fixture %';
++----------------------+
+| seeded_fixture_count |
++----------------------+
+|                 5000 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> SELECT COUNT(*) AS seeded_related_item_count
+    -> FROM fixture_related_items AS related_item
+    -> JOIN fixtures AS fixture
+    ->     ON fixture.id = related_item.fixture_id
+    -> WHERE fixture.fixture_name LIKE 'HW4 Fixture %';
++---------------------------+
+| seeded_related_item_count |
++---------------------------+
+|                       200 |
++---------------------------+
+1 row in set (0.00 sec)
+
 Benchmark started (UTC): 2026-09-28T08:13:14.456459+00:00
 naive, page_size=10, request=1, sql=11, latency_ms=4.603
 naive, page_size=10, request=2, sql=11, latency_ms=3.496

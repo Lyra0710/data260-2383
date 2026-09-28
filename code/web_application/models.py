@@ -71,6 +71,7 @@ class Fixture(Base):
     fixture_name: Mapped[str] = mapped_column(
         String(255),
         nullable=False,
+        index=True,
     )
     teams: Mapped[str] = mapped_column(
         String(255),
