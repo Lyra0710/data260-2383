@@ -8,4 +8,5 @@ body:
       "email": "ananya@gmail.com",
       "password": "homework"
     }
+examples: .resources/01 Login.resources/examples
 order: 1790566237810

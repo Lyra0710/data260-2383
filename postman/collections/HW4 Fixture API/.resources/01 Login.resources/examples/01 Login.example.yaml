@@ -1,0 +1,29 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/api/login"
+  method: POST
+  body:
+    type: json
+    content: |-
+      {
+        "email": "ananya@gmail.com",
+        "password": "homework"
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    date: Mon, 28 Sep 2026 07:57:34 GMT
+    server: uvicorn
+    content-length: "73"
+    content-type: application/json
+    set-cookie: s2383_session=FZRY9IMQLD4awOsZWfHltMN-TvZ0g8FP3hBieQl-3jM; HttpOnly; Max-Age=3600; Path=/; SameSite=lax
+  body:
+    type: json
+    content: |-
+      {
+        "message": "Login successful",
+        "name": "ananya",
+        "email": "ananya@gmail.com"
+      }
+order: 1790582282210

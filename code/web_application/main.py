@@ -1,9 +1,15 @@
 from fastapi import Depends, FastAPI, HTTPException, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session as DbSession, selectinload
-
+from fastapi.responses import JSONResponse
 import models
-from db import Base, engine, get_db
+from db import (
+    Base,
+    engine,
+    get_db,
+    get_sql_query_count,
+    reset_sql_query_count,
+)
 from models import Fixture, User
 from routers.auth import get_current_user, router as auth_router
 import os
@@ -46,6 +52,20 @@ def fixture_to_dict(fixture: Fixture):
         ],
     }
 
+def fixture_list_response(fixtures):
+    response_data = [
+        fixture_to_dict(fixture)
+        for fixture in fixtures
+    ]
+
+    return JSONResponse(
+        content=response_data,
+        headers={
+            "X-SQL-Query-Count": str(
+                get_sql_query_count()
+            ),
+        },
+    )
 
 @app.get("/")
 def root():
@@ -55,10 +75,12 @@ def root():
 
 @app.get("/api/fixtures")
 def list_fixtures(
+    
     page_size: int = Query(default=10, ge=1, le=200),
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
+    reset_sql_query_count()
     fixtures = (
         db.query(Fixture)
         .options(selectinload(Fixture.related_items))
@@ -67,10 +89,7 @@ def list_fixtures(
         .all()
     )
 
-    return [
-        fixture_to_dict(fixture)
-        for fixture in fixtures
-    ]
+    return fixture_list_response(fixtures)
 
 @app.get("/api/fixtures/naive")
 def list_fixtures_naive( # Without selectinload, SQLAlchemy waits until the code asks for fixture.related_items, then it queries the database separately for that one fixture.
@@ -78,6 +97,7 @@ def list_fixtures_naive( # Without selectinload, SQLAlchemy waits until the code
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
+    reset_sql_query_count()
     fixtures = (
         db.query(Fixture)
         .order_by(Fixture.id)
@@ -85,10 +105,7 @@ def list_fixtures_naive( # Without selectinload, SQLAlchemy waits until the code
         .all()
     )
 
-    return [
-        fixture_to_dict(fixture)
-        for fixture in fixtures
-    ]
+    return fixture_list_response(fixtures)
 
 @app.get("/api/fixtures/{fixture_id}")
 def get_fixture(
