@@ -455,3 +455,69 @@ Chunk size: 500
 Chunk overlap: 50
 Embedding model: nomic-embed-text
 -------------------------------------------------
+(.venv) (base) annie@mac data260-2383 % python code/rag/hw4_rag.py run-sweep --question-id q2
+
+============================================================
+K = 1
+
+Question: In a FastAPI application, how are request bodies validated and how is the application started with Uvicorn?
+Retrieved chunks:
+
+1. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 47, score 0.7798)
+FastAPI is the web framework. Uvicorn is the ASGI server that runs it. It is ASGI server implementation
+
+context_rag:
+In a FastAPI application, request bodies are validated using Pydantic models, which are integrated into FastAPI for data validation. The application is started with Uvicorn by running the FastAPI application as the ASGI application, typically using the command `uvicorn main:app --reload`, where `main` is the module and `app` is the FastAPI instance. 
+
+Source: [Source 1: 01-Rest_FastAPI_Agent_v3.pptx.pdf, page 47]
+
+============================================================
+K = 3
+
+Question: In a FastAPI application, how are request bodies validated and how is the application started with Uvicorn?
+Retrieved chunks:
+
+1. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 47, score 0.7798)
+FastAPI is the web framework. Uvicorn is the ASGI server that runs it. It is ASGI server implementation
+
+2. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 5, score 0.7236)
+Web APIs: HTTP → REST → FastAPI Goal: design RESTful resources and implement them cleanly in FastAPI We’ll connect: methods → URIs → representations → status codes → validation → auth
+
+3. 02-Session FastAPI.LLM Intro .pptx.pdf (page 7, score 0.7127)
+e web framework pieces (routing, middleware, ● requests/responses, WebSockets). ● FastAPI adds Pydantic-based validation and automatic OpenAPI docs.
+
+context_rag:
+In a FastAPI application, request bodies are validated using Pydantic-based validation, which is a feature provided by FastAPI. This is mentioned in [Source 3]. The application is started with Uvicorn as the ASGI server, which is noted in [Source 1]. 
+
+Citations: [Source 1], [Source 3]
+
+============================================================
+K = 5
+
+Question: In a FastAPI application, how are request bodies validated and how is the application started with Uvicorn?
+Retrieved chunks:
+
+1. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 47, score 0.7798)
+FastAPI is the web framework. Uvicorn is the ASGI server that runs it. It is ASGI server implementation
+
+2. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 5, score 0.7236)
+Web APIs: HTTP → REST → FastAPI Goal: design RESTful resources and implement them cleanly in FastAPI We’ll connect: methods → URIs → representations → status codes → validation → auth
+
+3. 02-Session FastAPI.LLM Intro .pptx.pdf (page 7, score 0.7127)
+e web framework pieces (routing, middleware, ● requests/responses, WebSockets). ● FastAPI adds Pydantic-based validation and automatic OpenAPI docs.
+
+4. 02-Session FastAPI.LLM Intro .pptx.pdf (page 14, score 0.7102)
+Installing FastAPI 1. Create a directory myapp: mkdir myapp; cd myapp 2. Create a virtual environment: python -m venv .venv 3. Activate virtual environment: macOS/Linux: source .venv/bin/activate Windows: .venv\\Scripts\\activate 4. Install FastAPI| + ASGI server: pip install fastapi uvicorn[standard] NOTE: Common entry point is main.py (similar idea to choosing app.js as entry point).
+
+5. 00-Introduction.pptx.pdf (page 17, score 0.6960)
+WEB Application Architecture (backend) FastAPI (Backend)
+
+context_rag:
+In a FastAPI application, request bodies are validated using Pydantic-based validation, which is a feature provided by FastAPI (as indicated in Source 3). 
+
+To start the application with Uvicorn, you typically install FastAPI and Uvicorn using pip, then run the application by executing the main.py file with Uvicorn as the ASGI server, as described in Source 4. 
+
+Citations: Source 3, Source 4.
+
+Saved: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/raw/rag_k_sweep.json
+-------------------------------------------------
