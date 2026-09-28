@@ -1,9 +1,9 @@
-
+from contextvars import ContextVar
 import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, event
 from sqlalchemy.engine import URL
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
@@ -39,6 +39,33 @@ engine = create_engine(
     database_url,
     **engine_options,
 )
+
+sql_query_count = ContextVar(
+    "sql_query_count",
+    default=0,
+)
+
+
+def reset_sql_query_count():
+    sql_query_count.set(0)
+
+
+def get_sql_query_count():
+    return sql_query_count.get()
+
+
+@event.listens_for(engine, "before_cursor_execute")
+def count_sql_statements(
+    connection,
+    cursor,
+    statement,
+    parameters,
+    context,
+    executemany,
+):
+    sql_query_count.set(
+        sql_query_count.get() + 1
+    )
 
 SessionLocal = sessionmaker(
     autocommit=False,

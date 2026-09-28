@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session as DbSession, selectinload
 
@@ -53,9 +53,9 @@ def root():
         "message": "Community Sports League Fixtures API",
     }
 
-
 @app.get("/api/fixtures")
 def list_fixtures(
+    page_size: int = Query(default=10, ge=1, le=200),
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
@@ -63,6 +63,7 @@ def list_fixtures(
         db.query(Fixture)
         .options(selectinload(Fixture.related_items))
         .order_by(Fixture.id)
+        .limit(page_size)
         .all()
     )
 
@@ -71,6 +72,23 @@ def list_fixtures(
         for fixture in fixtures
     ]
 
+@app.get("/api/fixtures/naive")
+def list_fixtures_naive( # Without selectinload, SQLAlchemy waits until the code asks for fixture.related_items, then it queries the database separately for that one fixture.
+    page_size: int = Query(default=10, ge=1, le=200),
+    db: DbSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    fixtures = (
+        db.query(Fixture)
+        .order_by(Fixture.id)
+        .limit(page_size)
+        .all()
+    )
+
+    return [
+        fixture_to_dict(fixture)
+        for fixture in fixtures
+    ]
 
 @app.get("/api/fixtures/{fixture_id}")
 def get_fixture(
