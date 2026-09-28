@@ -447,7 +447,7 @@ NAME                       ID              SIZE      MODIFIED
 nomic-embed-text:latest    0a109f422b47    274 MB    10 seconds ago    
 qwen3:8b                   500a1f067a9f    5.2 GB    4 weeks ago  
 -----------------------------
-(.venv) (base) annie@mac data260-2383 % python code/rag/hw4_rag.py build-index
+(.venv) (base) annie@mac data260-2383 % python code/rag/rag.py build-index
 could not convert string to float: b'0.00-4199475' : FloatObject (b'0.00-4199475') invalid; use 0.0 instead
 PDF files read: 5
 Chunks indexed: 420
@@ -455,7 +455,7 @@ Chunk size: 500
 Chunk overlap: 50
 Embedding model: nomic-embed-text
 -------------------------------------------------
-(.venv) (base) annie@mac data260-2383 % python code/rag/hw4_rag.py run-sweep --question-id q2
+(.venv) (base) annie@mac data260-2383 % python code/rag/rag.py run-sweep --question-id q2
 
 ============================================================
 K = 1
@@ -521,7 +521,7 @@ Citations: Source 3, Source 4.
 
 Saved: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/raw/rag_k_sweep.json
 -------------------------------------------------
-(.venv) (base) annie@mac data260-2383 % python code/rag/hw4_rag.py run-evaluation
+(.venv) (base) annie@mac data260-2383 % python code/rag/rag.py run-evaluation
 
 ============================================================
 Q1
