@@ -1,210 +1,189 @@
-(base) annie@mac data260-2383 % mysql -u root -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 12
-Server version: 9.4.0 MySQL Community Server - GPL
+Benchmark started (UTC): 2026-09-28T08:13:14.456459+00:00
+naive, page_size=10, request=1, sql=11, latency_ms=4.603
+naive, page_size=10, request=2, sql=11, latency_ms=3.496
+naive, page_size=10, request=3, sql=11, latency_ms=3.534
+naive, page_size=10, request=4, sql=11, latency_ms=3.863
+naive, page_size=10, request=5, sql=11, latency_ms=3.482
+naive, page_size=10, request=6, sql=11, latency_ms=3.860
+naive, page_size=10, request=7, sql=11, latency_ms=3.588
+naive, page_size=10, request=8, sql=11, latency_ms=3.609
+naive, page_size=10, request=9, sql=11, latency_ms=3.458
+naive, page_size=10, request=10, sql=11, latency_ms=3.697
+naive, page_size=10, request=11, sql=11, latency_ms=3.251
+naive, page_size=10, request=12, sql=11, latency_ms=3.266
+naive, page_size=10, request=13, sql=11, latency_ms=3.552
+naive, page_size=10, request=14, sql=11, latency_ms=3.130
+naive, page_size=10, request=15, sql=11, latency_ms=3.163
+naive, page_size=10, request=16, sql=11, latency_ms=3.131
+naive, page_size=10, request=17, sql=11, latency_ms=3.005
+naive, page_size=10, request=18, sql=11, latency_ms=3.108
+naive, page_size=10, request=19, sql=11, latency_ms=3.305
+naive, page_size=10, request=20, sql=11, latency_ms=3.407
+naive, page_size=10, request=21, sql=11, latency_ms=3.600
+naive, page_size=10, request=22, sql=11, latency_ms=3.141
+naive, page_size=10, request=23, sql=11, latency_ms=3.606
+naive, page_size=10, request=24, sql=11, latency_ms=3.249
+naive, page_size=10, request=25, sql=11, latency_ms=3.245
+naive, page_size=10, request=26, sql=11, latency_ms=3.185
+naive, page_size=10, request=27, sql=11, latency_ms=3.023
+naive, page_size=10, request=28, sql=11, latency_ms=3.021
+naive, page_size=10, request=29, sql=11, latency_ms=3.113
+naive, page_size=10, request=30, sql=11, latency_ms=3.478
+naive, page_size=50, request=1, sql=51, latency_ms=11.377
+naive, page_size=50, request=2, sql=51, latency_ms=10.761
+naive, page_size=50, request=3, sql=51, latency_ms=9.740
+naive, page_size=50, request=4, sql=51, latency_ms=10.375
+naive, page_size=50, request=5, sql=51, latency_ms=11.114
+naive, page_size=50, request=6, sql=51, latency_ms=10.631
+naive, page_size=50, request=7, sql=51, latency_ms=10.678
+naive, page_size=50, request=8, sql=51, latency_ms=8.421
+naive, page_size=50, request=9, sql=51, latency_ms=8.480
+naive, page_size=50, request=10, sql=51, latency_ms=8.398
+naive, page_size=50, request=11, sql=51, latency_ms=8.770
+naive, page_size=50, request=12, sql=51, latency_ms=8.800
+naive, page_size=50, request=13, sql=51, latency_ms=8.465
+naive, page_size=50, request=14, sql=51, latency_ms=8.888
+naive, page_size=50, request=15, sql=51, latency_ms=8.887
+naive, page_size=50, request=16, sql=51, latency_ms=8.831
+naive, page_size=50, request=17, sql=51, latency_ms=8.308
+naive, page_size=50, request=18, sql=51, latency_ms=7.712
+naive, page_size=50, request=19, sql=51, latency_ms=7.497
+naive, page_size=50, request=20, sql=51, latency_ms=7.596
+naive, page_size=50, request=21, sql=51, latency_ms=7.431
+naive, page_size=50, request=22, sql=51, latency_ms=7.342
+naive, page_size=50, request=23, sql=51, latency_ms=7.220
+naive, page_size=50, request=24, sql=51, latency_ms=7.812
+naive, page_size=50, request=25, sql=51, latency_ms=7.489
+naive, page_size=50, request=26, sql=51, latency_ms=7.567
+naive, page_size=50, request=27, sql=51, latency_ms=7.464
+naive, page_size=50, request=28, sql=51, latency_ms=8.221
+naive, page_size=50, request=29, sql=51, latency_ms=8.267
+naive, page_size=50, request=30, sql=51, latency_ms=8.293
+naive, page_size=200, request=1, sql=201, latency_ms=27.934
+naive, page_size=200, request=2, sql=201, latency_ms=28.983
+naive, page_size=200, request=3, sql=201, latency_ms=28.240
+naive, page_size=200, request=4, sql=201, latency_ms=28.647
+naive, page_size=200, request=5, sql=201, latency_ms=28.579
+naive, page_size=200, request=6, sql=201, latency_ms=28.863
+naive, page_size=200, request=7, sql=201, latency_ms=28.525
+naive, page_size=200, request=8, sql=201, latency_ms=28.156
+naive, page_size=200, request=9, sql=201, latency_ms=28.919
+naive, page_size=200, request=10, sql=201, latency_ms=27.948
+naive, page_size=200, request=11, sql=201, latency_ms=29.216
+naive, page_size=200, request=12, sql=201, latency_ms=34.089
+naive, page_size=200, request=13, sql=201, latency_ms=38.089
+naive, page_size=200, request=14, sql=201, latency_ms=26.655
+naive, page_size=200, request=15, sql=201, latency_ms=28.716
+naive, page_size=200, request=16, sql=201, latency_ms=30.082
+naive, page_size=200, request=17, sql=201, latency_ms=29.024
+naive, page_size=200, request=18, sql=201, latency_ms=28.961
+naive, page_size=200, request=19, sql=201, latency_ms=28.509
+naive, page_size=200, request=20, sql=201, latency_ms=29.502
+naive, page_size=200, request=21, sql=201, latency_ms=28.302
+naive, page_size=200, request=22, sql=201, latency_ms=29.507
+naive, page_size=200, request=23, sql=201, latency_ms=29.586
+naive, page_size=200, request=24, sql=201, latency_ms=28.959
+naive, page_size=200, request=25, sql=201, latency_ms=29.109
+naive, page_size=200, request=26, sql=201, latency_ms=29.776
+naive, page_size=200, request=27, sql=201, latency_ms=30.739
+naive, page_size=200, request=28, sql=201, latency_ms=26.877
+naive, page_size=200, request=29, sql=201, latency_ms=27.915
+naive, page_size=200, request=30, sql=201, latency_ms=29.039
+fixed, page_size=10, request=1, sql=2, latency_ms=2.157
+fixed, page_size=10, request=2, sql=2, latency_ms=1.618
+fixed, page_size=10, request=3, sql=2, latency_ms=1.489
+fixed, page_size=10, request=4, sql=2, latency_ms=1.573
+fixed, page_size=10, request=5, sql=2, latency_ms=1.585
+fixed, page_size=10, request=6, sql=2, latency_ms=1.529
+fixed, page_size=10, request=7, sql=2, latency_ms=1.468
+fixed, page_size=10, request=8, sql=2, latency_ms=1.417
+fixed, page_size=10, request=9, sql=2, latency_ms=1.427
+fixed, page_size=10, request=10, sql=2, latency_ms=1.474
+fixed, page_size=10, request=11, sql=2, latency_ms=1.417
+fixed, page_size=10, request=12, sql=2, latency_ms=1.450
+fixed, page_size=10, request=13, sql=2, latency_ms=1.368
+fixed, page_size=10, request=14, sql=2, latency_ms=1.494
+fixed, page_size=10, request=15, sql=2, latency_ms=1.590
+fixed, page_size=10, request=16, sql=2, latency_ms=1.420
+fixed, page_size=10, request=17, sql=2, latency_ms=1.395
+fixed, page_size=10, request=18, sql=2, latency_ms=1.512
+fixed, page_size=10, request=19, sql=2, latency_ms=1.453
+fixed, page_size=10, request=20, sql=2, latency_ms=1.412
+fixed, page_size=10, request=21, sql=2, latency_ms=1.396
+fixed, page_size=10, request=22, sql=2, latency_ms=1.466
+fixed, page_size=10, request=23, sql=2, latency_ms=1.670
+fixed, page_size=10, request=24, sql=2, latency_ms=1.529
+fixed, page_size=10, request=25, sql=2, latency_ms=1.396
+fixed, page_size=10, request=26, sql=2, latency_ms=1.511
+fixed, page_size=10, request=27, sql=2, latency_ms=1.370
+fixed, page_size=10, request=28, sql=2, latency_ms=1.429
+fixed, page_size=10, request=29, sql=2, latency_ms=1.301
+fixed, page_size=10, request=30, sql=2, latency_ms=1.293
+fixed, page_size=50, request=1, sql=2, latency_ms=1.850
+fixed, page_size=50, request=2, sql=2, latency_ms=1.952
+fixed, page_size=50, request=3, sql=2, latency_ms=1.872
+fixed, page_size=50, request=4, sql=2, latency_ms=1.823
+fixed, page_size=50, request=5, sql=2, latency_ms=1.708
+fixed, page_size=50, request=6, sql=2, latency_ms=1.740
+fixed, page_size=50, request=7, sql=2, latency_ms=1.738
+fixed, page_size=50, request=8, sql=2, latency_ms=1.677
+fixed, page_size=50, request=9, sql=2, latency_ms=1.692
+fixed, page_size=50, request=10, sql=2, latency_ms=1.807
+fixed, page_size=50, request=11, sql=2, latency_ms=1.960
+fixed, page_size=50, request=12, sql=2, latency_ms=2.101
+fixed, page_size=50, request=13, sql=2, latency_ms=1.793
+fixed, page_size=50, request=14, sql=2, latency_ms=1.688
+fixed, page_size=50, request=15, sql=2, latency_ms=1.838
+fixed, page_size=50, request=16, sql=2, latency_ms=1.808
+fixed, page_size=50, request=17, sql=2, latency_ms=1.748
+fixed, page_size=50, request=18, sql=2, latency_ms=1.733
+fixed, page_size=50, request=19, sql=2, latency_ms=1.914
+fixed, page_size=50, request=20, sql=2, latency_ms=1.918
+fixed, page_size=50, request=21, sql=2, latency_ms=1.812
+fixed, page_size=50, request=22, sql=2, latency_ms=1.793
+fixed, page_size=50, request=23, sql=2, latency_ms=1.942
+fixed, page_size=50, request=24, sql=2, latency_ms=2.360
+fixed, page_size=50, request=25, sql=2, latency_ms=2.051
+fixed, page_size=50, request=26, sql=2, latency_ms=1.969
+fixed, page_size=50, request=27, sql=2, latency_ms=1.852
+fixed, page_size=50, request=28, sql=2, latency_ms=2.006
+fixed, page_size=50, request=29, sql=2, latency_ms=2.139
+fixed, page_size=50, request=30, sql=2, latency_ms=2.046
+fixed, page_size=200, request=1, sql=2, latency_ms=3.161
+fixed, page_size=200, request=2, sql=2, latency_ms=3.255
+fixed, page_size=200, request=3, sql=2, latency_ms=3.107
+fixed, page_size=200, request=4, sql=2, latency_ms=3.013
+fixed, page_size=200, request=5, sql=2, latency_ms=3.083
+fixed, page_size=200, request=6, sql=2, latency_ms=2.990
+fixed, page_size=200, request=7, sql=2, latency_ms=17.197
+fixed, page_size=200, request=8, sql=2, latency_ms=3.517
+fixed, page_size=200, request=9, sql=2, latency_ms=3.297
+fixed, page_size=200, request=10, sql=2, latency_ms=3.205
+fixed, page_size=200, request=11, sql=2, latency_ms=3.064
+fixed, page_size=200, request=12, sql=2, latency_ms=3.181
+fixed, page_size=200, request=13, sql=2, latency_ms=3.208
+fixed, page_size=200, request=14, sql=2, latency_ms=2.963
+fixed, page_size=200, request=15, sql=2, latency_ms=3.406
+fixed, page_size=200, request=16, sql=2, latency_ms=3.293
+fixed, page_size=200, request=17, sql=2, latency_ms=3.100
+fixed, page_size=200, request=18, sql=2, latency_ms=2.929
+fixed, page_size=200, request=19, sql=2, latency_ms=2.904
+fixed, page_size=200, request=20, sql=2, latency_ms=3.060
+fixed, page_size=200, request=21, sql=2, latency_ms=3.125
+fixed, page_size=200, request=22, sql=2, latency_ms=2.943
+fixed, page_size=200, request=23, sql=2, latency_ms=2.929
+fixed, page_size=200, request=24, sql=2, latency_ms=3.069
+fixed, page_size=200, request=25, sql=2, latency_ms=2.980
+fixed, page_size=200, request=26, sql=2, latency_ms=3.227
+fixed, page_size=200, request=27, sql=2, latency_ms=3.236
+fixed, page_size=200, request=28, sql=2, latency_ms=3.171
+fixed, page_size=200, request=29, sql=2, latency_ms=3.028
+fixed, page_size=200, request=30, sql=2, latency_ms=3.219
 
-Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+Wrote 180 measurements.
+JSON: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/raw/n_plus_one_measurements.json
+CSV: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/raw/n_plus_one_measurements.csv
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> CREATE DATABASE IF NOT EXISTS s2383_rel;
-Query OK, 1 row affected (0.00 sec)
-
-mysql> SHOW DATABASES LIKE 's2383_rel';
-+----------------------+
-| Database (s2383_rel) |
-+----------------------+
-| s2383_rel            |
-+----------------------+
-1 row in set (0.01 sec)
-
-mysql> EXIT
-Bye
-
--------------------------------------------------------------------------------
-
-source .venv/bin/activate
-
--------------------------------------------------------------------------------
-
-python main.py
-
--------------------------------------------------------------------------------
-
-(.venv) (base) annie@mac data260-2383 % git add code/web_application/db.py \
-        code/web_application/routers/auth.py \
-        requirements.txt
-git commit -m "Configure MySQL sessions and password hashing"
-[main 2bba216] Configure MySQL sessions and password hashing
- 3 files changed, 14 insertions(+), 9 deletions(-)
-(.venv) (base) annie@mac data260-2383 % node --version
-npm --version
-v26.5.0
-11.17.0
-(.venv) (base) annie@mac data260-2383 % npm create vite@latest code/web_application/frontend -- --template react
-Need to install the following packages:
-create-vite@9.2.1
-Ok to proceed? (y) y
-
-> npx
-> 'create-vite' code/web_application/frontend --template react
-
-│
-◇  Which linter to use?
-│  ESLint
-│
-◇  Install with npm and start now?
-│  Yes
-│
-◇  Scaffolding project in /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/code/web_application/frontend...
-│
-◇  Installing dependencies with npm...
-
-added 143 packages, and audited 144 packages in 12s
-
-31 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-│
-◇  Starting dev server...
-
-> frontend@0.0.0 dev
-> vite
-
-
-  VITE v8.3.1  ready in 645 ms
-
-  ➜  Local:   http://localhost:5173/
-  ➜  Network: use --host to expose
-  ➜  press h + enter to show help
-
--------------------------------------------------------------------------------
-
-(.venv) (base) annie@mac data260-2383 % cd code/web_application/frontend
-npm install
-
-added 1 package, and audited 145 packages in 543ms
-
-31 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
-npm warn allow-scripts   fsevents@2.3.3 (install: (install scripts present))
-npm warn allow-scripts
-npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
-
--------------------------------------------------------------------------------
-
-(.venv) (base) annie@mac frontend % npm install react-router-dom
-
-added 4 packages, and audited 149 packages in 1s
-
-32 packages are looking for funding
-  run `npm fund` for details
-
-found 0 vulnerabilities
-npm warn allow-scripts 1 package has install scripts not yet covered by allowScripts:
-npm warn allow-scripts   fsevents@2.3.3 (install: (install scripts present))
-npm warn allow-scripts
-npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
-
--------------------------------------------------------------------------------
-(base) annie@mac data260-2383 % mysql -u root -p -S /tmp/mysql.sock
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 10
-Server version: 9.4.0 MySQL Community Server - GPL
-
-Copyright (c) 2000, 2024, Oracle and/or its affiliates.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> SHOW DATABASES;
-+--------------------+
-| Database           |
-+--------------------+
-| AirlineDB          |
-| assg_2             |
-| CustomerReportDB   |
-| DataDoctor         |
-| ecommercedb        |
-| flaskdemo          |
-| food               |
-| information_schema |
-| mysql              |
-| olist_ecommerce    |
-| performance_schema |
-| quizdb             |
-| rental             |
-| s2383_rel          |
-| superstore         |
-| sys                |
-+--------------------+
-16 rows in set (0.02 sec)
-
-mysql> USE s2383_rel;
-Reading table information for completion of table and column names
-You can turn off this feature to get a quicker startup with -A
-
-Database changed
-mysql> SHOW TABLES;
-+-----------------------+
-| Tables_in_s2383_rel   |
-+-----------------------+
-| fixture_related_items |
-| fixtures              |
-| sessions              |
-| users                 |
-+-----------------------+
-4 rows in set (0.00 sec)
-
-mysql> SELECT id, user_id, expires_at FROM sessions;
-+---------------------------------------------+---------+---------------------+
-| id                                          | user_id | expires_at          |
-+---------------------------------------------+---------+---------------------+
-| DycP7M5BgxYh_LxIqeG9vplGHg9OJagcl0bL4rBv3v8 |       2 | 2026-09-27 22:12:14 |
-| Il0_8PSi8feU7gV6Nlc_mRbTxIBf01PLUPRDGySkrFw |       2 | 2026-09-27 19:36:35 |
-| qylRUtHjoNy2ZhtXpDr7kK__11wVMOjK9_5CPZQk9OE |       2 | 2026-09-28 05:50:57 |
-+---------------------------------------------+---------+---------------------+
-3 rows in set (0.00 sec)
-
--------------------------------------------------------------------------------
-(.venv) (base) annie@mac web_application % python seed_part3.py     
-Seeded 5000 fixtures.
-Seeded 200 related items.
-
--------------------------------------------------------------------------------
-SELECT COUNT(*) AS seeded_fixture_count
-    -> FROM fixtures
-    -> WHERE fixture_name LIKE 'HW4 Fixture %';
-+----------------------+
-| seeded_fixture_count |
-+----------------------+
-|                 5000 |
-+----------------------+
-1 row in set (0.00 sec)
-
-mysql> 
-mysql> SELECT COUNT(*) AS seeded_related_item_count
-    -> FROM fixture_related_items AS related_item
-    -> JOIN fixtures AS fixture
-    ->     ON fixture.id = related_item.fixture_id
-    -> WHERE fixture.fixture_name LIKE 'HW4 Fixture %';
-+---------------------------+
-| seeded_related_item_count |
-+---------------------------+
-|                       200 |
-+---------------------------+
-1 row in set (0.00 sec)
-
+------------------------
+(.venv) (base) annie@mac data260-2383 % python code/web_application/benchmark_part3.py --summarize
+Wrote metrics: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/METRICS.md
