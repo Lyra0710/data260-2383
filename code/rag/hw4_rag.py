@@ -24,7 +24,7 @@ def parse_arguments():
     )
     parser.add_argument(
         "command",
-        choices=["build-index"],
+        choices=["build-index", "retrieve"],
     )
     parser.add_argument(
         "--embedding-model",
@@ -35,6 +35,17 @@ def parse_arguments():
         "--ollama-host",
         default="http://localhost:11434",
         help="Local Ollama server URL.",
+    )
+    parser.add_argument(
+        "--question",
+        help="Question used for retrieval.",
+    )
+    parser.add_argument(
+        "--k",
+        type=int,
+        choices=[1, 3, 5],
+        default=3,
+        help="Number of chunks to retrieve.",
     )
     return parser.parse_args()
 
@@ -145,12 +156,58 @@ def build_index(arguments):
     print(f"Chunk overlap: {CHUNK_OVERLAP}")
     print(f"Embedding model: {arguments.embedding_model}")
 
+def retrieve(arguments):
+    if not arguments.question:
+        raise ValueError(
+            "--question is required for the retrieve command."
+        )
+
+    client = chromadb.PersistentClient(
+        path=str(VECTOR_STORE_DIR),
+    )
+    collection = client.get_collection(
+        name=COLLECTION_NAME,
+    )
+
+    query_embedding = embed_texts(
+        texts=[arguments.question],
+        ollama_host=arguments.ollama_host,
+        embedding_model=arguments.embedding_model,
+    )[0]
+
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=arguments.k,
+        include=["documents", "metadatas", "distances"],
+    )
+
+    print(f"Question: {arguments.question}")
+    print(f"Top-k: {arguments.k}")
+
+    for rank, (document, metadata, distance) in enumerate(
+        zip(
+            results["documents"][0],
+            results["metadatas"][0],
+            results["distances"][0],
+        ),
+        start=1,
+    ):
+        similarity_score = 1 - distance
+
+        print(
+            f"\n{rank}. {metadata['source']} "
+            f"(page {metadata['page']}, "
+            f"score {similarity_score:.4f})"
+        )
+        print(document)
 
 def main():
     arguments = parse_arguments()
 
     if arguments.command == "build-index":
         build_index(arguments)
+    elif arguments.command == "retrieve":
+        retrieve(arguments)
 
 
 if __name__ == "__main__":

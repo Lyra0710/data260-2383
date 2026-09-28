@@ -1,0 +1,38 @@
+[
+    {
+        "id": "q1",
+        "type": "one_chunk",
+        "question": "What is a REST API?",
+        "expected_refusal": false
+    },
+    {
+        "id": "q2",
+        "type": "two_chunks",
+        "question": "In a FastAPI application, how are request bodies validated and how is the application started with Uvicorn?",
+        "expected_refusal": false
+    },
+    {
+        "id": "q3",
+        "type": "similar_across_documents",
+        "question": "What is retrieval-augmented generation (RAG), and what problem does it address?",
+        "expected_refusal": false
+    },
+    {
+        "id": "q4",
+        "type": "ambiguous",
+        "question": "What does the word session mean in this course?",
+        "expected_refusal": false
+    },
+    {
+        "id": "q5",
+        "type": "not_in_documents",
+        "question": "What is the maximum number of players allowed on a community sports league soccer team?",
+        "expected_refusal": true
+    },
+    {
+        "id": "q6",
+        "type": "unrelated",
+        "question": "What will the price of Bitcoin be on December 31, 2027?",
+        "expected_refusal": true
+    }
+]
