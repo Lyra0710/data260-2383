@@ -680,4 +680,8 @@ context_rag:
 I cannot answer this question from the provided documents.
 
 Saved: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/raw/rag_comparison.json
-------------------------
+-----------------------------------------
+(.venv) (base) annie@mac data260-2383 % python ./code/verify_hw04.py
+Saved: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/verification.json
+Overall status: pass
+-----------------------------------------
