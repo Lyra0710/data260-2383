@@ -70,7 +70,7 @@ def parse_arguments():
     )
     return parser.parse_args()
 
-
+# Indexing is the whole preparation process that makes the documents searchable 
 def chunks(items, size):
     iterator = iter(items)
 
