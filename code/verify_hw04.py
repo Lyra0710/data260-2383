@@ -15,6 +15,8 @@ from dotenv import load_dotenv
 CODE_DIR = Path(__file__).resolve().parent
 REPOSITORY_DIR = CODE_DIR.parent
 APP_DIR = CODE_DIR / "web_application"
+REPORT_DIR = REPOSITORY_DIR / "reports" / "hw04"
+VERIFICATION_PATH = REPORT_DIR / "verification.json"
 
 load_dotenv(APP_DIR / ".env")
 
@@ -192,13 +194,14 @@ def main():
         ),
     }
 
-    output_path = REPOSITORY_DIR / "verification.json"
-    output_path.write_text(
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+
+    VERIFICATION_PATH.write_text(
         json.dumps(verification, indent=2),
         encoding="utf-8",
     )
 
-    print(f"Saved: {output_path}")
+    print(f"Saved: {VERIFICATION_PATH}")
     print(f"Overall status: {verification['overall_status']}")
 
 

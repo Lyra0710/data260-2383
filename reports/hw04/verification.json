@@ -1,0 +1,36 @@
+{
+  "homework": "HW4",
+  "sid4": "2383",
+  "commit_hash": "eb49a0c527ff4b043cd1bc77c710a0f20d1af4ff",
+  "seed": 2383,
+  "model_configuration": {
+    "chat_model": "qwen3:8b",
+    "embedding_model": "nomic-embed-text",
+    "chunk_size": 500,
+    "chunk_overlap": 50,
+    "vector_store": "ChromaDB"
+  },
+  "checks": [
+    {
+      "name": "backend_root",
+      "status": "pass",
+      "details": "GET / returned HTTP 200."
+    },
+    {
+      "name": "login",
+      "status": "pass",
+      "details": "POST /api/login returned HTTP 200."
+    },
+    {
+      "name": "naive_fixture_list",
+      "status": "pass",
+      "details": "Naive endpoint returned fixture data with X-Sql-Query-Count = 11."
+    },
+    {
+      "name": "fixed_fixture_list",
+      "status": "pass",
+      "details": "Fixed endpoint returned fixture data with X-Sql-Query-Count = 2."
+    }
+  ],
+  "overall_status": "pass"
+}
