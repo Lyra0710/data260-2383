@@ -397,3 +397,61 @@ CSV: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/
 ------------------------
 (.venv) (base) annie@mac data260-2383 % python code/web_application/benchmark_part3.py --summarize
 Wrote metrics: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/METRICS.md
+
+--------------------------------------------
+mysql> EXPLAIN
+    -> SELECT id, fixture_name, teams
+    -> FROM fixtures
+    -> WHERE fixture_name LIKE 'HW4 Fixture 2%';
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+| id | select_type | table    | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra       |
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+|  1 | SIMPLE      | fixtures | NULL       | ALL  | NULL          | NULL | NULL    | NULL | 4982 |    11.11 | Using where |
++----+-------------+----------+------------+------+---------------+------+---------+------+------+----------+-------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> CREATE INDEX ix_fixtures_fixture_name
+    -> ON fixtures (fixture_name);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> EXPLAIN
+    -> SELECT id, fixture_name, teams
+    -> FROM fixtures
+    -> WHERE fixture_name LIKE 'HW4 Fixture 2%';
++----+-------------+----------+------------+-------+--------------------------+--------------------------+---------+------+------+----------+-----------------------+
+| id | select_type | table    | partitions | type  | possible_keys            | key                      | key_len | ref  | rows | filtered | Extra                 |
++----+-------------+----------+------------+-------+--------------------------+--------------------------+---------+------+------+----------+-----------------------+
+|  1 | SIMPLE      | fixtures | NULL       | range | ix_fixtures_fixture_name | ix_fixtures_fixture_name | 1022    | NULL | 1000 |   100.00 | Using index condition |
++----+-------------+----------+------------+-------+--------------------------+--------------------------+---------+------+------+----------+-----------------------+
+1 row in set, 1 warning (0.00 sec)
+
+--------------------------------------------------
+verifying sha256 digest 
+writing manifest 
+success 
+(.venv) (base) annie@mac data260-2383 % clear
+(.venv) (base) annie@mac data260-2383 % python -m pip show chromadb
+ollama list
+Name: chromadb
+Version: 1.5.9
+Summary: Chroma.
+Home-page: 
+Author: 
+Author-email: Jeff Huber <jeff@trychroma.com>, Anton Troynikov <anton@trychroma.com>
+License: 
+Location: /Users/annie/.pyenv/versions/3.11.9/lib/python3.11/site-packages
+Requires: bcrypt, build, grpcio, httpx, importlib-resources, jsonschema, kubernetes, mmh3, numpy, onnxruntime, opentelemetry-api, opentelemetry-exporter-otlp-proto-grpc, opentelemetry-sdk, orjson, overrides, pybase64, pydantic, pydantic-settings, pypika, pyyaml, rich, tenacity, tokenizers, tqdm, typer, typing-extensions, uvicorn
+Required-by: 
+NAME                       ID              SIZE      MODIFIED       
+nomic-embed-text:latest    0a109f422b47    274 MB    10 seconds ago    
+qwen3:8b                   500a1f067a9f    5.2 GB    4 weeks ago  
+-----------------------------
+(.venv) (base) annie@mac data260-2383 % python code/rag/hw4_rag.py build-index
+could not convert string to float: b'0.00-4199475' : FloatObject (b'0.00-4199475') invalid; use 0.0 instead
+PDF files read: 5
+Chunks indexed: 420
+Chunk size: 500
+Chunk overlap: 50
+Embedding model: nomic-embed-text
+-------------------------------------------------
