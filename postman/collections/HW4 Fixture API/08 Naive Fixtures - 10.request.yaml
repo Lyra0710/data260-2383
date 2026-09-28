@@ -1,0 +1,7 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/fixtures/naive?page_size=10"
+method: GET
+queryParams:
+  page_size: "10"
+order: 4345809673805372

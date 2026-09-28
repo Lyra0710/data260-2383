@@ -180,3 +180,31 @@ mysql> SELECT id, user_id, expires_at FROM sessions;
 3 rows in set (0.00 sec)
 
 -------------------------------------------------------------------------------
+(.venv) (base) annie@mac web_application % python seed_part3.py     
+Seeded 5000 fixtures.
+Seeded 200 related items.
+
+-------------------------------------------------------------------------------
+SELECT COUNT(*) AS seeded_fixture_count
+    -> FROM fixtures
+    -> WHERE fixture_name LIKE 'HW4 Fixture %';
++----------------------+
+| seeded_fixture_count |
++----------------------+
+|                 5000 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> 
+mysql> SELECT COUNT(*) AS seeded_related_item_count
+    -> FROM fixture_related_items AS related_item
+    -> JOIN fixtures AS fixture
+    ->     ON fixture.id = related_item.fixture_id
+    -> WHERE fixture.fixture_name LIKE 'HW4 Fixture %';
++---------------------------+
+| seeded_related_item_count |
++---------------------------+
+|                       200 |
++---------------------------+
+1 row in set (0.00 sec)
+
