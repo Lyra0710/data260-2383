@@ -1,0 +1,8 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/logout"
+method: POST
+body:
+  type: json
+  content: ""
+order: 4337826845149009

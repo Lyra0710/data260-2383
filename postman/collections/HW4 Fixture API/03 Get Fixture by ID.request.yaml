@@ -1,0 +1,5 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/fixtures/3"
+method: GET
+order: 1124015609376894

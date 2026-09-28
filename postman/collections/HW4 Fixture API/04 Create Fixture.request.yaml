@@ -1,0 +1,12 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/fixtures"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "fixture_name": "Postman Test Fixture",
+      "teams": "Wolves vs Hawks"
+    }
+order: 1281893973159148

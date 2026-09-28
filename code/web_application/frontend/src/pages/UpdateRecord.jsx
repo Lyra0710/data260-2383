@@ -28,7 +28,6 @@ export default function UpdateRecord({ user }) {
         }
 
         async function loadFixtures() {
-            setIsLoading(true);
             setError("");
 
             try {
@@ -45,8 +44,6 @@ export default function UpdateRecord({ user }) {
                 setFixtures(data);
             } catch (requestError) {
                 setError(requestError.message);
-            } finally {
-                setIsLoading(false);
             }
         }
 

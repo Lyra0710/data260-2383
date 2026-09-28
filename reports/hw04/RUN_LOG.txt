@@ -114,3 +114,69 @@ npm warn allow-scripts 1 package has install scripts not yet covered by allowScr
 npm warn allow-scripts   fsevents@2.3.3 (install: (install scripts present))
 npm warn allow-scripts
 npm warn allow-scripts Run `npm approve-scripts --allow-scripts-pending` to review, or `npm approve-scripts <pkg>` to allow.
+
+-------------------------------------------------------------------------------
+(base) annie@mac data260-2383 % mysql -u root -p -S /tmp/mysql.sock
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 9.4.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| AirlineDB          |
+| assg_2             |
+| CustomerReportDB   |
+| DataDoctor         |
+| ecommercedb        |
+| flaskdemo          |
+| food               |
+| information_schema |
+| mysql              |
+| olist_ecommerce    |
+| performance_schema |
+| quizdb             |
+| rental             |
+| s2383_rel          |
+| superstore         |
+| sys                |
++--------------------+
+16 rows in set (0.02 sec)
+
+mysql> USE s2383_rel;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++-----------------------+
+| Tables_in_s2383_rel   |
++-----------------------+
+| fixture_related_items |
+| fixtures              |
+| sessions              |
+| users                 |
++-----------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT id, user_id, expires_at FROM sessions;
++---------------------------------------------+---------+---------------------+
+| id                                          | user_id | expires_at          |
++---------------------------------------------+---------+---------------------+
+| DycP7M5BgxYh_LxIqeG9vplGHg9OJagcl0bL4rBv3v8 |       2 | 2026-09-27 22:12:14 |
+| Il0_8PSi8feU7gV6Nlc_mRbTxIBf01PLUPRDGySkrFw |       2 | 2026-09-27 19:36:35 |
+| qylRUtHjoNy2ZhtXpDr7kK__11wVMOjK9_5CPZQk9OE |       2 | 2026-09-28 05:50:57 |
++---------------------------------------------+---------+---------------------+
+3 rows in set (0.00 sec)
+
+-------------------------------------------------------------------------------
