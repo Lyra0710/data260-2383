@@ -14,13 +14,13 @@
     {
         "id": "q3",
         "type": "similar_across_documents",
-        "question": "What is retrieval-augmented generation (RAG), and what problem does it address?",
+        "question": "What role does FastAPI play in a web application?",
         "expected_refusal": false
     },
     {
         "id": "q4",
         "type": "ambiguous",
-        "question": "What does the word session mean in this course?",
+        "question": "What does the term model mean in the course materials?",
         "expected_refusal": false
     },
     {

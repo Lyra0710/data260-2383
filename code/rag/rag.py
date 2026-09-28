@@ -310,6 +310,7 @@ def context_rag_prompt(question, retrieved_chunks):
         f"'{REFUSAL_MESSAGE}'.\n\n"
         f"Context:\n{context}\n\n"
         f"Question: {question}"
+        "If the question has multiple supported meanings, distinguish them rather than choosing only one. "
     )
 
 

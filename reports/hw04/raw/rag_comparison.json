@@ -1,0 +1,212 @@
+[
+  {
+    "id": "q1",
+    "type": "one_chunk",
+    "question": "What is a REST API?",
+    "expected_refusal": false,
+    "k": 3,
+    "retrieved_chunks": [
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 16,
+        "chunk": 1,
+        "score": 0.8058532476425171,
+        "text": "What is REST? \u2022 Representational State Transfer \u2022 Style of Software Architecture for WWW \u2022 Based on Client and Server \u2022 Request and Response are built on transfer of \u201crepresentation\u201d or \u201cresources\u201d \u2022 Uses HTTP protocol 16"
+      },
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 5,
+        "chunk": 1,
+        "score": 0.7509481906890869,
+        "text": "Web APIs: HTTP \u2192 REST \u2192 FastAPI Goal: design RESTful resources and implement them cleanly in FastAPI We\u2019ll connect: methods \u2192 URIs \u2192 representations \u2192 status codes \u2192 validation \u2192 auth"
+      },
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 26,
+        "chunk": 2,
+        "score": 0.742737352848053,
+        "text": "rom proper REST APIs? 26"
+      }
+    ],
+    "answers": {
+      "no_rag": "A REST API is an architectural style for building web services using HTTP protocols, enabling communication between different systems through stateless, client-server interactions.",
+      "basic_rag": "A REST API is an application programming interface that uses the principles of Representational State Transfer (REST) to enable communication between different software systems. It is based on a client-server architecture and utilizes HTTP protocols to request and respond with representations of resources. REST APIs are designed to be stateless, meaning each request from a client contains all the information the server needs to fulfill that request. They are commonly used to build web services and are often implemented using frameworks like FastAPI to design and implement RESTful resources efficiently.",
+      "context_rag": "A REST API is an application programming interface that uses the principles of Representational State Transfer (REST) to enable communication between different software systems. It is based on a client-server architecture where requests and responses are built on the transfer of representations or resources. REST APIs utilize the HTTP protocol and are designed to interact with resources through standard HTTP methods such as GET, POST, PUT, and DELETE. The design of REST APIs emphasizes stateless interactions, uniform interfaces, and the ability to scale effectively. This concept is further elaborated in the context of implementing RESTful resources using FastAPI, which connects methods to URIs, representations, status codes, validation, and authentication. (Source 1, Source 2)"
+    }
+  },
+  {
+    "id": "q2",
+    "type": "two_chunks",
+    "question": "In a FastAPI application, how are request bodies validated and how is the application started with Uvicorn?",
+    "expected_refusal": false,
+    "k": 3,
+    "retrieved_chunks": [
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 47,
+        "chunk": 1,
+        "score": 0.7798317670822144,
+        "text": "FastAPI is the web framework. Uvicorn is the ASGI server that runs it. It is ASGI server implementation"
+      },
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 5,
+        "chunk": 1,
+        "score": 0.7236416935920715,
+        "text": "Web APIs: HTTP \u2192 REST \u2192 FastAPI Goal: design RESTful resources and implement them cleanly in FastAPI We\u2019ll connect: methods \u2192 URIs \u2192 representations \u2192 status codes \u2192 validation \u2192 auth"
+      },
+      {
+        "source": "02-Session FastAPI.LLM Intro .pptx.pdf",
+        "page": 7,
+        "chunk": 2,
+        "score": 0.7126616835594177,
+        "text": "e web framework pieces (routing, middleware, \u25cf requests/responses, WebSockets). \u25cf FastAPI adds Pydantic-based validation and automatic OpenAPI docs."
+      }
+    ],
+    "answers": {
+      "no_rag": "In FastAPI, request bodies are validated using Pydantic models. To start the application with Uvicorn, run `uvicorn main:app --reload` where `main` is the module and `app` is the FastAPI instance.",
+      "basic_rag": "In a FastAPI application, request bodies are validated using Pydantic-based validation, which is a feature provided by FastAPI. This allows for automatic data validation and documentation generation.\n\nTo start the application with Uvicorn, you would typically run the FastAPI application using Uvicorn as the ASGI server. This is done by executing a command such as `uvicorn main:app --reload`, where `main` is the Python file containing the FastAPI application and `app` is the FastAPI instance.",
+      "context_rag": "In a FastAPI application, request bodies are validated using Pydantic-based validation, which is a feature provided by FastAPI. This is mentioned in [Source 3]. \n\nThe application is started with Uvicorn by using Uvicorn as the ASGI server that runs the FastAPI web framework, as stated in [Source 1]. \n\nCitations: [Source 1], [Source 3]"
+    }
+  },
+  {
+    "id": "q3",
+    "type": "similar_across_documents",
+    "question": "What role does FastAPI play in a web application?",
+    "expected_refusal": false,
+    "k": 3,
+    "retrieved_chunks": [
+      {
+        "source": "00-Introduction.pptx.pdf",
+        "page": 17,
+        "chunk": 1,
+        "score": 0.8281787633895874,
+        "text": "WEB Application Architecture (backend) FastAPI (Backend)"
+      },
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 5,
+        "chunk": 1,
+        "score": 0.798352837562561,
+        "text": "Web APIs: HTTP \u2192 REST \u2192 FastAPI Goal: design RESTful resources and implement them cleanly in FastAPI We\u2019ll connect: methods \u2192 URIs \u2192 representations \u2192 status codes \u2192 validation \u2192 auth"
+      },
+      {
+        "source": "00-Introduction.pptx.pdf",
+        "page": 19,
+        "chunk": 1,
+        "score": 0.7827216386795044,
+        "text": "Stack + Kafka \u2022 MongoDB, FastAPI are dedicated to developing the back-end of web applications. This corresponds to database management, scripts, html documents, HTTP requests, etc. \u2022 React\u2019s role is to execute HTTP requests. Fast API"
+      }
+    ],
+    "answers": {
+      "no_rag": "FastAPI is a high-performance web framework for building APIs with Python, offering features like automatic documentation, asynchronous support, and type hints to streamline API development.",
+      "basic_rag": "FastAPI plays the role of a backend framework in a web application, responsible for handling HTTP requests, designing and implementing RESTful resources, and managing communication between the client and the database. It is used alongside technologies like MongoDB and Kafka to develop the back-end of web applications, including database management, scripts, and HTTP request handling.",
+      "context_rag": "FastAPI plays the role of a backend framework in a web application, dedicated to developing the back-end of web applications. This includes tasks such as database management, scripts, HTML documents, and HTTP requests. It is used to design and implement RESTful resources cleanly, connecting methods to URIs, representations, status codes, validation, and authentication. \n\nSource numbers used: 1, 2, 3."
+    }
+  },
+  {
+    "id": "q4",
+    "type": "ambiguous",
+    "question": "What does the term model mean in the course materials?",
+    "expected_refusal": false,
+    "k": 3,
+    "retrieved_chunks": [
+      {
+        "source": "03.ReactJS_MySQL_Prompt_RAG.pptx.pdf",
+        "page": 39,
+        "chunk": 1,
+        "score": 0.6810703277587891,
+        "text": "Model: Python class for a database table class Student(Base): __tablename__ = \"students\" id = mapped_column(primary_key=True) name = mapped_column(String(100)) major = mapped_column(String(100)) students table id name major Model definitions are the \u201cmap\u201d between Python and table structure. 7"
+      },
+      {
+        "source": "03.ReactJS_MySQL_Prompt_RAG.pptx.pdf",
+        "page": 58,
+        "chunk": 1,
+        "score": 0.6518493890762329,
+        "text": "Context Engineering \u2014 De\ufb01nition Context Engineering designs everything the model sees at inference time, not just the prompt: instructions, examples, retrieved documents, tools, memory/state, and control \ufb02ow. \u25cf Prompt engineering = how you ask \u25cf Context engineering = what you give the model to think with"
+      },
+      {
+        "source": "02-Session FastAPI.LLM Intro .pptx.pdf",
+        "page": 33,
+        "chunk": 1,
+        "score": 0.647320032119751,
+        "text": "What is an LLM? \u25cf A probabilistic text model that predicts the next token \u25cf Trained on large dataset makes it better at learning statistical patterns & world knowledge \u25cf Transformer is the dominant architecture \u25cf Typical capabilities: Q&A, summarization, extraction, classi\ufb01cation, coding \u25cf Examples: GPT\u2011class models, Llama, Gemma, Mistral, etc. 33"
+      }
+    ],
+    "answers": {
+      "no_rag": "In the course materials, the term \"model\" refers to a simplified representation of a real-world system, process, or concept, used to understand, analyze, or predict behavior.",
+      "basic_rag": "The term \"model\" in the course materials refers to a probabilistic text model that predicts the next token, trained on large datasets to learn statistical patterns and world knowledge. It is also used to describe a Python class for a database table, such as the `Student` class, which maps Python code to a database table structure. Additionally, \"model\" can relate to the broader concept of Context Engineering, where it encompasses the design of everything the model sees during inference, including prompts, examples, and other contextual information.",
+      "context_rag": "In the course materials, the term \"model\" has at least two distinct meanings, as supported by the provided documents:\n\n1. **A Python class representing a database table**: In the context of database modeling, a \"model\" refers to a Python class that maps to a database table structure. For example, the `Student` class in the provided code snippet represents a table in a database with columns such as `id`, `name`, and `major`. This usage of \"model\" is related to object-relational mapping (ORM) and database design. (Source 1)\n\n2. **A large language model (LLM)**: In the context of artificial intelligence and natural language processing, \"model\" refers to a probabilistic text model that predicts the next token based on a large dataset. These models are trained using architectures like the Transformer and are capable of tasks such as Q&A, summarization, and coding. Examples include GPT-class models, Llama, Gemma, and Mistral. (Source 3)"
+    }
+  },
+  {
+    "id": "q5",
+    "type": "not_in_documents",
+    "question": "What is the maximum number of players allowed on a community sports league soccer team?",
+    "expected_refusal": true,
+    "k": 3,
+    "retrieved_chunks": [
+      {
+        "source": "03.ReactJS_MySQL_Prompt_RAG.pptx.pdf",
+        "page": 72,
+        "chunk": 2,
+        "score": 0.5577385425567627,
+        "text": "."
+      },
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 74,
+        "chunk": 3,
+        "score": 0.5485806465148926,
+        "text": "force TTL, size limits, and field schema. Guardrails sits between your app and the LLM. 74"
+      },
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 24,
+        "chunk": 1,
+        "score": 0.504791259765625,
+        "text": "When is it appropriate? \u2022 The web services are completely stateless \u2022 Caching infrastructure can be leveraged for performance \u2022 The service producer and consumer have mutual understanding of context and content being passed e.g NetFlix Api \u2022 Bandwidth is a constraint 24"
+      }
+    ],
+    "answers": {
+      "no_rag": "The maximum number of players allowed on a community sports league soccer team is typically 11.",
+      "basic_rag": "The retrieved context does not provide information about the maximum number of players allowed on a community sports league soccer team.",
+      "context_rag": "I cannot answer this question from the provided documents."
+    }
+  },
+  {
+    "id": "q6",
+    "type": "unrelated",
+    "question": "What will the price of Bitcoin be on December 31, 2027?",
+    "expected_refusal": true,
+    "k": 3,
+    "retrieved_chunks": [
+      {
+        "source": "01-Rest_FastAPI_Agent_v3.pptx.pdf",
+        "page": 58,
+        "chunk": 1,
+        "score": 0.5539098381996155,
+        "text": "Output Note: - Today's date in Asia/Kolkata is August 29, 2025 (Friday) at 02:13. - Today's date in America/Los_Angeles is August 28, 2025 (Thursday) at 13:43. Have a wonderful day filled with joy and laughter! 58"
+      },
+      {
+        "source": "03.ReactJS_MySQL_Prompt_RAG.pptx.pdf",
+        "page": 72,
+        "chunk": 2,
+        "score": 0.5317183136940002,
+        "text": "."
+      },
+      {
+        "source": "02-Session FastAPI.LLM Intro .pptx.pdf",
+        "page": 53,
+        "chunk": 2,
+        "score": 0.5028182864189148,
+        "text": "lower() for t in titles); print(count)\" \u25cf Observation: 987 \u25cf Final Answer: \u201c987 refund-related tickets last week; spike followed a pricing change\u2014consider adding clearer refund terms on checkout.\u201d"
+      }
+    ],
+    "answers": {
+      "no_rag": "The price of Bitcoin on December 31, 2027, cannot be predicted with certainty, as it is influenced by many factors including market sentiment, regulatory changes, technological developments, and macroeconomic conditions.",
+      "basic_rag": "The provided context does not contain any information about the price of Bitcoin on December 31, 2027. Therefore, I cannot answer the question based on the given data.",
+      "context_rag": "I cannot answer this question from the provided documents."
+    }
+  }
+]

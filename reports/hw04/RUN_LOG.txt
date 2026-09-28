@@ -521,3 +521,163 @@ Citations: Source 3, Source 4.
 
 Saved: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/raw/rag_k_sweep.json
 -------------------------------------------------
+(.venv) (base) annie@mac data260-2383 % python code/rag/hw4_rag.py run-evaluation
+
+============================================================
+Q1
+
+Question: What is a REST API?
+Retrieved chunks:
+
+1. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 16, score 0.8059)
+What is REST? • Representational State Transfer • Style of Software Architecture for WWW • Based on Client and Server • Request and Response are built on transfer of “representation” or “resources” • Uses HTTP protocol 16
+
+2. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 5, score 0.7509)
+Web APIs: HTTP → REST → FastAPI Goal: design RESTful resources and implement them cleanly in FastAPI We’ll connect: methods → URIs → representations → status codes → validation → auth
+
+3. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 26, score 0.7427)
+rom proper REST APIs? 26
+
+no_rag:
+A REST API is an architectural style for building web services using HTTP protocols, enabling communication between different systems through stateless, client-server interactions.
+
+basic_rag:
+A REST API is an application programming interface that uses the principles of Representational State Transfer (REST) to enable communication between different software systems. It is based on a client-server architecture and utilizes HTTP protocols to request and respond with representations of resources. REST APIs are designed to be stateless, meaning each request from a client contains all the information the server needs to fulfill that request. They are commonly used to build web services and are often implemented using frameworks like FastAPI to design and implement RESTful resources efficiently.
+
+context_rag:
+A REST API is an application programming interface that uses the principles of Representational State Transfer (REST) to enable communication between different software systems. It is based on a client-server architecture where requests and responses are built on the transfer of representations or resources. REST APIs utilize the HTTP protocol and are designed to interact with resources through standard HTTP methods such as GET, POST, PUT, and DELETE. The design of REST APIs emphasizes stateless interactions, uniform interfaces, and the ability to scale effectively. This concept is further elaborated in the context of implementing RESTful resources using FastAPI, which connects methods to URIs, representations, status codes, validation, and authentication. (Source 1, Source 2)
+
+============================================================
+Q2
+
+Question: In a FastAPI application, how are request bodies validated and how is the application started with Uvicorn?
+Retrieved chunks:
+
+1. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 47, score 0.7798)
+FastAPI is the web framework. Uvicorn is the ASGI server that runs it. It is ASGI server implementation
+
+2. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 5, score 0.7236)
+Web APIs: HTTP → REST → FastAPI Goal: design RESTful resources and implement them cleanly in FastAPI We’ll connect: methods → URIs → representations → status codes → validation → auth
+
+3. 02-Session FastAPI.LLM Intro .pptx.pdf (page 7, score 0.7127)
+e web framework pieces (routing, middleware, ● requests/responses, WebSockets). ● FastAPI adds Pydantic-based validation and automatic OpenAPI docs.
+
+no_rag:
+In FastAPI, request bodies are validated using Pydantic models. To start the application with Uvicorn, run `uvicorn main:app --reload` where `main` is the module and `app` is the FastAPI instance.
+
+basic_rag:
+In a FastAPI application, request bodies are validated using Pydantic-based validation, which is a feature provided by FastAPI. This allows for automatic data validation and documentation generation.
+
+To start the application with Uvicorn, you would typically run the FastAPI application using Uvicorn as the ASGI server. This is done by executing a command such as `uvicorn main:app --reload`, where `main` is the Python file containing the FastAPI application and `app` is the FastAPI instance.
+
+context_rag:
+In a FastAPI application, request bodies are validated using Pydantic-based validation, which is a feature provided by FastAPI. This is mentioned in [Source 3]. 
+
+The application is started with Uvicorn by using Uvicorn as the ASGI server that runs the FastAPI web framework, as stated in [Source 1]. 
+
+Citations: [Source 1], [Source 3]
+
+============================================================
+Q3
+
+Question: What role does FastAPI play in a web application?
+Retrieved chunks:
+
+1. 00-Introduction.pptx.pdf (page 17, score 0.8282)
+WEB Application Architecture (backend) FastAPI (Backend)
+
+2. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 5, score 0.7984)
+Web APIs: HTTP → REST → FastAPI Goal: design RESTful resources and implement them cleanly in FastAPI We’ll connect: methods → URIs → representations → status codes → validation → auth
+
+3. 00-Introduction.pptx.pdf (page 19, score 0.7827)
+Stack + Kafka • MongoDB, FastAPI are dedicated to developing the back-end of web applications. This corresponds to database management, scripts, html documents, HTTP requests, etc. • React’s role is to execute HTTP requests. Fast API
+
+no_rag:
+FastAPI is a high-performance web framework for building APIs with Python, offering features like automatic documentation, asynchronous support, and type hints to streamline API development.
+
+basic_rag:
+FastAPI plays the role of a backend framework in a web application, responsible for handling HTTP requests, designing and implementing RESTful resources, and managing communication between the client and the database. It is used alongside technologies like MongoDB and Kafka to develop the back-end of web applications, including database management, scripts, and HTTP request handling.
+
+context_rag:
+FastAPI plays the role of a backend framework in a web application, dedicated to developing the back-end of web applications. This includes tasks such as database management, scripts, HTML documents, and HTTP requests. It is used to design and implement RESTful resources cleanly, connecting methods to URIs, representations, status codes, validation, and authentication. 
+
+Source numbers used: 1, 2, 3.
+
+============================================================
+Q4
+
+Question: What does the term model mean in the course materials?
+Retrieved chunks:
+
+1. 03.ReactJS_MySQL_Prompt_RAG.pptx.pdf (page 39, score 0.6811)
+Model: Python class for a database table class Student(Base): __tablename__ = "students" id = mapped_column(primary_key=True) name = mapped_column(String(100)) major = mapped_column(String(100)) students table id name major Model definitions are the “map” between Python and table structure. 7
+
+2. 03.ReactJS_MySQL_Prompt_RAG.pptx.pdf (page 58, score 0.6518)
+Context Engineering — Deﬁnition Context Engineering designs everything the model sees at inference time, not just the prompt: instructions, examples, retrieved documents, tools, memory/state, and control ﬂow. ● Prompt engineering = how you ask ● Context engineering = what you give the model to think with
+
+3. 02-Session FastAPI.LLM Intro .pptx.pdf (page 33, score 0.6473)
+What is an LLM? ● A probabilistic text model that predicts the next token ● Trained on large dataset makes it better at learning statistical patterns & world knowledge ● Transformer is the dominant architecture ● Typical capabilities: Q&A, summarization, extraction, classiﬁcation, coding ● Examples: GPT‑class models, Llama, Gemma, Mistral, etc. 33
+
+no_rag:
+In the course materials, the term "model" refers to a simplified representation of a real-world system, process, or concept, used to understand, analyze, or predict behavior.
+
+basic_rag:
+The term "model" in the course materials refers to a probabilistic text model that predicts the next token, trained on large datasets to learn statistical patterns and world knowledge. It is also used to describe a Python class for a database table, such as the `Student` class, which maps Python code to a database table structure. Additionally, "model" can relate to the broader concept of Context Engineering, where it encompasses the design of everything the model sees during inference, including prompts, examples, and other contextual information.
+
+context_rag:
+In the course materials, the term "model" has at least two distinct meanings, as supported by the provided documents:
+
+1. **A Python class representing a database table**: In the context of database modeling, a "model" refers to a Python class that maps to a database table structure. For example, the `Student` class in the provided code snippet represents a table in a database with columns such as `id`, `name`, and `major`. This usage of "model" is related to object-relational mapping (ORM) and database design. (Source 1)
+
+2. **A large language model (LLM)**: In the context of artificial intelligence and natural language processing, "model" refers to a probabilistic text model that predicts the next token based on a large dataset. These models are trained using architectures like the Transformer and are capable of tasks such as Q&A, summarization, and coding. Examples include GPT-class models, Llama, Gemma, and Mistral. (Source 3)
+
+============================================================
+Q5
+
+Question: What is the maximum number of players allowed on a community sports league soccer team?
+Retrieved chunks:
+
+1. 03.ReactJS_MySQL_Prompt_RAG.pptx.pdf (page 72, score 0.5577)
+.
+
+2. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 74, score 0.5486)
+force TTL, size limits, and field schema. Guardrails sits between your app and the LLM. 74
+
+3. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 24, score 0.5048)
+When is it appropriate? • The web services are completely stateless • Caching infrastructure can be leveraged for performance • The service producer and consumer have mutual understanding of context and content being passed e.g NetFlix Api • Bandwidth is a constraint 24
+
+no_rag:
+The maximum number of players allowed on a community sports league soccer team is typically 11.
+
+basic_rag:
+The retrieved context does not provide information about the maximum number of players allowed on a community sports league soccer team.
+
+context_rag:
+I cannot answer this question from the provided documents.
+
+============================================================
+Q6
+
+Question: What will the price of Bitcoin be on December 31, 2027?
+Retrieved chunks:
+
+1. 01-Rest_FastAPI_Agent_v3.pptx.pdf (page 58, score 0.5539)
+Output Note: - Today's date in Asia/Kolkata is August 29, 2025 (Friday) at 02:13. - Today's date in America/Los_Angeles is August 28, 2025 (Thursday) at 13:43. Have a wonderful day filled with joy and laughter! 58
+
+2. 03.ReactJS_MySQL_Prompt_RAG.pptx.pdf (page 72, score 0.5317)
+.
+
+3. 02-Session FastAPI.LLM Intro .pptx.pdf (page 53, score 0.5028)
+lower() for t in titles); print(count)" ● Observation: 987 ● Final Answer: “987 refund-related tickets last week; spike followed a pricing change—consider adding clearer refund terms on checkout.”
+
+no_rag:
+The price of Bitcoin on December 31, 2027, cannot be predicted with certainty, as it is influenced by many factors including market sentiment, regulatory changes, technological developments, and macroeconomic conditions.
+
+basic_rag:
+The provided context does not contain any information about the price of Bitcoin on December 31, 2027. Therefore, I cannot answer the question based on the given data.
+
+context_rag:
+I cannot answer this question from the provided documents.
+
+Saved: /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/reports/hw04/raw/rag_comparison.json
+------------------------
