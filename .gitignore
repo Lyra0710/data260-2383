@@ -18,3 +18,4 @@ code/web_application/frontend/.env.development
 chroma_db/
 code/rag/chroma_db/
 *.sqlite3
+reports/hw05/DATA260_HW5.pdf
