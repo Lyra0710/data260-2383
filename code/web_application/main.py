@@ -1,5 +1,5 @@
 from fastapi import Depends, FastAPI, HTTPException, Query
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session as DbSession, selectinload
 from fastapi.responses import JSONResponse
 import models
@@ -10,10 +10,12 @@ from db import (
     get_sql_query_count,
     reset_sql_query_count,
 )
-from models import Fixture, User
+from models import Fixture, User, Venue
 from routers.auth import get_current_user, router as auth_router
 import os
 import uvicorn
+
+from sqlalchemy.exc import IntegrityError
 
 app = FastAPI(
     title="Community Sports League Fixtures",
@@ -27,14 +29,43 @@ def create_tables():
     Base.metadata.create_all(bind=engine)
 
 
+class VenueCreate(BaseModel):
+    name: str = Field(min_length=1, max_length=255)
+    address: str = Field(min_length=1, max_length=500)
+    code: str = Field(
+        min_length=3,
+        max_length=50,
+        pattern=r"^[A-Z0-9-]+$",
+    )
+
+
+class VenueUpdate(VenueCreate):
+    pass
+
+
 class FixtureCreate(BaseModel):
-    fixture_name: str
-    teams: str
+    fixture_name: str = Field(
+        min_length=1,
+        max_length=255,
+    )
+    teams: str = Field(
+        min_length=1,
+        max_length=255,
+    )
+    fixture_code: str = Field(
+        min_length=3,
+        max_length=50,
+        pattern=r"^[A-Z0-9-]+$",
+    )
+    available_slots: int = Field(
+        default=0,
+        ge=0,
+    )
+    venue_id: int = Field(gt=0)
 
 
-class FixtureUpdate(BaseModel):
-    fixture_name: str
-    teams: str
+class FixtureUpdate(FixtureCreate):
+    pass
 
 
 def fixture_to_dict(fixture: Fixture):
@@ -50,6 +81,16 @@ def fixture_to_dict(fixture: Fixture):
             }
             for item in fixture.related_items
         ],
+    }
+
+def venue_to_dict(venue: Venue):
+    return {
+        "id": venue.id,
+        "name": venue.name,
+        "address": venue.address,
+        "code": venue.code,
+        "created_at": venue.created_at,
+        "updated_at": venue.updated_at,
     }
 
 def fixture_list_response(fixtures):
@@ -199,6 +240,138 @@ if __name__ == "__main__":
         app,
         port=int(os.environ["APP_PORT"]),
     )
+
+@app.post("/api/venues", status_code=201)
+def create_venue(
+    request_data: VenueCreate,
+    db: DbSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    venue = Venue(
+        name=request_data.name,
+        address=request_data.address,
+        code=request_data.code,
+    )
+
+    try:
+        db.add(venue)
+        db.commit()
+        db.refresh(venue)
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=409,
+            detail="Venue code already exists",
+        )
+
+    return venue_to_dict(venue)
+
+
+@app.get("/api/venues")
+def list_venues(
+    page: int = Query(default=1, ge=1),
+    page_size: int = Query(default=10, ge=1, le=200),
+    db: DbSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    offset = (page - 1) * page_size
+
+    venues = (
+        db.query(Venue)
+        .order_by(Venue.id)
+        .offset(offset)
+        .limit(page_size)
+        .all()
+    )
+
+    return [
+        venue_to_dict(venue)
+        for venue in venues
+    ]
+
+
+@app.get("/api/venues/{venue_id}")
+def get_venue(
+    venue_id: int,
+    db: DbSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    venue = db.get(Venue, venue_id)
+
+    if not venue:
+        raise HTTPException(
+            status_code=404,
+            detail="Venue not found",
+        )
+
+    return venue_to_dict(venue)
+
+
+@app.put("/api/venues/{venue_id}")
+def update_venue(
+    venue_id: int,
+    request_data: VenueUpdate,
+    db: DbSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    venue = db.get(Venue, venue_id)
+
+    if not venue:
+        raise HTTPException(
+            status_code=404,
+            detail="Venue not found",
+        )
+
+    venue.name = request_data.name
+    venue.address = request_data.address
+    venue.code = request_data.code
+
+    try:
+        db.commit()
+        db.refresh(venue)
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=409,
+            detail="Venue code already exists",
+        )
+
+    return venue_to_dict(venue)
+
+
+@app.delete("/api/venues/{venue_id}")
+def delete_venue(
+    venue_id: int,
+    db: DbSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    venue = db.get(Venue, venue_id)
+
+    if not venue:
+        raise HTTPException(
+            status_code=404,
+            detail="Venue not found",
+        )
+
+    fixture_exists = (
+        db.query(Fixture)
+        .filter(Fixture.venue_id == venue_id)
+        .first()
+    )
+
+    if fixture_exists:
+        raise HTTPException(
+            status_code=409,
+            detail="Cannot delete a venue that has fixtures",
+        )
+
+    db.delete(venue)
+    db.commit()
+
+    return {
+        "message": "Venue deleted",
+        "id": venue_id,
+    }
 
 # ------------- in-memory fixture implementation homework 3---------------#
 # import os

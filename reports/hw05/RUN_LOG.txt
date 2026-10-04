@@ -1,0 +1,10 @@
+mysql -u root -p
+DROP DATABASE IF EXISTS s2383_rel;
+
+CREATE DATABASE s2383_rel
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+USE s2383_rel;
+exit;
+
