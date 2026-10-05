@@ -76,3 +76,10 @@ Downloading cryptography (3.7MiB)
 mcp dev code/mcp/meals_server.py --with "mcp>=1.28,<2" --with httpx
 
 mcp dev code/mcp/domain_server.py --with "mcp>=1.28,<2" --with httpx
+
+python code/mcp/measure_retries.py
+| Failure rate | Success rate | Mean latency | p99 latency |
+|---:|---:|---:|---:|
+| 0% | 100.0% | 39.49 ms | 55.68 ms |
+| 20% | 100.0% | 70.00 ms | 262.19 ms |
+| 50% | 92.0% | 199.72 ms | 656.59 ms |

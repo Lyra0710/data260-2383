@@ -4,7 +4,8 @@ import sys
 from dotenv import load_dotenv
 import httpx
 from mcp.server.fastmcp import FastMCP
-
+import asyncio
+import random
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
@@ -18,6 +19,14 @@ load_dotenv()
 
 API_EMAIL = os.getenv("API_EMAIL")
 API_PASSWORD = os.getenv("API_PASSWORD")
+
+VERIFY_SEED = 2383
+FAILURE_RATE = 0.5
+
+MAX_RETRIES = 2
+BACKOFF_SECONDS = 0.2
+
+random_generator = random.Random(VERIFY_SEED)
 
 def success(data):
     return {
@@ -34,6 +43,23 @@ def failure(message):
         "error": message,
     }
 
+async def run_with_retries(operation):
+    for attempt in range(MAX_RETRIES + 1):
+        logging.info("Attempt %d", attempt + 1)
+
+        try:
+            if random_generator.random() < FAILURE_RATE:
+                raise httpx.RequestError("Simulated failure")
+
+            return await operation()
+
+        except httpx.RequestError:
+            if attempt == MAX_RETRIES:
+                raise
+
+            delay = BACKOFF_SECONDS * (2 ** attempt)
+            logging.info("Retrying after %.2f seconds", delay)
+            await asyncio.sleep(delay)
 
 async def get_json(path, params=None):
     if not API_EMAIL or not API_PASSWORD:
@@ -41,20 +67,23 @@ async def get_json(path, params=None):
 
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
-            login_response = await client.post(
-                f"{API_BASE_URL}/login",
-                json={
-                    "email": API_EMAIL,
-                    "password": API_PASSWORD,
-                },
-            )
+            async def request():
+                login_response = await client.post(
+                    f"{API_BASE_URL}/login",
+                    json={
+                        "email": API_EMAIL,
+                        "password": API_PASSWORD,
+                    },
+                )
 
-            login_response.raise_for_status()
+                login_response.raise_for_status()
 
-            response = await client.get(
-                f"{API_BASE_URL}{path}",
-                params=params,
-            )
+                return await client.get(
+                    f"{API_BASE_URL}{path}",
+                    params=params,
+                )
+
+            response = await run_with_retries(request)
 
         if response.status_code == 404:
             return None, "Resource not found."
@@ -62,9 +91,13 @@ async def get_json(path, params=None):
         response.raise_for_status()
         return response.json(), None
 
-    except httpx.HTTPError as error:
-        logging.error("API request failed: %s", error)
-        return None, "The domain API request failed."
+    except httpx.RequestError as error:
+        logging.error("Request failed: %s", error)
+        return None, "The domain API request failed after retries."
+
+    except httpx.HTTPStatusError as error:
+        logging.error("API returned an error: %s", error)
+        return None, "The domain API returned an error."
 
 def get_items(payload):
     if isinstance(payload, list):
