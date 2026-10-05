@@ -1,0 +1,16 @@
+{
+  "homework": "HW5",
+  "sid4": "2383",
+  "commit_hash": "aa9059802bef06e1a95bcfa9e9f631b851555ee8",
+  "model": "qwen3:8b",
+  "seed": 2383,
+  "verify_seed": 2383,
+  "checks": {
+    "backend responds on port 8583": true,
+    "domain MCP tool responds": true,
+    "TheMealDB MCP tool responds": false,
+    "offline tests pass": true,
+    "150 raw measurement records exist": true,
+    "agent log contains four runs": true
+  }
+}

@@ -2,7 +2,7 @@ import asyncio
 import json
 import sys
 from pathlib import Path
-
+from agent import run_agent
 
 sys.path.insert(0, str(Path(__file__).parent))
 
@@ -54,6 +54,8 @@ async def run_test(name, tool_name, inputs, expected_ok):
 
 
 async def main():
+    passed = 0
+
     tests = [
         (
             "search valid input",
@@ -93,8 +95,6 @@ async def main():
         ),
     ]
 
-    passed = 0
-
     for name, tool_name, inputs, expected_ok in tests:
         try:
             await run_test(
@@ -108,8 +108,49 @@ async def main():
         except AssertionError:
             print(f"FAIL: {name}")
 
-    print(f"\n{passed}/{len(tests)} tests passed")
+    try:
+        blocked_result = await domain_server.execute_tool(
+            "search_fixtures",
+            {
+                "query": "DROP TABLE fixtures",
+                "limit": 5,
+            },
+        )
 
+        blocked_result = json.loads(blocked_result)
 
+        assert blocked_result["ok"] is False
+        print("PASS: safety rule blocks destructive query")
+        passed += 1
+
+    except AssertionError:
+        print("FAIL: safety rule blocks destructive query")
+
+    try:
+        agent_result = await run_agent(
+            "Get fixture 1",
+            max_steps=2,
+            model_call=mock_model,
+        )
+
+        assert agent_result["stop_reason"] == "max_steps"
+        assert len(agent_result["steps"]) == 2
+
+        print("PASS: MockModel stops at max_steps")
+        passed += 1
+
+    except AssertionError:
+        print("FAIL: MockModel stops at max_steps")
+
+    print(f"\n{passed}/8 tests passed")
+# mock 
+async def mock_model(messages):
+    return json.dumps(
+        {
+            "action": "tool",
+            "tool": "fixture_details",
+            "inputs": {"fixture_id": 1},
+        }
+    )
 if __name__ == "__main__":
     asyncio.run(main())

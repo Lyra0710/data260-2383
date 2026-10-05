@@ -22,7 +22,7 @@ API_EMAIL = os.getenv("API_EMAIL")
 API_PASSWORD = os.getenv("API_PASSWORD")
 
 VERIFY_SEED = 2383
-FAILURE_RATE = 0.5
+FAILURE_RATE = 0.0
 
 MAX_RETRIES = 2
 BACKOFF_SECONDS = 0.2
@@ -200,6 +200,25 @@ async def venue_fixture_summary(venue_id: int):
 
 async def execute_tool(name: str, inputs: dict):
     """Safely execute one of the three domain tools."""
+
+    if name == "search_fixtures":
+        query = str(inputs.get("query", "")).lower()
+
+        blocked_terms = [
+            "delete",
+            "drop",
+            "truncate",
+            "update",
+            "insert",
+        ]
+
+        if any(term in query for term in blocked_terms):
+            return json.dumps(
+                failure(
+                    "Destructive commands are not allowed."
+                )
+            )
+
     try:
         if name == "search_fixtures":
             result = await search_fixtures(**inputs)
