@@ -28,8 +28,8 @@ async def check_domain_tool():
     return result.get("ok") is True
 
 
-async def check_meal_tool():
-    result = await meals_server.search_meals_by_name(
+def check_meal_tool():
+    result = meals_server.search_meals_by_name(
         "Arrabiata",
         1,
     )
@@ -89,9 +89,7 @@ def main():
         checks["domain MCP tool responds"] = False
 
     try:
-        checks["TheMealDB MCP tool responds"] = asyncio.run(
-            check_meal_tool()
-        )
+        checks["TheMealDB MCP tool responds"] = check_meal_tool()
     except Exception:
         checks["TheMealDB MCP tool responds"] = False
 
