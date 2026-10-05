@@ -1,3 +1,5 @@
+source .venv/bin/activate
+
 mysql -u root -p
 DROP DATABASE IF EXISTS s2383_rel;
 
@@ -8,3 +10,6 @@ CREATE DATABASE s2383_rel
 USE s2383_rel;
 exit;
 
+code/web_application/main.py
+
+npm install axios @reduxjs/toolkit react-redux

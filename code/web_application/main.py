@@ -1,5 +1,17 @@
+from dbm import dumb
 from fastapi import Depends, FastAPI, HTTPException, Query
-from pydantic import BaseModel, Field
+from fastapi.encoders import jsonable_encoder
+
+from schemas import (
+    FixtureCreate,
+    FixtureOut,
+    FixtureUpdate,
+    RelatedItemOut,
+    VenueCreate,
+    VenueOut,
+    VenueUpdate,
+)
+
 from sqlalchemy.orm import Session as DbSession, selectinload
 from fastapi.responses import JSONResponse
 import models
@@ -16,6 +28,7 @@ import os
 import uvicorn
 
 from sqlalchemy.exc import IntegrityError
+from datetime import datetime
 
 app = FastAPI(
     title="Community Sports League Fixtures",
@@ -29,43 +42,6 @@ def create_tables():
     Base.metadata.create_all(bind=engine)
 
 
-class VenueCreate(BaseModel):
-    name: str = Field(min_length=1, max_length=255)
-    address: str = Field(min_length=1, max_length=500)
-    code: str = Field(
-        min_length=3,
-        max_length=50,
-        pattern=r"^[A-Z0-9-]+$",
-    )
-
-
-class VenueUpdate(VenueCreate):
-    pass
-
-
-class FixtureCreate(BaseModel):
-    fixture_name: str = Field(
-        min_length=1,
-        max_length=255,
-    )
-    teams: str = Field(
-        min_length=1,
-        max_length=255,
-    )
-    fixture_code: str = Field(
-        min_length=3,
-        max_length=50,
-        pattern=r"^[A-Z0-9-]+$",
-    )
-    available_slots: int = Field(
-        default=0,
-        ge=0,
-    )
-    venue_id: int = Field(gt=0)
-
-
-class FixtureUpdate(FixtureCreate):
-    pass
 
 
 def fixture_to_dict(fixture: Fixture):
@@ -73,6 +49,11 @@ def fixture_to_dict(fixture: Fixture):
         "id": fixture.id,
         "fixture_name": fixture.fixture_name,
         "teams": fixture.teams,
+        "fixture_code": fixture.fixture_code,
+        "available_slots": fixture.available_slots,
+        "venue_id": fixture.venue_id,
+        "created_at": fixture.created_at,
+        "updated_at": fixture.updated_at,
         "related_items": [
             {
                 "id": item.id,
@@ -100,7 +81,7 @@ def fixture_list_response(fixtures):
     ]
 
     return JSONResponse(
-        content=response_data,
+        content=jsonable_encoder(response_data),
         headers={
             "X-SQL-Query-Count": str(
                 get_sql_query_count()
@@ -114,41 +95,46 @@ def root():
         "message": "Community Sports League Fixtures API",
     }
 
-@app.get("/api/fixtures")
+@app.get("/api/fixtures", response_model=list[FixtureOut])
 def list_fixtures(
-    
+    page: int = Query(default=1, ge=1),
     page_size: int = Query(default=10, ge=1, le=200),
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
+    offset = (page - 1) * page_size
     reset_sql_query_count()
     fixtures = (
         db.query(Fixture)
         .options(selectinload(Fixture.related_items))
         .order_by(Fixture.id)
+        .offset(offset)
         .limit(page_size)
         .all()
     )
 
     return fixture_list_response(fixtures)
 
-@app.get("/api/fixtures/naive")
+@app.get("/api/fixtures/naive", response_model=list[FixtureOut])
 def list_fixtures_naive( # Without selectinload, SQLAlchemy waits until the code asks for fixture.related_items, then it queries the database separately for that one fixture.
+    page: int = Query(default=1, ge=1),
     page_size: int = Query(default=10, ge=1, le=200),
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
+    offset = (page - 1) * page_size
     reset_sql_query_count()
     fixtures = (
         db.query(Fixture)
         .order_by(Fixture.id)
+        .offset(offset)
         .limit(page_size)
         .all()
     )
 
     return fixture_list_response(fixtures)
 
-@app.get("/api/fixtures/{fixture_id}")
+@app.get("/api/fixtures/{fixture_id}", response_model=FixtureOut)
 def get_fixture(
     fixture_id: int,
     db: DbSession = Depends(get_db),
@@ -170,25 +156,43 @@ def get_fixture(
     return fixture_to_dict(fixture)
 
 
-@app.post("/api/fixtures", status_code=201)
+@app.post("/api/fixtures", status_code=201, response_model=FixtureOut)
 def create_fixture(
     request_data: FixtureCreate,
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
+    venue = db.get(Venue, request_data.venue_id)
+
+    if not venue:
+        raise HTTPException(
+            status_code=404,
+            detail="Venue not found",
+        )
+
     fixture = Fixture(
         fixture_name=request_data.fixture_name,
         teams=request_data.teams,
+        fixture_code=request_data.fixture_code,
+        available_slots=request_data.available_slots,
+        venue_id=request_data.venue_id,
     )
 
-    db.add(fixture)
-    db.commit()
-    db.refresh(fixture)
+    try:
+        db.add(fixture)
+        db.commit()
+        db.refresh(fixture)
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=409,
+            detail="Fixture code already exists",
+        )
 
     return fixture_to_dict(fixture)
 
 
-@app.put("/api/fixtures/{fixture_id}")
+@app.put("/api/fixtures/{fixture_id}", response_model=FixtureOut)
 def update_fixture(
     fixture_id: int,
     request_data: FixtureUpdate,
@@ -203,11 +207,29 @@ def update_fixture(
             detail="Fixture not found",
         )
 
+    venue = db.get(Venue, request_data.venue_id)
+
+    if not venue:
+        raise HTTPException(
+            status_code=404,
+            detail="Venue not found",
+        )
+
     fixture.fixture_name = request_data.fixture_name
     fixture.teams = request_data.teams
+    fixture.fixture_code = request_data.fixture_code
+    fixture.available_slots = request_data.available_slots
+    fixture.venue_id = request_data.venue_id
 
-    db.commit()
-    db.refresh(fixture)
+    try:
+        db.commit()
+        db.refresh(fixture)
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=409,
+            detail="Fixture code already exists",
+        )
 
     return fixture_to_dict(fixture)
 
@@ -234,18 +256,11 @@ def delete_fixture(
         "id": fixture_id,
     }
 
-if __name__ == "__main__":
-
-    uvicorn.run(
-        app,
-        port=int(os.environ["APP_PORT"]),
-    )
-
-@app.post("/api/venues", status_code=201)
+@app.post("/api/venues", status_code=201, response_model=VenueOut)
 def create_venue(
-    request_data: VenueCreate,
-    db: DbSession = Depends(get_db),
-    user: User = Depends(get_current_user),
+    request_data: VenueCreate, # FastAPI reads the JSON request body and validates it using the VenueCreate Pydantic model.
+    db: DbSession = Depends(get_db), # database session using the existing get_db() dependency.
+    user: User = Depends(get_current_user),# checks that the user is logged in
 ):
     venue = Venue(
         name=request_data.name,
@@ -267,14 +282,14 @@ def create_venue(
     return venue_to_dict(venue)
 
 
-@app.get("/api/venues")
+@app.get("/api/venues", response_model=list[VenueOut])
 def list_venues(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=10, ge=1, le=200),
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
-    offset = (page - 1) * page_size
+    offset = (page - 1) * page_size # calculates how many records to skip for the current page 
 
     venues = (
         db.query(Venue)
@@ -290,7 +305,7 @@ def list_venues(
     ]
 
 
-@app.get("/api/venues/{venue_id}")
+@app.get("/api/venues/{venue_id}", response_model=VenueOut)
 def get_venue(
     venue_id: int,
     db: DbSession = Depends(get_db),
@@ -307,7 +322,7 @@ def get_venue(
     return venue_to_dict(venue)
 
 
-@app.put("/api/venues/{venue_id}")
+@app.put("/api/venues/{venue_id}", response_model=VenueOut)
 def update_venue(
     venue_id: int,
     request_data: VenueUpdate,
@@ -373,6 +388,44 @@ def delete_venue(
         "id": venue_id,
     }
 
+@app.get("/api/venues/{venue_id}/fixtures")
+def list_fixtures_by_venue(
+    venue_id: int,
+    page: int = Query(default=1, ge=1),
+    page_size: int = Query(default=10, ge=1, le=200),
+    db: DbSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+):
+    venue = db.get(Venue, venue_id)
+
+    if not venue:
+        raise HTTPException(
+            status_code=404,
+            detail="Venue not found",
+        )
+
+    offset = (page - 1) * page_size
+
+    fixtures = (
+        db.query(Fixture)
+        .options(selectinload(Fixture.related_items))
+        .filter(Fixture.venue_id == venue_id)
+        .order_by(Fixture.id)
+        .offset(offset)
+        .limit(page_size)
+        .all()
+    )
+
+    return [
+        fixture_to_dict(fixture)
+        for fixture in fixtures
+    ]
+if __name__ == "__main__":
+
+    uvicorn.run(
+        app,
+        port=int(os.environ["APP_PORT"]),
+    )
 # ------------- in-memory fixture implementation homework 3---------------#
 # import os
 # import uvicorn
