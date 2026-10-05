@@ -1,5 +1,5 @@
 source .venv/bin/activate
-
+# ----------------------------
 mysql -u root -p
 DROP DATABASE IF EXISTS s2383_rel;
 
@@ -9,7 +9,68 @@ CREATE DATABASE s2383_rel
 
 USE s2383_rel;
 exit;
-
+# ------------------------------
 code/web_application/main.py
 
 npm install axios @reduxjs/toolkit react-redux
+# ------------------------------
+python -m pip install "mcp[cli]"
+
+(.venv) (base) annie@mac data260-2383 % python -c "import mcp; print('MCP SDK installed')"
+MCP SDK installed
+
+python -m pip install "mcp[cli]>=1.28,<2" httpx
+
+mcp dev code/mcp/meals_server.py
+
+(.venv) (base) annie@mac data260-2383 % curl -LsSf https://astral.sh/uv/install.sh | sh
+downloading uv 0.12.23 aarch64-apple-darwin
+installing to /Users/annie/.local/bin
+  uv
+  uvx
+everything's installed!
+
+(.venv) (base) annie@mac data260-2383 % uv --version
+uv 0.12.23 (46b84fd0b 2026-10-03 aarch64-apple-darwin)
+
+(.venv) (base) annie@mac data260-2383 % 
+
+Error:
+1:23:46 AM
+
+Failed to run server
+Traceback (most recent call last):
+  File "/Users/annie/.cache/uv/archive-v0/EkoaV1f9MdOMgc7s/lib/python3.11/site-packages/mcp/cli/cli.py", line 341, in run
+    server = _import_server(file, server_object)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/annie/.cache/uv/archive-v0/EkoaV1f9MdOMgc7s/lib/python3.11/site-packages/mcp/cli/cli.py", line 141, in _import_server
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 940, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/code/mcp/meals_server.py", line 5, in <module>
+    from mcp.server.fastmcp import FastMCP
+  File "/Users/annie/.cache/uv/archive-v0/EkoaV1f9MdOMgc7s/lib/python3.11/site-packages/mcp/server/fastmcp.py", line 16, in <module>
+    raise ModuleNotFoundError(_MESSAGE, name=__name__)
+ModuleNotFoundError: No module named 'mcp.server.fastmcp'. This is mcp 2.x, where FastMCP was renamed to MCPServer (from mcp.server.mcpserver import MCPServer) and other APIs changed; see the migration guide at https://py.sdk.modelcontextprotocol.io/v2/migration/#fastmcp-renamed-to-mcpserver or pin 'mcp<2' to keep running v1 code.
+
+1:23:44 AM
+
+Installed 28 packages in 22ms
+
+1:23:44 AM
+
+Downloaded cryptography
+
+1:23:44 AM
+
+Downloaded pydantic-core
+
+1:23:42 AM
+
+Downloading pydantic-core (1.8MiB)
+
+1:23:42 AM
+
+Downloading cryptography (3.7MiB)
+
+mcp dev code/mcp/meals_server.py --with "mcp>=1.28,<2" --with httpx
