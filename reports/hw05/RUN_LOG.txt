@@ -83,3 +83,13 @@ python code/mcp/measure_retries.py
 | 0% | 100.0% | 39.49 ms | 55.68 ms |
 | 20% | 100.0% | 70.00 ms | 262.19 ms |
 | 50% | 92.0% | 199.72 ms | 656.59 ms |
+
+(.venv) (base) annie@mac data260-2383 % python code/mcp/test_tools.py
+PASS: search valid input
+PASS: search invalid limit
+PASS: fixture details valid input
+PASS: fixture details missing fixture
+PASS: venue summary valid input
+PASS: venue summary missing venue
+
+6/6 tests passed

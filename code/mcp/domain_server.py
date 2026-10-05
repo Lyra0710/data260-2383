@@ -6,6 +6,7 @@ import httpx
 from mcp.server.fastmcp import FastMCP
 import asyncio
 import random
+import json
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
@@ -196,6 +197,30 @@ async def venue_fixture_summary(venue_id: int):
     }
 
     return success(summary)
+
+async def execute_tool(name: str, inputs: dict):
+    """Safely execute one of the three domain tools."""
+    try:
+        if name == "search_fixtures":
+            result = await search_fixtures(**inputs)
+
+        elif name == "fixture_details":
+            result = await fixture_details(**inputs)
+
+        elif name == "venue_fixture_summary":
+            result = await venue_fixture_summary(**inputs)
+
+        else:
+            result = failure(f"Unknown tool: {name}")
+
+        return json.dumps(result)
+
+    except Exception as error:
+        logging.error("execute_tool failed: %s", error)
+
+        return json.dumps(
+            failure("Tool execution failed.")
+        )
 
 
 if __name__ == "__main__":
