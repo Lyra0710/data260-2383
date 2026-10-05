@@ -74,3 +74,5 @@ Downloading pydantic-core (1.8MiB)
 Downloading cryptography (3.7MiB)
 
 mcp dev code/mcp/meals_server.py --with "mcp>=1.28,<2" --with httpx
+
+mcp dev code/mcp/domain_server.py --with "mcp>=1.28,<2" --with httpx
