@@ -1,0 +1,13 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/venues"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "name": "Postman Sports Field",
+      "address": "200 Test Street, San Jose, CA",
+      "code": "POSTMAN-001"
+    }
+order: 4495433672369911

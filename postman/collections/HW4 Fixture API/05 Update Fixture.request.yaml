@@ -1,12 +1,15 @@
 $kind: http-request
 description: ""
-url: "{{base_url}}/api/fixtures/ 11"
+url: "{{base_url}}/api/fixtures/ 5"
 method: PUT
 body:
   type: json
   content: |-
     {
-      "fixture_name": "Updated Postman Test Fixture",
-      "teams": "Wolves vs Eagles"
+      "fixture_name": "Postman Match",
+      "teams": "Panthers vs Tigers",
+      "fixture_code": "FIX-003",
+      "available_slots": 25,
+      "venue_id": 1
     }
 order: 4173866909777275

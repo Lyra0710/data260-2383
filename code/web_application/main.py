@@ -102,7 +102,7 @@ def list_fixtures(
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
-    offset = (page - 1) * page_size
+    offset = (page - 1) * page_size     
     reset_sql_query_count()
     fixtures = (
         db.query(Fixture)

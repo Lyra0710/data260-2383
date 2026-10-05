@@ -1,0 +1,8 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/venues?page=1&page_size=10"
+method: GET
+queryParams:
+  page: "1"
+  page_size: "10"
+order: 4498300214819862

@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import { api } from "../api/axios";
+import {
+    fetchFixtures,
+    updateFixture,
+} from "../features/fixtures/fixturesSlice";
 
 function splitTeams(teams) {
     const [teamOne = "", teamTwo = ""] = teams.split(" vs ");
@@ -11,104 +18,96 @@ function splitTeams(teams) {
 }
 
 export default function UpdateRecord({ user }) {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const [fixtures, setFixtures] = useState([]);
+    const fixtures = useSelector((state) => state.fixtures.items);
+    const reduxError = useSelector((state) => state.fixtures.error);
+
+    const [venues, setVenues] = useState([]);
     const [selectedFixtureId, setSelectedFixtureId] = useState("");
     const [fixtureName, setFixtureName] = useState("");
     const [teamOne, setTeamOne] = useState("");
     const [teamTwo, setTeamTwo] = useState("");
+    const [fixtureCode, setFixtureCode] = useState("");
+    const [availableSlots, setAvailableSlots] = useState("0");
+    const [venueId, setVenueId] = useState("");
     const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    useEffect(() => { // fetches the protected fixture list once a user is available
+    useEffect(() => {
         if (!user) {
             return;
         }
 
-        async function loadFixtures() {
-            setError("");
+        dispatch(fetchFixtures());
 
+        async function loadVenues() {
             try {
-                const response = await fetch("/api/fixtures", {
-                    credentials: "include",
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.detail || "Could not load fixtures");
-                }
-
-                setFixtures(data);
+                const response = await api.get("/venues");
+                setVenues(response.data);
             } catch (requestError) {
-                setError(requestError.message);
+                setError(
+                    requestError.response?.data?.detail ||
+                    "Could not load venues"
+                );
             }
         }
 
-        loadFixtures();
-    }, [user]);
-    // finds that fixture in the downloaded list and fills the form
+        loadVenues();
+    }, [user, dispatch]);
+
     function handleFixtureChange(event) {
         const fixtureId = Number(event.target.value);
-
         setSelectedFixtureId(fixtureId);
 
         const selectedFixture = fixtures.find(
-            (fixture) => fixture.id === fixtureId,
+            (fixture) => fixture.id === fixtureId
         );
 
         if (!selectedFixture) {
             setFixtureName("");
             setTeamOne("");
             setTeamTwo("");
+            setFixtureCode("");
+            setAvailableSlots("0");
+            setVenueId("");
             return;
         }
 
-        const teams = splitTeams(selectedFixture.teams); // turns the stored string, such as Falcons vs Tigers, back into the two separate inputs
+        const teams = splitTeams(selectedFixture.teams);
 
         setFixtureName(selectedFixture.fixture_name);
         setTeamOne(teams.teamOne);
         setTeamTwo(teams.teamTwo);
+        setFixtureCode(selectedFixture.fixture_code);
+        setAvailableSlots(String(selectedFixture.available_slots));
+        setVenueId(String(selectedFixture.venue_id));
     }
 
     async function handleSubmit(event) {
         event.preventDefault();
 
-        if (!selectedFixtureId) {
-            setError("Select a fixture to update.");
-            return;
-        }
-
         setError("");
         setIsSubmitting(true);
 
         try {
-            const response = await fetch(
-                `/api/fixtures/${selectedFixtureId}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    credentials: "include",
-                    body: JSON.stringify({
+            await dispatch(
+                updateFixture({
+                    id: selectedFixtureId,
+                    data: {
                         fixture_name: fixtureName,
                         teams: `${teamOne} vs ${teamTwo}`,
-                    }),
-                },
-            );
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.detail || "Could not update fixture");
-            }
+                        fixture_code: fixtureCode,
+                        available_slots: Number(availableSlots),
+                        venue_id: Number(venueId),
+                    },
+                })
+            ).unwrap();
 
             navigate("/");
         } catch (requestError) {
-            setError(requestError.message);
+            setError(requestError);
         } finally {
             setIsSubmitting(false);
         }
@@ -127,64 +126,105 @@ export default function UpdateRecord({ user }) {
         <section>
             <h2>Update Fixture</h2>
 
-            {isLoading && <p>Loading fixtures...</p>}
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Select fixture
+                    <select
+                        value={selectedFixtureId}
+                        onChange={handleFixtureChange}
+                        required
+                    >
+                        <option value="">Choose a fixture</option>
 
-            {!isLoading && (
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Select fixture
-                        <select /* chooses which fixture to edit */
-                            value={selectedFixtureId}
-                            onChange={handleFixtureChange}
-                            required
-                        >
-                            <option value="">Choose a fixture</option>
+                        {fixtures.map((fixture) => (
+                            <option key={fixture.id} value={fixture.id}>
+                                {fixture.fixture_name}
+                            </option>
+                        ))}
+                    </select>
+                </label>
 
-                            {fixtures.map((fixture) => (
-                                <option key={fixture.id} value={fixture.id}>
-                                    {fixture.fixture_name}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
+                <label>
+                    Fixture name
+                    <input
+                        type="text"
+                        value={fixtureName}
+                        onChange={(event) => setFixtureName(event.target.value)}
+                        required
+                    />
+                </label>
 
-                    <label>
-                        Fixture name
-                        <input
-                            type="text"
-                            value={fixtureName}
-                            onChange={(event) => setFixtureName(event.target.value)}
-                            required
-                        />
-                    </label>
+                <label>
+                    Team one
+                    <input
+                        type="text"
+                        value={teamOne}
+                        onChange={(event) => setTeamOne(event.target.value)}
+                        required
+                    />
+                </label>
 
-                    <label>
-                        Team one
-                        <input
-                            type="text"
-                            value={teamOne}
-                            onChange={(event) => setTeamOne(event.target.value)}
-                            required
-                        />
-                    </label>
+                <label>
+                    Team two
+                    <input
+                        type="text"
+                        value={teamTwo}
+                        onChange={(event) => setTeamTwo(event.target.value)}
+                        required
+                    />
+                </label>
 
-                    <label>
-                        Team two
-                        <input
-                            type="text"
-                            value={teamTwo}
-                            onChange={(event) => setTeamTwo(event.target.value)}
-                            required
-                        />
-                    </label>
+                <label>
+                    Fixture code
+                    <input
+                        type="text"
+                        value={fixtureCode}
+                        onChange={(event) => setFixtureCode(event.target.value)}
+                        required
+                    />
+                </label>
 
-                    {error && <p role="alert">{error}</p>}
+                <label>
+                    Available slots
+                    <input
+                        type="number"
+                        min="0"
+                        value={availableSlots}
+                        onChange={(event) =>
+                            setAvailableSlots(event.target.value)
+                        }
+                        required
+                    />
+                </label>
 
-                    <button type="submit" disabled={isSubmitting}>
-                        {isSubmitting ? "Updating..." : "Update fixture"}
-                    </button>
-                </form>
-            )}
+                <label>
+                    Venue
+                    <select
+                        value={venueId}
+                        onChange={(event) => setVenueId(event.target.value)}
+                        required
+                    >
+                        <option value="">Select a venue</option>
+
+                        {venues.map((venue) => (
+                            <option key={venue.id} value={venue.id}>
+                                {venue.name} ({venue.code})
+                            </option>
+                        ))}
+                    </select>
+                </label>
+
+                {(error || reduxError) && (
+                    <p role="alert">{error || reduxError}</p>
+                )}
+
+                <button
+                    type="submit"
+                    disabled={isSubmitting || !selectedFixtureId}
+                >
+                    {isSubmitting ? "Updating..." : "Update fixture"}
+                </button>
+            </form>
         </section>
     );
 }

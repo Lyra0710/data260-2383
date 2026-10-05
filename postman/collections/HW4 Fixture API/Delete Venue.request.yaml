@@ -1,0 +1,5 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/venues/5"
+method: DELETE
+order: 4503531680114182

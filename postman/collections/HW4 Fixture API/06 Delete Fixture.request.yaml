@@ -1,5 +1,5 @@
 $kind: http-request
 description: ""
-url: "{{base_url}}/api/fixtures/11"
+url: "{{base_url}}/api/fixtures/5"
 method: DELETE
 order: 4292223136158792

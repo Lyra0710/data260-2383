@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Navigate, Route, Routes } from "react-router-dom";
-
+import Venues from "./pages/Venues.jsx";
 import CreateRecord from "./pages/CreateRecord.jsx";
 import DeleteRecord from "./pages/DeleteRecord.jsx";
 import Home from "./pages/Home.jsx";
@@ -67,9 +67,11 @@ export default function App() {
             <NavLink to="/create">Create</NavLink>
             <NavLink to="/update">Update</NavLink>
             <NavLink to="/delete">Delete</NavLink>
+            <NavLink to="/venues">Venues</NavLink>
             {!user && !isCheckingSession && (
               <NavLink to="/login">Login</NavLink>
             )}
+
           </nav>
         </div>
       </header>
@@ -81,7 +83,9 @@ export default function App() {
           <Route path="/create" element={<CreateRecord user={user} />} />
           <Route path="/update" element={<UpdateRecord user={user} />} />
           <Route path="/delete" element={<DeleteRecord user={user} />} />
+          <Route path="/venues" element={<Venues user={user} />} />
           <Route path="*" element={<Navigate to="/" replace />} />
+
         </Routes>
       </main>
     </>

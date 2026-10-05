@@ -1,0 +1,13 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/venues/1"
+method: PUT
+body:
+  type: json
+  content: |-
+    {
+      "name": "SJSU vs Stanford",
+      "address": "300 Updated Street, San Jose, CA",
+      "code": "UPDATED-001"
+    }
+order: 4502686011804701

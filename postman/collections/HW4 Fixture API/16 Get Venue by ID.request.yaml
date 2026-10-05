@@ -1,0 +1,5 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/venues/1"
+method: GET
+order: 4499130664086642

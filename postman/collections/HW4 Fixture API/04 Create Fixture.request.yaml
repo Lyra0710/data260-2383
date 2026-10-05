@@ -6,7 +6,10 @@ body:
   type: json
   content: |-
     {
-      "fixture_name": "Postman Test Fixture",
-      "teams": "Wolves vs Hawks"
+      "fixture_name": "Postman Test Match",
+      "teams": "Panthers vs Tigers",
+      "fixture_code": "FIX-003",
+      "available_slots": 30,
+      "venue_id": 1
     }
 order: 1281893973159148
