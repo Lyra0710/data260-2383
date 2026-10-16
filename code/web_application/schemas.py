@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from enum import Enum
 from pydantic import BaseModel, Field
 class VenueCreate(BaseModel):
     name: str = Field(min_length=1, max_length=255)
@@ -64,3 +64,31 @@ class FixtureOut(BaseModel):
     created_at: datetime
     updated_at: datetime
     related_items: list[RelatedItemOut] = []
+
+class FixtureStatus(str, Enum):
+    scheduled = "scheduled"
+    completed = "completed"
+    cancelled = "cancelled"
+
+
+class SportType(str, Enum):
+    soccer = "soccer"
+    basketball = "basketball"
+    tennis = "tennis"
+    pickleball = "pickleball"
+
+
+class DocumentFixtureCreate(BaseModel):
+    fixture_name: str = Field(min_length=1, max_length=100)
+    description: str | None = None
+    status: FixtureStatus = FixtureStatus.scheduled
+    sport_type: SportType
+    scheduled_at: datetime
+
+
+class DocumentFixtureUpdate(BaseModel):
+    fixture_name: str | None = Field(default=None, min_length=1, max_length=100)
+    description: str | None = None
+    status: FixtureStatus | None = None
+    sport_type: SportType | None = None
+    scheduled_at: datetime | None = None
