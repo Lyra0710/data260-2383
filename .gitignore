@@ -20,3 +20,5 @@ code/rag/chroma_db/
 *.sqlite3
 reports/hw05/DATA260_HW5.pdf
 .env
+
+reports/hw06/DATA260_HW6.pdf
