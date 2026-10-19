@@ -1,0 +1,37 @@
+version: 1
+conversation_id: hw6-fixed-conversation
+scoring_rubric:
+  5: Meets every expected criterion without unsupported claims.
+  4: Meets the main criteria with one minor omission.
+  3: Meets some criteria but omits or weakens important information.
+  2: Mostly incorrect, incomplete, or includes unsupported claims.
+  1: Incorrect, irrelevant, or fails to recall the required information.
+probes:
+  - id: identity_and_role
+    question: What is my name and what do I organize?
+    expected_answer_criteria:
+      - Identifies the user as Ananya.
+      - States that Ananya organizes a community sports league.
+  - id: tennis_preferences
+    question: When do I prefer tennis matches, and what time should be avoided?
+    expected_answer_criteria:
+      - States a preference for weekday evenings.
+      - States that Monday evenings should be avoided.
+  - id: fundraiser_details
+    question: What are the date, time, and venue for the pickleball fundraiser?
+    expected_answer_criteria:
+      - States November 20.
+      - States 6 PM.
+      - States Spartan Tennis Complex.
+  - id: fundraiser_logistics
+    question: What logistics and design details should I remember for the fundraiser?
+    expected_answer_criteria:
+      - States that players need to bring water.
+      - States that flyers should be blue.
+      - States that about 40 attendees are expected.
+  - id: memory_boundaries
+    question: Which facts are about tennis scheduling, and which are about the fundraiser?
+    expected_answer_criteria:
+      - Separates weekday-evening and avoid-Monday preferences as tennis scheduling facts.
+      - Separates November 20, 6 PM, and 40 attendees as fundraiser facts.
+      - Does not invent an unprovided date, time, or venue.

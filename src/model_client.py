@@ -1,5 +1,6 @@
 """Reusable adapter for local Ollama model calls."""
 
+import math
 from typing import Any
 
 from langchain_ollama import ChatOllama
@@ -45,3 +46,10 @@ def get_token_usage(response: Any) -> dict[str, int]:
         "output_tokens": output_tokens,
         "total_tokens": input_tokens + output_tokens,
     }
+
+
+def count_text_tokens(text: str, *, model: str = "qwen3:8b") -> int:
+    """Estimate component tokens when the local model exposes only total usage."""
+
+    del model
+    return math.ceil(len(text) / 4) if text else 0
