@@ -30,6 +30,7 @@ from src.model_client import complete, count_text_tokens, get_token_usage
 
 
 SHORT_TERM_N = int(os.getenv("SHORT_TERM_N", "8"))
+COMPACT_SHORT_TERM_N = int(os.getenv("COMPACT_SHORT_TERM_N", "0"))
 SUMMARIZE_EVERY_USER_MSGS = int(os.getenv("SUMMARIZE_EVERY_USER_MSGS", "3"))
 TOP_K_EPISODES = int(os.getenv("TOP_K_EPISODES", "5"))
 CHAT_MODEL = os.getenv("OLLAMA_MODEL", "qwen3:8b")
@@ -189,6 +190,12 @@ def long_term_memory(user_id: str, session_id: str) -> str:
     return "\n\n".join(summaries)
 
 
+def effective_short_term_n(long_term_summary: str) -> int:
+    if COMPACT_SHORT_TERM_N > 0 and long_term_summary:
+        return min(SHORT_TERM_N, COMPACT_SHORT_TERM_N)
+    return SHORT_TERM_N
+
+
 def build_prompt(
     short_term_messages: list[dict],
     long_term_summary: str,
@@ -266,10 +273,14 @@ def generate_reply(
 ) -> dict:
     started_at = time.perf_counter()
     save_message(user_id, session_id, "user", message)
-    short_term_messages = fetch_recent_session_messages(session_id, SHORT_TERM_N + 1)[:-1]
+    summary = long_term_memory(user_id, session_id)
+    short_term_limit = effective_short_term_n(summary)
+    short_term_messages = fetch_recent_session_messages(
+        session_id,
+        short_term_limit + 1,
+    )[:-1]
     extract_and_store_episodes(user_id, session_id, message)
     episodic_facts = retrieve_episodes(user_id, message)
-    summary = long_term_memory(user_id, session_id)
     prompt = build_prompt(short_term_messages, summary, episodic_facts, message)
     reply_response = complete(prompt, model=CHAT_MODEL, temperature=0.2)
     reply = str(reply_response.content).strip()
@@ -290,6 +301,12 @@ def generate_reply(
             "experiment_id": experiment_id,
             "experiment_phase": experiment_phase,
             "short_term_n": SHORT_TERM_N,
+            "effective_short_term_n": short_term_limit,
+            "memory_policy": (
+                "summary_aware_compaction"
+                if COMPACT_SHORT_TERM_N > 0
+                else "none"
+            ),
             "model": CHAT_MODEL,
             "prompt_tokens": token_usage["input_tokens"],
             "completion_tokens": token_usage["output_tokens"],
