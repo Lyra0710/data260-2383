@@ -15,3 +15,4 @@ Updated fixtures collection validation.
 (.venv) [2026-10-15 21:36:08 PDT] annie@mac ~/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/code/web_application % python -c "from mongo_db import db; print(db.command('listCollections', filter={'name': 'fixtures'})['cursor']['firstBatch'][0]['options']['validator'])"
 {'$jsonSchema': {'bsonType': 'object', 'required': ['fixture_name', 'status', 'sport_type', 'scheduled_at', 'created_at', 'updated_at'], 'properties': {'fixture_name': {'bsonType': 'string', 'minLength': 1, 'maxLength': 100}, 'description': {'bsonType': ['string', 'null']}, 'status': {'enum': ['scheduled', 'completed', 'cancelled']}, 'sport_type': {'enum': ['soccer', 'basketball', 'tennis', 'pickleball']}, 'scheduled_at': {'bsonType': 'date'}, 'created_at': {'bsonType': 'date'}, 'updated_at': {'bsonType': 'date'}}}}
 
+uvicorn main:app --reload --port 8583

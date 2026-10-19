@@ -1,6 +1,7 @@
 from dbm import dumb
 from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.encoders import jsonable_encoder
+from fastapi.middleware.cors import CORSMiddleware
 
 from schemas import (
     FixtureCreate,
@@ -32,6 +33,14 @@ from datetime import datetime
 
 app = FastAPI(
     title="Community Sports League Fixtures",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(auth_router)
