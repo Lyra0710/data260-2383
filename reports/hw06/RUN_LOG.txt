@@ -520,3 +520,40 @@ print(json.dumps(short, indent=2))
         "/help"
     ]
 }
+
+annie@mac data260-2383 % .venv/bin/python code/verify_hw06.py
+{
+  "homework": "HW6",
+  "sid4": "2383",
+  "port_base": 8583,
+  "prefix": "s2383",
+  "seed": 2383,
+  "verify_seed": 262383,
+  "domain_id": 7,
+  "commit_hash": "e6423a5a646ebb7a8739188c5995609ee9b83987",
+  "model": "qwen3:8b",
+  "hardware": "macOS-26.6.2-arm64-arm-64bit",
+  "checks": [
+    {
+      "name": "backend responds on PORT_BASE",
+      "status": "pass",
+      "details": "GET / returned the expected API message."
+    },
+    {
+      "name": "file-memory commands respond",
+      "status": "pass",
+      "details": "POST /api/file-memory/command returned all four commands."
+    },
+    {
+      "name": "chat endpoint returns a reply",
+      "status": "pass",
+      "details": "POST /api/chat returned a non-empty reply and memory details."
+    },
+    {
+      "name": "required HW6 artifacts exist",
+      "status": "pass",
+      "details": "Required HW6 memory artifacts exist."
+    }
+  ],
+  "overall_status": "pass"
+}
