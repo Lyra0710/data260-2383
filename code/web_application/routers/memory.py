@@ -14,7 +14,13 @@ router = APIRouter(
 @router.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest):
     session_id = request.session_id or request.user_id
-    return generate_reply(request.user_id, session_id, request.message)
+    return generate_reply(
+        request.user_id,
+        session_id,
+        request.message,
+        experiment_id=request.experiment_id,
+        experiment_phase=request.experiment_phase,
+    )
 
 
 @router.get("/memory/{user_id}")

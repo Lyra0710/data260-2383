@@ -257,7 +257,13 @@ def maybe_update_summaries(user_id: str, session_id: str) -> None:
     save_summary(user_id, None, "user", lifetime_summary)
 
 
-def generate_reply(user_id: str, session_id: str, message: str) -> dict:
+def generate_reply(
+    user_id: str,
+    session_id: str,
+    message: str,
+    experiment_id: str | None = None,
+    experiment_phase: str | None = None,
+) -> dict:
     started_at = time.perf_counter()
     save_message(user_id, session_id, "user", message)
     short_term_messages = fetch_recent_session_messages(session_id, SHORT_TERM_N + 1)[:-1]
@@ -281,6 +287,8 @@ def generate_reply(user_id: str, session_id: str, message: str) -> dict:
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "user_id": user_id,
             "session_id": session_id,
+            "experiment_id": experiment_id,
+            "experiment_phase": experiment_phase,
             "short_term_n": SHORT_TERM_N,
             "model": CHAT_MODEL,
             "prompt_tokens": token_usage["input_tokens"],
