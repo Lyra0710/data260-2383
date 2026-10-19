@@ -14,3 +14,6 @@ client = MongoClient(MONGO_URI)
 
 db = client["s2383_doc"]
 fixtures_collection = db["fixtures"]
+messages_collection = db["messages"]
+summaries_collection = db["summaries"]
+episodes_collection = db["episodes"]
