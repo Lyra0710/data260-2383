@@ -1,0 +1,55 @@
+Last consolidated: 2026-10-17T00:00:00+00:00
+- User's name is Ananya.
+- User's name is Ananya.
+- User's name is Ananya.
+- User organizes a community sports league.
+- User organizes a community sports league.
+- User prefers tennis matches on weekday evenings.
+- User prefers tennis matches on weekday evenings.
+- Avoid Monday evenings for tennis events.
+- Avoid Monday evenings for tennis events.
+- Spartan Tennis Complex is the preferred venue.
+- Spartan Tennis Complex is the preferred venue.
+- Spartan Tennis Complex is the preferred venue.
+- Fundraiser date is November 20.
+- Fundraiser date is November 22.
+- Fundraiser starts at 6 PM.
+- Fundraiser starts at 6 PM.
+- Players need to bring water.
+- Players need to bring water.
+- Flyers should be blue.
+- Flyers should be blue.
+- Expected attendance is about 40.
+- Expected attendance is about 60.
+- Monday evening tennis events are permitted.
+- The fundraiser uses the main court.
+- The fundraiser uses the main court.
+- A welcome table is needed.
+- A welcome table is needed.
+- Two volunteers are needed for the welcome table.
+- Two volunteers are needed for the welcome table.
+- The main court needs a sound-system check.
+- The main court needs a sound-system check.
+- Send a volunteer reminder next month.
+- Send a volunteer reminder next month.
+- Beginner tennis clinics should be welcoming.
+- Beginner tennis clinics should be welcoming.
+- Tennis clinics should use small groups.
+- Tennis clinics should use small groups.
+- Event updates should be concise.
+- Event updates should be concise.
+- Confirm venue availability later.
+- Confirm venue availability later.
+- Keep tennis and fundraiser facts separate.
+- Keep tennis and fundraiser facts separate.
+- Include water supplies on the event checklist.
+- Include water supplies on the event checklist.
+- Prepare a final reminder for expected attendees.
+- Prepare a final reminder for expected attendees.
+- The fundraiser supports the community sports league.
+- The fundraiser supports the community sports league.
+- Use blue in event promotion.
+- Use blue in event promotion.
+- Track volunteer setup tasks.
+- Track volunteer setup tasks.
+- Keep durable facts concise.

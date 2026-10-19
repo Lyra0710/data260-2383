@@ -125,3 +125,8 @@ class ChatMemoryUsed(BaseModel):
 class ChatResponse(BaseModel):
     reply: str
     memory: ChatMemoryUsed
+
+
+class FileMemoryCommandRequest(BaseModel):
+    command: Literal["/memory", "/compact", "/dream", "/help"]
+    recent_messages: list[str] = Field(default_factory=list, max_length=20)

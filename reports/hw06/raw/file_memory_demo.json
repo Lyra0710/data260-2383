@@ -1,0 +1,48 @@
+{
+  "memory_command": {
+    "memory": "Last consolidated: 2026-10-19T17:07:44.921508+00:00\n- User's name is Ananya.\n- User organizes a community sports league.\n- User prefers tennis matches on weekday evenings.\n- Resolved scheduling conflict: avoid Monday evenings for tennis events; permission to schedule Mondays was superseded.\n- Spartan Tennis Complex is the preferred venue.\n- Resolved date conflict: November 20 is the confirmed fundraiser date; November 22 was superseded.\n- Fundraiser starts at 6 PM.\n- Players need to bring water.\n- Flyers should be blue.\n- Resolved attendance conflict: plan for about 40 attendees; the 60-attendee estimate was superseded.\n- The fundraiser uses the main court.\n- A welcome table is needed.\n- Two volunteers are needed for the welcome table.\n- The main court needs a sound-system check.\n- Send a volunteer reminder next month.\n- Beginner tennis clinics should be welcoming.\n- Tennis clinics should use small groups.\n- Event updates should be concise.\n- Confirm venue availability later.\n- Keep tennis and fundraiser facts separate.\n- Include water supplies on the event checklist.\n- Prepare a final reminder for expected attendees.\n- The fundraiser supports the community sports league.\n- Use blue in event promotion.\n- Track volunteer setup tasks.\n- Keep durable facts concise.\n- Learned: I prefer email reminders one week before each event.\n",
+    "status": {
+      "non_empty_fact_lines": 27,
+      "last_consolidated_at": "2026-10-19T17:07:44.921508+00:00",
+      "age_hours": 0.0,
+      "needs_consolidation": false
+    }
+  },
+  "help_command": {
+    "commands": [
+      "/memory",
+      "/compact",
+      "/dream",
+      "/help"
+    ]
+  },
+  "before_compaction": {
+    "non_empty_fact_lines": 54,
+    "last_consolidated_at": "2026-10-17T00:00:00+00:00",
+    "age_hours": 65.13,
+    "needs_consolidation": true
+  },
+  "compact_command": {
+    "before_count": 54,
+    "after_count": 26,
+    "resolved_conflicts": [
+      "Resolved date conflict: November 20 is the confirmed fundraiser date; November 22 was superseded.",
+      "Resolved attendance conflict: plan for about 40 attendees; the 60-attendee estimate was superseded.",
+      "Resolved scheduling conflict: avoid Monday evenings for tennis events; permission to schedule Mondays was superseded."
+    ]
+  },
+  "dream_command": {
+    "added": [
+      "I prefer email reminders one week before each event."
+    ],
+    "added_count": 1
+  },
+  "after_demo": {
+    "non_empty_fact_lines": 27,
+    "last_consolidated_at": "2026-10-19T17:07:44.921508+00:00",
+    "age_hours": 0.0,
+    "needs_consolidation": false
+  },
+  "agent_in_system_prompt": true,
+  "memory_in_system_prompt": true
+}

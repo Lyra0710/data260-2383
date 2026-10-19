@@ -449,3 +449,74 @@ Probe fundraiser_details complete
 Probe fundraiser_logistics complete
 Probe memory_boundaries complete
 Saved results to ../../reports/hw06/raw/experiment_compaction.json
+
+(.venv) annie@mac data260-2383 % cd code/web_application
+
+../../.venv/bin/python run_file_memory_demo.py > /dev/null
+
+../../.venv/bin/python -c '
+import json
+data = json.load(open("../../reports/hw06/raw/file_memory_demo.json"))
+short = {
+    "before_compaction": data["before_compaction"],
+    "compact_command": data["compact_command"],
+    "dream_command": data["dream_command"],
+    "after_demo": data["after_demo"],
+    "help_command": data["help_command"],
+    "agent_in_system_prompt": data["agent_in_system_prompt"],
+    "memory_in_system_prompt": data["memory_in_system_prompt"],
+}
+print(json.dumps(short, indent=2))
+'
+
+{
+  "before_compaction": {
+    "non_empty_fact_lines": 54,
+    "last_consolidated_at": "2026-10-17T00:00:00+00:00",
+    "age_hours": 65.13,
+    "needs_consolidation": true
+  },
+  "compact_command": {
+    "before_count": 54,
+    "after_count": 26,
+    "resolved_conflicts": [
+      "Resolved date conflict: November 20 is the confirmed fundraiser date; November 22 was superseded.",
+      "Resolved attendance conflict: plan for about 40 attendees; the 60-attendee estimate was superseded.",
+      "Resolved scheduling conflict: avoid Monday evenings for tennis events; permission to schedule Mondays was superseded."
+    ]
+  },
+  "dream_command": {
+    "added": [
+      "I prefer email reminders one week before each event."
+    ],
+    "added_count": 1
+  },
+  "after_demo": {
+    "non_empty_fact_lines": 27,
+    "last_consolidated_at": "2026-10-19T17:07:44.921508+00:00",
+    "age_hours": 0.0,
+    "needs_consolidation": false
+  },
+  "help_command": {
+    "commands": [
+      "/memory",
+      "/compact",
+      "/dream",
+      "/help"
+    ]
+  },
+  "agent_in_system_prompt": true,
+  "memory_in_system_prompt": true
+}
+
+(.venv) annie@mac web_application % curl -sS -X POST http://127.0.0.1:8583/api/file-memory/command \
+  -H "Content-Type: application/json" \
+  -d '{"command":"/help"}' | ../../.venv/bin/python -m json.tool
+{
+    "commands": [
+        "/memory",
+        "/compact",
+        "/dream",
+        "/help"
+    ]
+}

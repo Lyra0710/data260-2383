@@ -1,0 +1,28 @@
+Last consolidated: 2026-10-19T17:07:44.921508+00:00
+- User's name is Ananya.
+- User organizes a community sports league.
+- User prefers tennis matches on weekday evenings.
+- Resolved scheduling conflict: avoid Monday evenings for tennis events; permission to schedule Mondays was superseded.
+- Spartan Tennis Complex is the preferred venue.
+- Resolved date conflict: November 20 is the confirmed fundraiser date; November 22 was superseded.
+- Fundraiser starts at 6 PM.
+- Players need to bring water.
+- Flyers should be blue.
+- Resolved attendance conflict: plan for about 40 attendees; the 60-attendee estimate was superseded.
+- The fundraiser uses the main court.
+- A welcome table is needed.
+- Two volunteers are needed for the welcome table.
+- The main court needs a sound-system check.
+- Send a volunteer reminder next month.
+- Beginner tennis clinics should be welcoming.
+- Tennis clinics should use small groups.
+- Event updates should be concise.
+- Confirm venue availability later.
+- Keep tennis and fundraiser facts separate.
+- Include water supplies on the event checklist.
+- Prepare a final reminder for expected attendees.
+- The fundraiser supports the community sports league.
+- Use blue in event promotion.
+- Track volunteer setup tasks.
+- Keep durable facts concise.
+- Learned: I prefer email reminders one week before each event.
