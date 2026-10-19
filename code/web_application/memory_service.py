@@ -9,6 +9,7 @@ from ollama import Client
 
 from memory_repository import (
     count_user_messages,
+    episode_exists,
     fetch_recent_session_messages,
     fetch_session_summaries,
     fetch_user_episodes,
@@ -34,6 +35,8 @@ EMBEDDING_MODEL = os.getenv("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text")
 SYSTEM_PRIMER = (
     "You are a helpful assistant for a community sports league. "
     "Use the supplied memories only when they are relevant. "
+    "Do not invent, change, or infer facts such as dates, times, venues, or "
+    "preferences. If facts conflict, state the conflict rather than resolving it. "
     "Answer clearly and concisely."
 )
 
@@ -103,18 +106,24 @@ def extract_and_store_episodes(user_id: str, session_id: str, message: str) -> N
             "content": (
                 "Extract up to three durable user facts, preferences, or commitments. "
                 "Return only a JSON array with objects containing fact and importance "
-                "(a number from 0 to 1). Return [] when there are no useful facts."
+                "(a number from 0 to 1). Preserve stated details exactly and do not "
+                "infer missing details. Return [] when there are no useful facts."
             ),
         },
         {"role": "user", "content": message},
     ]
     facts = parse_facts(model_text(extraction_prompt))
 
-    if not facts:
+    new_facts = [
+        fact
+        for fact in facts
+        if not episode_exists(user_id, session_id, fact["fact"])
+    ]
+    if not new_facts:
         return
 
-    embeddings = embed_texts([fact["fact"] for fact in facts])
-    for fact, embedding in zip(facts, embeddings):
+    embeddings = embed_texts([fact["fact"] for fact in new_facts])
+    for fact, embedding in zip(new_facts, embeddings):
         save_episode(
             user_id,
             session_id,
@@ -186,7 +195,9 @@ def maybe_update_summaries(user_id: str, session_id: str) -> None:
                 "role": "system",
                 "content": (
                     "Summarize the conversation as concise bullets. Preserve goals, "
-                    "decisions, preferences, and commitments."
+                    "decisions, preferences, and commitments exactly as stated. Do not "
+                    "invent or alter dates, times, venues, or preferences. State any "
+                    "conflict explicitly."
                 ),
             },
             {"role": "user", "content": transcript},
@@ -203,7 +214,11 @@ def maybe_update_summaries(user_id: str, session_id: str) -> None:
         [
             {
                 "role": "system",
-                "content": "Create a concise, up-to-date lifetime user summary.",
+                "content": (
+                    "Create a concise, up-to-date lifetime user summary using only "
+                    "the supplied summaries. Preserve exact dates, times, venues, and "
+                    "preferences. Do not infer missing details; state conflicts explicitly."
+                ),
             },
             {"role": "user", "content": source},
         ]

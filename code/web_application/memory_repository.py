@@ -108,6 +108,17 @@ def save_episode(
     )
 
 
+def episode_exists(user_id: str, session_id: str, fact: str) -> bool:
+    return episodes_collection.find_one(
+        {
+            "user_id": user_id,
+            "session_id": session_id,
+            "fact": fact,
+        },
+        {"_id": 1},
+    ) is not None
+
+
 def fetch_user_episodes(user_id: str) -> list[dict]:
     return list(
         episodes_collection.find(
@@ -129,7 +140,7 @@ def fetch_memory_snapshot(user_id: str) -> dict:
     episodes = list(
         episodes_collection.find(
             {"user_id": user_id},
-            {"_id": 0},
+            {"_id": 0, "embedding": 0},
         )
         .sort("created_at", -1)
         .limit(20)
