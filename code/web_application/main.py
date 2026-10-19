@@ -27,7 +27,7 @@ from models import Fixture, User, Venue
 from routers.auth import get_current_user, router as auth_router
 import os
 import uvicorn
-from routers import document_fixtures
+from routers import document_fixtures, memory
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 
@@ -45,6 +45,7 @@ app.add_middleware(
 
 app.include_router(auth_router)
 app.include_router(document_fixtures.router)
+app.include_router(memory.router)
 
 @app.on_event("startup")
 def create_tables():

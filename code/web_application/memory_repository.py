@@ -33,6 +33,12 @@ def fetch_recent_session_messages(session_id: str, limit: int) -> list[dict]:
     return list(reversed(messages))
 
 
+def count_user_messages(session_id: str) -> int:
+    return messages_collection.count_documents(
+        {"session_id": session_id, "role": "user"}
+    )
+
+
 def latest_summary(
     user_id: str,
     session_id: str | None,
@@ -71,6 +77,15 @@ def save_summary(
             "text": text,
             "created_at": datetime.now(timezone.utc),
         }
+    )
+
+
+def fetch_session_summaries(user_id: str) -> list[dict]:
+    return list(
+        summaries_collection.find(
+            {"user_id": user_id, "scope": "session"},
+            {"_id": 0},
+        ).sort("created_at", 1)
     )
 
 
