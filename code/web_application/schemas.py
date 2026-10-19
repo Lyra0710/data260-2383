@@ -92,3 +92,32 @@ class DocumentFixtureUpdate(BaseModel):
     status: FixtureStatus | None = None
     sport_type: SportType | None = None
     scheduled_at: datetime | None = None
+
+
+class ChatRequest(BaseModel):
+    user_id: str = Field(min_length=1, max_length=100)
+    session_id: str | None = Field(default=None, min_length=1, max_length=100)
+    message: str = Field(min_length=1, max_length=4000)
+
+
+class MemoryMessageOut(BaseModel):
+    role: str
+    content: str
+    created_at: datetime
+
+
+class EpisodicFactOut(BaseModel):
+    fact: str
+    importance: float
+
+
+class ChatMemoryUsed(BaseModel):
+    short_term_count: int
+    short_term_messages: list[MemoryMessageOut]
+    long_term_summary: str | None
+    episodic_facts: list[EpisodicFactOut]
+
+
+class ChatResponse(BaseModel):
+    reply: str
+    memory: ChatMemoryUsed
