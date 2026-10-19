@@ -16,3 +16,234 @@ Updated fixtures collection validation.
 {'$jsonSchema': {'bsonType': 'object', 'required': ['fixture_name', 'status', 'sport_type', 'scheduled_at', 'created_at', 'updated_at'], 'properties': {'fixture_name': {'bsonType': 'string', 'minLength': 1, 'maxLength': 100}, 'description': {'bsonType': ['string', 'null']}, 'status': {'enum': ['scheduled', 'completed', 'cancelled']}, 'sport_type': {'enum': ['soccer', 'basketball', 'tennis', 'pickleball']}, 'scheduled_at': {'bsonType': 'date'}, 'created_at': {'bsonType': 'date'}, 'updated_at': {'bsonType': 'date'}}}}
 
 uvicorn main:app --reload --port 8583
+
+annie@mac web_application % echo "Name: Ananya"                                                
+date                                               
+git -C ../.. rev-parse --short HEAD                 
+ollama list                                                                                      
+Name: Ananya
+Mon Oct 19 01:26:50 PDT 2026
+6a62c7c
+NAME                       ID              SIZE      MODIFIED    
+nomic-embed-text:latest    0a109f422b47    274 MB    2 weeks ago    
+qwen3:8b                   500a1f067a9f    5.2 GB    7 weeks ago    
+annie@mac web_application % chat() {                                                           
+  curl -sS -X POST http://127.0.0.1:8583/api/chat \
+    -H "Content-Type: application/json" \           
+    -d "{\"user_id\":\"hw6-demo-user\",\"session_id\":\"hw6-demo-session\",\"message\":\"$1\"}" \
+    | ../../.venv/bin/python -c 'import json, sys; print("Assistant:", json.load(sys.stdin)["reply"])'
+}                                             
+annie@mac web_application % chat "My name is Ananya, and I organize a community sports league."
+chat "I prefer tennis matches on weekday evenings."
+chat "My preferred venue is Spartan Tennis Complex."
+chat "I am planning a pickleball fundraiser on November 20."
+chat "Please remember that players need to bring water."
+chat "I want the fundraiser to start at 6 PM."
+chat "My favorite color for event flyers is blue."
+chat "I need the tennis schedule to avoid Monday evenings."
+chat "I expect about 40 attendees at the fundraiser."
+chat "Can you summarize my preferences and plans?"
+Assistant: Hello, Ananya! It's great to meet you. As someone who organizes a community sports league, I'm here to help with any questions or needs you might have. How can I assist you today?
+Assistant: Thank you for sharing, Ananya! It’s great to know your preference for weekday evening tennis matches. How can I assist you with scheduling or organizing these matches?
+Assistant: Thank you for specifying, Ananya! The Spartan Tennis Complex is an excellent choice for your weekday evening tennis matches. Would you like assistance with scheduling or confirming availability at the venue?
+Assistant: Thank you for sharing, Ananya! Your pickleball fundraiser on November 20 is noted. Would you like assistance with scheduling the event or confirming availability at the Spartan Tennis Complex? Let me know how I can help!
+Assistant: Thank you for the reminder, Ananya! I've noted that players need to bring water for both your pickleball fundraiser on November 20 and your weekday evening tennis matches at the Spartan Tennis Complex. Would you like assistance with scheduling, confirming venue availability, or anything else? Let me know how I can help!
+Assistant: Thank you for confirming, Ananya! Your pickleball fundraiser is scheduled for **November 20 at 6 PM** at the **Spartan Tennis Complex**. Players will need to bring water, as noted. Would you like assistance with finalizing details, confirming availability, or anything else? Let me know!
+Assistant: Thank you for sharing, Ananya! I've noted your preference for **blue** as the favorite color for event flyers. Would you like assistance with designing flyers, confirming event details, or anything else? Let me know how I can help!
+Assistant: Thank you for the clarification, Ananya! To avoid Monday evenings for tennis matches, I’ll ensure the schedule is set for **Tuesday–Friday evenings** at the **Spartan Tennis Complex**. Your pickleball fundraiser is already confirmed for **November 20 at 6 PM**. Would you like to finalize the tennis match dates or confirm venue availability? Let me know how I can assist! 🎾💙
+Assistant: Thank you for the update, Ananya! With **40 attendees** expected at your pickleball fundraiser on **November 20 at 6 PM** at the **Spartan Tennis Complex**, I’ll ensure the event is prepared accordingly. Would you like assistance with finalizing logistics, confirming venue details, or anything else? Let me know how I can help! 🎾💙
+Assistant: Here’s a summary of your preferences and plans:  
+
+### **Tennis Matches**  
+- **Preferred days**: Weekday evenings (Tuesday–Friday), **avoiding Monday evenings**.  
+- **Venue**: **Spartan Tennis Complex** for all matches.  
+- **Logistics**: All players must bring **water**.  
+
+### **Pickleball Fundraiser**  
+- **Date/Time**: **November 20 at 6 PM**.  
+- **Venue**: **Spartan Tennis Complex**.  
+- **Attendees**: Expected **40 people**.  
+- **Flyer Design**: Preferred color is **blue**.  
+
+Let me know if you’d like to confirm details or proceed with next steps! 🎾💙
+annie@mac web_application % curl -sS http://127.0.0.1:8583/api/memory/hw6-demo-user \
+  -o ../../reports/hw06/raw/memory_demo.json
+annie@mac web_application % ../../.venv/bin/python -c '
+import json
+data = json.load(open("../../reports/hw06/raw/memory_demo.json"))
+short = {
+    "last_messages": data["messages"][-4:],
+    "session_summary": data["session_summary"],
+    "lifetime_summary": data["lifetime_summary"],
+    "episodic_facts": data["episodes"],
+}
+print(json.dumps(short, indent=2, default=str))
+'
+{
+  "last_messages": [
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "role": "user",
+      "content": "I expect about 40 attendees at the fundraiser.",
+      "created_at": "2026-10-19T08:33:55.256000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "role": "assistant",
+      "content": "Thank you for the update, Ananya! With **40 attendees** expected at your pickleball fundraiser on **November 20 at 6 PM** at the **Spartan Tennis Complex**, I\u2019ll ensure the event is prepared accordingly. Would you like assistance with finalizing logistics, confirming venue details, or anything else? Let me know how I can help! \ud83c\udfbe\ud83d\udc99",
+      "created_at": "2026-10-19T08:34:35.965000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "role": "user",
+      "content": "Can you summarize my preferences and plans?",
+      "created_at": "2026-10-19T08:36:09.214000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "role": "assistant",
+      "content": "Here\u2019s a summary of your preferences and plans:  \n\n### **Tennis Matches**  \n- **Preferred days**: Weekday evenings (Tuesday\u2013Friday), **avoiding Monday evenings**.  \n- **Venue**: **Spartan Tennis Complex** for all matches.  \n- **Logistics**: All players must bring **water**.  \n\n### **Pickleball Fundraiser**  \n- **Date/Time**: **November 20 at 6 PM**.  \n- **Venue**: **Spartan Tennis Complex**.  \n- **Attendees**: Expected **40 people**.  \n- **Flyer Design**: Preferred color is **blue**.  \n\nLet me know if you\u2019d like to confirm details or proceed with next steps! \ud83c\udfbe\ud83d\udc99",
+      "created_at": "2026-10-19T08:36:57.032000"
+    }
+  ],
+  "session_summary": {
+    "user_id": "hw6-demo-user",
+    "session_id": "hw6-demo-session",
+    "scope": "session",
+    "text": "- **Tennis Matches**: Prefer weekday evenings (Tuesday\u2013Friday) at **Spartan Tennis Complex**; avoid Monday evenings.  \n- **Pickleball Fundraiser**: Scheduled for **November 20 at 6 PM** at **Spartan Tennis Complex**.  \n- **Event Logistics**: Players must bring water for both events.  \n- **Flyer Design**: Preferred color for flyers is **blue**.  \n- **Attendees**: Expect **40 attendees** at the pickleball fundraiser.  \n- **Next Steps**: Confirm venue availability, finalize tennis schedule, and prepare event logistics.  \n\nNo conflicts noted.",
+    "created_at": "2026-10-19T08:35:01.149000"
+  },
+  "lifetime_summary": {
+    "user_id": "hw6-demo-user",
+    "session_id": null,
+    "scope": "user",
+    "text": "**Ananya's Lifetime User Summary**  \n**Preferences**:  \n- Tennis matches preferred on **weekday evenings (Tuesday\u2013Friday)**, avoiding **Monday evenings**.  \n- **Preferred venue**: **Spartan Tennis Complex** for all tennis-related events.  \n- **Players must bring water** for all events.  \n- **Flyer color preference**: **Blue**.  \n\n**Goals/Decisions**:  \n- Organize community sports league with **weekday evening tennis matches**.  \n- Plan **pickleball fundraiser** on **November 20 at 6 PM** at **Spartan Tennis Complex**.  \n\n**Confirmed Details**:  \n- **Pickleball Fundraiser**: **November 20 at 6 PM** at **Spartan Tennis Complex**.  \n- **Expected attendees**: **40**.  \n- **No conflicts** or additional requirements noted.  \n\n**Event Logistics**:  \n- **Water requirement**: All attendees must bring water for both tennis matches and the pickleball fundraiser.  \n- **Venue consistency**: **Spartan Tennis Complex** for both tennis matches and the fundraiser.  \n\n**Next Steps**:  \n- Confirm **Spartan Tennis Complex availability** for tennis matches and the fundraiser.  \n- Finalize **weekday evening tennis schedule**.  \n- Prepare **blue-themed flyers** and ensure logistics (water, venue) are set.  \n\n**No conflicts or missing details inferred.**",
+    "created_at": "2026-10-19T08:36:09.159000"
+  },
+  "episodic_facts": [
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "I expect about 40 attendees at the fundraiser",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:34:08.067000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "I need the tennis schedule to avoid Monday evenings",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:33:20.596000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "My favorite color for event flyers is blue.",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:32:43.743000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "I want the fundraiser to start at 6 PM",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:31:32.982000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "players need to bring water",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:30:46.185000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "The fundraiser is scheduled for November 20",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:29:53.894000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "I am planning a pickleball fundraiser",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:29:53.893000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "preferred venue is Spartan Tennis Complex",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:28:35.861000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "I prefer tennis matches on weekday evenings.",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:28:11.732000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "I organize a community sports league",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:27:27.219000"
+    },
+    {
+      "user_id": "hw6-demo-user",
+      "session_id": "hw6-demo-session",
+      "fact": "My name is Ananya",
+      "importance": 1.0,
+      "created_at": "2026-10-19T08:27:27.217000"
+    }
+  ]
+}
+annie@mac web_application % curl -sS http://127.0.0.1:8583/api/aggregate/hw6-demo-user \
+  -o ../../reports/hw06/raw/aggregate_demo.json
+
+../../.venv/bin/python -m json.tool \
+  ../../reports/hw06/raw/aggregate_demo.json
+{
+    "daily_message_counts": [
+        {
+            "message_count": 20,
+            "date": "2026-10-19"
+        }
+    ],
+    "recent_summaries": [
+        {
+            "user_id": "hw6-demo-user",
+            "session_id": null,
+            "scope": "user",
+            "text": "**Ananya's Lifetime User Summary**  \n**Preferences**:  \n- Tennis matches preferred on **weekday evenings (Tuesday\u2013Friday)**, avoiding **Monday evenings**.  \n- **Preferred venue**: **Spartan Tennis Complex** for all tennis-related events.  \n- **Players must bring water** for all events.  \n- **Flyer color preference**: **Blue**.  \n\n**Goals/Decisions**:  \n- Organize community sports league with **weekday evening tennis matches**.  \n- Plan **pickleball fundraiser** on **November 20 at 6 PM** at **Spartan Tennis Complex**.  \n\n**Confirmed Details**:  \n- **Pickleball Fundraiser**: **November 20 at 6 PM** at **Spartan Tennis Complex**.  \n- **Expected attendees**: **40**.  \n- **No conflicts** or additional requirements noted.  \n\n**Event Logistics**:  \n- **Water requirement**: All attendees must bring water for both tennis matches and the pickleball fundraiser.  \n- **Venue consistency**: **Spartan Tennis Complex** for both tennis matches and the fundraiser.  \n\n**Next Steps**:  \n- Confirm **Spartan Tennis Complex availability** for tennis matches and the fundraiser.  \n- Finalize **weekday evening tennis schedule**.  \n- Prepare **blue-themed flyers** and ensure logistics (water, venue) are set.  \n\n**No conflicts or missing details inferred.**",
+            "created_at": "2026-10-19T08:36:09.159000"
+        },
+        {
+            "user_id": "hw6-demo-user",
+            "session_id": "hw6-demo-session",
+            "scope": "session",
+            "text": "- **Tennis Matches**: Prefer weekday evenings (Tuesday\u2013Friday) at **Spartan Tennis Complex**; avoid Monday evenings.  \n- **Pickleball Fundraiser**: Scheduled for **November 20 at 6 PM** at **Spartan Tennis Complex**.  \n- **Event Logistics**: Players must bring water for both events.  \n- **Flyer Design**: Preferred color for flyers is **blue**.  \n- **Attendees**: Expect **40 attendees** at the pickleball fundraiser.  \n- **Next Steps**: Confirm venue availability, finalize tennis schedule, and prepare event logistics.  \n\nNo conflicts noted.",
+            "created_at": "2026-10-19T08:35:01.149000"
+        },
+        {
+            "user_id": "hw6-demo-user",
+            "session_id": "hw6-demo-session",
+            "scope": "session",
+            "text": "- **Goals/Decisions**:  \n  - Organize community sports league with tennis matches on weekday evenings.  \n  - Plan pickleball fundraiser on **November 20** at **6 PM**.  \n\n- **Preferences/Commitments**:  \n  - **Preferred venue**: Spartan Tennis Complex for both tennis matches and the pickleball fundraiser.  \n  - **Players must bring water** for all events.  \n\n- **Confirmed Details**:  \n  - Fundraiser: **November 20 at 6 PM** at **Spartan Tennis Complex**.  \n  - No conflicts or additional requirements noted.  \n\n- **Next Steps**:  \n  - Assistance requested for scheduling, confirming venue availability, or finalizing details.",
+            "created_at": "2026-10-19T08:32:31.003000"
+        },
+        {
+            "user_id": "hw6-demo-user",
+            "session_id": "hw6-demo-session",
+            "scope": "session",
+            "text": "- **Ananya's Preference**: Tennis matches on weekday evenings.  \n- **Preferred Venue**: Spartan Tennis Complex.  \n- **Assistant's Role**: Offer assistance with scheduling/organizing matches or confirming venue availability.  \n- **No Conflicts**: All stated preferences and commitments are preserved without alteration.",
+            "created_at": "2026-10-19T08:29:13.229000"
+        }
+    ]
+}
