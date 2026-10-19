@@ -247,3 +247,205 @@ annie@mac web_application % curl -sS http://127.0.0.1:8583/api/aggregate/hw6-dem
         }
     ]
 }
+
+(.venv) annie@mac web_application % 
+curl -sS http://127.0.0.1:8583/api/memory-config \
+  | ../../.venv/bin/python -m json.tool
+{
+    "short_term_n": 4,
+    "compact_short_term_n": 0
+}
+(.venv) annie@mac web_application % date
+git -C ../.. rev-parse --short HEAD
+
+../../.venv/bin/python run_memory_experiment.py \
+  --short-term-n 4 \
+  --compact-short-term-n 0 \
+  --run-id stn4 \
+  --output ../../reports/hw06/raw/experiment_n4.json
+
+Mon Oct 19 08:27:01 PDT 2026
+5f15bc7
+Conversation turn 1/30 complete
+Conversation turn 2/30 complete
+Conversation turn 3/30 complete
+Conversation turn 4/30 complete
+Conversation turn 5/30 complete
+Conversation turn 6/30 complete
+Conversation turn 7/30 complete
+Conversation turn 8/30 complete
+Conversation turn 9/30 complete
+Conversation turn 10/30 complete
+Conversation turn 11/30 complete
+Conversation turn 12/30 complete
+Conversation turn 13/30 complete
+Conversation turn 14/30 complete
+Conversation turn 15/30 complete
+Conversation turn 16/30 complete
+Conversation turn 17/30 complete
+Conversation turn 18/30 complete
+Conversation turn 19/30 complete
+Conversation turn 20/30 complete
+Conversation turn 21/30 complete
+Conversation turn 22/30 complete
+Conversation turn 23/30 complete
+Conversation turn 24/30 complete
+Conversation turn 25/30 complete
+Conversation turn 26/30 complete
+Conversation turn 27/30 complete
+Conversation turn 28/30 complete
+Conversation turn 29/30 complete
+Conversation turn 30/30 complete
+Probe identity_and_role complete
+Probe tennis_preferences complete
+Probe fundraiser_details complete
+Probe fundraiser_logistics complete
+Probe memory_boundaries complete
+Saved results to ../../reports/hw06/raw/experiment_n4.json
+
+(.venv) annie@mac web_application % date
+git -C ../.. rev-parse --short HEAD
+echo "SHORT_TERM_N=12 COMPACT_SHORT_TERM_N=0"
+
+../../.venv/bin/python run_memory_experiment.py \
+  --short-term-n 12 \
+  --compact-short-term-n 0 \
+  --run-id stn12 \
+  --output ../../reports/hw06/raw/experiment_n12.json
+Mon Oct 19 08:58:08 PDT 2026
+5f15bc7
+SHORT_TERM_N=12 COMPACT_SHORT_TERM_N=0
+Conversation turn 1/30 complete
+Conversation turn 2/30 complete
+Conversation turn 3/30 complete
+Conversation turn 4/30 complete
+Conversation turn 5/30 complete
+Conversation turn 6/30 complete
+Conversation turn 7/30 complete
+Conversation turn 8/30 complete
+Conversation turn 9/30 complete
+Conversation turn 10/30 complete
+Conversation turn 11/30 complete
+Conversation turn 12/30 complete
+Conversation turn 13/30 complete
+Conversation turn 14/30 complete
+Conversation turn 15/30 complete
+Conversation turn 16/30 complete
+Conversation turn 17/30 complete
+Conversation turn 18/30 complete
+Conversation turn 19/30 complete
+Conversation turn 20/30 complete
+Conversation turn 21/30 complete
+Conversation turn 22/30 complete
+Conversation turn 23/30 complete
+Conversation turn 24/30 complete
+Conversation turn 25/30 complete
+Conversation turn 26/30 complete
+Conversation turn 27/30 complete
+Conversation turn 28/30 complete
+Conversation turn 29/30 complete
+Conversation turn 30/30 complete
+Probe identity_and_role complete
+Probe tennis_preferences complete
+Probe fundraiser_details complete
+Probe fundraiser_logistics complete
+Probe memory_boundaries complete
+Saved results to ../../reports/hw06/raw/experiment_n12.json
+
+(.venv) annie@mac web_application % date
+git -C ../.. rev-parse --short HEAD
+echo "SHORT_TERM_N=30 COMPACT_SHORT_TERM_N=0"
+
+../../.venv/bin/python run_memory_experiment.py \
+  --short-term-n 30 \
+  --compact-short-term-n 0 \
+  --run-id stn30 \
+  --output ../../reports/hw06/raw/experiment_n30.json
+Mon Oct 19 09:09:22 PDT 2026
+5f15bc7
+SHORT_TERM_N=30 COMPACT_SHORT_TERM_N=0
+Conversation turn 1/30 complete
+Conversation turn 2/30 complete
+Conversation turn 3/30 complete
+Conversation turn 4/30 complete
+Conversation turn 5/30 complete
+Conversation turn 6/30 complete
+Conversation turn 7/30 complete
+Conversation turn 8/30 complete
+Conversation turn 9/30 complete
+Conversation turn 10/30 complete
+Conversation turn 11/30 complete
+Conversation turn 12/30 complete
+Conversation turn 13/30 complete
+Conversation turn 14/30 complete
+Conversation turn 15/30 complete
+Conversation turn 16/30 complete
+Conversation turn 17/30 complete
+Conversation turn 18/30 complete
+Conversation turn 19/30 complete
+Conversation turn 20/30 complete
+Conversation turn 21/30 complete
+Conversation turn 22/30 complete
+Conversation turn 23/30 complete
+Conversation turn 24/30 complete
+Conversation turn 25/30 complete
+Conversation turn 26/30 complete
+Conversation turn 27/30 complete
+Conversation turn 28/30 complete
+Conversation turn 29/30 complete
+Conversation turn 30/30 complete
+Probe identity_and_role complete
+Probe tennis_preferences complete
+Probe fundraiser_details complete
+Probe fundraiser_logistics complete
+Probe memory_boundaries complete
+Saved results to ../../reports/hw06/raw/experiment_n30.json
+
+(.venv) annie@mac web_application % date
+git -C ../.. rev-parse --short HEAD
+echo "SHORT_TERM_N=30 COMPACT_SHORT_TERM_N=4"
+
+../../.venv/bin/python run_memory_experiment.py \
+  --short-term-n 30 \
+  --compact-short-term-n 4 \
+  --run-id compaction \
+  --output ../../reports/hw06/raw/experiment_compaction.json
+Mon Oct 19 09:23:40 PDT 2026
+5f15bc7
+SHORT_TERM_N=30 COMPACT_SHORT_TERM_N=4
+Conversation turn 1/30 complete
+Conversation turn 2/30 complete
+Conversation turn 3/30 complete
+Conversation turn 4/30 complete
+Conversation turn 5/30 complete
+Conversation turn 6/30 complete
+Conversation turn 7/30 complete
+Conversation turn 8/30 complete
+Conversation turn 9/30 complete
+Conversation turn 10/30 complete
+Conversation turn 11/30 complete
+Conversation turn 12/30 complete
+Conversation turn 13/30 complete
+Conversation turn 14/30 complete
+Conversation turn 15/30 complete
+Conversation turn 16/30 complete
+Conversation turn 17/30 complete
+Conversation turn 18/30 complete
+Conversation turn 19/30 complete
+Conversation turn 20/30 complete
+Conversation turn 21/30 complete
+Conversation turn 22/30 complete
+Conversation turn 23/30 complete
+Conversation turn 24/30 complete
+Conversation turn 25/30 complete
+Conversation turn 26/30 complete
+Conversation turn 27/30 complete
+Conversation turn 28/30 complete
+Conversation turn 29/30 complete
+Conversation turn 30/30 complete
+Probe identity_and_role complete
+Probe tennis_preferences complete
+Probe fundraiser_details complete
+Probe fundraiser_logistics complete
+Probe memory_boundaries complete
+Saved results to ../../reports/hw06/raw/experiment_compaction.json
