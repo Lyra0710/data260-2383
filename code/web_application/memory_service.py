@@ -33,6 +33,7 @@ SHORT_TERM_N = int(os.getenv("SHORT_TERM_N", "8"))
 COMPACT_SHORT_TERM_N = int(os.getenv("COMPACT_SHORT_TERM_N", "0"))
 SUMMARIZE_EVERY_USER_MSGS = int(os.getenv("SUMMARIZE_EVERY_USER_MSGS", "3"))
 TOP_K_EPISODES = int(os.getenv("TOP_K_EPISODES", "5"))
+SUMMARY_SOURCE_N = int(os.getenv("SUMMARY_SOURCE_N", "16"))
 CHAT_MODEL = os.getenv("OLLAMA_MODEL", "qwen3:8b")
 EMBEDDING_MODEL = os.getenv("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text")
 
@@ -45,8 +46,17 @@ SYSTEM_PRIMER = (
 )
 
 
-def model_text(messages: list[dict], temperature: float = 0.0) -> str:
-    response = complete(messages, model=CHAT_MODEL, temperature=temperature)
+def model_text(
+    messages: list[dict],
+    temperature: float = 0.0,
+    max_tokens: int | None = None,
+) -> str:
+    response = complete(
+        messages,
+        model=CHAT_MODEL,
+        temperature=temperature,
+        max_tokens=max_tokens,
+    )
     return str(response.content).strip()
 
 
@@ -144,7 +154,7 @@ def extract_and_store_episodes(user_id: str, session_id: str, message: str) -> N
         },
         {"role": "user", "content": message},
     ]
-    facts = parse_facts(model_text(extraction_prompt))
+    facts = parse_facts(model_text(extraction_prompt, max_tokens=120))
 
     new_facts = [
         fact
@@ -223,7 +233,7 @@ def maybe_update_summaries(user_id: str, session_id: str) -> None:
     if user_message_count % SUMMARIZE_EVERY_USER_MSGS != 0:
         return
 
-    conversation = fetch_recent_session_messages(session_id, 50)
+    conversation = fetch_recent_session_messages(session_id, SUMMARY_SOURCE_N)
     transcript = "\n".join(
         f"{message['role']}: {message['content']}" for message in conversation
     )
@@ -239,7 +249,8 @@ def maybe_update_summaries(user_id: str, session_id: str) -> None:
                 ),
             },
             {"role": "user", "content": transcript},
-        ]
+        ],
+        max_tokens=180,
     )
     save_summary(user_id, session_id, "session", summary)
 
@@ -259,7 +270,8 @@ def maybe_update_summaries(user_id: str, session_id: str) -> None:
                 ),
             },
             {"role": "user", "content": source},
-        ]
+        ],
+        max_tokens=180,
     )
     save_summary(user_id, None, "user", lifetime_summary)
 
@@ -282,7 +294,12 @@ def generate_reply(
     extract_and_store_episodes(user_id, session_id, message)
     episodic_facts = retrieve_episodes(user_id, message)
     prompt = build_prompt(short_term_messages, summary, episodic_facts, message)
-    reply_response = complete(prompt, model=CHAT_MODEL, temperature=0.2)
+    reply_response = complete(
+        prompt,
+        model=CHAT_MODEL,
+        temperature=0.2,
+        max_tokens=180,
+    )
     reply = str(reply_response.content).strip()
     token_usage = get_token_usage(reply_response)
     component_tokens = prompt_component_tokens(

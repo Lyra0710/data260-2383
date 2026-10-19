@@ -12,12 +12,15 @@ def complete(
     *,
     model: str = "qwen3:8b",
     temperature: float = 0.0,
+    max_tokens: int | None = None,
 ) -> Any:
     """Send messages to Ollama and return the model response."""
 
     chat_model = ChatOllama(
         model=model,
         temperature=temperature,
+        reasoning=False,
+        num_predict=max_tokens,
     )
 
     if tools:

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
 from memory_repository import aggregate_user_memory, fetch_memory_snapshot
-from memory_service import generate_reply
+from memory_service import COMPACT_SHORT_TERM_N, SHORT_TERM_N, generate_reply
 from schemas import ChatRequest, ChatResponse
 
 
@@ -9,6 +9,14 @@ router = APIRouter(
     prefix="/api",
     tags=["Memory"],
 )
+
+
+@router.get("/memory-config")
+def get_memory_config():
+    return {
+        "short_term_n": SHORT_TERM_N,
+        "compact_short_term_n": COMPACT_SHORT_TERM_N,
+    }
 
 
 @router.post("/chat", response_model=ChatResponse)
