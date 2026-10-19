@@ -1,0 +1,177 @@
+{
+  "scoring_method": "Deterministic phrase checks against the expected criteria in memory_probes.yaml. Scores map complete coverage to 5, one missing criterion to 4, partial coverage to 2\u20133, and no coverage to 1.",
+  "runs": {
+    "stn4": {
+      "identity_and_role": {
+        "score": 5,
+        "matched_criteria": {
+          "name": true,
+          "role": true
+        }
+      },
+      "tennis_preferences": {
+        "score": 5,
+        "matched_criteria": {
+          "weekday evenings": true,
+          "avoid Monday evenings": true
+        }
+      },
+      "fundraiser_details": {
+        "score": 5,
+        "matched_criteria": {
+          "November 20": true,
+          "6 PM": true,
+          "Spartan Tennis Complex": true
+        }
+      },
+      "fundraiser_logistics": {
+        "score": 4,
+        "matched_criteria": {
+          "bring water": true,
+          "blue flyers": true,
+          "about 40 attendees": false
+        }
+      },
+      "memory_boundaries": {
+        "score": 4,
+        "matched_criteria": {
+          "tennis facts": true,
+          "weekday-evening preference": true,
+          "avoid Monday": true,
+          "November 20 fundraiser fact": true,
+          "6 PM fundraiser fact": true,
+          "40 attendees fundraiser fact": false
+        }
+      }
+    },
+    "stn12": {
+      "identity_and_role": {
+        "score": 5,
+        "matched_criteria": {
+          "name": true,
+          "role": true
+        }
+      },
+      "tennis_preferences": {
+        "score": 5,
+        "matched_criteria": {
+          "weekday evenings": true,
+          "avoid Monday evenings": true
+        }
+      },
+      "fundraiser_details": {
+        "score": 5,
+        "matched_criteria": {
+          "November 20": true,
+          "6 PM": true,
+          "Spartan Tennis Complex": true
+        }
+      },
+      "fundraiser_logistics": {
+        "score": 4,
+        "matched_criteria": {
+          "bring water": true,
+          "blue flyers": true,
+          "about 40 attendees": false
+        }
+      },
+      "memory_boundaries": {
+        "score": 4,
+        "matched_criteria": {
+          "tennis facts": true,
+          "weekday-evening preference": true,
+          "avoid Monday": true,
+          "November 20 fundraiser fact": true,
+          "6 PM fundraiser fact": true,
+          "40 attendees fundraiser fact": false
+        }
+      }
+    },
+    "stn30": {
+      "identity_and_role": {
+        "score": 5,
+        "matched_criteria": {
+          "name": true,
+          "role": true
+        }
+      },
+      "tennis_preferences": {
+        "score": 5,
+        "matched_criteria": {
+          "weekday evenings": true,
+          "avoid Monday evenings": true
+        }
+      },
+      "fundraiser_details": {
+        "score": 5,
+        "matched_criteria": {
+          "November 20": true,
+          "6 PM": true,
+          "Spartan Tennis Complex": true
+        }
+      },
+      "fundraiser_logistics": {
+        "score": 4,
+        "matched_criteria": {
+          "bring water": true,
+          "blue flyers": true,
+          "about 40 attendees": false
+        }
+      },
+      "memory_boundaries": {
+        "score": 5,
+        "matched_criteria": {
+          "tennis facts": true,
+          "weekday-evening preference": true,
+          "avoid Monday": true,
+          "November 20 fundraiser fact": true,
+          "6 PM fundraiser fact": true,
+          "40 attendees fundraiser fact": true
+        }
+      }
+    },
+    "compaction": {
+      "identity_and_role": {
+        "score": 5,
+        "matched_criteria": {
+          "name": true,
+          "role": true
+        }
+      },
+      "tennis_preferences": {
+        "score": 5,
+        "matched_criteria": {
+          "weekday evenings": true,
+          "avoid Monday evenings": true
+        }
+      },
+      "fundraiser_details": {
+        "score": 5,
+        "matched_criteria": {
+          "November 20": true,
+          "6 PM": true,
+          "Spartan Tennis Complex": true
+        }
+      },
+      "fundraiser_logistics": {
+        "score": 5,
+        "matched_criteria": {
+          "bring water": true,
+          "blue flyers": true,
+          "about 40 attendees": true
+        }
+      },
+      "memory_boundaries": {
+        "score": 4,
+        "matched_criteria": {
+          "tennis facts": true,
+          "weekday-evening preference": true,
+          "avoid Monday": true,
+          "November 20 fundraiser fact": false,
+          "6 PM fundraiser fact": true,
+          "40 attendees fundraiser fact": true
+        }
+      }
+    }
+  }
+}
