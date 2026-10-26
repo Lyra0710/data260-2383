@@ -1,0 +1,16 @@
+{
+  "scenario": "membership_wins",
+  "row_count": 500,
+  "source_urls": [
+    "https://s3.amazonaws.com/capitalbikeshare-data/202506-capitalbikeshare-tripdata.zip"
+  ],
+  "duration_seconds": {
+    "minimum": 64.635,
+    "maximum": 2650.523,
+    "average": 808.4713019999999
+  },
+  "monthly_trip_counts": {
+    "2025-06": 500
+  },
+  "csv_sha256": "9e9546fa36d2ce31e5c70687d8dd10030c9348328a2fd7814d75e21c4f45c00f"
+}

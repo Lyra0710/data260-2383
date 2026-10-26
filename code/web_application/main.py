@@ -1,4 +1,6 @@
 import os
+import sys
+from pathlib import Path
 
 import uvicorn
 from db import (
@@ -28,6 +30,12 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as DbSession
 from sqlalchemy.orm import selectinload
 
+CODE_ROOT = Path(__file__).resolve().parents[1]
+if str(CODE_ROOT) not in sys.path:
+    sys.path.insert(0, str(CODE_ROOT))
+
+from bike_share.web import router as bike_share_router  # noqa: E402
+
 app = FastAPI(
     title="Community Sports League Fixtures",
 )
@@ -44,6 +52,7 @@ app.include_router(auth_router)
 app.include_router(document_fixtures.router)
 app.include_router(memory.router)
 app.include_router(file_memory.router)
+app.include_router(bike_share_router)
 
 
 @app.on_event("startup")

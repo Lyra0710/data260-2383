@@ -1,0 +1,12 @@
+{
+  "pricing": {
+    "source_url": "https://capitalbikeshare.com/pricing",
+    "accessed_at": "2026-10-26T20:42:44.146935+00:00",
+    "sha256": "222c8070abc52f0ce9b2a922a736389737b05ee873efcce95d90e4055267d341"
+  },
+  "30_day_membership": {
+    "source_url": "https://help.capitalbikeshare.com/hc/en-us/articles/360039401111-30-Day-Membership",
+    "accessed_at": "2026-10-26T20:42:44.391990+00:00",
+    "sha256": "fa591297753bbf6f29a02000e828b8be8f3f15da7aaaa81e6d6bdd11f8805ba8"
+  }
+}

@@ -26,3 +26,10 @@ Attempts: 21 across three fixed verification tasks
 | Tokens | 4,017 | 4,017 |
 | Latency (ms) | 29,059.52 | 24,111.08 |
 | Verifier false rejections | 0 | 0 |
+
+## Part 4 — Capital Bikeshare Scenarios
+
+| Scenario | Decision | Pay Per Ride/Minute | 30-Day Membership | Steps | Stop reason |
+|---|---|---:|---:|---:|---|
+| Membership wins | Buy Monthly Membership | $1,547.15 | $25.00 | 5 | success |
+| Pay-per-use wins | Pay Per Ride/Minute | $632.60 | $900.00 | 5 | success |
