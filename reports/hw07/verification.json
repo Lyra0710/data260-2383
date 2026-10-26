@@ -1,0 +1,42 @@
+{
+  "homework": "HW7",
+  "sid4": "2383",
+  "commit_hash": "d869151d690f4b39e6e3d0bd41e4bc02e90b7d92",
+  "seed": 2383,
+  "verify_seed": 262383,
+  "model_configuration": {
+    "chat_model": "qwen3:8b",
+    "embedding_model": "nomic-embed-text",
+    "agent_max_steps": 6,
+    "agent_max_repairs": 1
+  },
+  "hardware": "macOS-26.6.2-arm64-arm-64bit",
+  "checks": [
+    {
+      "name": "backend root",
+      "status": "pass",
+      "details": "GET / returned the expected API message."
+    },
+    {
+      "name": "JWT login",
+      "status": "pass",
+      "details": "Valid login returned a token and invalid login returned HTTP 401."
+    },
+    {
+      "name": "bounded agent loop",
+      "status": "pass",
+      "details": "Bounded agent completed a two-tool verification task."
+    },
+    {
+      "name": "file tools and safety gate",
+      "status": "pass",
+      "details": "File-tool integration and all ten safety-gate expectations passed."
+    },
+    {
+      "name": "required raw artifacts",
+      "status": "pass",
+      "details": "Found 7 required HW7 raw artifacts."
+    }
+  ],
+  "overall_status": "pass"
+}
