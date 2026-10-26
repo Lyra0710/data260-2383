@@ -1,21 +1,6 @@
-from dbm import dumb
-from fastapi import Depends, FastAPI, HTTPException, Query
-from fastapi.encoders import jsonable_encoder
-from fastapi.middleware.cors import CORSMiddleware
+import os
 
-from schemas import (
-    FixtureCreate,
-    FixtureOut,
-    FixtureUpdate,
-    RelatedItemOut,
-    VenueCreate,
-    VenueOut,
-    VenueUpdate,
-)
-
-from sqlalchemy.orm import Session as DbSession, selectinload
-from fastapi.responses import JSONResponse
-import models
+import uvicorn
 from db import (
     Base,
     engine,
@@ -23,13 +8,25 @@ from db import (
     get_sql_query_count,
     reset_sql_query_count,
 )
+from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi.encoders import jsonable_encoder
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from models import Fixture, User, Venue
-from routers.auth import get_current_user, router as auth_router
-import os
-import uvicorn
 from routers import document_fixtures, file_memory, memory
+from routers.auth import get_current_user, require_roles
+from routers.auth import router as auth_router
+from schemas import (
+    FixtureCreate,
+    FixtureOut,
+    FixtureUpdate,
+    VenueCreate,
+    VenueOut,
+    VenueUpdate,
+)
 from sqlalchemy.exc import IntegrityError
-from datetime import datetime
+from sqlalchemy.orm import Session as DbSession
+from sqlalchemy.orm import selectinload
 
 app = FastAPI(
     title="Community Sports League Fixtures",
@@ -48,11 +45,10 @@ app.include_router(document_fixtures.router)
 app.include_router(memory.router)
 app.include_router(file_memory.router)
 
+
 @app.on_event("startup")
 def create_tables():
     Base.metadata.create_all(bind=engine)
-
-
 
 
 def fixture_to_dict(fixture: Fixture):
@@ -75,6 +71,7 @@ def fixture_to_dict(fixture: Fixture):
         ],
     }
 
+
 def venue_to_dict(venue: Venue):
     return {
         "id": venue.id,
@@ -85,26 +82,24 @@ def venue_to_dict(venue: Venue):
         "updated_at": venue.updated_at,
     }
 
+
 def fixture_list_response(fixtures):
-    response_data = [
-        fixture_to_dict(fixture)
-        for fixture in fixtures
-    ]
+    response_data = [fixture_to_dict(fixture) for fixture in fixtures]
 
     return JSONResponse(
         content=jsonable_encoder(response_data),
         headers={
-            "X-SQL-Query-Count": str(
-                get_sql_query_count()
-            ),
+            "X-SQL-Query-Count": str(get_sql_query_count()),
         },
     )
+
 
 @app.get("/")
 def root():
     return {
         "message": "Community Sports League Fixtures API",
     }
+
 
 @app.get("/api/fixtures", response_model=list[FixtureOut])
 def list_fixtures(
@@ -113,7 +108,7 @@ def list_fixtures(
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
-    offset = (page - 1) * page_size     
+    offset = (page - 1) * page_size
     reset_sql_query_count()
     fixtures = (
         db.query(Fixture)
@@ -126,8 +121,10 @@ def list_fixtures(
 
     return fixture_list_response(fixtures)
 
+
 @app.get("/api/fixtures/naive", response_model=list[FixtureOut])
-def list_fixtures_naive( # Without selectinload, SQLAlchemy waits until the code asks for fixture.related_items, then it queries the database separately for that one fixture.
+# Without selectinload, accessing related_items triggers a query for each fixture.
+def list_fixtures_naive(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=10, ge=1, le=200),
     db: DbSession = Depends(get_db),
@@ -136,14 +133,11 @@ def list_fixtures_naive( # Without selectinload, SQLAlchemy waits until the code
     offset = (page - 1) * page_size
     reset_sql_query_count()
     fixtures = (
-        db.query(Fixture)
-        .order_by(Fixture.id)
-        .offset(offset)
-        .limit(page_size)
-        .all()
+        db.query(Fixture).order_by(Fixture.id).offset(offset).limit(page_size).all()
     )
 
     return fixture_list_response(fixtures)
+
 
 @app.get("/api/fixtures/{fixture_id}", response_model=FixtureOut)
 def get_fixture(
@@ -171,7 +165,7 @@ def get_fixture(
 def create_fixture(
     request_data: FixtureCreate,
     db: DbSession = Depends(get_db),
-    user: User = Depends(get_current_user),
+    user: User = Depends(require_roles({"writer", "moderator"})),
 ):
     venue = db.get(Venue, request_data.venue_id)
 
@@ -208,7 +202,7 @@ def update_fixture(
     fixture_id: int,
     request_data: FixtureUpdate,
     db: DbSession = Depends(get_db),
-    user: User = Depends(get_current_user),
+    user: User = Depends(require_roles({"writer", "moderator"})),
 ):
     fixture = db.get(Fixture, fixture_id)
 
@@ -249,7 +243,7 @@ def update_fixture(
 def delete_fixture(
     fixture_id: int,
     db: DbSession = Depends(get_db),
-    user: User = Depends(get_current_user),
+    user: User = Depends(require_roles({"moderator"})),
 ):
     fixture = db.get(Fixture, fixture_id)
 
@@ -267,11 +261,12 @@ def delete_fixture(
         "id": fixture_id,
     }
 
+
 @app.post("/api/venues", status_code=201, response_model=VenueOut)
 def create_venue(
-    request_data: VenueCreate, # FastAPI reads the JSON request body and validates it using the VenueCreate Pydantic model.
-    db: DbSession = Depends(get_db), # database session using the existing get_db() dependency.
-    user: User = Depends(get_current_user),# checks that the user is logged in
+    request_data: VenueCreate,
+    db: DbSession = Depends(get_db),
+    user: User = Depends(require_roles({"writer", "moderator"})),
 ):
     venue = Venue(
         name=request_data.name,
@@ -300,20 +295,12 @@ def list_venues(
     db: DbSession = Depends(get_db),
     user: User = Depends(get_current_user),
 ):
-    offset = (page - 1) * page_size # calculates how many records to skip for the current page 
+    # Calculate how many records to skip for the current page.
+    offset = (page - 1) * page_size
 
-    venues = (
-        db.query(Venue)
-        .order_by(Venue.id)
-        .offset(offset)
-        .limit(page_size)
-        .all()
-    )
+    venues = db.query(Venue).order_by(Venue.id).offset(offset).limit(page_size).all()
 
-    return [
-        venue_to_dict(venue)
-        for venue in venues
-    ]
+    return [venue_to_dict(venue) for venue in venues]
 
 
 @app.get("/api/venues/{venue_id}", response_model=VenueOut)
@@ -338,7 +325,7 @@ def update_venue(
     venue_id: int,
     request_data: VenueUpdate,
     db: DbSession = Depends(get_db),
-    user: User = Depends(get_current_user),
+    user: User = Depends(require_roles({"writer", "moderator"})),
 ):
     venue = db.get(Venue, venue_id)
 
@@ -369,7 +356,7 @@ def update_venue(
 def delete_venue(
     venue_id: int,
     db: DbSession = Depends(get_db),
-    user: User = Depends(get_current_user),
+    user: User = Depends(require_roles({"moderator"})),
 ):
     venue = db.get(Venue, venue_id)
 
@@ -379,11 +366,7 @@ def delete_venue(
             detail="Venue not found",
         )
 
-    fixture_exists = (
-        db.query(Fixture)
-        .filter(Fixture.venue_id == venue_id)
-        .first()
-    )
+    fixture_exists = db.query(Fixture).filter(Fixture.venue_id == venue_id).first()
 
     if fixture_exists:
         raise HTTPException(
@@ -398,6 +381,7 @@ def delete_venue(
         "message": "Venue deleted",
         "id": venue_id,
     }
+
 
 @app.get("/api/venues/{venue_id}/fixtures")
 def list_fixtures_by_venue(
@@ -427,12 +411,10 @@ def list_fixtures_by_venue(
         .all()
     )
 
-    return [
-        fixture_to_dict(fixture)
-        for fixture in fixtures
-    ]
-if __name__ == "__main__":
+    return [fixture_to_dict(fixture) for fixture in fixtures]
 
+
+if __name__ == "__main__":
     uvicorn.run(
         app,
         port=int(os.environ["APP_PORT"]),
@@ -454,14 +436,15 @@ if __name__ == "__main__":
 # STATIC_DIR = APP_DIR / "static"
 
 # # Secret key for session signing
-# # SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-secret-key") # imported SECRET_KEY from secret.py instead of using a visible fallback code. 
+# # SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-secret-key")
+# # The older implementation imported its secret instead of using this fallback.
 
 # # Enable session support - required for auth
 # app.add_middleware(
 #     SessionMiddleware,
 #     secret_key=SECRET_KEY,
 #     https_only=True,
-#     # https_only = False, # temporarily added this for local test development. 
+#     # https_only = False, # temporarily added this for local test development.
 #     same_site="lax",
 #     max_age=3600
 # )
@@ -478,7 +461,7 @@ if __name__ == "__main__":
 # app.include_router(auth_router)
 
 
-# # previous home endpoint returns the older index.html file which is the form. 
+# # previous home endpoint returns the older index.html file which is the form.
 # @app.get("/fixtures")
 # async def fixtures_page():
 #     return FileResponse(APP_DIR / "static" / "index.html")
@@ -487,13 +470,17 @@ if __name__ == "__main__":
 # class Fixture(BaseModel):
 #     fixtureName: str
 #     teams: str
-# # hardcoded input ONLY for testing and to make sure deleting the highest record does not immidiately delte the record required for iD 1 update. 
+# # Hardcoded input used only for testing the former highest-ID delete behavior.
 # fixtures = [
-#     {"id": 1, "fixtureName": "Community Soccer Semifinal", "teams": "Falcons vs Tigers"}
+#     {
+#         "id": 1,
+#         "fixtureName": "Community Soccer Semifinal",
+#         "teams": "Falcons vs Tigers",
+#     }
 # ]
 
-# # fastapi uses class to read JSON request body and check if the required fields exist, and their types. 
-# # converts the JSON object to a python dict with the keys defined in the class. 
+# # FastAPI used this class to validate the older JSON request body.
+# # It converted the JSON object to a dictionary with these keys.
 # class FixtureCreate(BaseModel):
 #     fixtureName: str
 #     teams:str
@@ -527,7 +514,7 @@ if __name__ == "__main__":
 
 #     new_fixture = {
 #         "id": new_id,
-#         **fixture.model_dump() # unpacks the key-value pairs of the dictionary into this new dictionary
+#         **fixture.model_dump(),  # Unpack fixture fields into the new dictionary.
 #     }
 
 #     fixtures.append(new_fixture)

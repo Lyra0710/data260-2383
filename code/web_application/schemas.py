@@ -3,6 +3,8 @@ from enum import Enum
 from typing import Literal
 
 from pydantic import BaseModel, Field
+
+
 class VenueCreate(BaseModel):
     name: str = Field(min_length=1, max_length=255)
     address: str = Field(min_length=1, max_length=500)
@@ -41,6 +43,7 @@ class FixtureCreate(BaseModel):
 class FixtureUpdate(FixtureCreate):
     pass
 
+
 class RelatedItemOut(BaseModel):
     id: int
     label: str
@@ -66,6 +69,7 @@ class FixtureOut(BaseModel):
     created_at: datetime
     updated_at: datetime
     related_items: list[RelatedItemOut] = []
+
 
 class FixtureStatus(str, Enum):
     scheduled = "scheduled"
@@ -130,3 +134,13 @@ class ChatResponse(BaseModel):
 class FileMemoryCommandRequest(BaseModel):
     command: Literal["/memory", "/compact", "/dream", "/help"]
     recent_messages: list[str] = Field(default_factory=list, max_length=20)
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class CurrentUserResponse(BaseModel):
+    username: str
+    role: Literal["reader", "writer", "moderator"]

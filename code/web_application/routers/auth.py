@@ -1,340 +1,111 @@
-from datetime import datetime, timedelta
-import secrets
+"""JWT authentication and role-based authorization for the fixtures API."""
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Response
+import os
+from datetime import datetime, timedelta, timezone
+from typing import Callable
+
+import jwt
+from db import get_db
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from models import User
 from pwdlib import PasswordHash
-from pydantic import BaseModel
+from schemas import CurrentUserResponse, TokenResponse
 from sqlalchemy.orm import Session as DbSession
 
-from db import get_db
-from models import Session, User
-
-
-router = APIRouter()
+router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 password_hash = PasswordHash.recommended()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
-SESSION_COOKIE_NAME = "s2383_session"
-SESSION_DURATION = timedelta(hours=1)
-
-
-class LoginRequest(BaseModel):
-    email: str
-    password: str
+JWT_ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
-class RegisterRequest(BaseModel):
-    name: str
-    email: str
-    password: str
+def jwt_secret_key() -> str:
+    secret = os.getenv("JWT_SECRET_KEY")
+    if not secret:
+        raise RuntimeError("JWT_SECRET_KEY is not configured.")
+    return secret
+
+
+def create_access_token(username: str) -> str:
+    expires_at = datetime.now(timezone.utc) + timedelta(
+        minutes=ACCESS_TOKEN_EXPIRE_MINUTES
+    )
+    return jwt.encode(
+        {"sub": username, "exp": expires_at},
+        jwt_secret_key(),
+        algorithm=JWT_ALGORITHM,
+    )
+
+
+def credentials_exception() -> HTTPException:
+    return HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
 
 
 def get_current_user(
-    request: Request,
+    token: str = Depends(oauth2_scheme),
     db: DbSession = Depends(get_db),
 ) -> User:
-    session_token = request.cookies.get(SESSION_COOKIE_NAME)
-
-    if not session_token:
-        raise HTTPException(
-            status_code=401,
-            detail="Login required",
+    try:
+        payload = jwt.decode(
+            token,
+            jwt_secret_key(),
+            algorithms=[JWT_ALGORITHM],
         )
+        username = payload.get("sub")
+        if not isinstance(username, str):
+            raise credentials_exception()
+    except jwt.InvalidTokenError as error:
+        raise credentials_exception() from error
 
-    session_record = db.get(Session, session_token)
+    user = db.query(User).filter(User.username == username).first()
+    if user is None:
+        raise credentials_exception()
 
-    if not session_record:
-        raise HTTPException(
-            status_code=401,
-            detail="Login required",
-        )
-
-    if session_record.expires_at <= datetime.utcnow():
-        db.delete(session_record)
-        db.commit()
-
-        raise HTTPException(
-            status_code=401,
-            detail="Login required",
-        )
-
-    return session_record.user
+    return user
 
 
-@router.post("/api/register")
-def register(
-    request_data: RegisterRequest,
-    db: DbSession = Depends(get_db),
-):
-    existing_user = (
-        db.query(User)
-        .filter(User.email == request_data.email)
-        .first()
-    )
+def require_roles(allowed_roles: set[str]) -> Callable:
+    def role_checker(user: User = Depends(get_current_user)) -> User:
+        if user.role not in allowed_roles:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Insufficient role privileges",
+            )
+        return user
 
-    if existing_user:
-        raise HTTPException(
-            status_code=409,
-            detail="Email is already registered",
-        )
-
-    user = User(
-        name=request_data.name,
-        email=request_data.email,
-        password_hash=password_hash.hash(
-            request_data.password
-        ),
-    )
-
-    db.add(user)
-    db.commit()
-    db.refresh(user)
-
-    return {
-        "id": user.id,
-        "name": user.name,
-        "email": user.email,
-    }
+    return role_checker
 
 
-@router.post("/api/login")
+@router.post("/login", response_model=TokenResponse)
 def login(
-    request_data: LoginRequest,
-    response: Response,
+    form_data: OAuth2PasswordRequestForm = Depends(),
     db: DbSession = Depends(get_db),
 ):
-    user = (
-        db.query(User)
-        .filter(User.email == request_data.email)
-        .first()
-    )
+    user = db.query(User).filter(User.username == form_data.username).first()
 
-    if not user or not password_hash.verify(
-        request_data.password,
+    if user is None or not password_hash.verify(
+        form_data.password,
         user.password_hash,
     ):
         raise HTTPException(
-            status_code=401,
-            detail="Invalid email or password",
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},
         )
 
-    session_token = secrets.token_urlsafe(32)
-
-    session_record = Session(
-        id=session_token,
-        user_id=user.id,
-        expires_at=datetime.utcnow() + SESSION_DURATION,
-    )
-
-    db.add(session_record)
-    db.commit()
-
-    response.set_cookie(
-        key=SESSION_COOKIE_NAME,
-        value=session_token,
-        httponly=True,
-        samesite="lax",
-        secure=False,
-        max_age=int(SESSION_DURATION.total_seconds()),
-    )
-
     return {
-        "message": "Login successful",
-        "name": user.name,
-        "email": user.email,
+        "access_token": create_access_token(user.username),
+        "token_type": "bearer",
     }
 
 
-@router.post("/api/logout")
-def logout(
-    request: Request,
-    response: Response,
-    db: DbSession = Depends(get_db),
-):
-    session_token = request.cookies.get(SESSION_COOKIE_NAME)
-
-    if session_token:
-        session_record = db.get(Session, session_token)
-
-        if session_record:
-            db.delete(session_record)
-            db.commit()
-
-    response.delete_cookie(SESSION_COOKIE_NAME)
-
-    return {"message": "Logged out"}
-
-
-@router.get("/api/me")
-def current_user(
-    user: User = Depends(get_current_user),
-):
-    return {
-        "id": user.id,
-        "name": user.name,
-        "email": user.email,
-    }
-
-# -------------- HOMEWORK 3 old demo-style login----------------------------------------------
-
-# from urllib3.util import request
-# from fastapi import APIRouter, Request, Form
-# from fastapi.responses import RedirectResponse
-# from fastapi.templating import Jinja2Templates
-# from starlette.status import HTTP_302_FOUND
-# from pathlib import Path
-# import time 
-# # IDLE_TIMEOUT_SECONDS = 60 # temporary to test 
-# IDLE_TIMEOUT_SECONDS = 3600
-
-# # Create a router object
-# # This behaves like a mini FastAPI app
-# router = APIRouter()
-
-# # Configure Jinja2 templates directory
-# APP_DIR = Path(__file__).resolve().parent.parent
-# templates = Jinja2Templates(
-#     directory=str(APP_DIR / "templates")
-# )
-
-
-# # Hardcoded credentials for demo purposes only
-# # In real applications, credentials come from a database
-# VALID_USERNAME = "admin"
-# VALID_PASSWORD = "password"
-
-
-# @router.get("/")
-# def home(request: Request):
-#     """
-#     Home page route.
-
-#     - Checks if a user is logged in using the session
-#     - Passes user info to the template
-#     """
-#     user = request.session.get("user")
-
-#     return templates.TemplateResponse(
-#         request=request,
-#         name="index.html",
-#         context={
-#             "user": user
-#         }
-#     )
-
-
-# @router.get("/login")
-# def login_page(request: Request):
-#     """
-#     Displays the login form.
-
-#     If the user is already logged in,
-#     the template can choose what to display.
-#     """
-#     user = request.session.get("user")
-#     error = request.session.pop("error", None)
-
-#     return templates.TemplateResponse(
-#         request=request,
-#         name="login.html",
-#         context={
-#             "request": request,
-#             "user": user,
-#             "error": error
-#         }
-#     )
-
-
-# @router.post("/login")
-# def login(request: Request, username: str = Form(...), password: str = Form(...)):
-#     """
-#     Handles login form submission.
-
-#     - Reads username and password from the form
-#     - Validates credentials
-#     - Stores user info in session if valid
-#     """
-#     if username == VALID_USERNAME and password == VALID_PASSWORD:
-#         # Store logged-in user in session
-#         request.session["user"] = username
-#         request.session["last_activity"] = time.time()
-#         # Redirect user to dashboard
-#         return RedirectResponse(
-#             url="/dashboard",
-#             status_code=HTTP_302_FOUND
-#         )
-
-#     # If credentials are invalid:
-#     # Redirect back to login page
-#     request.session["error"] = "Invalid username or password"
-#     # NOTE:
-#     # No error message is shown intentionally.
-#     # Students are expected to add Bootstrap alerts.
-#     return RedirectResponse(
-#         url="/login",
-#         status_code=HTTP_302_FOUND
-#     )
-
-
-# @router.get("/dashboard")
-# def dashboard(request: Request):
-#     """
-#     Protected route.
-
-#     - Only accessible if user is logged in
-#     - Redirects to login page if session is missing
-#     """
-#     # user = request.session.get("user")
-#     user = get_active_user(request) # call the middleware function
-
-#     # If user is not logged in, block access
-#     if not user:
-#         return RedirectResponse(
-#             url="/login",
-#             status_code=HTTP_302_FOUND
-#         )
-
-#     # If user is logged in, render dashboard
-#     return templates.TemplateResponse(
-#         request=request,
-#         name="dashboard.html",
-#         context={
-#             "request": request,
-#             "user": user
-#         }
-#     )
-
-
-# @router.get("/logout")
-# def logout(request: Request):
-#     """
-#     Logs the user out.
-
-#     - Clears all session data
-#     - Redirects back to home page
-#     """
-#     request.session.clear()
-
-#     return RedirectResponse(
-#         url="/",
-#         status_code=HTTP_302_FOUND
-#     )
-
-
-# # Middleware helpers 
-# def get_active_user(request: Request):
-#     user = request.session.get("user") # checks if the user is logged in
-#     last_activity = request.session.get("last_activity") # checks when the user was last active 
-
-#     if not user or not last_activity:
-#         return None
-
-#     if time.time() - last_activity > IDLE_TIMEOUT_SECONDS:
-#         request.session.clear() # if user is inactive for too long, clear the session
-#         return None
-
-#     # Refresh activity time while the session is active
-#     request.session["last_activity"] = time.time() # if user is active, refresh the last activity time 
-
-#     return user
-
+@router.get("/me", response_model=CurrentUserResponse)
+def current_user(user: User = Depends(get_current_user)):
+    return {"username": user.username, "role": user.role}
