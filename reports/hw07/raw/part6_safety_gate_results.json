@@ -1,0 +1,87 @@
+{
+  "integration": {
+    "glob_matches": [
+      "alpha.py",
+      "beta.py",
+      "gamma.py"
+    ],
+    "search_matches": [
+      {
+        "path": "beta.py",
+        "line": 1,
+        "text": "DEBUG = True"
+      }
+    ],
+    "read_result": {
+      "path": "/private/var/folders/xg/26tfzb5j3fscp74_pr_94pph0000gn/T/data260_hw7_part6_8ya9f5ts/beta.py",
+      "content": "DEBUG = True\nprint('debug enabled')\n",
+      "line_count": 2
+    },
+    "edit_diff": "--- alpha.py\n+++ alpha.py\n@@ -1 +1 @@\n-INFO = True\n+INFO_LEVEL = True\n"
+  },
+  "safety_gate": {
+    "results": [
+      {
+        "command": "pwd",
+        "expected": "allow",
+        "allowed": true,
+        "reason": "Command matches SAFE_PREFIXES."
+      },
+      {
+        "command": "ls",
+        "expected": "allow",
+        "allowed": true,
+        "reason": "Command matches SAFE_PREFIXES."
+      },
+      {
+        "command": "rg DEBUG",
+        "expected": "allow",
+        "allowed": true,
+        "reason": "Command matches SAFE_PREFIXES."
+      },
+      {
+        "command": "python --version",
+        "expected": "allow",
+        "allowed": true,
+        "reason": "Command matches SAFE_PREFIXES."
+      },
+      {
+        "command": "git status",
+        "expected": "allow",
+        "allowed": true,
+        "reason": "Command matches SAFE_PREFIXES."
+      },
+      {
+        "command": "git reset --hard",
+        "expected": "block",
+        "allowed": false,
+        "reason": "Destructive command needs explicit confirmation."
+      },
+      {
+        "command": "rm -rf temporary_data",
+        "expected": "block",
+        "allowed": false,
+        "reason": "Destructive command needs explicit confirmation."
+      },
+      {
+        "command": "sudo whoami",
+        "expected": "block",
+        "allowed": false,
+        "reason": "Destructive command needs explicit confirmation."
+      },
+      {
+        "command": "chmod 777 alpha.py",
+        "expected": "block",
+        "allowed": false,
+        "reason": "Destructive command needs explicit confirmation."
+      },
+      {
+        "command": "dd if=/dev/zero of=/dev/disk1",
+        "expected": "block",
+        "allowed": false,
+        "reason": "Destructive command needs explicit confirmation."
+      }
+    ],
+    "all_expectations_passed": true
+  }
+}
