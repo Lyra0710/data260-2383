@@ -1,33 +1,36 @@
+import asyncio
+import json
 import logging
 import os
-import sys
-from dotenv import load_dotenv
-import httpx
-from mcp.server.fastmcp import FastMCP
-import asyncio
 import random
-import json
+import sys
+
+import httpx
+from dotenv import load_dotenv
+from mcp.server.fastmcp import FastMCP
 
 logging.basicConfig(stream=sys.stderr, level=logging.INFO)
 
-mcp = FastMCP("domain")
-
-API_BASE_URL = os.getenv(
-    "API_BASE_URL",
-    "http://127.0.0.1:8583/api",
-)
 load_dotenv()
 
-API_EMAIL = os.getenv("API_EMAIL")
+mcp = FastMCP("domain")
+
+API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8583/api")
+AUTH_LOGIN_URL = os.getenv(
+    "AUTH_LOGIN_URL",
+    "http://127.0.0.1:8583/auth/login",
+)
+API_USERNAME = os.getenv("API_USERNAME")
 API_PASSWORD = os.getenv("API_PASSWORD")
 
-VERIFY_SEED = 2383
+VERIFY_SEED = 262383
 FAILURE_RATE = 0.0
 
 MAX_RETRIES = 2
 BACKOFF_SECONDS = 0.2
 
 random_generator = random.Random(VERIFY_SEED)
+
 
 def success(data):
     return {
@@ -44,6 +47,7 @@ def failure(message):
         "error": message,
     }
 
+
 async def run_with_retries(operation):
     for attempt in range(MAX_RETRIES + 1):
         logging.info("Attempt %d", attempt + 1)
@@ -58,30 +62,34 @@ async def run_with_retries(operation):
             if attempt == MAX_RETRIES:
                 raise
 
-            delay = BACKOFF_SECONDS * (2 ** attempt)
+            delay = BACKOFF_SECONDS * (2**attempt)
             logging.info("Retrying after %.2f seconds", delay)
             await asyncio.sleep(delay)
 
+
 async def get_json(path, params=None):
-    if not API_EMAIL or not API_PASSWORD:
-        return None, "API_EMAIL and API_PASSWORD are not configured."
+    if not API_USERNAME or not API_PASSWORD:
+        return None, "API_USERNAME and API_PASSWORD are not configured."
 
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
+
             async def request():
                 login_response = await client.post(
-                    f"{API_BASE_URL}/login",
-                    json={
-                        "email": API_EMAIL,
+                    AUTH_LOGIN_URL,
+                    data={
+                        "username": API_USERNAME,
                         "password": API_PASSWORD,
                     },
                 )
 
                 login_response.raise_for_status()
+                access_token = login_response.json()["access_token"]
 
                 return await client.get(
                     f"{API_BASE_URL}{path}",
                     params=params,
+                    headers={"Authorization": f"Bearer {access_token}"},
                 )
 
             response = await run_with_retries(request)
@@ -100,16 +108,14 @@ async def get_json(path, params=None):
         logging.error("API returned an error: %s", error)
         return None, "The domain API returned an error."
 
+
 def get_items(payload):
     if isinstance(payload, list):
         return payload
 
     if isinstance(payload, dict):
         return (
-            payload.get("items")
-            or payload.get("data")
-            or payload.get("fixtures")
-            or []
+            payload.get("items") or payload.get("data") or payload.get("fixtures") or []
         )
 
     return []
@@ -118,7 +124,7 @@ def get_items(payload):
 @mcp.tool()
 async def search_fixtures(query: str, limit: int = 10):
     """Search fixtures by name, teams, or fixture code."""
-    query = query.strip().lower()
+    query = query.strip().lower().rstrip(".,!?")
 
     if not query:
         return failure("query must not be empty.")
@@ -148,7 +154,6 @@ async def search_fixtures(query: str, limit: int = 10):
         if query in searchable_text:
             matches.append(fixture)
     return success(matches[:limit])
-    
 
 
 @mcp.tool()
@@ -182,21 +187,18 @@ async def venue_fixture_summary(venue_id: int):
     fixtures = get_items(payload)
 
     total_available_slots = sum(
-        int(fixture.get("available_slots", 0))
-        for fixture in fixtures
+        int(fixture.get("available_slots", 0)) for fixture in fixtures
     )
 
     summary = {
         "venue_id": venue_id,
         "fixture_count": len(fixtures),
         "total_available_slots": total_available_slots,
-        "fixture_names": [
-            fixture.get("fixture_name")
-            for fixture in fixtures
-        ],
+        "fixture_names": [fixture.get("fixture_name") for fixture in fixtures],
     }
 
     return success(summary)
+
 
 async def execute_tool(name: str, inputs: dict):
     """Safely execute one of the three domain tools."""
@@ -213,11 +215,7 @@ async def execute_tool(name: str, inputs: dict):
         ]
 
         if any(term in query for term in blocked_terms):
-            return json.dumps(
-                failure(
-                    "Destructive commands are not allowed."
-                )
-            )
+            return json.dumps(failure("Destructive commands are not allowed."))
 
     try:
         if name == "search_fixtures":
@@ -237,9 +235,7 @@ async def execute_tool(name: str, inputs: dict):
     except Exception as error:
         logging.error("execute_tool failed: %s", error)
 
-        return json.dumps(
-            failure("Tool execution failed.")
-        )
+        return json.dumps(failure("Tool execution failed."))
 
 
 if __name__ == "__main__":

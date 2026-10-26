@@ -2,12 +2,13 @@ import asyncio
 import json
 import sys
 from pathlib import Path
+
 from agent import run_agent
+from langchain_core.messages import AIMessage
 
 sys.path.insert(0, str(Path(__file__).parent))
 
 import domain_server
-
 
 FIXTURE = {
     "id": 1,
@@ -143,14 +144,21 @@ async def main():
         print("FAIL: MockModel stops at max_steps")
 
     print(f"\n{passed}/8 tests passed")
-# mock 
+
+
+# mock
 async def mock_model(messages):
-    return json.dumps(
-        {
-            "action": "tool",
-            "tool": "fixture_details",
-            "inputs": {"fixture_id": 1},
-        }
+    return AIMessage(
+        content="",
+        tool_calls=[
+            {
+                "name": "fixture_details",
+                "args": {"fixture_id": 1},
+                "id": "mock-call",
+            }
+        ],
     )
+
+
 if __name__ == "__main__":
     asyncio.run(main())
