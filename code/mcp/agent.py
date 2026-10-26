@@ -144,6 +144,8 @@ async def run_agent(
     *,
     minimum_tool_calls: int = 0,
     max_steps: int = MAX_STEPS,
+    max_tool_calls: int | None = None,
+    max_total_tokens: int | None = None,
     model_call=ask_model,
 ) -> dict:
     messages = [
@@ -178,6 +180,12 @@ async def run_agent(
             "tokens": usage,
         }
 
+        if max_total_tokens is not None and total_tokens > max_total_tokens:
+            step_record["error"] = "Token budget exhausted."
+            steps.append(step_record)
+            stop_reason = "token_budget"
+            break
+
         if not calls:
             if tool_calls < minimum_tool_calls:
                 problem = (
@@ -204,6 +212,11 @@ async def run_agent(
         messages.append(response)
         invalid_call = False
         for call in calls:
+            if max_tool_calls is not None and tool_calls >= max_tool_calls:
+                step_record["error"] = "Tool-call budget exhausted."
+                stop_reason = "tool_budget"
+                break
+
             name = call.get("name")
             arguments = call.get("args")
             error = validate_tool_call(name, arguments)
@@ -231,6 +244,8 @@ async def run_agent(
             )
 
         steps.append(step_record)
+        if stop_reason == "tool_budget":
+            break
         if invalid_call:
             problem = "; ".join(step_record["errors"])
             if repair_count >= MAX_REPAIRS:
