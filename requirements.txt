@@ -44,3 +44,5 @@ PyJWT==2.9.0
 python-multipart==0.0.9
 ruff==0.6.5
 pre-commit==3.8.0
+confluent-kafka==2.12.2
+aiokafka
