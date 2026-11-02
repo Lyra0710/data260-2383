@@ -12,3 +12,9 @@ PREFIX = "s2383"
 # Part 1 request/response topics.
 ENTITY_REQUEST_TOPIC = f"{PREFIX}_entity_requests"
 ENTITY_RESPONSE_TOPIC = f"{PREFIX}_entity_responses"
+
+# Part 2 pipeline topics.
+INBOX_TOPIC = f"{PREFIX}_inbox"
+TASKS_TOPIC = f"{PREFIX}_tasks"
+DRAFTS_TOPIC = f"{PREFIX}_drafts"
+FINAL_TOPIC = f"{PREFIX}_final"

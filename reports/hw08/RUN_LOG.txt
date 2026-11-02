@@ -141,3 +141,56 @@ fastapi-1  | INFO:     Waiting for application startup.
 fastapi-1  | FastAPI service available at http://127.0.0.1:8583
 fastapi-1  | INFO:     Application startup complete.
 fastapi-1  | INFO:     Uvicorn running on http://0.0.0.0:8583 (Press CTRL+C to quit)
+-------
+(.venv) annie@mac data260-2383 % docker exec -it kafka bash
+eccc1dfc0b0d:/$
+alias kt='/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092'
+
+kt --create --topic s2383_inbox --partitions 1 --replication-factor 1
+
+kt --create --topic s2383_tasks --partitions 2 --replication-factor 1
+
+kt --create --topic s2383_drafts --partitions 1 --replication-factor 1
+
+kt --create --topic s2383_final --partitions 1 --replication-factor 1
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic s2383_inbox.
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic s2383_tasks.
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic s2383_drafts.
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic s2383_final.
+eccc1dfc0b0d:/$ kt --list
+__consumer_offsets
+s2383_drafts
+s2383_entity_requests
+s2383_entity_responses
+s2383_final
+s2383_inbox
+s2383_tasks
+------------------
+Mon Nov  2 11:18:24 PST 2026
+(.venv) annie@Siris-MacBook-Pro web_application % python planner.py
+Student: Ananya
+Planner is ready and listening...
+Planner received: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'question': 'How should a league manager schedule a weekday-evening tennis fixture at Spartan Tennis Complex?'}
+Planner sent: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'question': 'How should a league manager schedule a weekday-evening tennis fixture at Spartan Tennis Complex?', 'plan': '1. Check the availability of the tennis courts at Spartan Tennis Complex for the desired weekday evening time.  \n2. Confirm the availability of players and coaches for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.'}
+
+(.venv) annie@mac web_application % python writer.py
+Student: Ananya
+Writer is ready and listening...
+Writer received: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'question': 'How should a league manager schedule a weekday-evening tennis fixture at Spartan Tennis Complex?', 'plan': '1. Check the availability of the tennis courts at Spartan Tennis Complex for the desired weekday evening time.  \n2. Confirm the availability of players and coaches for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.'}
+Writer sent: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'question': 'How should a league manager schedule a weekday-evening tennis fixture at Spartan Tennis Complex?', 'plan': '1. Check the availability of the tennis courts at Spartan Tennis Complex for the desired weekday evening time.  \n2. Confirm the availability of players and coaches for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.', 'draft': '1. Contact Spartan Tennis Complex to check court availability for the desired weekday evening time.  \n2. Reach out to players and coaches to confirm their availability for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.'}
+
+(.venv) annie@mac web_application % python reviewer.py
+Student: Ananya
+Reviewer is ready and listening...
+Reviewer received: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'question': 'How should a league manager schedule a weekday-evening tennis fixture at Spartan Tennis Complex?', 'plan': '1. Check the availability of the tennis courts at Spartan Tennis Complex for the desired weekday evening time.  \n2. Confirm the availability of players and coaches for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.', 'draft': '1. Contact Spartan Tennis Complex to check court availability for the desired weekday evening time.  \n2. Reach out to players and coaches to confirm their availability for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.'}
+Reviewer sent: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'status': 'approved', 'answer': '1. Contact Spartan Tennis Complex to check court availability for the desired weekday evening time.  \n2. Coordinate with players and coaches to confirm their availability for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.'}
+
+(.venv) annie@mac web_application % python send_question.py
+Student: Ananya
+Question sender sent: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'question': 'How should a league manager schedule a weekday-evening tennis fixture at Spartan Tennis Complex?'}
+Question sender received final: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'status': 'approved', 'answer': '1. Contact Spartan Tennis Complex to check court availability for the desired weekday evening time.  \n2. Coordinate with players and coaches to confirm their availability for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.'}
+
