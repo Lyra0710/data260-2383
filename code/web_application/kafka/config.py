@@ -8,6 +8,7 @@ KAFKA_BOOTSTRAP_SERVERS = os.getenv(
 
 # Student-specific Kafka topic prefix.
 PREFIX = "s2383"
+VERIFY_SEED = 262383
 
 # Part 1 request/response topics.
 ENTITY_REQUEST_TOPIC = f"{PREFIX}_entity_requests"
@@ -18,3 +19,6 @@ INBOX_TOPIC = f"{PREFIX}_inbox"
 TASKS_TOPIC = f"{PREFIX}_tasks"
 DRAFTS_TOPIC = f"{PREFIX}_drafts"
 FINAL_TOPIC = f"{PREFIX}_final"
+
+# Part 3 failure-handling topic.
+DEAD_LETTER_TOPIC = f"{PREFIX}_dead_letter"

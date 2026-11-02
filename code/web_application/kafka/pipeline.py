@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -11,6 +12,9 @@ if str(REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(REPOSITORY_ROOT))
 
 from src.model_client import complete  # noqa: E402
+
+IDEMPOTENCY_ENABLED = os.getenv("IDEMPOTENCY_ENABLED", "true").lower() == "true"
+PROCESSING_DELAY_SECONDS = int(os.getenv("PROCESSING_DELAY_SECONDS", "0"))
 
 
 def message_producer() -> AIOKafkaProducer:

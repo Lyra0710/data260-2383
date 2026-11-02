@@ -1,0 +1,26 @@
+{
+  "duplicate_delivery": {
+    "before_fix": {
+      "correlation_id": "12b64d45-1e4a-42d2-b3c7-90ef1f61585d",
+      "draft_side_effects": 2
+    },
+    "after_fix": {
+      "correlation_id": "23ccf642-7d4f-410b-b11a-0fc23ff65cb9",
+      "draft_side_effects": 1,
+      "duplicate_skipped": true
+    }
+  },
+  "consumer_death": {
+    "correlation_id": "8b3c54b3-300c-4d7f-a49a-23e01f920b36",
+    "writer_stopped_before_commit": true,
+    "redelivered_after_restart": true,
+    "draft_completed": true
+  },
+  "poison_message": {
+    "poison_correlation_id": "9aa015fc-eae8-4b64-a69d-aa36755ea05e",
+    "retry_count": 3,
+    "moved_to_dead_letter": true,
+    "valid_correlation_id": "8af8fda0-f676-4f0a-b8ff-3405c6650cc9",
+    "later_valid_task_completed": true
+  }
+}

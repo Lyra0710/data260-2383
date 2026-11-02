@@ -194,3 +194,280 @@ Student: Ananya
 Question sender sent: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'question': 'How should a league manager schedule a weekday-evening tennis fixture at Spartan Tennis Complex?'}
 Question sender received final: {'correlation_id': '05233b10-847a-4ed9-a5a3-be03351fd65b', 'status': 'approved', 'answer': '1. Contact Spartan Tennis Complex to check court availability for the desired weekday evening time.  \n2. Coordinate with players and coaches to confirm their availability for the scheduled time.  \n3. Finalize the schedule and send out the fixture details to all participants and the complex management.'}
 
+-------
+(.venv) annie@mac web_application % IDEMPOTENCY_ENABLED=false python writer.py
+Student: Ananya
+Writer is ready and listening...
+Writer received: {'correlation_id': '12b64d45-1e4a-42d2-b3c7-90ef1f61585d', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Writer sent: {'correlation_id': '12b64d45-1e4a-42d2-b3c7-90ef1f61585d', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+Writer received: {'correlation_id': '12b64d45-1e4a-42d2-b3c7-90ef1f61585d', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Writer sent: {'correlation_id': '12b64d45-1e4a-42d2-b3c7-90ef1f61585d', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+(.venv) annie@mac web_application % python duplicate_delivery_demo.py --expected-drafts 2
+Student: Ananya
+Duplicate-delivery test correlation_id: 12b64d45-1e4a-42d2-b3c7-90ef1f61585d
+Replay 1 sent: {'correlation_id': '12b64d45-1e4a-42d2-b3c7-90ef1f61585d', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Replay 2 sent: {'correlation_id': '12b64d45-1e4a-42d2-b3c7-90ef1f61585d', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Draft side effect 1: {'correlation_id': '12b64d45-1e4a-42d2-b3c7-90ef1f61585d', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+Draft side effect 2: {'correlation_id': '12b64d45-1e4a-42d2-b3c7-90ef1f61585d', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+Expected draft side effects observed: 2
+---------
+(.venv) annie@mac web_application % python writer.py
+Student: Ananya
+Writer is ready and listening...
+Writer received: {'correlation_id': '23ccf642-7d4f-410b-b11a-0fc23ff65cb9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Writer sent: {'correlation_id': '23ccf642-7d4f-410b-b11a-0fc23ff65cb9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+Writer received: {'correlation_id': '23ccf642-7d4f-410b-b11a-0fc23ff65cb9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Writer duplicate skipped: 23ccf642-7d4f-410b-b11a-0fc23ff65cb9
+(.venv) annie@mac web_application % python duplicate_delivery_demo.py --expected-drafts 1
+Student: Ananya
+Duplicate-delivery test correlation_id: 23ccf642-7d4f-410b-b11a-0fc23ff65cb9
+Replay 1 sent: {'correlation_id': '23ccf642-7d4f-410b-b11a-0fc23ff65cb9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Replay 2 sent: {'correlation_id': '23ccf642-7d4f-410b-b11a-0fc23ff65cb9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Draft side effect 1: {'correlation_id': '23ccf642-7d4f-410b-b11a-0fc23ff65cb9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+Expected draft side effects observed: 1
+---------
+(.venv) annie@mac web_application % PROCESSING_DELAY_SECONDS=30 python writer.py
+Student: Ananya
+Writer is ready and listening...
+Writer received: {'correlation_id': '8b3c54b3-300c-4d7f-a49a-23e01f920b36', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Writer processing delay: 30 seconds
+^CTraceback (most recent call last):
+  File "/Users/annie/.pyenv/versions/3.11.9/lib/python3.11/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/annie/.pyenv/versions/3.11.9/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/code/web_application/writer.py", line 37, in main
+    await asyncio.sleep(PROCESSING_DELAY_SECONDS)
+  File "/Users/annie/.pyenv/versions/3.11.9/lib/python3.11/asyncio/tasks.py", line 649, in sleep
+    return await future
+           ^^^^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/code/web_application/writer.py", line 63, in <module>
+    asyncio.run(main())
+  File "/Users/annie/.pyenv/versions/3.11.9/lib/python3.11/asyncio/runners.py", line 190, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/Users/annie/.pyenv/versions/3.11.9/lib/python3.11/asyncio/runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+(.venv) annie@mac web_application % PROCESSING_DELAY_SECONDS=30 python writer.py
+Student: Ananya
+Writer is ready and listening...
+Writer received: {'correlation_id': '8b3c54b3-300c-4d7f-a49a-23e01f920b36', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Writer processing delay: 30 seconds
+Writer sent: {'correlation_id': '8b3c54b3-300c-4d7f-a49a-23e01f920b36', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+
+(.venv) annie@mac web_application % python consumer_death_demo.py
+Student: Ananya
+Consumer-death test correlation_id: 8b3c54b3-300c-4d7f-a49a-23e01f920b36
+Task sent before Writer restart: {'correlation_id': '8b3c54b3-300c-4d7f-a49a-23e01f920b36', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Draft received after Writer restart: {'correlation_id': '8b3c54b3-300c-4d7f-a49a-23e01f920b36', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+-------
+(.venv) annie@mac web_application % docker exec -it kafka bash
+eccc1dfc0b0d:/$ alias kt='/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092'
+
+kt --create --topic s2383_dead_letter --partitions 1 --replication-factor 1
+
+exit
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic s2383_dead_letter.
+exit
+
+What's next:
+    Try Docker Debug for seamless, persistent debugging tools in any container or image → docker debug kafka
+    Learn more at https://docs.docker.com/go/debug-cli/
+
+(.venv) annie@mac web_application % python writer.py
+Student: Ananya
+Writer is ready and listening...
+Writer received: {'correlation_id': '9aa015fc-eae8-4b64-a69d-aa36755ea05e', 'question': 'This task intentionally fails.', 'plan': 'No plan is executed.', 'force_failure': True}
+Writer retry 1/3: 9aa015fc-eae8-4b64-a69d-aa36755ea05e
+Writer retry 2/3: 9aa015fc-eae8-4b64-a69d-aa36755ea05e
+Writer retry 3/3: 9aa015fc-eae8-4b64-a69d-aa36755ea05e
+Writer sent to dead letter: {'correlation_id': '9aa015fc-eae8-4b64-a69d-aa36755ea05e', 'error': 'Forced poison-message failure', 'retry_count': 3, 'original_message': {'correlation_id': '9aa015fc-eae8-4b64-a69d-aa36755ea05e', 'question': 'This task intentionally fails.', 'plan': 'No plan is executed.', 'force_failure': True}}
+Writer received: {'correlation_id': '8af8fda0-f676-4f0a-b8ff-3405c6650cc9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Writer sent: {'correlation_id': '8af8fda0-f676-4f0a-b8ff-3405c6650cc9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+
+(.venv) annie@mac web_application % python poison_message_demo.py
+Student: Ananya
+Poison task sent: {'correlation_id': '9aa015fc-eae8-4b64-a69d-aa36755ea05e', 'question': 'This task intentionally fails.', 'plan': 'No plan is executed.', 'force_failure': True}
+Valid task sent after poison task: {'correlation_id': '8af8fda0-f676-4f0a-b8ff-3405c6650cc9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.'}
+Dead-letter message received: {'correlation_id': '9aa015fc-eae8-4b64-a69d-aa36755ea05e', 'error': 'Forced poison-message failure', 'retry_count': 3, 'original_message': {'correlation_id': '9aa015fc-eae8-4b64-a69d-aa36755ea05e', 'question': 'This task intentionally fails.', 'plan': 'No plan is executed.', 'force_failure': True}}
+Later valid task completed: {'correlation_id': '8af8fda0-f676-4f0a-b8ff-3405c6650cc9', 'question': 'How should a league manager confirm a tennis fixture?', 'plan': '1. Confirm availability. 2. Notify participants. 3. Record details.', 'draft': 'First, check with the venue and players to confirm availability. Then, send a clear message to all participants with the date, time, and location. Finally, record the details in a shared calendar or spreadsheet for easy reference.'}
+
+------
+(.venv) annie@mac web_application % python ordering_writer.py --run unkeyed --worker-id writer-1
+Student: Ananya
+Ordering Writer writer-1 is ready for unkeyed run...
+Heartbeat failed for group s2383_ordering_unkeyed because it is rebalancing
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 1, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-1', 'partition': 0, 'offset': 7, 'processed_at_ns': 1793649442054816000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 2, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-2', 'partition': 0, 'offset': 8, 'processed_at_ns': 1793649442057015000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 3, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-3', 'partition': 0, 'offset': 9, 'processed_at_ns': 1793649442058844000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 8, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-8', 'partition': 0, 'offset': 10, 'processed_at_ns': 1793649442061816000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 9, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-9', 'partition': 0, 'offset': 11, 'processed_at_ns': 1793649442063890000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 10, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-10', 'partition': 0, 'offset': 12, 'processed_at_ns': 1793649442064650000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 13, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-13', 'partition': 0, 'offset': 13, 'processed_at_ns': 1793649442065834000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 14, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-14', 'partition': 0, 'offset': 14, 'processed_at_ns': 1793649442067150000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 15, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-15', 'partition': 0, 'offset': 15, 'processed_at_ns': 1793649442067776000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 18, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-18', 'partition': 0, 'offset': 16, 'processed_at_ns': 1793649442071280000}
+Ordering Writer writer-1 processed: {'run': 'unkeyed', 'worker_id': 'writer-1', 'sequence': 20, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-20', 'partition': 0, 'offset': 17, 'processed_at_ns': 1793649442072926000}
+(.venv) annie@mac web_application % python ordering_writer.py --run unkeyed --worker-id writer-2
+Student: Ananya
+Ordering Writer writer-2 is ready for unkeyed run...
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 4, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-4', 'partition': 1, 'offset': 3, 'processed_at_ns': 1793649442057130000}
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 5, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-5', 'partition': 1, 'offset': 4, 'processed_at_ns': 1793649442060331000}
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 6, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-6', 'partition': 1, 'offset': 5, 'processed_at_ns': 1793649442061251000}
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 7, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-7', 'partition': 1, 'offset': 6, 'processed_at_ns': 1793649442063755000}
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 11, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-11', 'partition': 1, 'offset': 7, 'processed_at_ns': 1793649442065181000}
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 12, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-12', 'partition': 1, 'offset': 8, 'processed_at_ns': 1793649442065766000}
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 16, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-16', 'partition': 1, 'offset': 9, 'processed_at_ns': 1793649442067778000}
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 17, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-17', 'partition': 1, 'offset': 10, 'processed_at_ns': 1793649442069017000}
+Ordering Writer writer-2 processed: {'run': 'unkeyed', 'worker_id': 'writer-2', 'sequence': 19, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-unkeyed-19', 'partition': 1, 'offset': 11, 'processed_at_ns': 1793649442072059000}
+(.venv) annie@mac web_application % python ordering_experiment.py --run unkeyed
+Student: Ananya
+Ordering run: unkeyed; VERIFY_SEED=262383
+Unkeyed message 1 sent to partition 0
+Unkeyed message 2 sent to partition 0
+Unkeyed message 3 sent to partition 0
+Unkeyed message 4 sent to partition 1
+Unkeyed message 5 sent to partition 1
+Unkeyed message 6 sent to partition 1
+Unkeyed message 7 sent to partition 1
+Unkeyed message 8 sent to partition 0
+Unkeyed message 9 sent to partition 0
+Unkeyed message 10 sent to partition 0
+Unkeyed message 11 sent to partition 1
+Unkeyed message 12 sent to partition 1
+Unkeyed message 13 sent to partition 0
+Unkeyed message 14 sent to partition 0
+Unkeyed message 15 sent to partition 0
+Unkeyed message 16 sent to partition 1
+Unkeyed message 17 sent to partition 1
+Unkeyed message 18 sent to partition 0
+Unkeyed message 19 sent to partition 1
+Unkeyed message 20 sent to partition 0
+(.venv) annie@mac web_application % python summarize_ordering.py --run unkeyed
+{
+  "run": "unkeyed",
+  "message_count": 20,
+  "partitions_used": [
+    0,
+    1
+  ],
+  "processing_sequence": [
+    1,
+    2,
+    4,
+    3,
+    5,
+    6,
+    8,
+    7,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "preserves_input_order": false
+}
+----------------
+(.venv) annie@mac web_application % python ordering_writer.py --run keyed --worker-id writer-1
+Student: Ananya
+Ordering Writer writer-1 is ready for keyed run...
+Heartbeat failed for group s2383_ordering_keyed because it is rebalancing
+
+(.venv) annie@mac web_application % python ordering_writer.py --run keyed --worker-id writer-2
+Student: Ananya
+Ordering Writer writer-2 is ready for keyed run...
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 1, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-1', 'partition': 1, 'offset': 12, 'processed_at_ns': 1793649683567389000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 2, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-2', 'partition': 1, 'offset': 13, 'processed_at_ns': 1793649683569245000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 3, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-3', 'partition': 1, 'offset': 14, 'processed_at_ns': 1793649683570006000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 4, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-4', 'partition': 1, 'offset': 15, 'processed_at_ns': 1793649683571614000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 5, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-5', 'partition': 1, 'offset': 16, 'processed_at_ns': 1793649683572416000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 6, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-6', 'partition': 1, 'offset': 17, 'processed_at_ns': 1793649683573122000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 7, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-7', 'partition': 1, 'offset': 18, 'processed_at_ns': 1793649683574708000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 8, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-8', 'partition': 1, 'offset': 19, 'processed_at_ns': 1793649683575642000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 9, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-9', 'partition': 1, 'offset': 20, 'processed_at_ns': 1793649683577393000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 10, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-10', 'partition': 1, 'offset': 21, 'processed_at_ns': 1793649683579541000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 11, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-11', 'partition': 1, 'offset': 22, 'processed_at_ns': 1793649683581329000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 12, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-12', 'partition': 1, 'offset': 23, 'processed_at_ns': 1793649683582369000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 13, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-13', 'partition': 1, 'offset': 24, 'processed_at_ns': 1793649683584353000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 14, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-14', 'partition': 1, 'offset': 25, 'processed_at_ns': 1793649683585023000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 15, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-15', 'partition': 1, 'offset': 26, 'processed_at_ns': 1793649683586554000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 16, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-16', 'partition': 1, 'offset': 27, 'processed_at_ns': 1793649683587116000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 17, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-17', 'partition': 1, 'offset': 28, 'processed_at_ns': 1793649683587607000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 18, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-18', 'partition': 1, 'offset': 29, 'processed_at_ns': 1793649683588841000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 19, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-19', 'partition': 1, 'offset': 30, 'processed_at_ns': 1793649683589315000}
+Ordering Writer writer-2 processed: {'run': 'keyed', 'worker_id': 'writer-2', 'sequence': 20, 'entity_id': 'fixture-ordering-2383', 'correlation_id': 's2383-keyed-20', 'partition': 1, 'offset': 31, 'processed_at_ns': 1793649683589823000}
+Heartbeat failed for group s2383_ordering_keyed because it is rebalancing
+
+(.venv) annie@mac web_application % python ordering_experiment.py --run keyed
+Student: Ananya
+Ordering run: keyed; VERIFY_SEED=262383
+Keyed message 1 sent with key fixture-ordering-2383
+Keyed message 2 sent with key fixture-ordering-2383
+Keyed message 3 sent with key fixture-ordering-2383
+Keyed message 4 sent with key fixture-ordering-2383
+Keyed message 5 sent with key fixture-ordering-2383
+Keyed message 6 sent with key fixture-ordering-2383
+Keyed message 7 sent with key fixture-ordering-2383
+Keyed message 8 sent with key fixture-ordering-2383
+Keyed message 9 sent with key fixture-ordering-2383
+Keyed message 10 sent with key fixture-ordering-2383
+Keyed message 11 sent with key fixture-ordering-2383
+Keyed message 12 sent with key fixture-ordering-2383
+Keyed message 13 sent with key fixture-ordering-2383
+Keyed message 14 sent with key fixture-ordering-2383
+Keyed message 15 sent with key fixture-ordering-2383
+Keyed message 16 sent with key fixture-ordering-2383
+Keyed message 17 sent with key fixture-ordering-2383
+Keyed message 18 sent with key fixture-ordering-2383
+Keyed message 19 sent with key fixture-ordering-2383
+Keyed message 20 sent with key fixture-ordering-2383
+(.venv) annie@mac web_application % python summarize_ordering.py --run keyed
+{
+  "run": "keyed",
+  "message_count": 20,
+  "partitions_used": [
+    1
+  ],
+  "processing_sequence": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "preserves_input_order": true
+}
+----------------
