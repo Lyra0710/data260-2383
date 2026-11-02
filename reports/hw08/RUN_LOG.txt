@@ -471,3 +471,38 @@ Keyed message 20 sent with key fixture-ordering-2383
   "preserves_input_order": true
 }
 ----------------
+Mon Nov  2 12:15:25 PST 2026
+(.venv) (base) annie@mac data260-2383 % python code/verify_hw08.py
+Client sent: {'correlation_id': 'ba251932-67f4-4501-a15e-611c00ddf7b3', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'HW8 Verification Fixture', 'teams': ['Verification A', 'Verification B'], 'fixture_code': 'VERIFY-ba251932', 'available_slots': 1, 'venue_id': 1}}
+Client received: {'success': True, 'entity_id': 'b770e35d-212f-488c-a5fb-5a3d873285e3', 'message': 'Fixture created', 'correlation_id': 'ba251932-67f4-4501-a15e-611c00ddf7b3'}
+Client sent: {'correlation_id': 'ba251932-67f4-4501-a15e-611c00ddf7b3', 'reply_to': 's2383_entity_responses', 'operation': 'GET_FIXTURE', 'data': {'entity_id': 'b770e35d-212f-488c-a5fb-5a3d873285e3'}}
+Client received: {'success': True, 'entity': {'entity_id': 'b770e35d-212f-488c-a5fb-5a3d873285e3', 'fixture_name': 'HW8 Verification Fixture', 'teams': ['Verification A', 'Verification B'], 'fixture_code': 'VERIFY-ba251932', 'available_slots': 1, 'venue_id': 1}, 'correlation_id': 'ba251932-67f4-4501-a15e-611c00ddf7b3'}
+{
+  "homework": "HW8",
+  "sid4": "2383",
+  "commit_hash": "caa91331873a4b43957651d034951a4354850e14",
+  "seed": 2383,
+  "verify_seed": 262383,
+  "model_configuration": {
+    "chat_model": "qwen3:8b"
+  },
+  "hardware": "macOS-26.6.2-arm64-arm-64bit",
+  "checks": [
+    {
+      "name": "FastAPI service",
+      "status": "pass",
+      "details": "FastAPI root returned the expected HW8 service message."
+    },
+    {
+      "name": "Kafka fixture round trip",
+      "status": "pass",
+      "details": "CREATE_FIXTURE and GET_FIXTURE completed through Kafka."
+    },
+    {
+      "name": "HW8 raw artifacts",
+      "status": "pass",
+      "details": "Found 5 required HW8 raw artifacts."
+    }
+  ],
+  "overall_status": "pass"
+}

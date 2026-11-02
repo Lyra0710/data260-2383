@@ -1,0 +1,29 @@
+{
+  "homework": "HW8",
+  "sid4": "2383",
+  "commit_hash": "caa91331873a4b43957651d034951a4354850e14",
+  "seed": 2383,
+  "verify_seed": 262383,
+  "model_configuration": {
+    "chat_model": "qwen3:8b"
+  },
+  "hardware": "macOS-26.6.2-arm64-arm-64bit",
+  "checks": [
+    {
+      "name": "FastAPI service",
+      "status": "pass",
+      "details": "FastAPI root returned the expected HW8 service message."
+    },
+    {
+      "name": "Kafka fixture round trip",
+      "status": "pass",
+      "details": "CREATE_FIXTURE and GET_FIXTURE completed through Kafka."
+    },
+    {
+      "name": "HW8 raw artifacts",
+      "status": "pass",
+      "details": "Found 5 required HW8 raw artifacts."
+    }
+  ],
+  "overall_status": "pass"
+}
