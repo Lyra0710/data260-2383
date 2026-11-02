@@ -1,0 +1,101 @@
+(.venv) annie@Siris-MacBook-Pro data260-2383 % docker compose up -d kafka
+[+] up 13/13
+ ✔ Image apache/kafka:3.9.2     Pulled                               18.1s
+ ✔ Network data260-2383_default Created                               0.0s
+ ✔ Container kafka              Started                               0.6s
+(.venv) annie@Siris-MacBook-Pro data260-2383 % docker ps
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS         PORTS                                         NAMES
+ac366069c821   apache/kafka:3.9.2   "/__cacert_entrypoin…"   10 seconds ago   Up 9 seconds   0.0.0.0:9092->9092/tcp, [::]:9092->9092/tcp   kafka
+(.venv) annie@Siris-MacBook-Pro data260-2383 % docker exec kafka /opt/kafka/bin/kafka-topics.sh \
+  --create \
+  --topic s2383_entity_requests \
+  --partitions 1 \
+  --replication-factor 1 \
+  --bootstrap-server localhost:9092
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic s2383_entity_requests.
+(.venv) annie@Siris-MacBook-Pro data260-2383 % docker exec kafka /opt/kafka/bin/kafka-topics.sh \
+  --create \
+  --topic s2383_entity_responses \
+  --partitions 1 \
+  --replication-factor 1 \
+  --bootstrap-server localhost:9092
+WARNING: Due to limitations in metric names, topics with a period ('.') or underscore ('_') could collide. To avoid issues it is best to use either, but not both.
+Created topic s2383_entity_responses.
+(.venv) annie@Siris-MacBook-Pro data260-2383 % docker exec kafka /opt/kafka/bin/kafka-topics.sh \
+  --list \
+  --bootstrap-server localhost:9092
+s2383_entity_requests
+s2383_entity_responses
+
+(.venv) annie@Siris-MacBook-Pro web_application % python homework_demo.py
+
+--- CREATE_FIXTURE ---
+Client sent: {'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'HW8 Test Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'HW8-001', 'available_slots': 10, 'venue_id': 1}}
+Client received: {'success': True, 'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1', 'message': 'Fixture created', 'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9'}
+Generated entity_id: 06257e0b-316b-4a0b-b590-66bf064d04a1
+
+--- GET_FIXTURE ---
+Client sent: {'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9', 'reply_to': 's2383_entity_responses', 'operation': 'GET_FIXTURE', 'data': {'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1'}}
+Client received: {'success': True, 'entity': {'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1', 'fixture_name': 'HW8 Test Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'HW8-001', 'available_slots': 10, 'venue_id': 1}, 'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9'}
+Retrieved fixture: {'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1', 'fixture_name': 'HW8 Test Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'HW8-001', 'available_slots': 10, 'venue_id': 1}
+Correlation ID preserved: True
+
+(.venv) annie@Siris-MacBook-Pro web_application % python -m kafka.worker
+Group Coordinator Request failed: [Error 15] GroupCoordinatorNotAvailableError
+Marking the coordinator dead (node 1)for group s2383_entity_worker.
+Marking the coordinator dead (node 1)for group s2383_entity_worker.
+Consumer is ready and listening...
+Worker received: {'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'HW8 Test Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'HW8-001', 'available_slots': 10, 'venue_id': 1}}
+Worker processed: {'success': True, 'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1', 'message': 'Fixture created', 'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9'}
+Worker sent response: {'success': True, 'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1', 'message': 'Fixture created', 'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9'}
+Worker received: {'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9', 'reply_to': 's2383_entity_responses', 'operation': 'GET_FIXTURE', 'data': {'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1'}}
+Worker processed: {'success': True, 'entity': {'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1', 'fixture_name': 'HW8 Test Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'HW8-001', 'available_slots': 10, 'venue_id': 1}, 'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9'}
+Worker sent response: {'success': True, 'entity': {'entity_id': '06257e0b-316b-4a0b-b590-66bf064d04a1', 'fixture_name': 'HW8 Test Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'HW8-001', 'available_slots': 10, 'venue_id': 1}, 'correlation_id': 'f1d81772-ff0a-43b6-af40-cd1f5bc3ebe9'}
+-----------------------------------------------
+Mon Nov  2 02:14:11 PST 2026
+annie@mac web_application % cd /Users/annie/Library/CloudStorage/OneDrive-Personal/Academics/Masters/SJSU/DATA-260/Homework/data260-2383/code/web_application
+../../.venv/bin/python validate_kafka_errors.py
+Student: Ananya
+HW8 Part 1 Kafka validation/error test
+Client sent: {'correlation_id': '41edb7db-0bcf-4cde-9f11-8a9628329bd6', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'Validation Fixture', 'teams': ['Team A', 'Team B'], 'available_slots': 10, 'venue_id': 1}}
+Client received: {'success': False, 'error': 'Missing required field: fixture_code', 'correlation_id': '41edb7db-0bcf-4cde-9f11-8a9628329bd6'}
+Missing fixture_code: PASS
+Response: {'success': False, 'error': 'Missing required field: fixture_code', 'correlation_id': '41edb7db-0bcf-4cde-9f11-8a9628329bd6'}
+Client sent: {'correlation_id': '5034f583-5cbd-4e17-bae0-2790c623fdac', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': '   ', 'teams': ['Team A', 'Team B'], 'fixture_code': 'VALID-001', 'available_slots': 10, 'venue_id': 1}}
+Client received: {'success': False, 'error': 'fixture_name cannot be empty', 'correlation_id': '5034f583-5cbd-4e17-bae0-2790c623fdac'}
+Empty fixture_name: PASS
+Response: {'success': False, 'error': 'fixture_name cannot be empty', 'correlation_id': '5034f583-5cbd-4e17-bae0-2790c623fdac'}
+Client sent: {'correlation_id': 'db3a5785-2122-4ee9-88ec-61aaf883edb0', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'Validation Fixture', 'teams': [], 'fixture_code': 'VALID-001', 'available_slots': 10, 'venue_id': 1}}
+Client received: {'success': False, 'error': 'teams must be a non-empty list', 'correlation_id': 'db3a5785-2122-4ee9-88ec-61aaf883edb0'}
+Empty teams: PASS
+Response: {'success': False, 'error': 'teams must be a non-empty list', 'correlation_id': 'db3a5785-2122-4ee9-88ec-61aaf883edb0'}
+Client sent: {'correlation_id': '7f92f420-d58f-4777-9bb3-2dcd1efd9c70', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'Validation Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': '', 'available_slots': 10, 'venue_id': 1}}
+Client received: {'success': False, 'error': 'fixture_code cannot be empty', 'correlation_id': '7f92f420-d58f-4777-9bb3-2dcd1efd9c70'}
+Empty fixture_code: PASS
+Response: {'success': False, 'error': 'fixture_code cannot be empty', 'correlation_id': '7f92f420-d58f-4777-9bb3-2dcd1efd9c70'}
+Client sent: {'correlation_id': 'cb343934-ee55-4ff7-9395-7554ff370c5b', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'Validation Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'VALID-001', 'available_slots': -1, 'venue_id': 1}}
+Client received: {'success': False, 'error': 'available_slots must be a non-negative integer', 'correlation_id': 'cb343934-ee55-4ff7-9395-7554ff370c5b'}
+Negative available_slots: PASS
+Response: {'success': False, 'error': 'available_slots must be a non-negative integer', 'correlation_id': 'cb343934-ee55-4ff7-9395-7554ff370c5b'}
+Client sent: {'correlation_id': '4ddcde73-cfe2-4199-86df-7cb26c77bfd6', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'Validation Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'VALID-001', 'available_slots': 'ten', 'venue_id': 1}}
+Client received: {'success': False, 'error': 'available_slots must be a non-negative integer', 'correlation_id': '4ddcde73-cfe2-4199-86df-7cb26c77bfd6'}
+Invalid available_slots type: PASS
+Response: {'success': False, 'error': 'available_slots must be a non-negative integer', 'correlation_id': '4ddcde73-cfe2-4199-86df-7cb26c77bfd6'}
+Client sent: {'correlation_id': '044eb657-a932-41fd-8dad-495b5cd7db7f', 'reply_to': 's2383_entity_responses', 'operation': 'CREATE_FIXTURE', 'data': {'fixture_name': 'Validation Fixture', 'teams': ['Team A', 'Team B'], 'fixture_code': 'VALID-001', 'available_slots': 10, 'venue_id': 0}}
+Client received: {'success': False, 'error': 'venue_id must be a positive integer', 'correlation_id': '044eb657-a932-41fd-8dad-495b5cd7db7f'}
+Invalid venue_id: PASS
+Response: {'success': False, 'error': 'venue_id must be a positive integer', 'correlation_id': '044eb657-a932-41fd-8dad-495b5cd7db7f'}
+Client sent: {'correlation_id': '420fcb29-0923-4d8f-9371-c7210fce1cd6', 'reply_to': 's2383_entity_responses', 'operation': 'DELETE_FIXTURE', 'data': {}}
+Client received: {'success': False, 'error': 'Unknown operation', 'correlation_id': '420fcb29-0923-4d8f-9371-c7210fce1cd6'}
+Unknown operation: PASS
+Response: {'success': False, 'error': 'Unknown operation', 'correlation_id': '420fcb29-0923-4d8f-9371-c7210fce1cd6'}
+Client sent: {'correlation_id': '00316e1c-90b7-4db7-9c66-2d49fdc79d14', 'reply_to': 's2383_entity_responses', 'operation': 'GET_FIXTURE', 'data': {}}
+Client received: {'success': False, 'error': 'Missing required field: entity_id', 'correlation_id': '00316e1c-90b7-4db7-9c66-2d49fdc79d14'}
+GET missing entity_id: PASS
+Response: {'success': False, 'error': 'Missing required field: entity_id', 'correlation_id': '00316e1c-90b7-4db7-9c66-2d49fdc79d14'}
+Client sent: {'correlation_id': 'b9564917-1f78-47f6-9381-98e6b90f4e50', 'reply_to': 's2383_entity_responses', 'operation': 'GET_FIXTURE', 'data': {'entity_id': 'does-not-exist'}}
+Client received: {'success': False, 'error': 'Fixture not found', 'correlation_id': 'b9564917-1f78-47f6-9381-98e6b90f4e50'}
+GET unknown entity_id: PASS
+Response: {'success': False, 'error': 'Fixture not found', 'correlation_id': 'b9564917-1f78-47f6-9381-98e6b90f4e50'}
+All validation/error cases passed.

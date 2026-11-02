@@ -9,12 +9,15 @@ from .config import (
     KAFKA_BOOTSTRAP_SERVERS,
 )
 
-# Store created fixtures in memory for this Kafka exercise.
+# Store fixtures in memory for this Kafka exercise.
 fixtures = {}
 
 
+def is_non_empty_text(value: object) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
 def validate_fixture(data: dict) -> str | None:
-    # These are the required fields for the Fixture entity.
     required_fields = [
         "fixture_name",
         "teams",
@@ -27,20 +30,30 @@ def validate_fixture(data: dict) -> str | None:
         if field not in data:
             return f"Missing required field: {field}"
 
-    if not data["fixture_name"]:
+    if not is_non_empty_text(data["fixture_name"]):
         return "fixture_name cannot be empty"
 
-    if not data["teams"]:
-        return "teams cannot be empty"
+    teams = data["teams"]
+    if not isinstance(teams, list) or not teams:
+        return "teams must be a non-empty list"
 
-    if not data["fixture_code"]:
+    if not all(is_non_empty_text(team) for team in teams):
+        return "teams must contain non-empty names"
+
+    if not is_non_empty_text(data["fixture_code"]):
         return "fixture_code cannot be empty"
 
-    if data["available_slots"] < 0:
-        return "available_slots cannot be negative"
+    available_slots = data["available_slots"]
+    if (
+        not isinstance(available_slots, int)
+        or isinstance(available_slots, bool)
+        or available_slots < 0
+    ):
+        return "available_slots must be a non-negative integer"
 
-    if data["venue_id"] <= 0:
-        return "venue_id must be positive"
+    venue_id = data["venue_id"]
+    if not isinstance(venue_id, int) or isinstance(venue_id, bool) or venue_id <= 0:
+        return "venue_id must be a positive integer"
 
     return None
 
@@ -74,7 +87,7 @@ def create_fixture(data: dict) -> dict:
 def get_fixture(data: dict) -> dict:
     entity_id = data.get("entity_id")
 
-    if not entity_id:
+    if not is_non_empty_text(entity_id):
         return {
             "success": False,
             "error": "Missing required field: entity_id",
@@ -96,7 +109,13 @@ def get_fixture(data: dict) -> dict:
 
 def process_request(request: dict) -> dict:
     operation = request.get("operation")
-    data = request.get("data", {})
+    data = request.get("data")
+
+    if not isinstance(data, dict):
+        return {
+            "success": False,
+            "error": "data must be an object",
+        }
 
     if operation == "CREATE_FIXTURE":
         return create_fixture(data)
