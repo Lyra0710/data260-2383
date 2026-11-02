@@ -99,3 +99,45 @@ Client received: {'success': False, 'error': 'Fixture not found', 'correlation_i
 GET unknown entity_id: PASS
 Response: {'success': False, 'error': 'Fixture not found', 'correlation_id': 'b9564917-1f78-47f6-9381-98e6b90f4e50'}
 All validation/error cases passed.
+--------
+Mon Nov  2 11:00:39 PST 2026
+(.venv) (base) annie@mac data260-2383 % docker compose up --build -d
+[+] Building 1.4s (14/14) FINISHED                                                                                   
+ => [internal] load local bake definitions                                                                      0.0s
+ => => reading from stdin 1.31kB                                                                                0.0s
+ => [fastapi internal] load build definition from Dockerfile.hw8                                                0.0s
+ => => transferring dockerfile: 214B                                                                            0.0s
+ => [fastapi internal] load metadata for docker.io/library/python:3.11-slim                                     0.8s
+ => [fastapi internal] load .dockerignore                                                                       0.0s
+ => => transferring context: 2B                                                                                 0.0s
+ => [fastapi 1/5] FROM docker.io/library/python:3.11-slim@sha256:db20d8506e2f15b6db39b40b6015ca46bae855dec6dd3  0.0s
+ => [worker internal] load build context                                                                        0.3s
+ => => transferring context: 13.51MB                                                                            0.3s
+ => CACHED [fastapi 2/5] WORKDIR /app                                                                           0.0s
+ => CACHED [fastapi 3/5] COPY code/web_application/requirements.hw8.txt .                                       0.0s
+ => CACHED [fastapi 4/5] RUN pip install --no-cache-dir -r requirements.hw8.txt                                 0.0s
+ => CACHED [fastapi 5/5] COPY code/web_application/ .                                                           0.0s
+ => [fastapi] exporting to image                                                                                0.0s
+ => => exporting layers                                                                                         0.0s
+ => => writing image sha256:3caa1e1a0d22e95fce9adcd1626dcb76c5cd80e3d06119fb8c29965f22a393bd                    0.0s
+ => => naming to docker.io/library/data260-2383-fastapi                                                         0.0s
+ => [worker] exporting to image                                                                                 0.0s
+ => => exporting layers                                                                                         0.0s
+ => => writing image sha256:719950acac359bbd2cbad7c885163b63a404acdaf0a864ecc526fc42701df2ba                    0.0s
+ => => naming to docker.io/library/data260-2383-worker                                                          0.0s
+ => [worker] resolving provenance for metadata file                                                             0.0s
+ => [fastapi] resolving provenance for metadata file                                                            0.0s
+[+] up 5/5
+ ✔ Image data260-2383-worker        Built                                                                        1.5s
+ ✔ Image data260-2383-fastapi       Built                                                                        1.5s
+ ✔ Container kafka                  Healthy                                                                      3.7s
+ ✔ Container data260-2383-fastapi-1 Started                                                                      3.7s
+ ✔ Container data260-2383-worker-1  Started                                                                      3.7s
+(.venv) (base) annie@mac data260-2383 % docker compose logs worker --tail 20
+worker-1  | Consumer is ready and listening...
+(.venv) (base) annie@mac data260-2383 % docker compose logs fastapi --tail 20
+fastapi-1  | INFO:     Started server process [1]
+fastapi-1  | INFO:     Waiting for application startup.
+fastapi-1  | FastAPI service available at http://127.0.0.1:8583
+fastapi-1  | INFO:     Application startup complete.
+fastapi-1  | INFO:     Uvicorn running on http://0.0.0.0:8583 (Press CTRL+C to quit)
