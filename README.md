@@ -11,5 +11,6 @@ This repository contains the DATA-260 homework assignments for the community spo
 5. [Homework 5 reproducible run instructions](reports/hw05/reproducible_run_instructions.md) · [HW5 files](reports/hw05/)
 6. [Homework 6 reproducible run instructions](reports/hw06/reproducible_run_instructions.md) · [HW6 files](reports/hw06/)
 7. [Homework 7 reproducible run instructions](reports/hw07/reproducible_run_instructions.md) · [HW7 report](reports/hw07/Yallapragada_HW7.pdf) · [HW7 files](reports/hw07/)
+8. [Homework 8 reproducible run instructions](reports/hw08/reproducible_run_instructions.md) · [HW8 report](reports/hw08/report.pdf) · [HW8 files](reports/hw08/)
 
 Each homework’s reproducible run instructions and supporting report files are stored in its corresponding `reports/hw##/` directory.
