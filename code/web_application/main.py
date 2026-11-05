@@ -14,6 +14,7 @@ from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from fixture_view_cache import fixture_view_cache
 from models import Fixture, User, Venue
 from routers import document_fixtures, file_memory, memory
 from routers.auth import get_current_user, require_roles
@@ -60,13 +61,14 @@ def create_tables():
     Base.metadata.create_all(bind=engine)
 
 
-def fixture_to_dict(fixture: Fixture):
+def fixture_to_dict(fixture: Fixture, view_count: int | None = None):
     return {
         "id": fixture.id,
         "fixture_name": fixture.fixture_name,
         "teams": fixture.teams,
         "fixture_code": fixture.fixture_code,
         "available_slots": fixture.available_slots,
+        "view_count": fixture.view_count if view_count is None else view_count,
         "venue_id": fixture.venue_id,
         "created_at": fixture.created_at,
         "updated_at": fixture.updated_at,
@@ -167,7 +169,8 @@ def get_fixture(
             detail="Fixture not found",
         )
 
-    return fixture_to_dict(fixture)
+    view_count = fixture_view_cache.increment_fixture_views(fixture, db)
+    return fixture_to_dict(fixture, view_count=view_count)
 
 
 @app.post("/api/fixtures", status_code=201, response_model=FixtureOut)

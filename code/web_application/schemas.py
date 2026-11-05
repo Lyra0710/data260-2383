@@ -65,6 +65,7 @@ class FixtureOut(BaseModel):
     teams: str
     fixture_code: str
     available_slots: int
+    view_count: int
     venue_id: int
     created_at: datetime
     updated_at: datetime

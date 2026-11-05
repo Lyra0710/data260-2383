@@ -1,4 +1,10 @@
 services:
+  redis:
+    image: redis:latest
+    container_name: data260-redis
+    ports:
+      - "6379:6379"
+
   kafka:
     image: apache/kafka:3.9.2
     container_name: kafka

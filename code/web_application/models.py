@@ -103,6 +103,11 @@ class Fixture(Base):
         default=0,
         nullable=False,
     )
+    view_count: Mapped[int] = mapped_column(
+        Integer,
+        default=0,
+        nullable=False,
+    )
     venue_id: Mapped[int] = mapped_column(
         ForeignKey("venues.id"),
         nullable=False,
