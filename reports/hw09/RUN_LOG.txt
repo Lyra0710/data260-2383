@@ -1,0 +1,19 @@
+docker compose up -d redis
+docker compose ps redis
+docker compose exec redis redis-cli PING
+set -a
+source code/web_application/.env
+set +a
+
+(.venv) annie@Siris-MacBook-Pro data260-2383 % /usr/local/mysql-9.4.0-macos15-arm64/bin/mysql -u root -p -S /tmp/mysql.sock s2383_rel < code/web_application/migrations/002_hw9_fixture_view_count.sql
+Enter password: 
+
+(.venv) annie@Siris-MacBook-Pro data260-2383 % docker compose exec redis redis-cli GET s2383:views:fixture:3
+"25"
+
+(.venv) annie@Siris-MacBook-Pro data260-2383 % /usr/local/mysql-9.4.0-macos15-arm64/bin/mysql -u root -p -S /tmp/mysql.sock s2383_rel -e "SELECT id, view_count FROM fixtures WHERE id = 3;"
+Enter password: 
++----+------------+
+| id | view_count |
++----+------------+
+|  3 |         20 |
