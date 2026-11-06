@@ -33,11 +33,15 @@ class FixtureViewCacheTests(unittest.TestCase):
         session = FakeSession(fixture)
         cache = FixtureViewCache(FakeRedis())
 
-        counts = [cache.increment_fixture_views(fixture, session) for _ in range(25)]
+        with self.assertLogs("fixture_view_cache", level="INFO") as logs:
+            counts = [
+                cache.increment_fixture_views(fixture, session) for _ in range(25)
+            ]
 
         self.assertEqual(counts, list(range(1, 26)))
         self.assertEqual(fixture.view_count, 20)
         self.assertEqual(session.commit_count, 2)
+        self.assertEqual(len(logs.output), 2)
 
 
 if __name__ == "__main__":
