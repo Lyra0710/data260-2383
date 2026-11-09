@@ -15,7 +15,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fixture_view_cache import fixture_view_cache
-from models import Fixture, User, Venue
+from models import Fixture, FixtureRelatedItem, User, Venue
 from routers import document_fixtures, file_memory, memory
 from routers.auth import get_current_user, require_roles
 from routers.auth import router as auth_router
@@ -23,10 +23,12 @@ from schemas import (
     FixtureCreate,
     FixtureOut,
     FixtureUpdate,
+    RelatedItemUpdate,
     VenueCreate,
     VenueOut,
     VenueUpdate,
 )
+from semantic_cache import semantic_response_cache
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as DbSession
 from sqlalchemy.orm import selectinload
@@ -171,6 +173,38 @@ def get_fixture(
 
     view_count = fixture_view_cache.increment_fixture_views(fixture, db)
     return fixture_to_dict(fixture, view_count=view_count)
+
+
+@app.put("/api/fixtures/{fixture_id}/related-items/{related_item_id}")
+def update_related_item(
+    fixture_id: int,
+    related_item_id: int,
+    request_data: RelatedItemUpdate,
+    db: DbSession = Depends(get_db),
+    user: User = Depends(require_roles({"writer", "moderator"})),
+):
+    related_item = (
+        db.query(FixtureRelatedItem)
+        .filter(
+            FixtureRelatedItem.id == related_item_id,
+            FixtureRelatedItem.fixture_id == fixture_id,
+        )
+        .first()
+    )
+    if related_item is None:
+        raise HTTPException(status_code=404, detail="Fixture related item not found")
+
+    related_item.label = request_data.label
+    related_item.details = request_data.details
+    db.commit()
+
+    return {
+        "id": related_item.id,
+        "fixture_id": related_item.fixture_id,
+        "label": related_item.label,
+        "details": related_item.details,
+        "data_version": semantic_response_cache.bump_data_version(),
+    }
 
 
 @app.post("/api/fixtures", status_code=201, response_model=FixtureOut)

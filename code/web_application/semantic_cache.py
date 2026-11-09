@@ -10,8 +10,8 @@ from redis.commands.search.query import Query
 
 PREFIX = os.getenv("PREFIX", "s2383")
 CACHE_THRESHOLD = float(os.getenv("SEMANTIC_CACHE_THRESHOLD", "0.85"))
-INDEX_NAME = f"{PREFIX}:semantic-cache:index"
-ENTRY_PREFIX = f"{PREFIX}:semantic-cache:entry:"
+INDEX_NAME = f"{PREFIX}:semantic-cache:index:v2"
+ENTRY_PREFIX = f"{PREFIX}:semantic-cache:entry:v2:"
 DATA_VERSION_KEY = f"{PREFIX}:semantic-cache:data-version"
 
 
@@ -23,20 +23,26 @@ class SemanticResponseCache:
         self.redis_client.setnx(DATA_VERSION_KEY, "0")
         return str(self.redis_client.get(DATA_VERSION_KEY))
 
+    def bump_data_version(self) -> str:
+        return str(self.redis_client.incr(DATA_VERSION_KEY))
+
     def find_similar(
         self,
         embedding: list[float],
         data_version: str,
         user_id: str,
         session_id: str,
+        context_key: str,
         threshold: float,
     ) -> dict | None:
         self.ensure_index(len(embedding))
         user_tag = self.escape_tag(user_id)
         session_tag = self.escape_tag(session_id)
+        context_tag = self.escape_tag(context_key)
         query = (
             Query(
-                f"(@user_id:{{{user_tag}}} @session_id:{{{session_tag}}})"
+                f"(@user_id:{{{user_tag}}} @session_id:{{{session_tag}}} "
+                f"@context_key:{{{context_tag}}})"
                 "=>[KNN 1 @embedding $embedding AS distance]"
             )
             .return_fields("answer", "data_version", "distance")
@@ -68,6 +74,7 @@ class SemanticResponseCache:
         data_version: str,
         user_id: str,
         session_id: str,
+        context_key: str,
     ) -> None:
         self.ensure_index(len(embedding))
         key = f"{ENTRY_PREFIX}{uuid.uuid4()}"
@@ -80,6 +87,7 @@ class SemanticResponseCache:
                 "data_version": data_version,
                 "user_id": user_id,
                 "session_id": session_id,
+                "context_key": context_key,
             },
         )
 
@@ -97,6 +105,7 @@ class SemanticResponseCache:
                 TagField("data_version"),
                 TagField("user_id"),
                 TagField("session_id"),
+                TagField("context_key"),
                 VectorField(
                     "embedding",
                     "FLAT",

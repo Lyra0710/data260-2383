@@ -31,6 +31,7 @@ def generate_and_cache(
         data_version,
         user_id,
         session_id,
+        "none",
     )
     return response["reply"]
 
@@ -55,6 +56,7 @@ def run_case(case: dict, threshold: float) -> dict:
         data_version,
         user_id,
         session_id,
+        "none",
         threshold,
     )
     is_cached = cached_response is not None

@@ -7,8 +7,6 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from ollama import Client
-
 from memory_repository import (
     count_user_messages,
     episode_exists,
@@ -21,13 +19,13 @@ from memory_repository import (
     save_summary,
 )
 from metrics_logger import append_chat_metric
+from ollama import Client
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from src.model_client import complete, count_text_tokens, get_token_usage
-
+from src.model_client import complete, count_text_tokens, get_token_usage  # noqa: E402
 
 SHORT_TERM_N = int(os.getenv("SHORT_TERM_N", "8"))
 COMPACT_SHORT_TERM_N = int(os.getenv("COMPACT_SHORT_TERM_N", "0"))
@@ -66,8 +64,7 @@ def prompt_component_tokens(
     episodic_facts: list[dict],
 ) -> dict[str, int]:
     short_term_text = "\n".join(
-        f"{message['role']}: {message['content']}"
-        for message in short_term_messages
+        f"{message['role']}: {message['content']}" for message in short_term_messages
     )
     episodic_text = "\n".join(f"- {fact['fact']}" for fact in episodic_facts)
 
@@ -76,23 +73,31 @@ def prompt_component_tokens(
         "long_term_summary_tokens": count_text_tokens(
             long_term_summary,
             model=CHAT_MODEL,
-        ) if long_term_summary else 0,
+        )
+        if long_term_summary
+        else 0,
         "short_term_window_tokens": count_text_tokens(
             short_term_text,
             model=CHAT_MODEL,
-        ) if short_term_text else 0,
+        )
+        if short_term_text
+        else 0,
         "episodic_facts_tokens": count_text_tokens(
             episodic_text,
             model=CHAT_MODEL,
-        ) if episodic_text else 0,
+        )
+        if episodic_text
+        else 0,
     }
 
 
 def embed_texts(texts: list[str]) -> list[list[float]]:
-    response = Client(
-        host=os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
-    ).embed(model=EMBEDDING_MODEL, input=texts)
-    return [[float(value) for value in embedding] for embedding in response["embeddings"]]
+    response = Client(host=os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")).embed(
+        model=EMBEDDING_MODEL, input=texts
+    )
+    return [
+        [float(value) for value in embedding] for embedding in response["embeddings"]
+    ]
 
 
 def cosine_similarity(left: list[float], right: list[float]) -> float:
@@ -157,9 +162,7 @@ def extract_and_store_episodes(user_id: str, session_id: str, message: str) -> N
     facts = parse_facts(model_text(extraction_prompt, max_tokens=120))
 
     new_facts = [
-        fact
-        for fact in facts
-        if not episode_exists(user_id, session_id, fact["fact"])
+        fact for fact in facts if not episode_exists(user_id, session_id, fact["fact"])
     ]
     if not new_facts:
         return
@@ -211,6 +214,7 @@ def build_prompt(
     long_term_summary: str,
     episodic_facts: list[dict],
     current_message: str,
+    domain_context: str | None = None,
 ) -> list[dict]:
     system_content = SYSTEM_PRIMER
     if long_term_summary:
@@ -218,13 +222,19 @@ def build_prompt(
     if episodic_facts:
         facts = "\n".join(f"- {fact['fact']}" for fact in episodic_facts)
         system_content += f"\n\nRelevant episodic facts:\n{facts}"
-
     messages = [{"role": "system", "content": system_content}]
     messages.extend(
         {"role": message["role"], "content": message["content"]}
         for message in short_term_messages
     )
-    messages.append({"role": "user", "content": current_message})
+    current_content = current_message
+    if domain_context:
+        current_content += (
+            "\n\nAuthoritative domain record:\n"
+            f"{domain_context}\n"
+            "Answer using this record and preserve its details exactly."
+        )
+    messages.append({"role": "user", "content": current_content})
     return messages
 
 
@@ -266,7 +276,8 @@ def maybe_update_summaries(user_id: str, session_id: str) -> None:
                 "content": (
                     "Create a concise, up-to-date lifetime user summary using only "
                     "the supplied summaries. Preserve exact dates, times, venues, and "
-                    "preferences. Do not infer missing details; state conflicts explicitly."
+                    "preferences. Do not infer missing details; state conflicts "
+                    "explicitly."
                 ),
             },
             {"role": "user", "content": source},
@@ -282,6 +293,7 @@ def generate_reply(
     message: str,
     experiment_id: str | None = None,
     experiment_phase: str | None = None,
+    domain_context: str | None = None,
 ) -> dict:
     started_at = time.perf_counter()
     save_message(user_id, session_id, "user", message)
@@ -293,7 +305,13 @@ def generate_reply(
     )[:-1]
     extract_and_store_episodes(user_id, session_id, message)
     episodic_facts = retrieve_episodes(user_id, message)
-    prompt = build_prompt(short_term_messages, summary, episodic_facts, message)
+    prompt = build_prompt(
+        short_term_messages,
+        summary,
+        episodic_facts,
+        message,
+        domain_context,
+    )
     reply_response = complete(
         prompt,
         model=CHAT_MODEL,
@@ -320,20 +338,14 @@ def generate_reply(
             "short_term_n": SHORT_TERM_N,
             "effective_short_term_n": short_term_limit,
             "memory_policy": (
-                "summary_aware_compaction"
-                if COMPACT_SHORT_TERM_N > 0
-                else "none"
+                "summary_aware_compaction" if COMPACT_SHORT_TERM_N > 0 else "none"
             ),
             "model": CHAT_MODEL,
             "prompt_tokens": token_usage["input_tokens"],
             "completion_tokens": token_usage["output_tokens"],
             "system_primer_tokens": component_tokens["system_primer_tokens"],
-            "long_term_summary_tokens": component_tokens[
-                "long_term_summary_tokens"
-            ],
-            "short_term_window_tokens": component_tokens[
-                "short_term_window_tokens"
-            ],
+            "long_term_summary_tokens": component_tokens["long_term_summary_tokens"],
+            "short_term_window_tokens": component_tokens["short_term_window_tokens"],
             "episodic_facts_tokens": component_tokens["episodic_facts_tokens"],
             "latency_ms": round((time.perf_counter() - started_at) * 1000, 2),
         }

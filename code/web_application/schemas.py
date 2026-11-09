@@ -105,6 +105,8 @@ class ChatRequest(BaseModel):
     user_id: str = Field(min_length=1, max_length=100)
     session_id: str | None = Field(default=None, min_length=1, max_length=100)
     message: str = Field(min_length=1, max_length=4000)
+    fixture_id: int | None = Field(default=None, gt=0)
+    related_item_id: int | None = Field(default=None, gt=0)
     experiment_id: str | None = Field(default=None, max_length=100)
     experiment_phase: Literal["conversation", "probe"] | None = None
 
@@ -133,6 +135,11 @@ class ChatResponse(BaseModel):
     is_cached: bool
     similarity_score: float | None
     latency_ms: float
+
+
+class RelatedItemUpdate(BaseModel):
+    label: str = Field(min_length=1, max_length=100)
+    details: str | None = Field(default=None, max_length=2000)
 
 
 class FileMemoryCommandRequest(BaseModel):
