@@ -1,0 +1,2063 @@
+{
+  "started_at": "2026-11-09T01:25:28.032994+00:00",
+  "case_count": 40,
+  "false_hit_rate_definition": "false hits divided by observed cache hits",
+  "thresholds": [
+    {
+      "summary": {
+        "threshold": 0.75,
+        "hit_rate_percent": 75.0,
+        "false_hit_rate_percent": 33.33,
+        "mean_latency_ms": 639.4,
+        "total_cost": 110
+      },
+      "results": [
+        {
+          "id": "exact_01",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 51.42,
+          "cached_answer": "The details for fixture 1 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_02",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 18.8,
+          "cached_answer": "The fixture code for fixture 1 is not provided in the available information."
+        },
+        {
+          "id": "exact_03",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.34,
+          "cached_answer": "Fixture 1 involves the teams \"Team A\" and \"Team B.\""
+        },
+        {
+          "id": "exact_04",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.97,
+          "cached_answer": "The venue for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "exact_05",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 19.02,
+          "cached_answer": "The number of slots available for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "exact_06",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 21.32,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_07",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.74,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "exact_08",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 23.27,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "exact_09",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 24.05,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 3."
+        },
+        {
+          "id": "exact_10",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 22.3,
+          "cached_answer": "The number of slots available for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "paraphrase_01",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9118794202805,
+          "latency_ms": 22.47,
+          "cached_answer": "The details for fixture 1 are not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_02",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9199035167694,
+          "latency_ms": 22.25,
+          "cached_answer": "The fixture code for fixture 1 is F1."
+        },
+        {
+          "id": "paraphrase_03",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9251154661179,
+          "latency_ms": 20.43,
+          "cached_answer": "Fixture 1 involves the teams \"Team A\" and \"Team B.\""
+        },
+        {
+          "id": "paraphrase_04",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.89533829689,
+          "latency_ms": 19.96,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 1."
+        },
+        {
+          "id": "paraphrase_05",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.881249666214,
+          "latency_ms": 22.25,
+          "cached_answer": "The number of slots available for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "paraphrase_06",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9260274171829,
+          "latency_ms": 19.36,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_07",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9086366891861,
+          "latency_ms": 22.9,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "paraphrase_08",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9297685623169,
+          "latency_ms": 20.52,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_09",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9034659862518,
+          "latency_ms": 16.5,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 3."
+        },
+        {
+          "id": "paraphrase_10",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.890852808952,
+          "latency_ms": 19.03,
+          "cached_answer": "The number of slots available for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "similar_miss_01",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.876697003841,
+          "latency_ms": 19.81,
+          "cached_answer": "The fixture code for fixture 1 is not provided in the available information."
+        },
+        {
+          "id": "similar_miss_02",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.897811233997,
+          "latency_ms": 22.18,
+          "cached_answer": "The code for Fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_03",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.894078075886,
+          "latency_ms": 22.18,
+          "cached_answer": "The exact fixture code assigned to fixture 1 is not provided in the supplied memories."
+        },
+        {
+          "id": "similar_miss_04",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.886812329292,
+          "latency_ms": 19.02,
+          "cached_answer": "The code for fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_05",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9032338857651,
+          "latency_ms": 22.12,
+          "cached_answer": "The code stored for fixture 1 is: `{\"home_team\": \"Team A\", \"away_team\": \"Team B\", \"date\": \"2023-10-01\"}`."
+        },
+        {
+          "id": "similar_miss_06",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.907338142395,
+          "latency_ms": 24.7,
+          "cached_answer": "The provided information does not include any details about fixture codes or fixtures. Therefore, I cannot determine which fixture code belongs to fixture 1."
+        },
+        {
+          "id": "similar_miss_07",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9238904714584,
+          "latency_ms": 21.41,
+          "cached_answer": "The identifier code for Fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_08",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.910272359848,
+          "latency_ms": 20.71,
+          "cached_answer": "The saved code for fixture 1 is \"F1-2023\"."
+        },
+        {
+          "id": "similar_miss_09",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.893598735332,
+          "latency_ms": 21.34,
+          "cached_answer": "The code for fixture 1 is: `fixture_001`."
+        },
+        {
+          "id": "similar_miss_10",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9063925147057,
+          "latency_ms": 19.19,
+          "cached_answer": "The provided information does not include details about \"fixture 1\" or its fixture code."
+        },
+        {
+          "id": "unrelated_01",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1350.11,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_02",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1396.97,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_03",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1355.97,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_04",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1344.76,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_05",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2294.16,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_06",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3283.06,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_07",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3639.64,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_08",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3780.4,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_09",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3034.38,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_10",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3435.96,
+          "cached_answer": null
+        }
+      ]
+    },
+    {
+      "summary": {
+        "threshold": 0.8,
+        "hit_rate_percent": 75.0,
+        "false_hit_rate_percent": 33.33,
+        "mean_latency_ms": 792.08,
+        "total_cost": 110
+      },
+      "results": [
+        {
+          "id": "exact_01",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 14.26,
+          "cached_answer": "The details for fixture 1 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_02",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 17.28,
+          "cached_answer": "The fixture code for fixture 1 is not provided in the available information."
+        },
+        {
+          "id": "exact_03",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 19.31,
+          "cached_answer": "Fixture 1 involves the teams \"Team A\" and \"Team B.\""
+        },
+        {
+          "id": "exact_04",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 17.09,
+          "cached_answer": "The provided memories do not include information about the venue assigned to fixture 1."
+        },
+        {
+          "id": "exact_05",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 17.48,
+          "cached_answer": "The number of slots available for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "exact_06",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 17.81,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_07",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 17.91,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "exact_08",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 17.68,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "exact_09",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 18.06,
+          "cached_answer": "The venue for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "exact_10",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 19.12,
+          "cached_answer": "The number of slots available for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "paraphrase_01",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9118794202805,
+          "latency_ms": 17.83,
+          "cached_answer": "The details for fixture 1 are not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_02",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9199035167694,
+          "latency_ms": 18.61,
+          "cached_answer": "The fixture code for fixture 1 is F1."
+        },
+        {
+          "id": "paraphrase_03",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9251154661179,
+          "latency_ms": 17.32,
+          "cached_answer": "Fixture 1 involves the teams \"Team A\" and \"Team B.\""
+        },
+        {
+          "id": "paraphrase_04",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.89533829689,
+          "latency_ms": 17.46,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 1."
+        },
+        {
+          "id": "paraphrase_05",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.881249666214,
+          "latency_ms": 19.87,
+          "cached_answer": "The number of slots available for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "paraphrase_06",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9260274171829,
+          "latency_ms": 18.06,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_07",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9086366891861,
+          "latency_ms": 17.54,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "paraphrase_08",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9297685623169,
+          "latency_ms": 18.39,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_09",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9034659862518,
+          "latency_ms": 17.24,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 3."
+        },
+        {
+          "id": "paraphrase_10",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.890852808952,
+          "latency_ms": 17.59,
+          "cached_answer": "The number of slots available for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "similar_miss_01",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.876697003841,
+          "latency_ms": 17.35,
+          "cached_answer": "The fixture code for fixture 1 is F1."
+        },
+        {
+          "id": "similar_miss_02",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.897811233997,
+          "latency_ms": 17.57,
+          "cached_answer": "The code for Fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_03",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.894078075886,
+          "latency_ms": 18.85,
+          "cached_answer": "The exact fixture code assigned to fixture 1 is not provided in the supplied memories."
+        },
+        {
+          "id": "similar_miss_04",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.886812329292,
+          "latency_ms": 17.42,
+          "cached_answer": "The code for fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_05",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9032338857651,
+          "latency_ms": 18.56,
+          "cached_answer": "The code stored for fixture 1 is: `{\"home_team\": \"Team A\", \"away_team\": \"Team B\", \"date\": \"2023-10-01\"}`."
+        },
+        {
+          "id": "similar_miss_06",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.907338142395,
+          "latency_ms": 17.91,
+          "cached_answer": "The provided information does not include any details about fixture codes or fixtures. Therefore, I cannot determine which fixture code belongs to fixture 1."
+        },
+        {
+          "id": "similar_miss_07",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9238904714584,
+          "latency_ms": 18.12,
+          "cached_answer": "The identifier code for Fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_08",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.910272359848,
+          "latency_ms": 18.38,
+          "cached_answer": "The saved code for fixture 1 is \"F1-2023-09-15\"."
+        },
+        {
+          "id": "similar_miss_09",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.893598735332,
+          "latency_ms": 17.94,
+          "cached_answer": "The code for fixture 1 is: `fixture_001`."
+        },
+        {
+          "id": "similar_miss_10",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9063925147057,
+          "latency_ms": 18.53,
+          "cached_answer": "The provided information does not include details about \"fixture 1\" or its fixture code."
+        },
+        {
+          "id": "unrelated_01",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1342.21,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_02",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1418.74,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_03",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1336.16,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_04",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1342.07,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_05",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2300.09,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_06",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 7395.27,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_07",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 4143.74,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_08",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3509.8,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_09",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 4809.7,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_10",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3549.06,
+          "cached_answer": null
+        }
+      ]
+    },
+    {
+      "summary": {
+        "threshold": 0.85,
+        "hit_rate_percent": 75.0,
+        "false_hit_rate_percent": 33.33,
+        "mean_latency_ms": 699.82,
+        "total_cost": 110
+      },
+      "results": [
+        {
+          "id": "exact_01",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 15.94,
+          "cached_answer": "The details for fixture 1 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_02",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 21.83,
+          "cached_answer": "The fixture code for fixture 1 is not provided in the available information."
+        },
+        {
+          "id": "exact_03",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 22.69,
+          "cached_answer": "Fixture 1 involves the following teams: Team A and Team B."
+        },
+        {
+          "id": "exact_04",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 23.19,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 1."
+        },
+        {
+          "id": "exact_05",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 22.68,
+          "cached_answer": "The number of slots available for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "exact_06",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.37,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_07",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 21.04,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "exact_08",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 22.0,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "exact_09",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 20.96,
+          "cached_answer": "The provided memories do not include information about the venue assigned to fixture 3."
+        },
+        {
+          "id": "exact_10",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 22.03,
+          "cached_answer": "The number of slots available for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "paraphrase_01",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9118794202805,
+          "latency_ms": 22.23,
+          "cached_answer": "The details for fixture 1 are not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_02",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9199035167694,
+          "latency_ms": 24.38,
+          "cached_answer": "The fixture code for fixture 1 is F1."
+        },
+        {
+          "id": "paraphrase_03",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9251154661179,
+          "latency_ms": 21.75,
+          "cached_answer": "Fixture 1 involves the teams \"Team A\" and \"Team B.\""
+        },
+        {
+          "id": "paraphrase_04",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.89533829689,
+          "latency_ms": 22.09,
+          "cached_answer": "The provided memories do not include information about the venue assigned to fixture 1."
+        },
+        {
+          "id": "paraphrase_05",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.881249666214,
+          "latency_ms": 23.49,
+          "cached_answer": "The number of slots available for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "paraphrase_06",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9260274171829,
+          "latency_ms": 20.37,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_07",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9086366891861,
+          "latency_ms": 20.17,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "paraphrase_08",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9297685623169,
+          "latency_ms": 20.9,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_09",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9034659862518,
+          "latency_ms": 21.53,
+          "cached_answer": "The provided memories do not include information about the venue assigned to fixture 3."
+        },
+        {
+          "id": "paraphrase_10",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.890852808952,
+          "latency_ms": 14.7,
+          "cached_answer": "The number of slots available for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "similar_miss_01",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.876697003841,
+          "latency_ms": 20.62,
+          "cached_answer": "The fixture code for fixture 1 is not provided in the available information."
+        },
+        {
+          "id": "similar_miss_02",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.897811233997,
+          "latency_ms": 21.04,
+          "cached_answer": "The code for Fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_03",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.894078075886,
+          "latency_ms": 22.54,
+          "cached_answer": "The exact fixture code assigned to fixture 1 is not provided in the supplied memories."
+        },
+        {
+          "id": "similar_miss_04",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.886812329292,
+          "latency_ms": 19.91,
+          "cached_answer": "The code for fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_05",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9032338857651,
+          "latency_ms": 21.71,
+          "cached_answer": "The code stored for fixture 1 is: `{\"home_team\": \"Team A\", \"away_team\": \"Team B\", \"date\": \"2023-10-01\"}`."
+        },
+        {
+          "id": "similar_miss_06",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.907338142395,
+          "latency_ms": 22.32,
+          "cached_answer": "The provided information does not include any details about fixture codes or fixtures. Therefore, I cannot determine which fixture code belongs to fixture 1."
+        },
+        {
+          "id": "similar_miss_07",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9238904714584,
+          "latency_ms": 19.84,
+          "cached_answer": "The identifier code for Fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_08",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.910272359848,
+          "latency_ms": 20.4,
+          "cached_answer": "The saved code for fixture 1 is \"F1-2023\"."
+        },
+        {
+          "id": "similar_miss_09",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.893598735332,
+          "latency_ms": 19.21,
+          "cached_answer": "The code for fixture 1 is: `fixture_001`."
+        },
+        {
+          "id": "similar_miss_10",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9063925147057,
+          "latency_ms": 22.04,
+          "cached_answer": "The provided information does not include details about \"fixture 1\" or its fixture code."
+        },
+        {
+          "id": "unrelated_01",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1331.99,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_02",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2488.78,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_03",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1349.07,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_04",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1352.56,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_05",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2287.57,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_06",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3261.43,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_07",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3497.5,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_08",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3537.91,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_09",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 4852.78,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_10",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3399.13,
+          "cached_answer": null
+        }
+      ]
+    },
+    {
+      "summary": {
+        "threshold": 0.9,
+        "hit_rate_percent": 55.0,
+        "false_hit_rate_percent": 22.73,
+        "mean_latency_ms": 958.4,
+        "total_cost": 68
+      },
+      "results": [
+        {
+          "id": "exact_01",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 22.08,
+          "cached_answer": "The details for fixture 1 are not provided in the available information. Please check the supplied data or provide additional context."
+        },
+        {
+          "id": "exact_02",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 21.01,
+          "cached_answer": "The fixture code for fixture 1 is not provided in the available information."
+        },
+        {
+          "id": "exact_03",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 21.82,
+          "cached_answer": "The information about which teams play in fixture 1 is not provided in the supplied memories."
+        },
+        {
+          "id": "exact_04",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.11,
+          "cached_answer": "The venue for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "exact_05",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 23.54,
+          "cached_answer": "The number of slots available for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "exact_06",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.99,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_07",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.77,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "exact_08",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.86,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "exact_09",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 20.69,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 3."
+        },
+        {
+          "id": "exact_10",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 21.47,
+          "cached_answer": "The number of slots available for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "paraphrase_01",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9118794202805,
+          "latency_ms": 19.87,
+          "cached_answer": "The details for fixture 1 are not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_02",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9199035167694,
+          "latency_ms": 20.86,
+          "cached_answer": "The fixture code for fixture 1 is not provided in the available information."
+        },
+        {
+          "id": "paraphrase_03",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9251154661179,
+          "latency_ms": 21.99,
+          "cached_answer": "The information about which teams play in fixture 1 is not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_04",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1534.36,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_05",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1483.01,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_06",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9260274171829,
+          "latency_ms": 20.07,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_07",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9086366891861,
+          "latency_ms": 20.54,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "paraphrase_08",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9297685623169,
+          "latency_ms": 21.42,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "paraphrase_09",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9034659862518,
+          "latency_ms": 20.36,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 3."
+        },
+        {
+          "id": "paraphrase_10",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1380.58,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_01",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1386.65,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_02",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1183.36,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_03",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1502.59,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_04",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1183.99,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_05",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9032338857651,
+          "latency_ms": 22.95,
+          "cached_answer": "The code stored for fixture 1 is: `{\"home_team\": \"Team A\", \"away_team\": \"Team B\", \"date\": \"2023-10-01\"}`."
+        },
+        {
+          "id": "similar_miss_06",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.907338142395,
+          "latency_ms": 22.13,
+          "cached_answer": "The provided information does not include any details about fixture codes or fixtures. Therefore, I cannot determine which fixture code belongs to fixture 1."
+        },
+        {
+          "id": "similar_miss_07",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9238904714584,
+          "latency_ms": 19.1,
+          "cached_answer": "The identifier code for Fixture 1 is \"F1\"."
+        },
+        {
+          "id": "similar_miss_08",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.910272359848,
+          "latency_ms": 24.31,
+          "cached_answer": "The saved code for fixture 1 is \"F1-2023\"."
+        },
+        {
+          "id": "similar_miss_09",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1439.1,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_10",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": true,
+          "false_hit": true,
+          "similarity_score": 0.9063925147057,
+          "latency_ms": 22.8,
+          "cached_answer": "The provided information does not include details about \"fixture 1\" or its fixture code."
+        },
+        {
+          "id": "unrelated_01",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1324.66,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_02",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2503.44,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_03",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1136.04,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_04",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1326.55,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_05",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2285.97,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_06",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3261.54,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_07",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3357.34,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_08",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3555.81,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_09",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 4625.98,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_10",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3395.3,
+          "cached_answer": null
+        }
+      ]
+    },
+    {
+      "summary": {
+        "threshold": 0.95,
+        "hit_rate_percent": 25.0,
+        "false_hit_rate_percent": 0.0,
+        "mean_latency_ms": 1405.19,
+        "total_cost": 30
+      },
+      "results": [
+        {
+          "id": "exact_01",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 21.65,
+          "cached_answer": "The details for fixture 1 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_02",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.8,
+          "cached_answer": "The fixture code for fixture 1 is not provided in the available information."
+        },
+        {
+          "id": "exact_03",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.97,
+          "cached_answer": "Fixture 1 involves the teams \"Team A\" and \"Team B.\""
+        },
+        {
+          "id": "exact_04",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 17.59,
+          "cached_answer": "The provided memories do not include information about the venue assigned to fixture 1."
+        },
+        {
+          "id": "exact_05",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 21.61,
+          "cached_answer": "The number of slots available for fixture 1 is not specified in the provided information."
+        },
+        {
+          "id": "exact_06",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 21.47,
+          "cached_answer": "The details for fixture 3 are not provided in the supplied memories."
+        },
+        {
+          "id": "exact_07",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.78,
+          "cached_answer": "The fixture code for fixture 3 is not provided in the available information."
+        },
+        {
+          "id": "exact_08",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 1.0,
+          "latency_ms": 20.75,
+          "cached_answer": "The information about which teams play in fixture 3 is not provided in the supplied memories."
+        },
+        {
+          "id": "exact_09",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 21.28,
+          "cached_answer": "The provided information does not include details about the venue assigned to fixture 3."
+        },
+        {
+          "id": "exact_10",
+          "category": "exact_duplicate",
+          "expected_hit": true,
+          "observed_hit": true,
+          "false_hit": false,
+          "similarity_score": 0.9999998807907104,
+          "latency_ms": 21.42,
+          "cached_answer": "The number of slots available for fixture 3 is not specified in the provided information."
+        },
+        {
+          "id": "paraphrase_01",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1283.18,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_02",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1387.7,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_03",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1483.79,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_04",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1522.6,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_05",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1389.47,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_06",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1272.26,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_07",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1380.03,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_08",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1522.39,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_09",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1456.76,
+          "cached_answer": null
+        },
+        {
+          "id": "paraphrase_10",
+          "category": "paraphrase",
+          "expected_hit": true,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1384.8,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_01",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1375.75,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_02",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1176.92,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_03",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1512.64,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_04",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1194.11,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_05",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2953.81,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_06",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2224.03,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_07",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1301.56,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_08",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1560.97,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_09",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1436.15,
+          "cached_answer": null
+        },
+        {
+          "id": "similar_miss_10",
+          "category": "superficially_similar_different_answer",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1572.94,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_01",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1344.34,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_02",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1388.44,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_03",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1385.83,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_04",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 1458.52,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_05",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 2431.98,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_06",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3344.32,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_07",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3904.61,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_08",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3396.89,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_09",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3082.51,
+          "cached_answer": null
+        },
+        {
+          "id": "unrelated_10",
+          "category": "unrelated",
+          "expected_hit": false,
+          "observed_hit": false,
+          "false_hit": false,
+          "similarity_score": null,
+          "latency_ms": 3869.89,
+          "cached_answer": null
+        }
+      ]
+    }
+  ],
+  "finished_at": "2026-11-09T01:32:57.998903+00:00"
+}

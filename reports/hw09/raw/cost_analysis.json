@@ -1,0 +1,39 @@
+{
+  "cost_model": {
+    "unit": "relative cost unit",
+    "cache_miss_cost": 1,
+    "false_hit_support_cost": 10
+  },
+  "rows": [
+    {
+      "threshold": 0.75,
+      "cache_misses": 10,
+      "false_hits": 10,
+      "total_cost": 110
+    },
+    {
+      "threshold": 0.8,
+      "cache_misses": 10,
+      "false_hits": 10,
+      "total_cost": 110
+    },
+    {
+      "threshold": 0.85,
+      "cache_misses": 10,
+      "false_hits": 10,
+      "total_cost": 110
+    },
+    {
+      "threshold": 0.9,
+      "cache_misses": 18,
+      "false_hits": 5,
+      "total_cost": 68
+    },
+    {
+      "threshold": 0.95,
+      "cache_misses": 30,
+      "false_hits": 0,
+      "total_cost": 30
+    }
+  ]
+}
