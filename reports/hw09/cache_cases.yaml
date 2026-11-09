@@ -1,0 +1,204 @@
+cases:
+  - id: exact_01
+    category: exact_duplicate
+    cached_query: What are the details for fixture 1?
+    incoming_query: What are the details for fixture 1?
+    expected_hit: true
+  - id: exact_02
+    category: exact_duplicate
+    cached_query: What is the fixture code for fixture 1?
+    incoming_query: What is the fixture code for fixture 1?
+    expected_hit: true
+  - id: exact_03
+    category: exact_duplicate
+    cached_query: Which teams play in fixture 1?
+    incoming_query: Which teams play in fixture 1?
+    expected_hit: true
+  - id: exact_04
+    category: exact_duplicate
+    cached_query: Which venue is assigned to fixture 1?
+    incoming_query: Which venue is assigned to fixture 1?
+    expected_hit: true
+  - id: exact_05
+    category: exact_duplicate
+    cached_query: How many slots are available for fixture 1?
+    incoming_query: How many slots are available for fixture 1?
+    expected_hit: true
+  - id: exact_06
+    category: exact_duplicate
+    cached_query: What are the details for fixture 3?
+    incoming_query: What are the details for fixture 3?
+    expected_hit: true
+  - id: exact_07
+    category: exact_duplicate
+    cached_query: What is the fixture code for fixture 3?
+    incoming_query: What is the fixture code for fixture 3?
+    expected_hit: true
+  - id: exact_08
+    category: exact_duplicate
+    cached_query: Which teams play in fixture 3?
+    incoming_query: Which teams play in fixture 3?
+    expected_hit: true
+  - id: exact_09
+    category: exact_duplicate
+    cached_query: Which venue is assigned to fixture 3?
+    incoming_query: Which venue is assigned to fixture 3?
+    expected_hit: true
+  - id: exact_10
+    category: exact_duplicate
+    cached_query: How many slots are available for fixture 3?
+    incoming_query: How many slots are available for fixture 3?
+    expected_hit: true
+
+  - id: paraphrase_01
+    category: paraphrase
+    cached_query: What are the details for fixture 1?
+    incoming_query: Tell me about fixture 1.
+    expected_hit: true
+  - id: paraphrase_02
+    category: paraphrase
+    cached_query: What is the fixture code for fixture 1?
+    incoming_query: Give me fixture 1's code.
+    expected_hit: true
+  - id: paraphrase_03
+    category: paraphrase
+    cached_query: Which teams play in fixture 1?
+    incoming_query: Who is playing in fixture 1?
+    expected_hit: true
+  - id: paraphrase_04
+    category: paraphrase
+    cached_query: Which venue is assigned to fixture 1?
+    incoming_query: Where will fixture 1 be played?
+    expected_hit: true
+  - id: paraphrase_05
+    category: paraphrase
+    cached_query: How many slots are available for fixture 1?
+    incoming_query: What is fixture 1's remaining capacity?
+    expected_hit: true
+  - id: paraphrase_06
+    category: paraphrase
+    cached_query: What are the details for fixture 3?
+    incoming_query: Tell me about fixture 3.
+    expected_hit: true
+  - id: paraphrase_07
+    category: paraphrase
+    cached_query: What is the fixture code for fixture 3?
+    incoming_query: Give me fixture 3's code.
+    expected_hit: true
+  - id: paraphrase_08
+    category: paraphrase
+    cached_query: Which teams play in fixture 3?
+    incoming_query: Who is playing in fixture 3?
+    expected_hit: true
+  - id: paraphrase_09
+    category: paraphrase
+    cached_query: Which venue is assigned to fixture 3?
+    incoming_query: Where will fixture 3 be played?
+    expected_hit: true
+  - id: paraphrase_10
+    category: paraphrase
+    cached_query: How many slots are available for fixture 3?
+    incoming_query: What is fixture 3's remaining capacity?
+    expected_hit: true
+
+  - id: similar_miss_01
+    category: superficially_similar_different_answer
+    cached_query: What is the fixture code for fixture 1?
+    incoming_query: What is the fixture code for fixture 3?
+    expected_hit: false
+  - id: similar_miss_02
+    category: superficially_similar_different_answer
+    cached_query: Give me fixture 1's code.
+    incoming_query: Give me fixture 3's code.
+    expected_hit: false
+  - id: similar_miss_03
+    category: superficially_similar_different_answer
+    cached_query: What exact fixture code is assigned to fixture 1?
+    incoming_query: What exact fixture code is assigned to fixture 3?
+    expected_hit: false
+  - id: similar_miss_04
+    category: superficially_similar_different_answer
+    cached_query: What code identifies fixture 1?
+    incoming_query: What code identifies fixture 3?
+    expected_hit: false
+  - id: similar_miss_05
+    category: superficially_similar_different_answer
+    cached_query: Show the code stored for fixture 1.
+    incoming_query: Show the code stored for fixture 3.
+    expected_hit: false
+  - id: similar_miss_06
+    category: superficially_similar_different_answer
+    cached_query: Which fixture code belongs to fixture 1?
+    incoming_query: Which fixture code belongs to fixture 3?
+    expected_hit: false
+  - id: similar_miss_07
+    category: superficially_similar_different_answer
+    cached_query: Can you provide fixture 1's identifier code?
+    incoming_query: Can you provide fixture 3's identifier code?
+    expected_hit: false
+  - id: similar_miss_08
+    category: superficially_similar_different_answer
+    cached_query: What is the saved code for fixture 1?
+    incoming_query: What is the saved code for fixture 3?
+    expected_hit: false
+  - id: similar_miss_09
+    category: superficially_similar_different_answer
+    cached_query: Retrieve the code for fixture 1.
+    incoming_query: Retrieve the code for fixture 3.
+    expected_hit: false
+  - id: similar_miss_10
+    category: superficially_similar_different_answer
+    cached_query: State fixture 1's fixture code.
+    incoming_query: State fixture 3's fixture code.
+    expected_hit: false
+
+  - id: unrelated_01
+    category: unrelated
+    cached_query: What are the details for fixture 1?
+    incoming_query: How do I create a venue?
+    expected_hit: false
+  - id: unrelated_02
+    category: unrelated
+    cached_query: Which teams play in fixture 1?
+    incoming_query: How do I update a venue address?
+    expected_hit: false
+  - id: unrelated_03
+    category: unrelated
+    cached_query: What is the fixture code for fixture 1?
+    incoming_query: Who can delete a fixture?
+    expected_hit: false
+  - id: unrelated_04
+    category: unrelated
+    cached_query: Which venue is assigned to fixture 1?
+    incoming_query: How are view counts synchronized?
+    expected_hit: false
+  - id: unrelated_05
+    category: unrelated
+    cached_query: How many slots are available for fixture 1?
+    incoming_query: What does a fixture-related item contain?
+    expected_hit: false
+  - id: unrelated_06
+    category: unrelated
+    cached_query: What are the details for fixture 3?
+    incoming_query: How do I create a fixture?
+    expected_hit: false
+  - id: unrelated_07
+    category: unrelated
+    cached_query: Which teams play in fixture 3?
+    incoming_query: How do I update a fixture?
+    expected_hit: false
+  - id: unrelated_08
+    category: unrelated
+    cached_query: What is the fixture code for fixture 3?
+    incoming_query: How do I list all venues?
+    expected_hit: false
+  - id: unrelated_09
+    category: unrelated
+    cached_query: Which venue is assigned to fixture 3?
+    incoming_query: What information is returned for a fixture?
+    expected_hit: false
+  - id: unrelated_10
+    category: unrelated
+    cached_query: How many slots are available for fixture 3?
+    incoming_query: What does fixture view_count represent?
+    expected_hit: false

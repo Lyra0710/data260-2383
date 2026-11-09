@@ -1,0 +1,122 @@
+{
+  "session_id": "semantic_cache_demo_64bede1798704b538749b8260b8ff6b6",
+  "results": [
+    {
+      "number": 1,
+      "category": "new",
+      "query": "What should a league coordinator confirm before scheduling a fixture?",
+      "started_at": "2026-11-09T00:43:44.131424+00:00",
+      "finished_at": "2026-11-09T00:43:52.069657+00:00",
+      "is_cached": false,
+      "similarity_score": null,
+      "latency_ms": 7922.31,
+      "reply": "Before scheduling a fixture, a league coordinator should confirm the following:\n\n- Availability of the venue\n- Weather conditions (if outdoors)\n- Team rosters and player availability\n- Equipment and facilities needs\n- Referee or match official availability\n- Any league rules or restrictions\n- The correct date and time for the fixture"
+    },
+    {
+      "number": 2,
+      "category": "exact_duplicate",
+      "query": "What should a league coordinator confirm before scheduling a fixture?",
+      "started_at": "2026-11-09T00:43:52.069862+00:00",
+      "finished_at": "2026-11-09T00:43:52.107950+00:00",
+      "is_cached": true,
+      "similarity_score": 1.0,
+      "latency_ms": 34.53,
+      "reply": "Before scheduling a fixture, a league coordinator should confirm the following:\n\n- Availability of the venue\n- Weather conditions (if outdoors)\n- Team rosters and player availability\n- Equipment and facilities needs\n- Referee or match official availability\n- Any league rules or restrictions\n- The correct date and time for the fixture"
+    },
+    {
+      "number": 3,
+      "category": "paraphrase",
+      "query": "What needs checking before a league fixture is scheduled?",
+      "started_at": "2026-11-09T00:43:52.107987+00:00",
+      "finished_at": "2026-11-09T00:43:56.376399+00:00",
+      "is_cached": false,
+      "similarity_score": null,
+      "latency_ms": 4265.15,
+      "reply": "Before a league fixture is scheduled, the following should be checked:\n\n- Venue availability and suitability  \n- Weather conditions (for outdoor fixtures)  \n- Team rosters and player availability  \n- Equipment and facility requirements  \n- Referee or match official availability  \n- League rules and any restrictions  \n- The correct date and time for the fixture"
+    },
+    {
+      "number": 4,
+      "category": "paraphrase",
+      "query": "What should I verify before booking a sports match?",
+      "started_at": "2026-11-09T00:43:56.376466+00:00",
+      "finished_at": "2026-11-09T00:44:05.385192+00:00",
+      "is_cached": false,
+      "similarity_score": null,
+      "latency_ms": 9005.79,
+      "reply": "Before booking a sports match, you should verify:\n\n- The availability of the venue  \n- Weather conditions (if the match is outdoors)  \n- Team rosters and player availability  \n- Equipment and facility requirements  \n- Referee or match official availability  \n- League rules and any restrictions  \n- The correct date and time for the match"
+    },
+    {
+      "number": 5,
+      "category": "exact_duplicate",
+      "query": "What should a league coordinator confirm before scheduling a fixture?",
+      "started_at": "2026-11-09T00:44:05.385255+00:00",
+      "finished_at": "2026-11-09T00:44:05.409788+00:00",
+      "is_cached": true,
+      "similarity_score": 1.0,
+      "latency_ms": 22.41,
+      "reply": "Before scheduling a fixture, a league coordinator should confirm the following:\n\n- Availability of the venue\n- Weather conditions (if outdoors)\n- Team rosters and player availability\n- Equipment and facilities needs\n- Referee or match official availability\n- Any league rules or restrictions\n- The correct date and time for the fixture"
+    },
+    {
+      "number": 6,
+      "category": "new",
+      "query": "How are fixture view counts synchronized?",
+      "started_at": "2026-11-09T00:44:05.409819+00:00",
+      "finished_at": "2026-11-09T00:44:10.558229+00:00",
+      "is_cached": false,
+      "similarity_score": null,
+      "latency_ms": 5146.38,
+      "reply": "The synchronization of fixture view counts is typically managed by the league's scheduling or management system. Without specific system details, it is not possible to confirm how view counts are synchronized. If there is a discrepancy or conflict in how view counts are tracked, it should be noted rather than resolved."
+    },
+    {
+      "number": 7,
+      "category": "new",
+      "query": "What information is required to create a fixture?",
+      "started_at": "2026-11-09T00:44:10.558288+00:00",
+      "finished_at": "2026-11-09T00:44:16.335095+00:00",
+      "is_cached": false,
+      "similarity_score": null,
+      "latency_ms": 5773.75,
+      "reply": "To create a fixture, the following information is typically required:\n\n- **Teams involved**  \n- **Date and time of the match**  \n- **Venue or location**  \n- **Weather conditions (if applicable)**  \n- **Player availability**  \n- **Referee or match official details**  \n- **League rules and any restrictions**  \n- **Equipment and facility requirements**  \n- **Match format or type** (e.g., league, cup, friendly)"
+    },
+    {
+      "number": 8,
+      "category": "unrelated",
+      "query": "How does a referee prepare for a match?",
+      "started_at": "2026-11-09T00:44:16.335165+00:00",
+      "finished_at": "2026-11-09T00:44:29.879034+00:00",
+      "is_cached": false,
+      "similarity_score": null,
+      "latency_ms": 13538.18,
+      "reply": "A referee prepares for a match by:  \n\n- Reviewing the match details, including teams, date, time, and venue  \n- Ensuring they have the correct equipment (whistle, cards, watch, etc.)  \n- Familiarizing themselves with the rules and any specific league regulations  \n- Confirming their availability and punctuality for the match  \n- Attending any pre-match meetings or briefings if required  \n- Ensuring they are in good physical and mental condition for the match"
+    },
+    {
+      "number": 9,
+      "category": "exact_duplicate",
+      "query": "How are fixture view counts synchronized?",
+      "started_at": "2026-11-09T00:44:29.879234+00:00",
+      "finished_at": "2026-11-09T00:44:29.910019+00:00",
+      "is_cached": true,
+      "similarity_score": 1.0,
+      "latency_ms": 27.28,
+      "reply": "The synchronization of fixture view counts is typically managed by the league's scheduling or management system. Without specific system details, it is not possible to confirm how view counts are synchronized. If there is a discrepancy or conflict in how view counts are tracked, it should be noted rather than resolved."
+    },
+    {
+      "number": 10,
+      "category": "unrelated",
+      "query": "What should spectators bring to an outdoor game?",
+      "started_at": "2026-11-09T00:44:29.910044+00:00",
+      "finished_at": "2026-11-09T00:44:36.371310+00:00",
+      "is_cached": false,
+      "similarity_score": null,
+      "latency_ms": 6458.33,
+      "reply": "Spectators should bring the following to an outdoor game:  \n\n- Comfortable clothing and footwear  \n- Sunscreen and a hat for sun protection  \n- A reusable water bottle  \n- A blanket or seating if required  \n- A valid ticket or admission pass  \n- Any personal items they may need during the game"
+    }
+  ],
+  "summary": {
+    "query_count": 10,
+    "cache_hits": 3,
+    "cache_hit_rate_percent": 30.0,
+    "average_cached_latency_ms": 28.07,
+    "average_non_cached_latency_ms": 7444.27
+  }
+}

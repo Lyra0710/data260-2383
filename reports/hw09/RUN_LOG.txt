@@ -17,3 +17,24 @@ Enter password:
 | id | view_count |
 +----+------------+
 |  3 |         20 |
+
+uvicorn main:app --reload --port 8583
+
+(base) annie@mac web_application % python semantic_cache_demo.py
+Query 1: cached=False similarity=None latency_ms=7922.31
+Query 2: cached=True similarity=1.0 latency_ms=34.53
+Query 3: cached=False similarity=None latency_ms=4265.15
+Query 4: cached=False similarity=None latency_ms=9005.79
+Query 5: cached=True similarity=1.0 latency_ms=22.41
+Query 6: cached=False similarity=None latency_ms=5146.38
+Query 7: cached=False similarity=None latency_ms=5773.75
+Query 8: cached=False similarity=None latency_ms=13538.18
+Query 9: cached=True similarity=1.0 latency_ms=27.28
+Query 10: cached=False similarity=None latency_ms=6458.33
+{
+  "query_count": 10,
+  "cache_hits": 3,
+  "cache_hit_rate_percent": 30.0,
+  "average_cached_latency_ms": 28.07,
+  "average_non_cached_latency_ms": 7444.27
+}

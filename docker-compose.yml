@@ -1,6 +1,6 @@
 services:
   redis:
-    image: redis:latest
+    image: redis/redis-stack-server:latest
     container_name: data260-redis
     ports:
       - "6379:6379"

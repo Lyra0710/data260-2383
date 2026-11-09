@@ -129,7 +129,10 @@ class ChatMemoryUsed(BaseModel):
 
 class ChatResponse(BaseModel):
     reply: str
-    memory: ChatMemoryUsed
+    memory: ChatMemoryUsed | None
+    is_cached: bool
+    similarity_score: float | None
+    latency_ms: float
 
 
 class FileMemoryCommandRequest(BaseModel):
