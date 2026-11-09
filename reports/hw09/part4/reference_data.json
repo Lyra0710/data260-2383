@@ -1,0 +1,23 @@
+{
+  "domain": "community sports league fixtures",
+  "facts": [
+    {
+      "fact_id": "fixture_1_code",
+      "subject": "fixture 1",
+      "field": "fixture_code",
+      "value": "FIX-001"
+    },
+    {
+      "fact_id": "fixture_3_code",
+      "subject": "fixture 3",
+      "field": "fixture_code",
+      "value": "FIX-002"
+    },
+    {
+      "fact_id": "fixture_3_related_note",
+      "subject": "fixture 3 related item 1",
+      "field": "details",
+      "value": "Updated cache demonstration note."
+    }
+  ]
+}

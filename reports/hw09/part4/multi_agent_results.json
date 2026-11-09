@@ -1,0 +1,721 @@
+{
+  "training_results": [
+    {
+      "id": "train_01",
+      "question": "What is the fixture code for fixture 1?",
+      "initial_answer": "I do not have a verified value for fixture 1.",
+      "initial_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: FIX-001",
+        "feedback": "The fixture 1 code is FIX-001.",
+        "fact": {
+          "fact_id": "fixture_1_code",
+          "subject": "fixture 1",
+          "field": "fixture_code",
+          "value": "FIX-001"
+        }
+      },
+      "final_answer": "The fixture 1 code is FIX-001.",
+      "final_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_1_code",
+          "subject": "fixture 1",
+          "field": "fixture_code",
+          "value": "FIX-001"
+        }
+      },
+      "attempts": 2,
+      "latency_ms": 0.07
+    },
+    {
+      "id": "train_02",
+      "question": "What is the related note for fixture 3?",
+      "initial_answer": "The answer concerns fixture 3 related item 1.",
+      "initial_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: Updated cache demonstration note.",
+        "feedback": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+        "fact": {
+          "fact_id": "fixture_3_related_note",
+          "subject": "fixture 3 related item 1",
+          "field": "details",
+          "value": "Updated cache demonstration note."
+        }
+      },
+      "final_answer": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+      "final_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_3_related_note",
+          "subject": "fixture 3 related item 1",
+          "field": "details",
+          "value": "Updated cache demonstration note."
+        }
+      },
+      "attempts": 2,
+      "latency_ms": 0.01
+    },
+    {
+      "id": "train_03",
+      "question": "What is the fixture code for fixture 3?",
+      "initial_answer": "I do not have a verified value for fixture 3.",
+      "initial_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: FIX-002",
+        "feedback": "The fixture 3 code is FIX-002.",
+        "fact": {
+          "fact_id": "fixture_3_code",
+          "subject": "fixture 3",
+          "field": "fixture_code",
+          "value": "FIX-002"
+        }
+      },
+      "final_answer": "The fixture 3 code is FIX-002.",
+      "final_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_3_code",
+          "subject": "fixture 3",
+          "field": "fixture_code",
+          "value": "FIX-002"
+        }
+      },
+      "attempts": 2,
+      "latency_ms": 0.0
+    }
+  ],
+  "validation_before": [
+    {
+      "id": "validation_01",
+      "question": "Give the code for fixture 1.",
+      "initial_answer": "I do not have a verified value for fixture 1.",
+      "initial_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: FIX-001",
+        "feedback": "The fixture 1 code is FIX-001.",
+        "fact": {
+          "fact_id": "fixture_1_code",
+          "subject": "fixture 1",
+          "field": "fixture_code",
+          "value": "FIX-001"
+        }
+      },
+      "final_answer": "I do not have a verified value for fixture 1.",
+      "final_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: FIX-001",
+        "feedback": "The fixture 1 code is FIX-001.",
+        "fact": {
+          "fact_id": "fixture_1_code",
+          "subject": "fixture 1",
+          "field": "fixture_code",
+          "value": "FIX-001"
+        }
+      },
+      "attempts": 1,
+      "latency_ms": 0.0
+    },
+    {
+      "id": "validation_02",
+      "question": "Tell me the details in fixture 3's related note.",
+      "initial_answer": "I do not have a verified value for fixture 3 related item 1.",
+      "initial_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: Updated cache demonstration note.",
+        "feedback": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+        "fact": {
+          "fact_id": "fixture_3_related_note",
+          "subject": "fixture 3 related item 1",
+          "field": "details",
+          "value": "Updated cache demonstration note."
+        }
+      },
+      "final_answer": "I do not have a verified value for fixture 3 related item 1.",
+      "final_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: Updated cache demonstration note.",
+        "feedback": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+        "fact": {
+          "fact_id": "fixture_3_related_note",
+          "subject": "fixture 3 related item 1",
+          "field": "details",
+          "value": "Updated cache demonstration note."
+        }
+      },
+      "attempts": 1,
+      "latency_ms": 0.0
+    },
+    {
+      "id": "validation_03",
+      "question": "What code identifies fixture 3?",
+      "initial_answer": "I do not have a verified value for fixture 3.",
+      "initial_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: FIX-002",
+        "feedback": "The fixture 3 code is FIX-002.",
+        "fact": {
+          "fact_id": "fixture_3_code",
+          "subject": "fixture 3",
+          "field": "fixture_code",
+          "value": "FIX-002"
+        }
+      },
+      "final_answer": "I do not have a verified value for fixture 3.",
+      "final_evaluation": {
+        "result": "REVISE",
+        "explanation": "The answer must state the exact reference value: FIX-002",
+        "feedback": "The fixture 3 code is FIX-002.",
+        "fact": {
+          "fact_id": "fixture_3_code",
+          "subject": "fixture 3",
+          "field": "fixture_code",
+          "value": "FIX-002"
+        }
+      },
+      "attempts": 1,
+      "latency_ms": 0.0
+    },
+    {
+      "id": "validation_04",
+      "question": "Which venue is assigned to fixture 1?",
+      "initial_answer": "I do not have a verified answer for that question.",
+      "initial_evaluation": {
+        "result": "PASS",
+        "explanation": "The question has no supporting reference fact.",
+        "feedback": null,
+        "fact": null
+      },
+      "final_answer": "I do not have a verified answer for that question.",
+      "final_evaluation": {
+        "result": "PASS",
+        "explanation": "The question has no supporting reference fact.",
+        "feedback": null,
+        "fact": null
+      },
+      "attempts": 1,
+      "latency_ms": 0.0
+    }
+  ],
+  "validation_after": [
+    {
+      "id": "validation_01",
+      "question": "Give the code for fixture 1.",
+      "initial_answer": "The fixture 1 code is FIX-001.",
+      "initial_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_1_code",
+          "subject": "fixture 1",
+          "field": "fixture_code",
+          "value": "FIX-001"
+        }
+      },
+      "final_answer": "The fixture 1 code is FIX-001.",
+      "final_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_1_code",
+          "subject": "fixture 1",
+          "field": "fixture_code",
+          "value": "FIX-001"
+        }
+      },
+      "attempts": 1,
+      "latency_ms": 0.0
+    },
+    {
+      "id": "validation_02",
+      "question": "Tell me the details in fixture 3's related note.",
+      "initial_answer": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+      "initial_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_3_related_note",
+          "subject": "fixture 3 related item 1",
+          "field": "details",
+          "value": "Updated cache demonstration note."
+        }
+      },
+      "final_answer": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+      "final_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_3_related_note",
+          "subject": "fixture 3 related item 1",
+          "field": "details",
+          "value": "Updated cache demonstration note."
+        }
+      },
+      "attempts": 1,
+      "latency_ms": 0.0
+    },
+    {
+      "id": "validation_03",
+      "question": "What code identifies fixture 3?",
+      "initial_answer": "The fixture 3 code is FIX-002.",
+      "initial_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_3_code",
+          "subject": "fixture 3",
+          "field": "fixture_code",
+          "value": "FIX-002"
+        }
+      },
+      "final_answer": "The fixture 3 code is FIX-002.",
+      "final_evaluation": {
+        "result": "PASS",
+        "explanation": "The answer matches the reference fact.",
+        "feedback": null,
+        "fact": {
+          "fact_id": "fixture_3_code",
+          "subject": "fixture 3",
+          "field": "fixture_code",
+          "value": "FIX-002"
+        }
+      },
+      "attempts": 1,
+      "latency_ms": 0.0
+    },
+    {
+      "id": "validation_04",
+      "question": "Which venue is assigned to fixture 1?",
+      "initial_answer": "I do not have a verified answer for that question.",
+      "initial_evaluation": {
+        "result": "PASS",
+        "explanation": "The question has no supporting reference fact.",
+        "feedback": null,
+        "fact": null
+      },
+      "final_answer": "I do not have a verified answer for that question.",
+      "final_evaluation": {
+        "result": "PASS",
+        "explanation": "The question has no supporting reference fact.",
+        "feedback": null,
+        "fact": null
+      },
+      "attempts": 1,
+      "latency_ms": 0.0
+    }
+  ],
+  "lessons_kept": true,
+  "variants": {
+    "Baseline": {
+      "summary": {
+        "correct_answers": 0,
+        "incorrect_answers": 3,
+        "average_attempts": 1.0,
+        "average_latency_ms": 0.0
+      },
+      "results": [
+        {
+          "id": "test_01",
+          "question": "What is fixture 1's code?",
+          "initial_answer": "I do not have a verified value for fixture 1.",
+          "initial_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: FIX-001",
+            "feedback": "The fixture 1 code is FIX-001.",
+            "fact": {
+              "fact_id": "fixture_1_code",
+              "subject": "fixture 1",
+              "field": "fixture_code",
+              "value": "FIX-001"
+            }
+          },
+          "final_answer": "I do not have a verified value for fixture 1.",
+          "final_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: FIX-001",
+            "feedback": "The fixture 1 code is FIX-001.",
+            "fact": {
+              "fact_id": "fixture_1_code",
+              "subject": "fixture 1",
+              "field": "fixture_code",
+              "value": "FIX-001"
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        },
+        {
+          "id": "test_02",
+          "question": "What does the related item for fixture 3 say?",
+          "initial_answer": "I do not have a verified value for fixture 3 related item 1.",
+          "initial_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: Updated cache demonstration note.",
+            "feedback": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+            "fact": {
+              "fact_id": "fixture_3_related_note",
+              "subject": "fixture 3 related item 1",
+              "field": "details",
+              "value": "Updated cache demonstration note."
+            }
+          },
+          "final_answer": "I do not have a verified value for fixture 3 related item 1.",
+          "final_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: Updated cache demonstration note.",
+            "feedback": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+            "fact": {
+              "fact_id": "fixture_3_related_note",
+              "subject": "fixture 3 related item 1",
+              "field": "details",
+              "value": "Updated cache demonstration note."
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        },
+        {
+          "id": "test_03",
+          "question": "What is fixture 3's fixture code?",
+          "initial_answer": "I do not have a verified value for fixture 3.",
+          "initial_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: FIX-002",
+            "feedback": "The fixture 3 code is FIX-002.",
+            "fact": {
+              "fact_id": "fixture_3_code",
+              "subject": "fixture 3",
+              "field": "fixture_code",
+              "value": "FIX-002"
+            }
+          },
+          "final_answer": "I do not have a verified value for fixture 3.",
+          "final_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: FIX-002",
+            "feedback": "The fixture 3 code is FIX-002.",
+            "fact": {
+              "fact_id": "fixture_3_code",
+              "subject": "fixture 3",
+              "field": "fixture_code",
+              "value": "FIX-002"
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        }
+      ]
+    },
+    "Evaluator Repair": {
+      "summary": {
+        "correct_answers": 3,
+        "incorrect_answers": 0,
+        "average_attempts": 2.0,
+        "average_latency_ms": 0.0
+      },
+      "results": [
+        {
+          "id": "test_01",
+          "question": "What is fixture 1's code?",
+          "initial_answer": "I do not have a verified value for fixture 1.",
+          "initial_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: FIX-001",
+            "feedback": "The fixture 1 code is FIX-001.",
+            "fact": {
+              "fact_id": "fixture_1_code",
+              "subject": "fixture 1",
+              "field": "fixture_code",
+              "value": "FIX-001"
+            }
+          },
+          "final_answer": "The fixture 1 code is FIX-001.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_1_code",
+              "subject": "fixture 1",
+              "field": "fixture_code",
+              "value": "FIX-001"
+            }
+          },
+          "attempts": 2,
+          "latency_ms": 0.0
+        },
+        {
+          "id": "test_02",
+          "question": "What does the related item for fixture 3 say?",
+          "initial_answer": "I do not have a verified value for fixture 3 related item 1.",
+          "initial_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: Updated cache demonstration note.",
+            "feedback": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+            "fact": {
+              "fact_id": "fixture_3_related_note",
+              "subject": "fixture 3 related item 1",
+              "field": "details",
+              "value": "Updated cache demonstration note."
+            }
+          },
+          "final_answer": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_related_note",
+              "subject": "fixture 3 related item 1",
+              "field": "details",
+              "value": "Updated cache demonstration note."
+            }
+          },
+          "attempts": 2,
+          "latency_ms": 0.0
+        },
+        {
+          "id": "test_03",
+          "question": "What is fixture 3's fixture code?",
+          "initial_answer": "I do not have a verified value for fixture 3.",
+          "initial_evaluation": {
+            "result": "REVISE",
+            "explanation": "The answer must state the exact reference value: FIX-002",
+            "feedback": "The fixture 3 code is FIX-002.",
+            "fact": {
+              "fact_id": "fixture_3_code",
+              "subject": "fixture 3",
+              "field": "fixture_code",
+              "value": "FIX-002"
+            }
+          },
+          "final_answer": "The fixture 3 code is FIX-002.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_code",
+              "subject": "fixture 3",
+              "field": "fixture_code",
+              "value": "FIX-002"
+            }
+          },
+          "attempts": 2,
+          "latency_ms": 0.0
+        }
+      ]
+    },
+    "Lesson Memory": {
+      "summary": {
+        "correct_answers": 3,
+        "incorrect_answers": 0,
+        "average_attempts": 1.0,
+        "average_latency_ms": 0.0
+      },
+      "results": [
+        {
+          "id": "test_01",
+          "question": "What is fixture 1's code?",
+          "initial_answer": "The fixture 1 code is FIX-001.",
+          "initial_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_1_code",
+              "subject": "fixture 1",
+              "field": "fixture_code",
+              "value": "FIX-001"
+            }
+          },
+          "final_answer": "The fixture 1 code is FIX-001.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_1_code",
+              "subject": "fixture 1",
+              "field": "fixture_code",
+              "value": "FIX-001"
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        },
+        {
+          "id": "test_02",
+          "question": "What does the related item for fixture 3 say?",
+          "initial_answer": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+          "initial_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_related_note",
+              "subject": "fixture 3 related item 1",
+              "field": "details",
+              "value": "Updated cache demonstration note."
+            }
+          },
+          "final_answer": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_related_note",
+              "subject": "fixture 3 related item 1",
+              "field": "details",
+              "value": "Updated cache demonstration note."
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        },
+        {
+          "id": "test_03",
+          "question": "What is fixture 3's fixture code?",
+          "initial_answer": "The fixture 3 code is FIX-002.",
+          "initial_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_code",
+              "subject": "fixture 3",
+              "field": "fixture_code",
+              "value": "FIX-002"
+            }
+          },
+          "final_answer": "The fixture 3 code is FIX-002.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_code",
+              "subject": "fixture 3",
+              "field": "fixture_code",
+              "value": "FIX-002"
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        }
+      ]
+    },
+    "Validated Improvement": {
+      "summary": {
+        "correct_answers": 3,
+        "incorrect_answers": 0,
+        "average_attempts": 1.0,
+        "average_latency_ms": 0.0
+      },
+      "results": [
+        {
+          "id": "test_01",
+          "question": "What is fixture 1's code?",
+          "initial_answer": "The fixture 1 code is FIX-001.",
+          "initial_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_1_code",
+              "subject": "fixture 1",
+              "field": "fixture_code",
+              "value": "FIX-001"
+            }
+          },
+          "final_answer": "The fixture 1 code is FIX-001.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_1_code",
+              "subject": "fixture 1",
+              "field": "fixture_code",
+              "value": "FIX-001"
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        },
+        {
+          "id": "test_02",
+          "question": "What does the related item for fixture 3 say?",
+          "initial_answer": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+          "initial_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_related_note",
+              "subject": "fixture 3 related item 1",
+              "field": "details",
+              "value": "Updated cache demonstration note."
+            }
+          },
+          "final_answer": "The fixture 3 related item 1 details are: Updated cache demonstration note.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_related_note",
+              "subject": "fixture 3 related item 1",
+              "field": "details",
+              "value": "Updated cache demonstration note."
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        },
+        {
+          "id": "test_03",
+          "question": "What is fixture 3's fixture code?",
+          "initial_answer": "The fixture 3 code is FIX-002.",
+          "initial_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_code",
+              "subject": "fixture 3",
+              "field": "fixture_code",
+              "value": "FIX-002"
+            }
+          },
+          "final_answer": "The fixture 3 code is FIX-002.",
+          "final_evaluation": {
+            "result": "PASS",
+            "explanation": "The answer matches the reference fact.",
+            "feedback": null,
+            "fact": {
+              "fact_id": "fixture_3_code",
+              "subject": "fixture 3",
+              "field": "fixture_code",
+              "value": "FIX-002"
+            }
+          },
+          "attempts": 1,
+          "latency_ms": 0.0
+        }
+      ]
+    }
+  }
+}

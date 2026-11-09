@@ -1,0 +1,15 @@
+[
+  {
+    "id": "train_01",
+    "question": "What is the fixture code for fixture 1?"
+  },
+  {
+    "id": "train_02",
+    "question": "What is the related note for fixture 3?",
+    "force_incomplete_first_attempt": true
+  },
+  {
+    "id": "train_03",
+    "question": "What is the fixture code for fixture 3?"
+  }
+]

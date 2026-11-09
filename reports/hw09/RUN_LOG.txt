@@ -283,3 +283,30 @@ Enter password:
 
 (base) annie@mac web_application % /usr/local/mysql-9.4.0-macos15-arm64/bin/mysql -u root -p -S /tmp/mysql.sock s2383_rel -e "UPDATE fixture_related_items SET details = 'Updated cache demonstration note.' WHERE id = 1;"
 Enter password: 
+(base) annie@mac web_application % python multi_agent_system.py
+{
+  "Baseline": {
+    "correct_answers": 0,
+    "incorrect_answers": 3,
+    "average_attempts": 1.0,
+    "average_latency_ms": 0.0
+  },
+  "Evaluator Repair": {
+    "correct_answers": 3,
+    "incorrect_answers": 0,
+    "average_attempts": 2.0,
+    "average_latency_ms": 0.0
+  },
+  "Lesson Memory": {
+    "correct_answers": 3,
+    "incorrect_answers": 0,
+    "average_attempts": 1.0,
+    "average_latency_ms": 0.0
+  },
+  "Validated Improvement": {
+    "correct_answers": 3,
+    "incorrect_answers": 0,
+    "average_attempts": 1.0,
+    "average_latency_ms": 0.0
+  }
+}
