@@ -135,6 +135,7 @@ class ChatResponse(BaseModel):
     is_cached: bool
     similarity_score: float | None
     latency_ms: float
+    trace_id: str | None = None
 
 
 class RelatedItemUpdate(BaseModel):

@@ -1,5 +1,6 @@
 import asyncio
 
+from hw10_observability import span
 from kafka.config import DRAFTS_TOPIC, FINAL_TOPIC, PREFIX
 from kafka.pipeline import ask_model, message_consumer, message_producer
 
@@ -17,15 +18,21 @@ async def main() -> None:
         async for message in consumer:
             incoming = message.value
             print(f"Reviewer received: {incoming}")
+            trace_id = incoming.get("trace_id", incoming["correlation_id"])
 
-            answer = await asyncio.to_thread(
-                ask_model,
-                "Review the draft for correctness, clarity, and practicality. "
-                "Return an improved final answer only.",
-                f"Question: {incoming['question']}\n\nDraft: {incoming['draft']}",
-            )
+            with span(trace_id, "reviewer"):
+                answer = await asyncio.to_thread(
+                    ask_model,
+                    "Review the draft for correctness, clarity, and practicality. "
+                    "Return an improved final answer only.",
+                    f"Question: {incoming['question']}\n\nDraft: {incoming['draft']}",
+                )
             final_message = {
                 "correlation_id": incoming["correlation_id"],
+                "trace_id": trace_id,
+                "question": incoming["question"],
+                "plan": incoming.get("plan", ""),
+                "draft": incoming["draft"],
                 "status": "approved",
                 "answer": answer,
             }

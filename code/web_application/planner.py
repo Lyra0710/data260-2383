@@ -1,5 +1,6 @@
 import asyncio
 
+from hw10_observability import span
 from kafka.config import INBOX_TOPIC, PREFIX, TASKS_TOPIC
 from kafka.pipeline import ask_model, message_consumer, message_producer
 
@@ -17,15 +18,18 @@ async def main() -> None:
         async for message in consumer:
             incoming = message.value
             print(f"Planner received: {incoming}")
+            trace_id = incoming.get("trace_id", incoming["correlation_id"])
 
-            plan = await asyncio.to_thread(
-                ask_model,
-                "Create a short three-step plan for answering a community sports "
-                "league fixture question. Return plain text only.",
-                incoming["question"],
-            )
+            with span(trace_id, "planner"):
+                plan = await asyncio.to_thread(
+                    ask_model,
+                    "Create a short three-step plan for answering a community sports "
+                    "league fixture question. Return plain text only.",
+                    incoming["question"],
+                )
             task = {
                 "correlation_id": incoming["correlation_id"],
+                "trace_id": trace_id,
                 "question": incoming["question"],
                 "plan": plan,
             }

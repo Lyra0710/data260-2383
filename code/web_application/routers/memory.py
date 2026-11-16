@@ -1,8 +1,10 @@
 import logging
 import time
+from uuid import uuid4
 
 from db import get_db
 from fastapi import APIRouter, Depends, HTTPException
+from hw10_observability import span
 from memory_repository import aggregate_user_memory, fetch_memory_snapshot
 from memory_service import (
     COMPACT_SHORT_TERM_N,
@@ -58,18 +60,22 @@ def related_item_context(request: ChatRequest, db: DbSession) -> tuple[str | Non
 @router.post("/chat", response_model=ChatResponse)
 def chat(request: ChatRequest, db: DbSession = Depends(get_db)):
     started_at = time.perf_counter()
+    trace_id = str(uuid4())
     session_id = request.session_id or request.user_id
     domain_context, context_key = related_item_context(request, db)
-    query_embedding = embed_texts([request.message])[0]
-    data_version = semantic_response_cache.current_data_version()
-    cached_response = semantic_response_cache.find_similar(
-        query_embedding,
-        data_version,
-        request.user_id,
-        session_id,
-        context_key,
-        CACHE_THRESHOLD,
-    )
+    cache_metadata = {}
+    with span(trace_id, "cache_lookup", cache_metadata):
+        query_embedding = embed_texts([request.message])[0]
+        data_version = semantic_response_cache.current_data_version()
+        cached_response = semantic_response_cache.find_similar(
+            query_embedding,
+            data_version,
+            request.user_id,
+            session_id,
+            context_key,
+            CACHE_THRESHOLD,
+        )
+        cache_metadata["path"] = "hit" if cached_response is not None else "miss"
 
     if cached_response is not None:
         latency_ms = round((time.perf_counter() - started_at) * 1000, 2)
@@ -84,6 +90,7 @@ def chat(request: ChatRequest, db: DbSession = Depends(get_db)):
             "is_cached": True,
             "similarity_score": cached_response["similarity_score"],
             "latency_ms": latency_ms,
+            "trace_id": trace_id,
         }
 
     response = generate_reply(
@@ -111,6 +118,7 @@ def chat(request: ChatRequest, db: DbSession = Depends(get_db)):
         "is_cached": False,
         "similarity_score": None,
         "latency_ms": latency_ms,
+        "trace_id": trace_id,
     }
 
 

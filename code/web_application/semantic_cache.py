@@ -32,9 +32,14 @@ class SemanticResponseCache:
         data_version: str,
         user_id: str,
         session_id: str,
-        context_key: str,
-        threshold: float,
+        context_key: str = "none",
+        threshold: float = CACHE_THRESHOLD,
     ) -> dict | None:
+        # Keep the HW9 five-argument call shape working for existing tests and
+        # scripts while allowing newer callers to scope entries by context.
+        if isinstance(context_key, (int, float)):
+            threshold = float(context_key)
+            context_key = "none"
         self.ensure_index(len(embedding))
         user_tag = self.escape_tag(user_id)
         session_tag = self.escape_tag(session_id)
@@ -74,7 +79,7 @@ class SemanticResponseCache:
         data_version: str,
         user_id: str,
         session_id: str,
-        context_key: str,
+        context_key: str = "none",
     ) -> None:
         self.ensure_index(len(embedding))
         key = f"{ENTRY_PREFIX}{uuid.uuid4()}"

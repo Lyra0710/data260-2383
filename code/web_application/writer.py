@@ -1,5 +1,6 @@
 import asyncio
 
+from hw10_observability import span
 from kafka.config import DEAD_LETTER_TOPIC, DRAFTS_TOPIC, PREFIX, TASKS_TOPIC
 from kafka.pipeline import (
     IDEMPOTENCY_ENABLED,
@@ -28,6 +29,7 @@ async def main() -> None:
             print(f"Writer received: {incoming}")
 
             correlation_id = incoming["correlation_id"]
+            trace_id = incoming.get("trace_id", correlation_id)
             if IDEMPOTENCY_ENABLED and correlation_id in completed_correlation_ids:
                 print(f"Writer duplicate skipped: {correlation_id}")
                 await consumer.commit()
@@ -53,14 +55,16 @@ async def main() -> None:
                 print(f"Writer sent to dead letter: {dead_letter}")
                 continue
 
-            draft = await asyncio.to_thread(
-                ask_model,
-                "Write a concise, practical answer for a community sports league "
-                "manager. Follow the supplied plan. Return plain text only.",
-                f"Question: {incoming['question']}\n\nPlan: {incoming['plan']}",
-            )
+            with span(trace_id, "writer"):
+                draft = await asyncio.to_thread(
+                    ask_model,
+                    "Write a concise, practical answer for a community sports league "
+                    "manager. Follow the supplied plan. Return plain text only.",
+                    f"Question: {incoming['question']}\n\nPlan: {incoming['plan']}",
+                )
             draft_message = {
                 "correlation_id": correlation_id,
+                "trace_id": trace_id,
                 "question": incoming["question"],
                 "plan": incoming["plan"],
                 "draft": draft,

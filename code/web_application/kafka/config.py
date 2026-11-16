@@ -19,6 +19,7 @@ INBOX_TOPIC = f"{PREFIX}_inbox"
 TASKS_TOPIC = f"{PREFIX}_tasks"
 DRAFTS_TOPIC = f"{PREFIX}_drafts"
 FINAL_TOPIC = f"{PREFIX}_final"
+EVALUATION_TOPIC = f"{PREFIX}_evaluations"
 
 # Part 3 failure-handling topic.
 DEAD_LETTER_TOPIC = f"{PREFIX}_dead_letter"

@@ -2,6 +2,7 @@ import asyncio
 import uuid
 
 from fastapi import FastAPI, HTTPException
+from hw10_observability import span
 from kafka.client import send_request
 
 app = FastAPI(title="HW8 Kafka Fixture API")
@@ -16,10 +17,11 @@ async def kafka_response(operation: str, data: dict) -> dict:
     correlation_id = str(uuid.uuid4())
 
     try:
-        response = await asyncio.wait_for(
-            send_request(operation, data, correlation_id),
-            timeout=15,
-        )
+        with span(correlation_id, "inbox", {"operation": operation}):
+            response = await asyncio.wait_for(
+                send_request(operation, data, correlation_id),
+                timeout=15,
+            )
     except TimeoutError as error:
         raise HTTPException(
             status_code=504,
