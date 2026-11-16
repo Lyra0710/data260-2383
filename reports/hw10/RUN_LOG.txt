@@ -1,0 +1,16 @@
+Homework 10 final run log
+
+Judge validation
+  PYTHONPATH=code/web_application python3 code/web_application/run_hw10_judge.py
+  Result: 20 cases, 3 repeats, qwen3:8b GEval, Spearman -0.2536,
+  mean absolute difference 1.5, 0 changed scores out of 40 comparisons.
+
+Trace examples
+  Successful miss: 39ee2a20-338c-4856-ba24-74a8dc0549cb
+  Cache hit:       1cb754d7-821e-46a9-bd7a-9a0d6a827ad1
+  Writer failure:  eed9b9f8-fb35-4b13-9c95-e7bea5164d95
+
+Latency experiment
+  HW10_EVALUATION_MODE=linkage_only PYTHONPATH=code/web_application \
+  python3 code/web_application/run_hw10_latency_experiment.py --count 50
+  Result: 50 confirmed cache misses. See raw/latency_experiment.json.
