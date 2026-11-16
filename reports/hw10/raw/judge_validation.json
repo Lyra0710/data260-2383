@@ -3,14 +3,14 @@
   "label_reference": "reports/hw10/human_labels.csv",
   "case_count": 20,
   "scale": "1-5",
-  "judge_model": "deterministic-local-judge-v1",
+  "judge_model": "qwen3:8b",
   "settings": {
     "repeats": 3,
-    "timeout_seconds": 20.0,
-    "deepeval_enabled": false
+    "timeout_seconds": 90.0,
+    "judge_type": "DeepEval GEval with local Ollama"
   },
-  "spearman_correlation": 0.2815,
-  "mean_absolute_difference": 1.25,
+  "spearman_correlation": -0.2536,
+  "mean_absolute_difference": 1.5,
   "repeatability": {
     "changed_score_count": 0,
     "comparison_count": 40,
@@ -21,307 +21,307 @@
     [
       {
         "case_id": "case-01",
-        "score": 5,
-        "reason": "Writer draft contains 3 question-term overlap and 14 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing essential confirmations (venue, date, teams, etc.) required for scheduling. It is accurate, relevant, and practical, covering key parameters without unnecessary details. The answer is concise and fully aligns with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-02",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by listing all necessary components for creating a fixture, demonstrating completeness and practical relevance. It provides a concise, accurate answer without unnecessary details, aligning with the parameters provided."
       },
       {
         "case_id": "case-03",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+        "reason": "The response directly addresses the venue conflict question by providing actionable steps (checking reservations, contacting teams, offering alternatives) that align with managerial responsibilities. It is accurate, relevant, complete, and practical, meeting the criteria for excellent helpfulness."
       },
       {
         "case_id": "case-04",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 11 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing a clear solution for handling duplicate fixture codes. It is accurate, relevant, and practical, offering actionable steps (generate a unique code, verify existing records) that align with standard system behavior. The answer is complete and helpful, meeting all criteria for excellent helpfulness."
       },
       {
         "case_id": "case-05",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 3,
+        "reason": "The answer directly addresses the user's question by providing actionable steps for preparing a weekday tennis fixture. It includes accurate and relevant details such as confirming availability, reserving the court, verifying teams, and communicating with participants. While it lacks some contextual specifics (e.g., weather checks or scheduling conflicts), the steps are practical and complete for the core coordination tasks."
       },
       {
         "case_id": "case-06",
-        "score": 5,
-        "reason": "Writer draft contains 3 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing specific components of a fixture response relevant to a reviewer. It includes practical details like identifier, teams, venue, and status, which are essential for clarity and completeness. However, it could be more exhaustive by adding elements like dates or time slots, but the provided answer is accurate and relevant to the query."
       },
       {
         "case_id": "case-07",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+        "reason": "The response directly addresses the question by providing actionable steps (correlation identifier, validation error, worker logs, dead-letter record) relevant to troubleshooting failed fixture requests. It is accurate and practical but lacks broader context or additional diagnostic strategies."
       },
       {
         "case_id": "case-08",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by explaining that verification prevents reliance on inaccurate schedule details, specifically mentioning opponents, times, venues, and capacity. It is accurate, relevant, and provides practical reasoning, demonstrating excellent helpfulness."
       },
       {
         "case_id": "case-09",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing a clear, actionable method for announcing schedule changes. It includes key steps like informing teams, specifying new details, and seeking confirmation, which are practical and relevant to the scenario. The answer is complete and useful for real-world application."
       },
       {
         "case_id": "case-10",
-        "score": 5,
-        "reason": "Writer draft contains 4 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by specifying a clear representation method (non-negative integer) and explains zero's meaning. It is accurate, relevant, and provides practical guidance without unnecessary details, aligning well with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-11",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 9 substantive words."
+        "reason": "The response directly addresses the question by providing actionable steps for a manager when a venue is unavailable. It is accurate, relevant, and practical, offering specific guidance on verifying venue identifiers and using approved venues. The answer is concise and complete for the scenario described."
       },
       {
         "case_id": "case-12",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 10 substantive words."
+        "reason": "The response directly addresses the question by proposing a specific technical solution (idempotency key with correlation identifier) and explains a practical method to prevent duplicate processing. It is accurate, relevant, and provides actionable steps, demonstrating excellent helpfulness."
       },
       {
         "case_id": "case-13",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 10 substantive words."
+        "score": 3,
+        "reason": "The answer directly addresses the question by listing specific qualities of useful fixture code, including uniqueness, stability, communication ease, and formatting compliance. These attributes are relevant and practical, though it could have expanded on concepts like reusability or maintainability for deeper completeness."
       },
       {
         "case_id": "case-14",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 16 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by outlining four key checks for reviewers, covering accuracy (preserving facts, avoiding invented details), relevance (addressing the question), and practical usefulness (next steps). It is concise and aligns well with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-15",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing actionable steps to resolve conflicting schedules. It emphasizes clarity (stating the conflict), authority verification, and confirmation, which are practical and relevant to coordination scenarios. The answer is complete and useful for real-world application."
       },
       {
         "case_id": "case-16",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by explaining that dead-letter messages preserve failed messages for inspection. It is accurate, relevant, and complete, covering the key purpose of error inspection and payload retention without unnecessary details, aligning with excellent helpfulness criteria."
       },
       {
         "case_id": "case-17",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing specific elements (trace identifier, timestamps, duration, status, cache path, errors) critical for end-to-end request tracking. It is accurate, relevant, and comprehensive, covering standard metrics for monitoring and debugging. The practical usefulness is strong as these items are actionable for system analysis."
       },
       {
         "case_id": "case-18",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 2,
+        "reason": "The answer does not directly explain how to distinguish cache hits from misses, instead focusing on tracking mechanisms. It lacks clarity on the fundamental definitions of 'hit' versus 'miss' and fails to address the core question about differentiation."
       },
       {
         "case_id": "case-19",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by listing specific metrics (p50/p95 durations) relevant to cache-miss latency analysis. It includes practical, actionable measurements for system components, aligning with the test case's focus on experimental parameters. However, it lacks explanation of why these metrics are critical for cache-miss analysis, which slightly limits depth but does not detract from relevance or completeness."
       },
       {
         "case_id": "case-20",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 14 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by specifying retry conditions for transient failures and explicitly avoiding blind retries for validation failures. It is accurate and relevant, providing actionable guidance. However, it could be more complete by mentioning additional factors like retry limits or specific error types, which might enhance practical usefulness."
       }
     ],
     [
       {
         "case_id": "case-01",
-        "score": 5,
-        "reason": "Writer draft contains 3 question-term overlap and 14 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing essential confirmations (venue, date, teams, etc.) required for scheduling. It is accurate, relevant, and practical, covering key parameters without unnecessary details. The answer is concise and fully aligns with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-02",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by listing all necessary components for creating a fixture, demonstrating completeness and practical relevance. It provides a concise, accurate answer without unnecessary details, aligning with the parameters provided."
       },
       {
         "case_id": "case-03",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+        "reason": "The response directly addresses the venue conflict question by providing actionable steps (checking reservations, contacting teams, offering alternatives) that align with managerial responsibilities. It is accurate, relevant, complete, and practical, meeting the criteria for excellent helpfulness."
       },
       {
         "case_id": "case-04",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 11 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing a clear solution for handling duplicate fixture codes. It is accurate, relevant, and practical, offering actionable steps (generate a unique code, verify existing records) that align with standard system behavior. The answer is complete and helpful, meeting all criteria for excellent helpfulness."
       },
       {
         "case_id": "case-05",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 3,
+        "reason": "The answer directly addresses the user's question by providing actionable steps for preparing a weekday tennis fixture. It includes accurate and relevant details such as confirming availability, reserving the court, verifying teams, and communicating with participants. While it lacks some contextual specifics (e.g., weather checks or scheduling conflicts), the steps are practical and complete for the core coordination tasks."
       },
       {
         "case_id": "case-06",
-        "score": 5,
-        "reason": "Writer draft contains 3 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing specific components of a fixture response relevant to a reviewer. It includes practical details like identifier, teams, venue, and status, which are essential for clarity and completeness. However, it could be more exhaustive by adding elements like dates or time slots, but the provided answer is accurate and relevant to the query."
       },
       {
         "case_id": "case-07",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+        "reason": "The response directly addresses the question by providing actionable steps (correlation identifier, validation error, worker logs, dead-letter record) relevant to troubleshooting failed fixture requests. It is accurate and practical but lacks broader context or additional diagnostic strategies."
       },
       {
         "case_id": "case-08",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by explaining that verification prevents reliance on inaccurate schedule details, specifically mentioning opponents, times, venues, and capacity. It is accurate, relevant, and provides practical reasoning, demonstrating excellent helpfulness."
       },
       {
         "case_id": "case-09",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing a clear, actionable method for announcing schedule changes. It includes key steps like informing teams, specifying new details, and seeking confirmation, which are practical and relevant to the scenario. The answer is complete and useful for real-world application."
       },
       {
         "case_id": "case-10",
-        "score": 5,
-        "reason": "Writer draft contains 4 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by specifying a clear representation method (non-negative integer) and explains zero's meaning. It is accurate, relevant, and provides practical guidance without unnecessary details, aligning well with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-11",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 9 substantive words."
+        "reason": "The response directly addresses the question by providing actionable steps for a manager when a venue is unavailable. It is accurate, relevant, and practical, offering specific guidance on verifying venue identifiers and using approved venues. The answer is concise and complete for the scenario described."
       },
       {
         "case_id": "case-12",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 10 substantive words."
+        "reason": "The response directly addresses the question by proposing a specific technical solution (idempotency key with correlation identifier) and explains a practical method to prevent duplicate processing. It is accurate, relevant, and provides actionable steps, demonstrating excellent helpfulness."
       },
       {
         "case_id": "case-13",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 10 substantive words."
+        "score": 3,
+        "reason": "The answer directly addresses the question by listing specific qualities of useful fixture code, including uniqueness, stability, communication ease, and formatting compliance. These attributes are relevant and practical, though it could have expanded on concepts like reusability or maintainability for deeper completeness."
       },
       {
         "case_id": "case-14",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 16 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by outlining four key checks for reviewers, covering accuracy (preserving facts, avoiding invented details), relevance (addressing the question), and practical usefulness (next steps). It is concise and aligns well with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-15",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing actionable steps to resolve conflicting schedules. It emphasizes clarity (stating the conflict), authority verification, and confirmation, which are practical and relevant to coordination scenarios. The answer is complete and useful for real-world application."
       },
       {
         "case_id": "case-16",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by explaining that dead-letter messages preserve failed messages for inspection. It is accurate, relevant, and complete, covering the key purpose of error inspection and payload retention without unnecessary details, aligning with excellent helpfulness criteria."
       },
       {
         "case_id": "case-17",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing specific elements (trace identifier, timestamps, duration, status, cache path, errors) critical for end-to-end request tracking. It is accurate, relevant, and comprehensive, covering standard metrics for monitoring and debugging. The practical usefulness is strong as these items are actionable for system analysis."
       },
       {
         "case_id": "case-18",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 2,
+        "reason": "The answer does not directly explain how to distinguish cache hits from misses, instead focusing on tracking mechanisms. It lacks clarity on the fundamental definitions of 'hit' versus 'miss' and fails to address the core question about differentiation."
       },
       {
         "case_id": "case-19",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by listing specific metrics (p50/p95 durations) relevant to cache-miss latency analysis. It includes practical, actionable measurements for system components, aligning with the test case's focus on experimental parameters. However, it lacks explanation of why these metrics are critical for cache-miss analysis, which slightly limits depth but does not detract from relevance or completeness."
       },
       {
         "case_id": "case-20",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 14 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by specifying retry conditions for transient failures and explicitly avoiding blind retries for validation failures. It provides accurate, actionable guidance aligned with error handling best practices. However, it lacks details on retry limits or specific error types, which could enhance completeness."
       }
     ],
     [
       {
         "case_id": "case-01",
-        "score": 5,
-        "reason": "Writer draft contains 3 question-term overlap and 14 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing essential confirmations (venue, date, teams, etc.) required for scheduling. It is accurate, relevant, and practical, covering key parameters without unnecessary details. The answer is concise and fully aligns with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-02",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by listing all necessary components for creating a fixture, demonstrating completeness and practical relevance. It provides a concise, accurate answer without unnecessary details, aligning with the parameters provided."
       },
       {
         "case_id": "case-03",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+        "reason": "The response directly addresses the venue conflict question by providing actionable steps (checking reservations, contacting teams, offering alternatives) that align with managerial responsibilities. It is accurate, relevant, complete, and practical, meeting the criteria for excellent helpfulness."
       },
       {
         "case_id": "case-04",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 11 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing a clear solution for handling duplicate fixture codes. It is accurate, relevant, and practical, offering actionable steps (generate a unique code, verify existing records) that align with standard system behavior. The answer is complete and helpful, meeting all criteria for excellent helpfulness."
       },
       {
         "case_id": "case-05",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 3,
+        "reason": "The answer directly addresses the user's question by providing actionable steps for preparing a weekday tennis fixture. It includes accurate and relevant details such as confirming availability, reserving the court, verifying teams, and communicating with participants. While it lacks some contextual specifics (e.g., weather checks or scheduling conflicts), the steps are practical and complete for the core coordination tasks."
       },
       {
         "case_id": "case-06",
-        "score": 5,
-        "reason": "Writer draft contains 3 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing specific components of a fixture response relevant to a reviewer. It includes practical details like identifier, teams, venue, and status, which are essential for clarity and completeness. However, it could be more exhaustive by adding elements like dates or time slots, but the provided answer is accurate and relevant to the query."
       },
       {
         "case_id": "case-07",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+        "reason": "The response directly addresses the question by providing actionable steps (correlation identifier, validation error, worker logs, dead-letter record) relevant to troubleshooting failed fixture requests. It is accurate and practical but lacks broader context or additional diagnostic strategies."
       },
       {
         "case_id": "case-08",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by explaining that verification prevents reliance on inaccurate schedule details, specifically mentioning opponents, times, venues, and capacity. It is accurate, relevant, and provides practical reasoning, demonstrating excellent helpfulness."
       },
       {
         "case_id": "case-09",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing a clear, actionable method for announcing schedule changes. It includes key steps like informing teams, specifying new details, and seeking confirmation, which are practical and relevant to the scenario. The answer is complete and useful for real-world application."
       },
       {
         "case_id": "case-10",
-        "score": 5,
-        "reason": "Writer draft contains 4 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by specifying a clear representation method (non-negative integer) and explains zero's meaning. It is accurate, relevant, and provides practical guidance without unnecessary details, aligning well with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-11",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 9 substantive words."
+        "reason": "The response directly addresses the question by providing actionable steps for a manager when a venue is unavailable. It is accurate, relevant, and practical, offering specific guidance on verifying venue identifiers and using approved venues. The answer is concise and complete for the scenario described."
       },
       {
         "case_id": "case-12",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 10 substantive words."
+        "reason": "The response directly addresses the question by proposing a specific technical solution (idempotency key with correlation identifier) and explains a practical method to prevent duplicate processing. It is accurate, relevant, and provides actionable steps, demonstrating excellent helpfulness."
       },
       {
         "case_id": "case-13",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 10 substantive words."
+        "score": 3,
+        "reason": "The answer directly addresses the question by listing specific qualities of useful fixture code, including uniqueness, stability, communication ease, and formatting compliance. These attributes are relevant and practical, though it could have expanded on concepts like reusability or maintainability for deeper completeness."
       },
       {
         "case_id": "case-14",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 16 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by outlining four key checks for reviewers, covering accuracy (preserving facts, avoiding invented details), relevance (addressing the question), and practical usefulness (next steps). It is concise and aligns well with the evaluation criteria for helpfulness."
       },
       {
         "case_id": "case-15",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by providing actionable steps to resolve conflicting schedules. It emphasizes clarity (stating the conflict), authority verification, and confirmation, which are practical and relevant to coordination scenarios. The answer is complete and useful for real-world application."
       },
       {
         "case_id": "case-16",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by explaining that dead-letter messages preserve failed messages for inspection. It is accurate, relevant, and complete, covering the key purpose of error inspection and payload retention without unnecessary details, aligning with excellent helpfulness criteria."
       },
       {
         "case_id": "case-17",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by listing specific elements (trace identifier, timestamps, duration, status, cache path, errors) critical for end-to-end request tracking. It is accurate, relevant, and comprehensive, covering standard metrics for monitoring and debugging. The practical usefulness is strong as these items are actionable for system analysis."
       },
       {
         "case_id": "case-18",
-        "score": 4,
-        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+        "score": 2,
+        "reason": "The answer does not directly explain how to distinguish cache hits from misses, instead focusing on tracking mechanisms. It lacks clarity on the fundamental definitions of 'hit' versus 'miss' and fails to address the core question about differentiation."
       },
       {
         "case_id": "case-19",
         "score": 3,
-        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+        "reason": "The response directly addresses the question by listing specific metrics (p50/p95 durations) relevant to cache-miss latency analysis. It includes practical, actionable measurements for system components, aligning with the test case's focus on experimental parameters. However, it lacks explanation of why these metrics are critical for cache-miss analysis, which slightly limits depth but does not detract from relevance or completeness."
       },
       {
         "case_id": "case-20",
-        "score": 2,
-        "reason": "Writer draft contains 0 question-term overlap and 14 substantive words."
+        "score": 3,
+        "reason": "The response directly addresses the question by specifying retry conditions for transient failures and explicitly avoiding blind retries for validation failures. It provides accurate, actionable guidance aligned with error handling best practices. However, it lacks details on retry limits or specific error types, which could enhance completeness."
       }
     ]
   ],
@@ -329,122 +329,122 @@
     {
       "case_id": "case-01",
       "human_label": 5,
-      "judge_score": 5,
-      "reason": "Writer draft contains 3 question-term overlap and 14 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by listing essential confirmations (venue, date, teams, etc.) required for scheduling. It is accurate, relevant, and practical, covering key parameters without unnecessary details. The answer is concise and fully aligns with the evaluation criteria for helpfulness."
     },
     {
       "case_id": "case-02",
       "human_label": 5,
       "judge_score": 3,
-      "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      "reason": "The response directly addresses the question by listing all necessary components for creating a fixture, demonstrating completeness and practical relevance. It provides a concise, accurate answer without unnecessary details, aligning with the parameters provided."
     },
     {
       "case_id": "case-03",
       "human_label": 4,
       "judge_score": 3,
-      "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+      "reason": "The response directly addresses the venue conflict question by providing actionable steps (checking reservations, contacting teams, offering alternatives) that align with managerial responsibilities. It is accurate, relevant, complete, and practical, meeting the criteria for excellent helpfulness."
     },
     {
       "case_id": "case-04",
       "human_label": 4,
-      "judge_score": 4,
-      "reason": "Writer draft contains 2 question-term overlap and 11 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by providing a clear solution for handling duplicate fixture codes. It is accurate, relevant, and practical, offering actionable steps (generate a unique code, verify existing records) that align with standard system behavior. The answer is complete and helpful, meeting all criteria for excellent helpfulness."
     },
     {
       "case_id": "case-05",
       "human_label": 5,
-      "judge_score": 4,
-      "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      "judge_score": 3,
+      "reason": "The answer directly addresses the user's question by providing actionable steps for preparing a weekday tennis fixture. It includes accurate and relevant details such as confirming availability, reserving the court, verifying teams, and communicating with participants. While it lacks some contextual specifics (e.g., weather checks or scheduling conflicts), the steps are practical and complete for the core coordination tasks."
     },
     {
       "case_id": "case-06",
       "human_label": 4,
-      "judge_score": 5,
-      "reason": "Writer draft contains 3 question-term overlap and 12 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by listing specific components of a fixture response relevant to a reviewer. It includes practical details like identifier, teams, venue, and status, which are essential for clarity and completeness. However, it could be more exhaustive by adding elements like dates or time slots, but the provided answer is accurate and relevant to the query."
     },
     {
       "case_id": "case-07",
       "human_label": 4,
       "judge_score": 3,
-      "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+      "reason": "The response directly addresses the question by providing actionable steps (correlation identifier, validation error, worker logs, dead-letter record) relevant to troubleshooting failed fixture requests. It is accurate and practical but lacks broader context or additional diagnostic strategies."
     },
     {
       "case_id": "case-08",
       "human_label": 4,
-      "judge_score": 2,
-      "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by explaining that verification prevents reliance on inaccurate schedule details, specifically mentioning opponents, times, venues, and capacity. It is accurate, relevant, and provides practical reasoning, demonstrating excellent helpfulness."
     },
     {
       "case_id": "case-09",
       "human_label": 5,
-      "judge_score": 4,
-      "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by providing a clear, actionable method for announcing schedule changes. It includes key steps like informing teams, specifying new details, and seeking confirmation, which are practical and relevant to the scenario. The answer is complete and useful for real-world application."
     },
     {
       "case_id": "case-10",
       "human_label": 4,
-      "judge_score": 5,
-      "reason": "Writer draft contains 4 question-term overlap and 12 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by specifying a clear representation method (non-negative integer) and explains zero's meaning. It is accurate, relevant, and provides practical guidance without unnecessary details, aligning well with the evaluation criteria for helpfulness."
     },
     {
       "case_id": "case-11",
       "human_label": 4,
       "judge_score": 3,
-      "reason": "Writer draft contains 1 question-term overlap and 9 substantive words."
+      "reason": "The response directly addresses the question by providing actionable steps for a manager when a venue is unavailable. It is accurate, relevant, and practical, offering specific guidance on verifying venue identifiers and using approved venues. The answer is concise and complete for the scenario described."
     },
     {
       "case_id": "case-12",
       "human_label": 4,
       "judge_score": 3,
-      "reason": "Writer draft contains 1 question-term overlap and 10 substantive words."
+      "reason": "The response directly addresses the question by proposing a specific technical solution (idempotency key with correlation identifier) and explains a practical method to prevent duplicate processing. It is accurate, relevant, and provides actionable steps, demonstrating excellent helpfulness."
     },
     {
       "case_id": "case-13",
       "human_label": 4,
-      "judge_score": 2,
-      "reason": "Writer draft contains 0 question-term overlap and 10 substantive words."
+      "judge_score": 3,
+      "reason": "The answer directly addresses the question by listing specific qualities of useful fixture code, including uniqueness, stability, communication ease, and formatting compliance. These attributes are relevant and practical, though it could have expanded on concepts like reusability or maintainability for deeper completeness."
     },
     {
       "case_id": "case-14",
       "human_label": 5,
-      "judge_score": 4,
-      "reason": "Writer draft contains 2 question-term overlap and 16 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by outlining four key checks for reviewers, covering accuracy (preserving facts, avoiding invented details), relevance (addressing the question), and practical usefulness (next steps). It is concise and aligns well with the evaluation criteria for helpfulness."
     },
     {
       "case_id": "case-15",
       "human_label": 5,
-      "judge_score": 4,
-      "reason": "Writer draft contains 2 question-term overlap and 12 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by providing actionable steps to resolve conflicting schedules. It emphasizes clarity (stating the conflict), authority verification, and confirmation, which are practical and relevant to coordination scenarios. The answer is complete and useful for real-world application."
     },
     {
       "case_id": "case-16",
       "human_label": 5,
       "judge_score": 3,
-      "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      "reason": "The response directly addresses the question by explaining that dead-letter messages preserve failed messages for inspection. It is accurate, relevant, and complete, covering the key purpose of error inspection and payload retention without unnecessary details, aligning with excellent helpfulness criteria."
     },
     {
       "case_id": "case-17",
       "human_label": 5,
-      "judge_score": 2,
-      "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by listing specific elements (trace identifier, timestamps, duration, status, cache path, errors) critical for end-to-end request tracking. It is accurate, relevant, and comprehensive, covering standard metrics for monitoring and debugging. The practical usefulness is strong as these items are actionable for system analysis."
     },
     {
       "case_id": "case-18",
       "human_label": 5,
-      "judge_score": 4,
-      "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      "judge_score": 2,
+      "reason": "The answer does not directly explain how to distinguish cache hits from misses, instead focusing on tracking mechanisms. It lacks clarity on the fundamental definitions of 'hit' versus 'miss' and fails to address the core question about differentiation."
     },
     {
       "case_id": "case-19",
       "human_label": 4,
       "judge_score": 3,
-      "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      "reason": "The response directly addresses the question by listing specific metrics (p50/p95 durations) relevant to cache-miss latency analysis. It includes practical, actionable measurements for system components, aligning with the test case's focus on experimental parameters. However, it lacks explanation of why these metrics are critical for cache-miss analysis, which slightly limits depth but does not detract from relevance or completeness."
     },
     {
       "case_id": "case-20",
       "human_label": 4,
-      "judge_score": 2,
-      "reason": "Writer draft contains 0 question-term overlap and 14 substantive words."
+      "judge_score": 3,
+      "reason": "The response directly addresses the question by specifying retry conditions for transient failures and explicitly avoiding blind retries for validation failures. It is accurate and relevant, providing actionable guidance. However, it could be more complete by mentioning additional factors like retry limits or specific error types, which might enhance practical usefulness."
     }
   ]
 }

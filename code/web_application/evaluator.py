@@ -9,12 +9,12 @@ from __future__ import annotations
 import csv
 import json
 import os
-import re
 from dataclasses import dataclass
 from pathlib import Path
 from statistics import mean
 
-SCORE_MIN, SCORE_MAX = 1, 5
+from hw10_judge import score_with_geval
+
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -37,22 +37,16 @@ class EvaluationResult:
         return self.__dict__.copy()
 
 
-def _score(text: str, question: str, role: str) -> tuple[int, str]:
-    words = [word for word in re.findall(r"[a-z0-9]+", text.lower()) if len(word) > 3]
-    question_words = set(re.findall(r"[a-z0-9]+", question.lower()))
-    overlap = len(set(words) & question_words)
-    sentence_count = max(1, len(re.findall(r"[.!?]", text)))
-    points = (
-        min(3, overlap)
-        + (1 if 8 <= len(words) <= 180 else 0)
-        + (1 if sentence_count >= 1 else 0)
-    )
-    score = max(SCORE_MIN, min(SCORE_MAX, points))
-    return (
-        score,
-        f"{role} contains {overlap} question-term overlap and "
-        f"{len(words)} substantive words.",
-    )
+PLAN_STEPS = [
+    "Decide whether the plan directly addresses the user's question.",
+    "Check whether the plan has practical, ordered steps a league manager can use.",
+    "Assign 1 for very poor and 5 for excellent plan quality.",
+]
+HELPFULNESS_STEPS = [
+    "Decide whether the answer directly addresses the user's question.",
+    "Check accuracy, relevance, completeness, and practical usefulness.",
+    "Assign 1 for very poor and 5 for excellent helpfulness.",
+]
 
 
 def evaluate_messages(
@@ -65,14 +59,20 @@ def evaluate_messages(
     if not correlation_id:
         raise ValueError("messages must contain correlation_id")
     question = str(draft_message.get("question") or plan_message.get("question") or "")
-    plan_score, plan_reason = _score(
-        str(plan_message.get("plan", "")), question, "Planner plan"
+    plan_score, plan_reason = score_with_geval(
+        question, str(plan_message.get("plan", "")), "Plan Quality", PLAN_STEPS
     )
-    draft_score, draft_reason = _score(
-        str(draft_message.get("draft", "")), question, "Writer draft"
+    draft_score, draft_reason = score_with_geval(
+        question,
+        str(draft_message.get("draft", "")),
+        "Writer Helpfulness",
+        HELPFULNESS_STEPS,
     )
-    final_score, final_reason = _score(
-        str(final_message.get("answer", "")), question, "Reviewer answer"
+    final_score, final_reason = score_with_geval(
+        question,
+        str(final_message.get("answer", "")),
+        "Final Answer Helpfulness",
+        HELPFULNESS_STEPS,
     )
     improvement = final_score - draft_score
     interpretation = (
@@ -131,7 +131,12 @@ def evaluate_cases(cases_path: Path, labels_path: Path, repeats: int = 3) -> dic
     for _ in range(repeats):
         runs.append(
             [
-                _score(case["draft"], case["question"], "Writer draft")[0]
+                score_with_geval(
+                    case["question"],
+                    case["draft"],
+                    "Writer Helpfulness",
+                    HELPFULNESS_STEPS,
+                )[0]
                 for case in cases
             ]
         )

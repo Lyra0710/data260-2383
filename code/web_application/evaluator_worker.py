@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import os
 from pathlib import Path
 
 from aiokafka import AIOKafkaProducer
@@ -12,7 +13,9 @@ from hw10_observability import append_jsonl, span
 from kafka.config import EVALUATION_TOPIC, FINAL_TOPIC, KAFKA_BOOTSTRAP_SERVERS, PREFIX
 from kafka.pipeline import message_consumer
 
-EVALUATION_TIMEOUT_SECONDS = 10
+EVALUATION_TIMEOUT_SECONDS = float(
+    os.getenv("HW10_PIPELINE_EVALUATION_TIMEOUT_SECONDS", "300")
+)
 EVALUATION_LOG_PATH = (
     Path(__file__).resolve().parents[2]
     / "reports"

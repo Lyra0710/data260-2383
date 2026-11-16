@@ -5,62 +5,32 @@ from __future__ import annotations
 import csv
 import json
 import os
-from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from pathlib import Path
 
-from evaluator import _score
+from evaluator import HELPFULNESS_STEPS
+from hw10_judge import JUDGE_MODEL, JUDGE_TIMEOUT_SECONDS, score_with_geval
 
 ROOT = Path(__file__).resolve().parents[2]
 CASES_PATH = ROOT / "reports" / "hw10" / "eval_cases.json"
 LABELS_PATH = ROOT / "reports" / "hw10" / "human_labels.csv"
 OUTPUT_PATH = ROOT / "reports" / "hw10" / "raw" / "judge_validation.json"
-TIMEOUT_SECONDS = float(os.getenv("HW10_JUDGE_TIMEOUT_SECONDS", "20"))
-
-
-def local_score(case: dict) -> tuple[int, str]:
-    return _score(case["draft"], case["question"], "Writer draft")
-
-
-def deepeval_score(case: dict) -> tuple[int, str]:
-    """Use GEval when explicitly enabled and the optional package is installed."""
-    from deepeval.metrics import GEval
-    from deepeval.test_case import LLMTestCase, LLMTestCaseParams
-
-    metric = GEval(
-        name="Writer-Helpfulness",
-        criteria=(
-            "Score the Writer draft from 1 to 5 for accuracy, relevance, "
-            "completeness, and practical usefulness for the question."
-        ),
-        evaluation_params=[
-            LLMTestCaseParams.INPUT,
-            LLMTestCaseParams.ACTUAL_OUTPUT,
-        ],
-        model=os.getenv("HW10_JUDGE_MODEL", "ollama/qwen3:8b"),
-    )
-    metric.measure(LLMTestCase(input=case["question"], actual_output=case["draft"]))
-    score = round(1 + float(metric.score) * 4)
-    return max(1, min(5, score)), str(metric.reason or "")
+TIMEOUT_SECONDS = JUDGE_TIMEOUT_SECONDS
 
 
 def bounded_score(case: dict) -> tuple[int, str, str]:
-    use_deepeval = os.getenv("HW10_USE_DEEPEVAL", "false").lower() == "true"
-    if not use_deepeval:
-        score, reason = local_score(case)
-        return score, reason, "deterministic-local-judge-v1"
-
+    """Run GEval using its configured per-task and per-attempt time limits."""
     try:
-        with ThreadPoolExecutor(max_workers=1) as executor:
-            future = executor.submit(deepeval_score, case)
-            score, reason = future.result(timeout=TIMEOUT_SECONDS)
-        return score, reason, os.getenv("HW10_JUDGE_MODEL", "ollama/qwen3:8b")
-    except (ImportError, TimeoutError, Exception) as error:
-        score, reason = local_score(case)
-        return (
-            score,
-            f"GEval fallback: {error}; {reason}",
-            "deterministic-local-judge-v1",
+        score, reason = score_with_geval(
+            case["question"],
+            case["draft"],
+            "Writer Helpfulness",
+            HELPFULNESS_STEPS,
         )
+        return score, reason, JUDGE_MODEL
+    except Exception as error:
+        raise RuntimeError(
+            f"GEval could not score {case['case_id']}: {error}"
+        ) from error
 
 
 def load_labels() -> dict[str, int]:
@@ -114,9 +84,7 @@ def run() -> dict:
         "settings": {
             "repeats": repeats,
             "timeout_seconds": TIMEOUT_SECONDS,
-            "deepeval_enabled": (
-                os.getenv("HW10_USE_DEEPEVAL", "false").lower() == "true"
-            ),
+            "judge_type": "DeepEval GEval with local Ollama",
         },
         "spearman_correlation": rank_correlation(human_scores, first_scores),
         "mean_absolute_difference": round(sum(differences) / len(differences), 4),
