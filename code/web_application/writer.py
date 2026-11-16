@@ -40,13 +40,22 @@ async def main() -> None:
                 await asyncio.sleep(PROCESSING_DELAY_SECONDS)
 
             if incoming.get("force_failure"):
-                for attempt in range(1, MAX_RETRIES + 1):
-                    print(f"Writer retry {attempt}/{MAX_RETRIES}: {correlation_id}")
-                    await asyncio.sleep(1)
+                try:
+                    with span(trace_id, "writer"):
+                        for attempt in range(1, MAX_RETRIES + 1):
+                            print(
+                                f"Writer retry {attempt}/{MAX_RETRIES}: "
+                                f"{correlation_id}"
+                            )
+                            await asyncio.sleep(1)
+                        raise RuntimeError("Forced poison-message failure")
+                except RuntimeError as error:
+                    failure_message = str(error)
 
                 dead_letter = {
                     "correlation_id": correlation_id,
-                    "error": "Forced poison-message failure",
+                    "trace_id": trace_id,
+                    "error": failure_message,
                     "retry_count": MAX_RETRIES,
                     "original_message": incoming,
                 }

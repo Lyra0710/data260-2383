@@ -33,6 +33,8 @@ async def main() -> None:
                 "question": incoming["question"],
                 "plan": plan,
             }
+            if incoming.get("force_failure"):
+                task["force_failure"] = True
 
             await producer.send_and_wait(TASKS_TOPIC, task)
             await consumer.commit()
