@@ -1,0 +1,450 @@
+{
+  "dataset": "reports/hw10/eval_cases.json",
+  "label_reference": "reports/hw10/human_labels.csv",
+  "case_count": 20,
+  "scale": "1-5",
+  "judge_model": "deterministic-local-judge-v1",
+  "settings": {
+    "repeats": 3,
+    "timeout_seconds": 20.0,
+    "deepeval_enabled": false
+  },
+  "spearman_correlation": 0.2815,
+  "mean_absolute_difference": 1.25,
+  "repeatability": {
+    "changed_score_count": 0,
+    "comparison_count": 40,
+    "mean_absolute_change": 0.0,
+    "max_absolute_change": 0
+  },
+  "runs": [
+    [
+      {
+        "case_id": "case-01",
+        "score": 5,
+        "reason": "Writer draft contains 3 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-02",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-03",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-04",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 11 substantive words."
+      },
+      {
+        "case_id": "case-05",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-06",
+        "score": 5,
+        "reason": "Writer draft contains 3 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-07",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-08",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-09",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-10",
+        "score": 5,
+        "reason": "Writer draft contains 4 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-11",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 9 substantive words."
+      },
+      {
+        "case_id": "case-12",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 10 substantive words."
+      },
+      {
+        "case_id": "case-13",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 10 substantive words."
+      },
+      {
+        "case_id": "case-14",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 16 substantive words."
+      },
+      {
+        "case_id": "case-15",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-16",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-17",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-18",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-19",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-20",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 14 substantive words."
+      }
+    ],
+    [
+      {
+        "case_id": "case-01",
+        "score": 5,
+        "reason": "Writer draft contains 3 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-02",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-03",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-04",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 11 substantive words."
+      },
+      {
+        "case_id": "case-05",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-06",
+        "score": 5,
+        "reason": "Writer draft contains 3 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-07",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-08",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-09",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-10",
+        "score": 5,
+        "reason": "Writer draft contains 4 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-11",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 9 substantive words."
+      },
+      {
+        "case_id": "case-12",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 10 substantive words."
+      },
+      {
+        "case_id": "case-13",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 10 substantive words."
+      },
+      {
+        "case_id": "case-14",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 16 substantive words."
+      },
+      {
+        "case_id": "case-15",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-16",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-17",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-18",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-19",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-20",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 14 substantive words."
+      }
+    ],
+    [
+      {
+        "case_id": "case-01",
+        "score": 5,
+        "reason": "Writer draft contains 3 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-02",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-03",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-04",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 11 substantive words."
+      },
+      {
+        "case_id": "case-05",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-06",
+        "score": 5,
+        "reason": "Writer draft contains 3 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-07",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+      },
+      {
+        "case_id": "case-08",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-09",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-10",
+        "score": 5,
+        "reason": "Writer draft contains 4 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-11",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 9 substantive words."
+      },
+      {
+        "case_id": "case-12",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 10 substantive words."
+      },
+      {
+        "case_id": "case-13",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 10 substantive words."
+      },
+      {
+        "case_id": "case-14",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 16 substantive words."
+      },
+      {
+        "case_id": "case-15",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-16",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-17",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+      },
+      {
+        "case_id": "case-18",
+        "score": 4,
+        "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+      },
+      {
+        "case_id": "case-19",
+        "score": 3,
+        "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+      },
+      {
+        "case_id": "case-20",
+        "score": 2,
+        "reason": "Writer draft contains 0 question-term overlap and 14 substantive words."
+      }
+    ]
+  ],
+  "raw": [
+    {
+      "case_id": "case-01",
+      "human_label": 5,
+      "judge_score": 5,
+      "reason": "Writer draft contains 3 question-term overlap and 14 substantive words."
+    },
+    {
+      "case_id": "case-02",
+      "human_label": 5,
+      "judge_score": 3,
+      "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+    },
+    {
+      "case_id": "case-03",
+      "human_label": 4,
+      "judge_score": 3,
+      "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+    },
+    {
+      "case_id": "case-04",
+      "human_label": 4,
+      "judge_score": 4,
+      "reason": "Writer draft contains 2 question-term overlap and 11 substantive words."
+    },
+    {
+      "case_id": "case-05",
+      "human_label": 5,
+      "judge_score": 4,
+      "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+    },
+    {
+      "case_id": "case-06",
+      "human_label": 4,
+      "judge_score": 5,
+      "reason": "Writer draft contains 3 question-term overlap and 12 substantive words."
+    },
+    {
+      "case_id": "case-07",
+      "human_label": 4,
+      "judge_score": 3,
+      "reason": "Writer draft contains 1 question-term overlap and 14 substantive words."
+    },
+    {
+      "case_id": "case-08",
+      "human_label": 4,
+      "judge_score": 2,
+      "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+    },
+    {
+      "case_id": "case-09",
+      "human_label": 5,
+      "judge_score": 4,
+      "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+    },
+    {
+      "case_id": "case-10",
+      "human_label": 4,
+      "judge_score": 5,
+      "reason": "Writer draft contains 4 question-term overlap and 12 substantive words."
+    },
+    {
+      "case_id": "case-11",
+      "human_label": 4,
+      "judge_score": 3,
+      "reason": "Writer draft contains 1 question-term overlap and 9 substantive words."
+    },
+    {
+      "case_id": "case-12",
+      "human_label": 4,
+      "judge_score": 3,
+      "reason": "Writer draft contains 1 question-term overlap and 10 substantive words."
+    },
+    {
+      "case_id": "case-13",
+      "human_label": 4,
+      "judge_score": 2,
+      "reason": "Writer draft contains 0 question-term overlap and 10 substantive words."
+    },
+    {
+      "case_id": "case-14",
+      "human_label": 5,
+      "judge_score": 4,
+      "reason": "Writer draft contains 2 question-term overlap and 16 substantive words."
+    },
+    {
+      "case_id": "case-15",
+      "human_label": 5,
+      "judge_score": 4,
+      "reason": "Writer draft contains 2 question-term overlap and 12 substantive words."
+    },
+    {
+      "case_id": "case-16",
+      "human_label": 5,
+      "judge_score": 3,
+      "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+    },
+    {
+      "case_id": "case-17",
+      "human_label": 5,
+      "judge_score": 2,
+      "reason": "Writer draft contains 0 question-term overlap and 12 substantive words."
+    },
+    {
+      "case_id": "case-18",
+      "human_label": 5,
+      "judge_score": 4,
+      "reason": "Writer draft contains 2 question-term overlap and 15 substantive words."
+    },
+    {
+      "case_id": "case-19",
+      "human_label": 4,
+      "judge_score": 3,
+      "reason": "Writer draft contains 1 question-term overlap and 13 substantive words."
+    },
+    {
+      "case_id": "case-20",
+      "human_label": 4,
+      "judge_score": 2,
+      "reason": "Writer draft contains 0 question-term overlap and 14 substantive words."
+    }
+  ]
+}
