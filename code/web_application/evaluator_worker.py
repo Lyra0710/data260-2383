@@ -113,7 +113,7 @@ async def main() -> None:
     output = producer()
     await consumer.start()
     await output.start()
-    print("Evaluator is ready and listening...")
+    print(f"Evaluator is ready and listening (mode={EVALUATION_MODE})...")
 
     try:
         async for kafka_message in consumer:

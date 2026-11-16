@@ -91,11 +91,19 @@ async def run_experiment(count: int) -> dict:
     if len(complete_records) != count:
         raise RuntimeError("One or more traces did not contain every required stage")
 
+    requested_mode = os.getenv("HW10_EVALUATION_MODE", "full")
+    observed_modes = sorted(set(evaluation_modes))
+    if observed_modes != [requested_mode]:
+        raise RuntimeError(
+            f"Requested evaluator mode {requested_mode!r}, "
+            f"but observed {observed_modes!r}"
+        )
+
     result = {
         "request_count": count,
         "cache_path": "miss",
-        "evaluation_mode": os.getenv("HW10_EVALUATION_MODE", "full"),
-        "observed_evaluation_modes": sorted(set(evaluation_modes)),
+        "evaluation_mode": requested_mode,
+        "observed_evaluation_modes": observed_modes,
         "trace_ids": trace_ids,
         "summary": summarize(complete_records),
         "records": complete_records,
