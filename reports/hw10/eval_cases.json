@@ -1,0 +1,102 @@
+[
+  {
+    "case_id": "case-01",
+    "question": "What should a league manager confirm before scheduling a fixture?",
+    "draft": "Confirm the venue, date, start time, participating teams, and available field or court capacity before publishing the fixture."
+  },
+  {
+    "case_id": "case-02",
+    "question": "What information is needed to create a fixture?",
+    "draft": "A fixture needs a name, participating teams, a unique fixture code, available slots, and a valid venue identifier."
+  },
+  {
+    "case_id": "case-03",
+    "question": "How should a manager handle a venue conflict?",
+    "draft": "Check the conflicting reservations, contact the affected teams, and offer another approved time or venue before confirming the change."
+  },
+  {
+    "case_id": "case-04",
+    "question": "What should happen when a fixture code is already used?",
+    "draft": "Use a different unique fixture code and verify the existing record before retrying the creation request."
+  },
+  {
+    "case_id": "case-05",
+    "question": "How can a coordinator prepare a weekday tennis fixture?",
+    "draft": "Confirm the weekday evening availability, reserve the tennis court, verify both teams, and send the final time and venue to participants."
+  },
+  {
+    "case_id": "case-06",
+    "question": "What should a fixture response include for a reviewer?",
+    "draft": "It should include the fixture identifier, name, teams, code, available slots, venue, and current status."
+  },
+  {
+    "case_id": "case-07",
+    "question": "How should a failed fixture request be investigated?",
+    "draft": "Check the correlation identifier, request validation error, worker logs, and dead-letter record before retrying the request."
+  },
+  {
+    "case_id": "case-08",
+    "question": "Why should teams verify the fixture details?",
+    "draft": "Verification catches incorrect opponents, times, venues, or capacity before participants rely on an inaccurate schedule."
+  },
+  {
+    "case_id": "case-09",
+    "question": "What is a practical way to announce a schedule change?",
+    "draft": "Tell both teams what changed, provide the replacement date or venue, and request confirmation before treating the new schedule as final."
+  },
+  {
+    "case_id": "case-10",
+    "question": "How should available slots be represented?",
+    "draft": "Available slots should be represented as a non-negative integer; zero means that no additional slots are available."
+  },
+  {
+    "case_id": "case-11",
+    "question": "What should a manager do if a venue cannot be found?",
+    "draft": "Do not create the fixture yet. Confirm the venue identifier and select an existing approved venue."
+  },
+  {
+    "case_id": "case-12",
+    "question": "How can duplicate processing be reduced in the pipeline?",
+    "draft": "Use the correlation identifier as an idempotency key and record completed work before acknowledging duplicate messages."
+  },
+  {
+    "case_id": "case-13",
+    "question": "What makes a fixture code useful?",
+    "draft": "It should be unique, stable, easy to communicate, and formatted according to the application validation rules."
+  },
+  {
+    "case_id": "case-14",
+    "question": "What should a reviewer check in a draft answer?",
+    "draft": "Check that the answer addresses the question, preserves the supplied fixture facts, avoids invented details, and gives practical next steps."
+  },
+  {
+    "case_id": "case-15",
+    "question": "How should a coordinator respond to conflicting schedule facts?",
+    "draft": "State the conflict explicitly, identify which source is authoritative, and ask the coordinator to confirm before changing the schedule."
+  },
+  {
+    "case_id": "case-16",
+    "question": "What is the purpose of a dead-letter message?",
+    "draft": "It preserves a message that failed after retries so an operator can inspect the error and original payload without losing it."
+  },
+  {
+    "case_id": "case-17",
+    "question": "What should be tracked for an end-to-end request?",
+    "draft": "Track one trace identifier, each stage start and end time, duration, status, cache path, and any error."
+  },
+  {
+    "case_id": "case-18",
+    "question": "How should a cache hit be distinguished from a cache miss?",
+    "draft": "Record the cache lookup result explicitly and show whether the response came from the cache or continued through the agent pipeline."
+  },
+  {
+    "case_id": "case-19",
+    "question": "What should be measured in a cache-miss latency experiment?",
+    "draft": "Measure p50 and p95 duration for cache lookup, Planner, Writer, Reviewer, evaluation, total queue wait, and the complete request."
+  },
+  {
+    "case_id": "case-20",
+    "question": "When should a fixture creation request be retried?",
+    "draft": "Retry a transient failure after checking the error and preserving the same correlation identifier; do not blindly retry validation failures."
+  }
+]
