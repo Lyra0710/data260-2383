@@ -17,6 +17,12 @@ ROOT = Path(__file__).resolve().parents[2]
 OUTPUT_PATH = ROOT / "reports" / "hw10" / "raw" / "latency_experiment.json"
 STAGES = ("cache_lookup", "planner", "writer", "reviewer", "evaluation")
 TRACE_ORDER = ("cache_lookup", "inbox", "planner", "writer", "reviewer", "evaluation")
+QUEUE_TRANSITIONS = (
+    ("inbox", "planner"),
+    ("planner", "writer"),
+    ("writer", "reviewer"),
+    ("reviewer", "evaluation"),
+)
 
 
 def timestamp(value: str) -> float:
@@ -33,7 +39,7 @@ def trace_metrics(trace_id: str, spans: list[dict]) -> dict | None:
 
     durations = {stage: float(trace_spans[stage]["duration_ms"]) for stage in STAGES}
     queue_wait_ms = 0.0
-    for earlier, later in zip(TRACE_ORDER, TRACE_ORDER[1:]):
+    for earlier, later in QUEUE_TRANSITIONS:
         gap = timestamp(trace_spans[later]["start_time"]) - timestamp(
             trace_spans[earlier]["end_time"]
         )
@@ -43,9 +49,18 @@ def trace_metrics(trace_id: str, spans: list[dict]) -> dict | None:
         timestamp(trace_spans["evaluation"]["end_time"])
         - timestamp(trace_spans["cache_lookup"]["start_time"])
     ) * 1000
+    runner_setup_ms = max(
+        0.0,
+        (
+            timestamp(trace_spans["inbox"]["start_time"])
+            - timestamp(trace_spans["cache_lookup"]["end_time"])
+        )
+        * 1000,
+    )
     return {
         "trace_id": trace_id,
         **durations,
+        "runner_setup_ms": round(runner_setup_ms, 2),
         "queue_wait_ms": round(queue_wait_ms, 2),
         "end_to_end_ms": round(end_to_end_ms, 2),
     }
@@ -53,7 +68,7 @@ def trace_metrics(trace_id: str, spans: list[dict]) -> dict | None:
 
 def summarize(records: list[dict]) -> dict:
     """Return the required p50, p95, and latency shares."""
-    keys = (*STAGES, "queue_wait_ms", "end_to_end_ms")
+    keys = (*STAGES, "runner_setup_ms", "queue_wait_ms", "end_to_end_ms")
     summary = {}
     total_end_to_end = sum(record["end_to_end_ms"] for record in records)
     for key in keys:
@@ -66,7 +81,7 @@ def summarize(records: list[dict]) -> dict:
         }
 
     dominant_stage = max(
-        (*STAGES, "queue_wait_ms"),
+        (*STAGES, "runner_setup_ms", "queue_wait_ms"),
         key=lambda key: sum(record[key] for record in records),
     ).removesuffix("_ms")
     return {"stages": summary, "dominant_stage": dominant_stage}
@@ -113,9 +128,28 @@ async def run_experiment(count: int) -> dict:
     return result
 
 
+def resummarize_existing() -> dict:
+    """Recalculate an existing experiment without sending new requests."""
+    existing = json.loads(OUTPUT_PATH.read_text(encoding="utf-8"))
+    trace_ids = existing["trace_ids"]
+    spans = read_spans()
+    records = [trace_metrics(trace_id, spans) for trace_id in trace_ids]
+    complete_records = [record for record in records if record is not None]
+    if len(complete_records) != len(trace_ids):
+        raise RuntimeError(
+            "One or more stored traces did not contain every required stage"
+        )
+
+    existing["summary"] = summarize(complete_records)
+    existing["records"] = complete_records
+    OUTPUT_PATH.write_text(json.dumps(existing, indent=2) + "\n", encoding="utf-8")
+    return existing
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--count", type=int, default=50)
+    parser.add_argument("--resummarize-existing", action="store_true")
     return parser.parse_args()
 
 
@@ -123,4 +157,8 @@ if __name__ == "__main__":
     arguments = parse_args()
     if arguments.count < 1:
         raise ValueError("--count must be at least 1")
-    print(json.dumps(asyncio.run(run_experiment(arguments.count)), indent=2))
+    if arguments.resummarize_existing:
+        result = resummarize_existing()
+    else:
+        result = asyncio.run(run_experiment(arguments.count))
+    print(json.dumps(result, indent=2))
