@@ -4,14 +4,22 @@ from __future__ import annotations
 
 import asyncio
 import json
+from pathlib import Path
 
 from aiokafka import AIOKafkaProducer
 from evaluator import evaluate_messages
-from hw10_observability import span
+from hw10_observability import append_jsonl, span
 from kafka.config import EVALUATION_TOPIC, FINAL_TOPIC, KAFKA_BOOTSTRAP_SERVERS, PREFIX
 from kafka.pipeline import message_consumer
 
 EVALUATION_TIMEOUT_SECONDS = 10
+EVALUATION_LOG_PATH = (
+    Path(__file__).resolve().parents[2]
+    / "reports"
+    / "hw10"
+    / "raw"
+    / "pipeline_evaluations.jsonl"
+)
 
 
 def producer() -> AIOKafkaProducer:
@@ -91,6 +99,7 @@ async def main() -> None:
     try:
         async for kafka_message in consumer:
             result = await evaluate_final_message(kafka_message.value)
+            append_jsonl(EVALUATION_LOG_PATH, result)
             await output.send_and_wait(EVALUATION_TOPIC, result)
             await consumer.commit()
             print(f"Evaluator sent: {result}")

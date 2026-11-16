@@ -53,6 +53,13 @@ def write_span(
     return record
 
 
+def append_jsonl(path: Path, record: dict) -> None:
+    """Append one JSON object to a local evidence file."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with _WRITE_LOCK, path.open("a", encoding="utf-8") as output:
+        output.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+
 @contextmanager
 def span(trace_id: str, stage: str, metadata: dict | None = None) -> Iterator[None]:
     started_at = utc_now()
