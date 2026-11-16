@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import uuid
 from datetime import datetime
 from pathlib import Path
@@ -74,6 +75,7 @@ def summarize(records: list[dict]) -> dict:
 async def run_experiment(count: int) -> dict:
     """Run `count` isolated cache misses and save their latency summary."""
     trace_ids = []
+    evaluation_modes = []
     for number in range(1, count + 1):
         scope = f"hw10-latency-{uuid.uuid4()}"
         question = f"{QUESTION} This is latency experiment request {number}."
@@ -81,6 +83,7 @@ async def run_experiment(count: int) -> dict:
         if result["path"] != "cache_miss":
             raise RuntimeError(f"Expected a cache miss for request {number}")
         trace_ids.append(result["trace_id"])
+        evaluation_modes.append(result["evaluation"]["evaluation"].get("mode", "full"))
 
     spans = read_spans()
     records = [trace_metrics(trace_id, spans) for trace_id in trace_ids]
@@ -91,6 +94,8 @@ async def run_experiment(count: int) -> dict:
     result = {
         "request_count": count,
         "cache_path": "miss",
+        "evaluation_mode": os.getenv("HW10_EVALUATION_MODE", "full"),
+        "observed_evaluation_modes": sorted(set(evaluation_modes)),
         "trace_ids": trace_ids,
         "summary": summarize(complete_records),
         "records": complete_records,

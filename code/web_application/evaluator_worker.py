@@ -16,6 +16,7 @@ from kafka.pipeline import message_consumer
 EVALUATION_TIMEOUT_SECONDS = float(
     os.getenv("HW10_PIPELINE_EVALUATION_TIMEOUT_SECONDS", "300")
 )
+EVALUATION_MODE = os.getenv("HW10_EVALUATION_MODE", "full")
 EVALUATION_LOG_PATH = (
     Path(__file__).resolve().parents[2]
     / "reports"
@@ -56,6 +57,21 @@ async def evaluate_final_message(message: dict) -> dict:
         )
 
     trace_id = str(message.get("trace_id", correlation_id))
+    if EVALUATION_MODE == "linkage_only":
+        with span(trace_id, "evaluation", {"mode": EVALUATION_MODE}):
+            result = {
+                "correlation_id": correlation_id,
+                "trace_id": trace_id,
+                "mode": EVALUATION_MODE,
+                "note": "Latency experiment: validated linked messages without GEval.",
+            }
+        return {
+            "correlation_id": correlation_id,
+            "trace_id": trace_id,
+            "status": "complete",
+            "evaluation": result,
+        }
+
     plan_message = {
         "correlation_id": correlation_id,
         "trace_id": trace_id,
