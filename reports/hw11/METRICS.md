@@ -43,3 +43,51 @@ A 2% absolute daily move is captured for awareness but normally goes to the dige
 ## HW11 fictional-fixture rule
 
 For the fictional HW11 fixtures only, use one fixed threshold: an absolute daily move >= 5.0% is `notify`; 2.0%–4.99% is `digest`; and below 2.0% is `quiet`.
+
+## Final HW11 evaluation
+
+Final evaluation run: `20261123-140926-0349`
+Golden set: `golden/gold_hw11.json` (12 cases)
+
+The run was deliberately interrupted and then resumed to test recovery. All 12 golden cases matched their expected outcomes.
+
+| Metric | Final result |
+|---|---:|
+| Golden cases correct | 12 / 12 |
+| `decision_accuracy` | 1.0 |
+| `precision_notify` | 1.0 |
+| `recall_notify` | 1.0 |
+| `unnecessary_notification_rate` | 0.0 |
+| `duplicate_notification_rate` | 0.0 |
+| `restart_recovery_rate` | 1.0 |
+| `blocked_non_allowlisted_urls` | 1 |
+| `injection_items_flagged` | 1 |
+| `injection_items_notified` | 0 |
+| `tokens_per_accepted_notification` | 618289 |
+
+### Metric interpretation
+
+- `precision_notify = 1.0`: every notification sent was expected to be material.
+- `recall_notify = 1.0`: every golden case expected to notify was notified.
+- `unnecessary_notification_rate = 0.0`: no unnecessary HIGH alerts were sent.
+- `duplicate_notification_rate = 0.0`: no duplicate notification reached the user; the duplicate filing was suppressed or merged by the deduplication mechanism rather than alerted twice.
+- `restart_recovery_rate = 1.0`: the deliberately interrupted run resumed successfully.
+- `tokens_per_accepted_notification = 618289`: the final interrupted/resumed evaluation used 3,091,446 tokens across 5 accepted notifications.
+
+One non-allowlisted URL was blocked. `injection_items_flagged = 1` means the script's direct injection guard flagged one obvious prompt-injection case. There were two adversarial golden cases total: the second, credential-request case was still correctly classified as `ask` by the policy even though it was not counted as a direct script-level injection flag. `injection_items_notified = 0` means neither unsafe case resulted in a notification.
+
+### Token-use provenance
+
+The final metrics command was:
+
+```text
+python3 watch.py metrics --gold golden/gold_hw11.json --usage-tokens 3091446
+```
+
+Token usage for the deliberately interrupted and resumed evaluation was 3,091,446 total tokens: 3,087,818 input and 3,628 output. The interruption turn used 599,425 total tokens (598,781 input; 644 output), and the resume/completion turn used 2,492,021 total tokens (2,489,037 input; 2,984 output). With five accepted notifications, `3,091,446 / 5 = 618,289.2`; `watch.py` therefore reported `tokens_per_accepted_notification: 618289`.
+
+These token values were retrieved from Muse's `muse.db` table `agent.agent_message_token_usage`. Muse links usage to the agent and message, not directly to a `watch.py` run ID. Attribution was matched using the same session, message IDs, and timestamps for the interruption and resume/completion turns.
+
+### Free-tier usage estimate
+
+Muse Settings showed 1% used of the weekly free-tier allowance during HW11 testing. The current Muse UI did not expose the exact total size of that weekly allowance. The 1% value reflects cumulative Muse usage during testing, not a clean per-run percentage, so it does not support an exact monthly percentage. A precise monthly share cannot be calculated from the available UI data without the weekly allowance denominator. In a typical month, approximately 20–23 weekday scheduled runs would occur, and monthly usage would depend on the token cost of those live runs. The manual live run produced no material events, so it should not be assumed to have the same token cost as the much heavier interrupted/resumed evaluation.
