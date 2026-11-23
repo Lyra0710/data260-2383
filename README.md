@@ -14,5 +14,6 @@ This repository contains the DATA-260 homework assignments for the community spo
 8. [Homework 8 reproducible run instructions](reports/hw08/reproducible_run_instructions.md) · [HW8 report](reports/hw08/report.pdf) · [HW8 files](reports/hw08/)
 9. [Homework 9 reproducible run instructions](reports/hw09/reproducible_run_instructions.md) · [HW9 report](reports/hw09/report.pdf) · [HW9 files](reports/hw09/)
 10. [Homework 10 reproducible run instructions](reports/hw10/reproducible_run_instructions.md) · [HW10 files](reports/hw10/)
+11. [HW11 report](reports/hw11/report.pdf) · [HW11 metrics](reports/hw11/METRICS.md) · [HW11 files](reports/hw11/) — no reproducible local-run instructions are included because the HW11 evaluation was performed in Muse.
 
-Each homework’s reproducible run instructions and supporting report files are stored in its corresponding `reports/hw##/` directory.
+Where provided, reproducible run instructions and supporting report files are stored in the corresponding `reports/hw##/` directory.
